@@ -251,7 +251,7 @@ void VsGameSection::BikeborbEvent() {
 	PelletIterator iPellet;
 
 	Vector3f spawnLocations[7];
-	spawnNum = 0;
+	int spawnNum = 0;
 
 	CI_LOOP(iPellet) {
 		Pellet* pellet = *iPellet;
