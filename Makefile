@@ -78,7 +78,6 @@ endif
 
 O_FILES :=	$(GROUP_0_FILES) $(JSYSTEM) $(DOLPHIN)\
 			$(YAMASHITA) $(KANDO) $(NISHIMURA) $(OGAWA) $(HIKINO) $(MORIMURA) $(EBISAWA) $(KONO)\
-			$(MODDING)\
 			$(BOOTUP) $(COMMON) $(GC) $(UTILITY)
 ifeq ($(EPILOGUE_PROCESS),1)
 E_FILES :=	$(EPILOGUE_UNSCHEDULED)
@@ -127,7 +126,6 @@ CC_EPI  = $(WINE) tools/mwcc_compiler/$(MWCC_EPI_VERSION)/$(MWCC_EPI_EXE)
 endif
 LD      := $(WINE) tools/mwcc_compiler/$(MWLD_VERSION)/mwldeppc.exe
 ELF2DOL := tools/elf2dol
-SHA1SUM := sha1sum
 
 TRANSFORM_DEP := tools/transform-dep.py
 FRANK := tools/franklite.py
@@ -232,9 +230,8 @@ $(LDSCRIPT): ldscript.lcf
 
 $(DOL): $(ELF) | tools
 	$(QUIET) $(ELF2DOL) $< $@
-	#$(QUIET) $(SHA1SUM) -c sha1/$(NAME).$(VERSION).sha1
 ifneq ($(findstring -map,$(LDFLAGS)),)
-	#$(QUIET) $(PYTHON) tools/calcprogress.py $(DOL) $(MAP)
+	$(QUIET) $(PYTHON) tools/calcprogress.py $(DOL) $(MAP)
 endif
 ifeq ($(USE_AOI),1)
 	$(WINE) ./aoi.exe
