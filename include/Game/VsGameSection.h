@@ -86,6 +86,7 @@ struct VsGameSection : public BaseGameSection {
 	void updateCardGeneration();
 	bool updateCaveMenus();
 	void useCard();
+	void BikeborbEvent(); 
 
 	Pellet* createCardPellet();
 
