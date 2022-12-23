@@ -429,10 +429,6 @@ void VsGameSection::onSetupFloatMemory()
 void VsGameSection::postSetupFloatMemory()
 {
 	if (gameSystem->m_mode == GSM_VERSUS_MODE) {
-		GameMessageVsAddEnemy add;
-		add._04 = EnemyTypeID::EnemyID_KumaChappy;
-		add._08 = 1;
-		sendMessage(add);
 
 		m_redBlueYellowScore[1] = 0.0f;
 		m_redBlueYellowScore[0] = 0.0f;
