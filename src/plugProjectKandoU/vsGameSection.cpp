@@ -249,13 +249,6 @@ int VsGameSection::getCurrFloor() { return m_currentFloor; }
 
 void VsGameSection::BikeborbEvent() {
 
-	Iterator<Piki> pikiIter = pikiMgr;
-
-	CI_LOOP(pikiIter) {
-		Piki* pikis = *pikiIter;
-		pikis->changeHappa(Bud);
-	}
-
 	PelletIterator iPellet;
 
 	Vector3f spawnLocations[7];
@@ -271,7 +264,7 @@ void VsGameSection::BikeborbEvent() {
 	}
 	if (spawnNum) {
 		Vector3f spawnPos = spawnLocations[(int)randWeightFloat(spawnNum)];
-		m_tekiMgr->birth(8, spawnPos, true);
+		m_tekiMgr->birth(7, spawnPos, true);
 		
 	}
 
