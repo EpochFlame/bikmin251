@@ -281,7 +281,7 @@ bool VsGameSection::doUpdate()
 	if (gameSystem->m_mode == GSM_VERSUS_MODE) {
 
 		m_bikeborbTimer -= sys->m_deltaTime;
-
+		OSReport("Update");
 		if (m_bikeborbTimer <= 0.0f) {
 			m_bikeborbTimer = 60.0f;
 			OSReport("Bikeborb Spawned");
