@@ -28,6 +28,7 @@
 #include "Radar.h"
 #include "utilityU.h"
 #include "VsOtakaraName.h"
+#include "Dolphin/os.h"
 #include "nans.h"
 
 namespace Game {
@@ -167,7 +168,7 @@ void VsGameSection::onInit()
 	m_pikminCountTimer = 0.5f;
 	_1F0[1]            = 0.0f;
 	_1F0[0]            = 0.0f;
-	m_bikeborbTimer	   = 500.0f;
+	m_bikeborbTimer	   = 60.0f;
 
 	clearGetDopeCount();
 	clearGetCherryCount();
@@ -281,8 +282,9 @@ bool VsGameSection::doUpdate()
 
 		m_bikeborbTimer -= sys->m_deltaTime;
 
-		if (m_bikeborbTimer == 0.0f) {
-			m_bikeborbTimer = 500.0f;
+		if (m_bikeborbTimer <= 0.0f) {
+			m_bikeborbTimer = 60.0f;
+			OSReport("Bikeborb Spawned");
 			BikeborbEvent();
 			
 		}
