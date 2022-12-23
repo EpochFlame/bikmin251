@@ -1201,9 +1201,6 @@ void VsGameSection::updateCardGeneration()
 			dropCard(arg);
 		}
 	}
-
-
-
 	// throwing it here since deltaTime is also used here
 
 	m_eventTimer -= sys->m_deltaTime;
@@ -1212,9 +1209,6 @@ void VsGameSection::updateCardGeneration()
 		m_eventTimer += randWeightFloat(60.0f) + 470.0f;
 		RandomEvent();
 	}
-
-
-
 }
 
 void VsGameSection::RandomEvent() {
@@ -1235,7 +1229,6 @@ void VsGameSection::RandomEvent() {
 			if (spawnNum) {
 				Vector3f spawnPos = spawnLocations[(int)randWeightFloat(spawnNum)];
 				m_tekiMgr->birth(7, spawnPos, false);
-				
 			}
 			break;
 		}
@@ -1273,10 +1266,7 @@ void VsGameSection::RandomEvent() {
 			m_cardMgr->m_slotMachines[0]._1C = 5; // cherry stock
 			m_cardMgr->m_slotMachines[1]._1C = 5; 
 			break;
-
 		}
-
-
 	}
 }
 
