@@ -168,7 +168,7 @@ void VsGameSection::onInit()
 	m_pikminCountTimer = 0.5f;
 	_1F0[1]            = 0.0f;
 	_1F0[0]            = 0.0f;
-	m_bikeborbTimer	   = 60.0f;
+	m_eventTimer	   = randWeightFloat(60.0f) + 470.0f;
 
 	clearGetDopeCount();
 	clearGetCherryCount();
@@ -247,27 +247,7 @@ int VsGameSection::getCurrFloor() { return m_currentFloor; }
  */
 
 
-void VsGameSection::BikeborbEvent() {
 
-
-	Vector3f spawnLocations[7];
-	int spawnNum = 0;
-
-	for (int i = 0; i < 7; i++) {
-		Pellet* pellet = m_marbleYellow[i];
-		if (pellet) {
-			spawnLocations[spawnNum] = pellet->m_pelletPosition;
-			spawnLocations[spawnNum].y += 50.0f;
-			spawnNum++;
-		}
-	}
-	if (spawnNum) {
-		Vector3f spawnPos = spawnLocations[(int)randWeightFloat(spawnNum)];
-		m_tekiMgr->birth(8, spawnPos, false);
-		
-	}
-
-}
 
 
 bool VsGameSection::doUpdate()
@@ -1019,8 +999,8 @@ bool GameMessageVsBirthTekiTreasure::actVs(VsGameSection* section)
 		tobiChance = 0.01f;
 	}
 	if (!(randFloat() > tobiChance)) {
-		int nodes = 7; //section->m_tekiMgr->m_nodeCount - 1;
-		// why is it even do that
+		int nodes = 6; //section->m_tekiMgr->m_nodeCount - 1;
+		// why does it even do that
 		for (int i = 0; i < _10; i++) {
 			section->m_tekiMgr->birth(nodes, m_position, _14);
 		}
@@ -1226,16 +1206,78 @@ void VsGameSection::updateCardGeneration()
 
 	// throwing it here since deltaTime is also used here
 
-	m_bikeborbTimer -= sys->m_deltaTime;
+	m_eventTimer -= sys->m_deltaTime;
 
-	if (m_bikeborbTimer <= 0.0f) {
-		m_bikeborbTimer = 60.0f;
-		BikeborbEvent();
-		
+	if (m_eventTimer <= 0.0f) {
+		m_eventTimer += randWeightFloat(60.0f) + 470.0f;
+		RandomEvent();
 	}
 
 
 
+}
+
+void VsGameSection::RandomEvent() {
+	int eventID = (int)randWeightFloat(EVENT_NUM);
+	switch (eventID) {
+		case BIKEBORB: {
+			Vector3f spawnLocations[7];
+			int spawnNum = 0;
+
+			for (int i = 0; i < 7; i++) {
+				Pellet* pellet = m_marbleYellow[i];
+				if (pellet) {
+					spawnLocations[spawnNum] = pellet->m_pelletPosition;
+					spawnLocations[spawnNum].y += 50.0f;
+					spawnNum++;
+				}
+			}
+			if (spawnNum) {
+				Vector3f spawnPos = spawnLocations[(int)randWeightFloat(spawnNum)];
+				m_tekiMgr->birth(7, spawnPos, false);
+				
+			}
+			break;
+		}
+		case PIKMIN_SWAP: {
+			int pikiSwaps[2];
+
+			Iterator<Piki> iPiki = pikiMgr;
+
+			CI_LOOP(iPiki) {
+				Piki* piki = *iPiki;
+				if (piki && piki->isAlive()) {
+					if (piki->m_pikiKind < 2) {
+						pikiSwaps[piki->m_pikiKind]++;
+					}
+				}
+			}
+
+			int min = (pikiSwaps[0] < pikiSwaps[1]) ? pikiSwaps[0] : pikiSwaps[1];
+
+			pikiSwaps[0] = min;
+			pikiSwaps[1] = min;
+			Iterator<Piki> iPiki2 = pikiMgr;
+			CI_LOOP(iPiki2) {
+				Piki* piki = *iPiki;
+				if (piki && piki->isAlive()) {
+					if (piki->m_pikiKind < 2 && pikiSwaps[piki->m_pikiKind] > 0) {
+						piki->changeShape(1 - piki->m_pikiKind);
+						pikiSwaps[piki->m_pikiKind]--;
+					}
+				}
+			}
+			break;
+		}
+		case BOTH_CHERRY_FIVE: {
+			m_cardMgr->m_slotMachines[0]._1C = 5; // cherry stock
+			m_cardMgr->m_slotMachines[1]._1C = 5; 
+			break;
+
+		}
+
+
+	}
 }
 
 /*
