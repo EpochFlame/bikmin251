@@ -255,7 +255,7 @@ void VsGameSection::BikeborbEvent() {
 
 	CI_LOOP(iPellet) {
 		Pellet* pellet = *iPellet;
-		if (p->m_pelletFlag == Pellet::FLAG_VS_BEDAMA_YELLOW) {
+		if (pellet->m_pelletFlag == Pellet::FLAG_VS_BEDAMA_YELLOW) {
 			spawnLocations[spawnNum] = pellet->m_position;
 			spawnNum++;
 		}
