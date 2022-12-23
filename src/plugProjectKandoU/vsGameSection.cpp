@@ -249,6 +249,7 @@ int VsGameSection::getCurrFloor() { return m_currentFloor; }
 
 void VsGameSection::BikeborbEvent() {
 
+
 	Vector3f spawnLocations[7];
 	int spawnNum = 0;
 
@@ -260,9 +261,9 @@ void VsGameSection::BikeborbEvent() {
 			spawnNum++;
 		}
 	}
-	if (spawnNum > 0) {
+	if (spawnNum) {
 		Vector3f spawnPos = spawnLocations[(int)randWeightFloat(spawnNum)];
-		m_tekiMgr->birth(5, spawnPos, true);
+		m_tekiMgr->birth(8, spawnPos, false);
 		
 	}
 
@@ -428,7 +429,10 @@ void VsGameSection::onSetupFloatMemory()
 void VsGameSection::postSetupFloatMemory()
 {
 	if (gameSystem->m_mode == GSM_VERSUS_MODE) {
-		m_tekiMgr->entry(EnemyTypeID::EnemyID_KumaChappy, 1);
+		GameMessageVsAddEnemy add;
+		add._04 = EnemyTypeID::EnemyID_KumaChappy;
+		add._08 = 1;
+		sendMessage(add);
 
 		m_redBlueYellowScore[1] = 0.0f;
 		m_redBlueYellowScore[0] = 0.0f;
