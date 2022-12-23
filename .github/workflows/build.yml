@@ -32,9 +32,9 @@ jobs:
         cmake -B build
         cmake --build build
     - name: Build
-      run: make -j$(nproc) WINE=./tools/WiBo/build/wibo MAPGENFLAG=1
-    - name: Upload map
-      uses: actions/upload-artifact@v2
+      run: make -j$(nproc) WINE=./tools/WiBo/build/wibo
+    - name: Upload Dol
+      uses: actions/upload-artifact@v3
       with:
-        name: pikmin2UP.MAP
-        path: build/*/pikmin2UP.MAP
+        name: main.dol
+        path: build/pikmin2.usa/main.dol
