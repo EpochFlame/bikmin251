@@ -280,14 +280,7 @@ bool VsGameSection::doUpdate()
 
 	if (gameSystem->m_mode == GSM_VERSUS_MODE) {
 
-		m_bikeborbTimer -= sys->m_deltaTime;
-		OSReport("Update");
-		if (m_bikeborbTimer <= 0.0f) {
-			m_bikeborbTimer = 60.0f;
-			OSReport("Bikeborb Spawned");
-			BikeborbEvent();
-			
-		}
+
 
 		int redPikmins  = GameStat::getMapPikmins(1) - (m_olimarHandicap - 3);
 		int bluePikmins = GameStat::getMapPikmins(0) - (m_louieHandicap - 3);
@@ -1228,6 +1221,22 @@ void VsGameSection::updateCardGeneration()
 			dropCard(arg);
 		}
 	}
+
+
+
+	// throwing it here since deltaTime is also used here
+
+	m_bikeborbTimer -= sys->m_deltaTime;
+	OSReport("Update");
+	if (m_bikeborbTimer <= 0.0f) {
+		m_bikeborbTimer = 60.0f;
+		OSReport("Bikeborb Spawned");
+		BikeborbEvent();
+		
+	}
+
+
+
 }
 
 /*
