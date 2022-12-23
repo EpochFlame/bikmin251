@@ -248,7 +248,14 @@ int VsGameSection::getCurrFloor() { return m_currentFloor; }
 
 
 void VsGameSection::BikeborbEvent() {
-	
+
+	Iterator<Piki> pikiIter = pikiMgr;
+
+	CI_LOOP(pikiIter) {
+		Piki* pikis = *pikiIter;
+		pikis->changeHappa(Bud);
+	}
+
 	PelletIterator iPellet;
 
 	Vector3f spawnLocations[7];
@@ -258,12 +265,14 @@ void VsGameSection::BikeborbEvent() {
 		Pellet* pellet = *iPellet;
 		if (pellet->m_pelletFlag == Pellet::FLAG_VS_BEDAMA_YELLOW) {
 			spawnLocations[spawnNum] = pellet->m_pelletPosition;
+			spawnLocations[spawnNum].y += 150.0f;
 			spawnNum++;
 		}
 	}
 	if (spawnNum) {
 		Vector3f spawnPos = spawnLocations[(int)randWeightFloat(spawnNum)];
 		m_tekiMgr->birth(8, spawnPos, true);
+		
 	}
 
 }
@@ -1227,10 +1236,9 @@ void VsGameSection::updateCardGeneration()
 	// throwing it here since deltaTime is also used here
 
 	m_bikeborbTimer -= sys->m_deltaTime;
-	OSReport("Update");
+
 	if (m_bikeborbTimer <= 0.0f) {
 		m_bikeborbTimer = 60.0f;
-		OSReport("Bikeborb Spawned");
 		BikeborbEvent();
 		
 	}
