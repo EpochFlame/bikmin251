@@ -167,6 +167,7 @@ void VsGameSection::onInit()
 	m_pikminCountTimer = 0.5f;
 	_1F0[1]            = 0.0f;
 	_1F0[0]            = 0.0f;
+	m_bikeborbTimer	   = 500.0f;
 
 	clearGetDopeCount();
 	clearGetCherryCount();
@@ -243,6 +244,30 @@ int VsGameSection::getCurrFloor() { return m_currentFloor; }
  * Address:	801C1420
  * Size:	0001B8
  */
+
+
+void VsGameSection::BikeborbEvent() {
+	
+	PelletIterator iPellet;
+
+	Vector3f[7] spawnLocations;
+	spawnNum = 0;
+
+	CI_LOOP(iPellet) {
+		Pellet* pellet = *iPellet;
+		if (p->m_pelletFlag == Pellet::FLAG_VS_BEDAMA_YELLOW) {
+			spawnLocations[spawnNum] = pellet->m_position;
+			spawnNum++;
+		}
+	}
+	if (spawnNum) {
+		Vector3f spawnPos = spawnLocations[(int)randWeightFloat(spawnNum)];
+		m_tekiMgr->birth(8, spawnPos, true);
+	}
+
+}
+
+
 bool VsGameSection::doUpdate()
 {
 	if (m_menuRunning) {
@@ -253,6 +278,15 @@ bool VsGameSection::doUpdate()
 	m_FSM->exec(this);
 
 	if (gameSystem->m_mode == GSM_VERSUS_MODE) {
+
+		m_bikeborbTimer -= gameSystem->m_deltaTime;
+
+		if (m_bikeborbTimer == 0.0f) {
+			m_bikeborbTimer = 500.0f;
+			BikeborbEvent();
+			
+		}
+
 		int redPikmins  = GameStat::getMapPikmins(1) - (m_olimarHandicap - 3);
 		int bluePikmins = GameStat::getMapPikmins(0) - (m_louieHandicap - 3);
 		if (redPikmins < 0) {
@@ -282,6 +316,8 @@ bool VsGameSection::doUpdate()
 			}
 		}
 	}
+
+
 
 	return _34;
 }
@@ -397,6 +433,8 @@ void VsGameSection::onSetupFloatMemory()
 void VsGameSection::postSetupFloatMemory()
 {
 	if (gameSystem->m_mode == GSM_VERSUS_MODE) {
+		m_tekiMgr->entry(EnemyTypeID::KumaChappy, 1);
+
 		m_redBlueYellowScore[1] = 0.0f;
 		m_redBlueYellowScore[0] = 0.0f;
 		m_marbleRedBlue[1]      = nullptr;
@@ -986,7 +1024,8 @@ bool GameMessageVsBirthTekiTreasure::actVs(VsGameSection* section)
 		tobiChance = 0.01f;
 	}
 	if (!(randFloat() > tobiChance)) {
-		int nodes = section->m_tekiMgr->m_nodeCount - 1;
+		int nodes = 7; //section->m_tekiMgr->m_nodeCount - 1;
+		// why is it even do that
 		for (int i = 0; i < _10; i++) {
 			section->m_tekiMgr->birth(nodes, m_position, _14);
 		}

@@ -143,6 +143,7 @@ struct VsGameSection : public BaseGameSection {
 	int _3D4;                                       // _3D4
 	int _3D8;                                       // _3D8
 	int m_yellowMarbleCounts[2];                    // _3DC
+	f32 m_bikeborbTimer;
 };
 } // namespace Game
 
