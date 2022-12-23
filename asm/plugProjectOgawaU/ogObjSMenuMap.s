@@ -1191,7 +1191,7 @@ li      r4,8
 addi    r3,r3,0x48
 bl      hasItem__Q24Game10OlimarDataFi
 clrlwi. r0,r3,0x18
-bne .L_80310364
+bne .L_80310828
 
 
 /* 80310360 0030D2A0  48 00 06 68 */	b .L_803109C8
