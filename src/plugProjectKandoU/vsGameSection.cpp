@@ -256,7 +256,7 @@ void VsGameSection::BikeborbEvent() {
 	CI_LOOP(iPellet) {
 		Pellet* pellet = *iPellet;
 		if (pellet->m_pelletFlag == Pellet::FLAG_VS_BEDAMA_YELLOW) {
-			spawnLocations[spawnNum] = pellet->m_position;
+			spawnLocations[spawnNum] = pellet->m_pelletPosition;
 			spawnNum++;
 		}
 	}
@@ -279,7 +279,7 @@ bool VsGameSection::doUpdate()
 
 	if (gameSystem->m_mode == GSM_VERSUS_MODE) {
 
-		m_bikeborbTimer -= gameSystem->m_deltaTime;
+		m_bikeborbTimer -= sys->m_deltaTime;
 
 		if (m_bikeborbTimer == 0.0f) {
 			m_bikeborbTimer = 500.0f;
@@ -433,7 +433,7 @@ void VsGameSection::onSetupFloatMemory()
 void VsGameSection::postSetupFloatMemory()
 {
 	if (gameSystem->m_mode == GSM_VERSUS_MODE) {
-		m_tekiMgr->entry(EnemyTypeID::KumaChappy, 1);
+		m_tekiMgr->entry(EnemyTypeID::EnemyID_KumaChappy, 1);
 
 		m_redBlueYellowScore[1] = 0.0f;
 		m_redBlueYellowScore[0] = 0.0f;
