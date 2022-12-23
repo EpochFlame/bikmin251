@@ -254,11 +254,11 @@ void VsGameSection::BikeborbEvent() {
 	Vector3f spawnLocations[7];
 	int spawnNum = 0;
 
-	CI_LOOP(iPellet) {
-		Pellet* pellet = *iPellet;
-		if (pellet->m_pelletFlag == Pellet::FLAG_VS_BEDAMA_YELLOW) {
+	for (int i = 0; i < 7; i++) {
+		Pellet* pellet = m_marbleYellow[i];
+		if (pellet) {
 			spawnLocations[spawnNum] = pellet->m_pelletPosition;
-			spawnLocations[spawnNum].y += 150.0f;
+			spawnLocations[spawnNum].y += 50.0f;
 			spawnNum++;
 		}
 	}
