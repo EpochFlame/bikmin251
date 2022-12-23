@@ -431,8 +431,6 @@ lbl_80518360:
 .balign 4
 lbl_80518368:
 	.float 1.3
-lbl_8051836C:
-	.float 1.5
 lbl_80518370:
 	.float 25.0
 lbl_80518374:
@@ -1345,7 +1343,7 @@ onInit__Q24Game4NaviFPQ24Game15CreatureInitArg:
 /* 801402C0 0013D200  A0 1E 02 DC */	lhz r0, 0x2dc(r30)
 /* 801402C4 0013D204  28 00 00 01 */	cmplwi r0, 1
 /* 801402C8 0013D208  40 82 00 0C */	bne .L_801402D4
-/* 801402CC 0013D20C  C0 02 A0 0C */	lfs f0, lbl_8051836C@sda21(r2)
+/* 801402CC 0013D20C  C0 02 A0 0C */	lfs f0, lbl_80518368@sda21(r2)
 /* 801402D0 0013D210  FC 20 00 90 */	fmr f1, f0
 .L_801402D4:
 /* 801402D4 0013D214  D0 1E 01 68 */	stfs f0, 0x168(r30)
@@ -2308,7 +2306,8 @@ sendMessage__Q24Game15BaseGameSectionFRQ24Game11GameMessage:
 /* 80141038 0013DF78  90 E1 00 3C */	stw r7, 0x3c(r1)
 /* 8014103C 0013DF7C  90 C1 00 40 */	stw r6, 0x40(r1)
 /* 80141040 0013DF80  90 01 00 44 */	stw r0, 0x44(r1)
-/* 80141044 0013DF84  48 01 55 85 */	bl "mapSearch__Q24Game11CellPyramidFRQ23Sys6SphereP32IDelegate1<PQ24Game10CellObject>"
+mr r3, r29
+bl naviBomb
 /* 80141048 0013DF88  48 00 02 2C */	b .L_80141274
 .L_8014104C:
 /* 8014104C 0013DF8C  80 7D 02 54 */	lwz r3, 0x254(r29)
@@ -2824,14 +2823,9 @@ viewGetShape__Q24Game4NaviFv:
 
 .global viewGetBaseScale__Q24Game4NaviFv
 viewGetBaseScale__Q24Game4NaviFv:
-/* 80141744 0013E684  A0 03 02 DC */	lhz r0, 0x2dc(r3)
-/* 80141748 0013E688  28 00 00 00 */	cmplwi r0, 0
-/* 8014174C 0013E68C  40 82 00 0C */	bne .L_80141758
-/* 80141750 0013E690  C0 22 A0 08 */	lfs f1, lbl_80518368@sda21(r2)
-/* 80141754 0013E694  4E 80 00 20 */	blr 
-.L_80141758:
-/* 80141758 0013E698  C0 22 A0 0C */	lfs f1, lbl_8051836C@sda21(r2)
-/* 8014175C 0013E69C  4E 80 00 20 */	blr 
+# both navis have 1.3 scale now
+lfs f1, lbl_80518368@sda21(r2)
+blr 
 
 .global doEntry__Q24Game4NaviFv
 doEntry__Q24Game4NaviFv:

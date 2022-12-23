@@ -71,30 +71,34 @@ void Koganemushi::Obj::createItem()
 
 	switch (m_flipTally) {
 	case 0: // initial flip
-		if (gameSystem && gameSystem->m_inCave) {
-			createPelletItem = false;
-			initArg          = HONEY_Y;
-			amount           = 1;
-		} else {
-			initArg = PELLET_NUMBER_ONE;
-			amount  = 1;
-		}
-
+		createPelletItem = false;
+		initArg          = HONEY_Y;
+		amount           = 10;
 		break;
 	case 1: // second flip
 		createPelletItem = false;
-		initArg          = HONEY_Y;
-		amount           = 2;
-		break;
-	case 2: // third flip
-		createPelletItem = false;
-
-		if (playData && playData->isDemoFlag(DEMO_First_Spicy_Spray_Made)) {
-			initArg = HONEY_R;
-			amount  = 1;
+		if (playData && playData->isDemoFlag(DEMO_First_Bitter_Spray_Made)) {
+			initArg = HONEY_B;
+			amount  = 2;
 		} else {
 			initArg = HONEY_Y;
-			amount  = 3;
+			amount  = 5;
+		}
+		break;
+	case 2: // third flip
+		if (gameSystem && gameSystem->m_inCave) {
+			createPelletItem = false;
+
+			if (playData && playData->isDemoFlag(DEMO_First_Spicy_Spray_Made)) {
+				initArg = HONEY_R;
+				amount  = 3;
+			} else {
+				initArg = HONEY_Y;
+				amount  = 5;
+			}
+		} else {
+			initArg = PELLET_NUMBER_TEN;
+			amount  = 5;
 		}
 
 		m_appearTimer = 12800.0f;

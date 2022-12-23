@@ -29,6 +29,7 @@
 #include "Dolphin/rand.h"
 #include "PikiAi.h"
 #include "JSystem/J3D/J3DModelLoader.h"
+#include "mod.h"
 
 Game::ItemOnyon::Mgr* Game::ItemOnyon::mgr;
 static bool sVolveFlag;
@@ -435,7 +436,12 @@ bool InteractSuckDone::actOnyon(Onyon* item)
 		}
 	}
 
-	if (gameSystem->isChallengeMode() && !strcmp(pellet->m_config->m_params.m_name.m_data, "key")) {
+	if ((gameSystem->isChallengeMode() || mod::isExitLocked) && !strcmp(pellet->m_config->m_params.m_name.m_data, "key")) {
+		if (gameSystem->m_mode == GSM_STORY_MODE) {
+			if (--mod::keyLockCount) {
+				goto bedamaCheck;
+			}
+		}
 		InteractGotKey act(item);
 		Iterator<BaseItem> iterFountain(ItemBigFountain::mgr);
 		CI_LOOP(iterFountain)
@@ -450,7 +456,7 @@ bool InteractSuckDone::actOnyon(Onyon* item)
 			cHole->stimulate(act);
 		}
 	}
-
+bedamaCheck:
 	if (gameSystem->m_mode == GSM_VERSUS_MODE) {
 		const char* peltnames[2] = { VsOtakaraName::cBedamaRed, VsOtakaraName::cBedamaBlue };
 

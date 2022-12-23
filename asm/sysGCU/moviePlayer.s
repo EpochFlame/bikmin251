@@ -459,6 +459,9 @@ play__Q24Game11MoviePlayerFRQ24Game12MoviePlayArg:
 .L_8042CA14:
 /* 8042CA14 00429954  38 60 00 01 */	li r3, 1
 .L_8042CA18:
+# set isTreasureCutscene to false
+li r3, 0
+stb r3, isTreasureCutscene@sda21(r13)
 /* 8042CA18 00429958  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 8042CA1C 0042995C  83 E1 00 0C */	lwz r31, 0xc(r1)
 /* 8042CA20 00429960  83 C1 00 08 */	lwz r30, 8(r1)

@@ -276,6 +276,8 @@ lbl_80518340:
 	.float 150.0
 lbl_80518344:
 	.float 1.1
+naviHellDamage:
+	.float 11.0
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q24Game8FakePikiFv
@@ -3018,6 +3020,11 @@ doSimulation__Q24Game8FakePikiFf:
 /* 8013F310 0013C250  D0 21 00 20 */	stfs f1, 0x20(r1)
 /* 8013F314 0013C254  D0 01 00 1C */	stfs f0, 0x1c(r1)
 /* 8013F318 0013C258  4B FF BE 91 */	bl "setPosition__Q24Game8CreatureFR10Vector3<f>b"
+# damage navi when hell void
+lfs f1, naviHellDamage@sda21(r2)
+mr r3, r31
+li r4, 1
+bl addDamage__Q24Game4NaviFfb
 .L_8013F31C:
 /* 8013F31C 0013C25C  E3 E1 00 58 */	psq_l f31, 88(r1), 0, qr0
 /* 8013F320 0013C260  80 01 00 64 */	lwz r0, 0x64(r1)

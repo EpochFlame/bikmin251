@@ -2720,7 +2720,7 @@ onSetupFloatMemory__Q24Game17SingleGameSectionFv:
 /* 801531E4 00150124  39 00 02 B2 */	li r8, 0x2b2
 /* 801531E8 00150128  90 03 00 04 */	stw r0, 4(r3)
 /* 801531EC 0015012C  38 C7 00 14 */	addi r6, r7, 0x14
-/* 801531F0 00150130  38 A0 02 72 */	li r5, 0x272
+/* 801531F0 00150130  38 A0 02 72 */	li r5, 0x27c # leaves instead of snow
 /* 801531F4 00150134  38 04 00 14 */	addi r0, r4, 0x14
 /* 801531F8 00150138  91 23 00 08 */	stw r9, 8(r3)
 /* 801531FC 0015013C  B1 03 00 0C */	sth r8, 0xc(r3)
@@ -2757,7 +2757,7 @@ onSetupFloatMemory__Q24Game17SingleGameSectionFv:
 /* 80153270 001501B0  39 00 02 B2 */	li r8, 0x2b2
 /* 80153274 001501B4  90 03 00 04 */	stw r0, 4(r3)
 /* 80153278 001501B8  38 C7 00 14 */	addi r6, r7, 0x14
-/* 8015327C 001501BC  38 A0 00 5B */	li r5, 0x5b
+/* 8015327C 001501BC  38 A0 00 5B */	li r5, 0x272 # snow instead of sakura
 /* 80153280 001501C0  38 04 00 14 */	addi r0, r4, 0x14
 /* 80153284 001501C4  91 23 00 08 */	stw r9, 8(r3)
 /* 80153288 001501C8  B1 03 00 0C */	sth r8, 0xc(r3)
@@ -2794,7 +2794,7 @@ onSetupFloatMemory__Q24Game17SingleGameSectionFv:
 /* 801532FC 0015023C  39 00 02 B2 */	li r8, 0x2b2
 /* 80153300 00150240  90 03 00 04 */	stw r0, 4(r3)
 /* 80153304 00150244  38 C7 00 14 */	addi r6, r7, 0x14
-/* 80153308 00150248  38 A0 02 7C */	li r5, 0x27c
+/* 80153308 00150248  38 A0 02 7C */	li r5, 0x5b
 /* 8015330C 0015024C  38 04 00 14 */	addi r0, r4, 0x14
 /* 80153310 00150250  91 23 00 08 */	stw r9, 8(r3)
 /* 80153314 00150254  B1 03 00 0C */	sth r8, 0xc(r3)
@@ -4219,7 +4219,7 @@ saveMainMapSituation__Q24Game17SingleGameSectionFb:
 /* 80153DDC 00150D1C  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 80153DE0 00150D20  41 82 00 5C */	beq .L_80153E3C
 /* 80153DE4 00150D24  88 9E 02 B8 */	lbz r4, 0x2b8(r30)
-/* 80153DE8 00150D28  2C 04 00 00 */	cmpwi r4, 0
+/* 80153DE8 00150D28  2C 04 00 00 */	cmpwi r4, 1 # only reds can enter submerged castle
 /* 80153DEC 00150D2C  41 82 00 50 */	beq .L_80153E3C
 /* 80153DF0 00150D30  80 6D 94 90 */	lwz r3, playData__4Game@sda21(r13)
 /* 80153DF4 00150D34  88 BE 02 B9 */	lbz r5, 0x2b9(r30)
@@ -4400,7 +4400,7 @@ saveMainMapSituation__Q24Game17SingleGameSectionFb:
 /* 80153DDC 00150D1C  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 80153DE0 00150D20  41 82 00 5C */	beq .L_80153E3C
 /* 80153DE4 00150D24  88 9E 02 B8 */	lbz r4, 0x2b8(r30)
-/* 80153DE8 00150D28  2C 04 00 00 */	cmpwi r4, 0
+/* 80153DE8 00150D28  2C 04 00 00 */	cmpwi r4, 1 # only reds can enter submerged castle
 /* 80153DEC 00150D2C  41 82 00 50 */	beq .L_80153E3C
 /* 80153DF0 00150D30  80 6D 94 90 */	lwz r3, playData__4Game@sda21(r13)
 /* 80153DF4 00150D34  88 BE 02 B9 */	lbz r5, 0x2b9(r30)
@@ -4695,7 +4695,7 @@ openCaveInMenu__Q24Game17SingleGameSectionFPQ34Game8ItemCave4Itemi:
 /* 801541F4 00151134  57 E0 06 3F */	clrlwi. r0, r31, 0x18
 /* 801541F8 00151138  41 82 00 10 */	beq .L_80154208
 /* 801541FC 0015113C  88 1A 02 B8 */	lbz r0, 0x2b8(r26)
-/* 80154200 00151140  2C 00 00 00 */	cmpwi r0, 0
+/* 80154200 00151140  2C 00 00 00 */	cmpwi r4, 1 # only reds can enter submerged castle
 /* 80154204 00151144  40 82 00 14 */	bne .L_80154218
 .L_80154208:
 /* 80154208 00151148  80 1A 01 7C */	lwz r0, 0x17c(r26)
@@ -4972,7 +4972,7 @@ openCaveInMenu__Q24Game17SingleGameSectionFPQ34Game8ItemCave4Itemi:
 /* 801541F4 00151134  57 E0 06 3F */	clrlwi. r0, r31, 0x18
 /* 801541F8 00151138  41 82 00 10 */	beq .L_80154208
 /* 801541FC 0015113C  88 1A 02 B8 */	lbz r0, 0x2b8(r26)
-/* 80154200 00151140  2C 00 00 00 */	cmpwi r0, 0
+/* 80154200 00151140  2C 00 00 00 */	cmpwi r4, 1 # only reds can enter submerged castle
 /* 80154204 00151144  40 82 00 14 */	bne .L_80154218
 .L_80154208:
 /* 80154208 00151148  80 1A 01 7C */	lwz r0, 0x17c(r26)

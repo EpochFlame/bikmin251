@@ -553,44 +553,35 @@ lbl_804B8528:
 .balign 8
 .global mgr__Q24Game9ItemHoney
 mgr__Q24Game9ItemHoney:
-	.skip 0x8
+	.skip 0x4
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-.global lbl_80519680
 lbl_80519680:
 	.float 0.0
-.global lbl_80519684
 lbl_80519684:
 	.float 100.0
-.global lbl_80519688
 lbl_80519688:
 	.float 15.0
-.global lbl_8051968C
 lbl_8051968C:
 	.float 32768.0
-.global lbl_80519690
 lbl_80519690:
 	.float 3.0
-.global lbl_80519694
 lbl_80519694:
 	.float 30.0
-.global lbl_80519698
+.balign 8
 lbl_80519698:
 	.4byte 0x43300000
 	.4byte 0x80000000
-.global lbl_805196A0
 lbl_805196A0:
 	.float 7.5
-.global lbl_805196A4
+.balign 4
 lbl_805196A4:
 	.asciz "mitu1"
-	.skip 2
-.global lbl_805196AC
+.balign 4
 lbl_805196AC:
 	.asciz "Honey"
-	.skip 2
-.global lbl_805196B4
+.balign 4
 lbl_805196B4:
 	.asciz "arc.szs"
 
@@ -1470,23 +1461,23 @@ changeMaterial__Q34Game9ItemHoney4ItemFv:
 /* 801D38E8 001D0828  88 1B 01 E0 */	lbz r0, 0x1e0(r27)
 /* 801D38EC 001D082C  28 00 00 00 */	cmplwi r0, 0
 /* 801D38F0 001D0830  40 82 00 18 */	bne .L_801D3908
-/* 801D38F4 001D0834  3B E0 00 B6 */	li r31, 0xb6
-/* 801D38F8 001D0838  3B C0 00 79 */	li r30, 0x79
-/* 801D38FC 001D083C  3B A0 00 00 */	li r29, 0
+/* 801D38F4 001D0834  3B E0 00 B6 */	li r31, 0x36
+/* 801D38F8 001D0838  3B C0 00 79 */	li r30, 0x69
+/* 801D38FC 001D083C  3B A0 00 00 */	li r29, 0x0f
 /* 801D3900 001D0840  3B 80 00 FF */	li r28, 0xff
 /* 801D3904 001D0844  48 00 00 30 */	b .L_801D3934
 .L_801D3908:
 /* 801D3908 001D0848  28 00 00 01 */	cmplwi r0, 1
 /* 801D390C 001D084C  40 82 00 18 */	bne .L_801D3924
-/* 801D3910 001D0850  3B E0 00 82 */	li r31, 0x82
-/* 801D3914 001D0854  3B C0 00 28 */	li r30, 0x28
-/* 801D3918 001D0858  3B A0 00 31 */	li r29, 0x31
+/* 801D3910 001D0850  3B E0 00 82 */	li r31, 0xff
+/* 801D3914 001D0854  3B C0 00 28 */	li r30, 0xf3
+/* 801D3918 001D0858  3B A0 00 31 */	li r29, 0xb5
 /* 801D391C 001D085C  3B 80 00 FF */	li r28, 0xff
 /* 801D3920 001D0860  48 00 00 14 */	b .L_801D3934
 .L_801D3924:
-/* 801D3924 001D0864  3B E0 00 1A */	li r31, 0x1a
-/* 801D3928 001D0868  3B C0 00 07 */	li r30, 7
-/* 801D392C 001D086C  3B A0 00 36 */	li r29, 0x36
+/* 801D3924 001D0864  3B E0 00 1A */	li r31, 0x69
+/* 801D3928 001D0868  3B C0 00 07 */	li r30, 0x19
+/* 801D392C 001D086C  3B A0 00 36 */	li r29, 0x0f
 /* 801D3930 001D0870  3B 80 00 FF */	li r28, 0xff
 .L_801D3934:
 /* 801D3934 001D0874  80 7B 01 74 */	lwz r3, 0x174(r27)
@@ -2313,7 +2304,7 @@ getCreatureName__Q34Game9ItemHoney4ItemFv:
 
 .global absorbable__Q34Game9ItemHoney10TouchStateFv
 absorbable__Q34Game9ItemHoney10TouchStateFv:
-/* 801D4450 001D1390  38 60 00 01 */	li r3, 1
+/* 801D4450 001D1390  38 60 00 01 */	li r3, 2
 /* 801D4454 001D1394  4E 80 00 20 */	blr 
 
 .global interactAbsorb__Q34Game9ItemHoney11ShrinkStateFPQ24Game8CFSMItemRQ24Game14InteractAbsorb
@@ -2328,7 +2319,7 @@ absorbable__Q34Game9ItemHoney11ShrinkStateFv:
 
 .global absorbable__Q34Game9ItemHoney9WaitStateFv
 absorbable__Q34Game9ItemHoney9WaitStateFv:
-/* 801D4468 001D13A8  38 60 00 01 */	li r3, 1
+/* 801D4468 001D13A8  38 60 00 01 */	li r3, 2
 /* 801D446C 001D13AC  4E 80 00 20 */	blr 
 
 .global onKeyEvent__Q34Game9ItemHoney5StateFPQ24Game8CFSMItemRCQ28SysShape8KeyEvent

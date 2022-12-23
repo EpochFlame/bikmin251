@@ -1114,9 +1114,9 @@ exec__Q34Game6Miulin14StateAttackingFPQ24Game9EnemyBase:
 /* 803632F0 00360230  3C 60 80 4B */	lis r3, __vt__Q24Game11Interaction@ha
 /* 803632F4 00360234  C0 02 04 28 */	lfs f0, lbl_8051E788@sda21(r2)
 /* 803632F8 00360238  38 03 A3 00 */	addi r0, r3, __vt__Q24Game11Interaction@l
-/* 803632FC 0036023C  3C 60 80 4B */	lis r3, __vt__Q24Game12InteractBury@ha
+/* 803632FC 0036023C  3C 60 80 4B */	lis r3, __vt__Q24Game12InteractFire@ha
 /* 80363300 00360240  90 01 00 48 */	stw r0, 0x48(r1)
-/* 80363304 00360244  38 03 48 C0 */	addi r0, r3, __vt__Q24Game12InteractBury@l
+/* 80363304 00360244  38 03 48 C0 */	addi r0, r3, __vt__Q24Game12InteractFire@l
 /* 80363308 00360248  7F C3 F3 78 */	mr r3, r30
 /* 8036330C 0036024C  38 81 00 48 */	addi r4, r1, 0x48
 /* 80363310 00360250  93 E1 00 4C */	stw r31, 0x4c(r1)
@@ -1283,9 +1283,9 @@ exec__Q34Game6Miulin14StateAttackingFPQ24Game9EnemyBase:
 /* 8036356C 003604AC  3C 60 80 4B */	lis r3, __vt__Q24Game11Interaction@ha
 /* 80363570 003604B0  C0 02 04 5C */	lfs f0, lbl_8051E7BC@sda21(r2)
 /* 80363574 003604B4  38 03 A3 00 */	addi r0, r3, __vt__Q24Game11Interaction@l
-/* 80363578 003604B8  3C 60 80 4B */	lis r3, __vt__Q24Game12InteractBury@ha
+/* 80363578 003604B8  3C 60 80 4B */	lis r3, __vt__Q24Game12InteractFire@ha
 /* 8036357C 003604BC  90 01 00 2C */	stw r0, 0x2c(r1)
-/* 80363580 003604C0  38 03 48 C0 */	addi r0, r3, __vt__Q24Game12InteractBury@l
+/* 80363580 003604C0  38 03 48 C0 */	addi r0, r3, __vt__Q24Game12InteractFire@l
 /* 80363584 003604C4  7F C3 F3 78 */	mr r3, r30
 /* 80363588 003604C8  38 81 00 2C */	addi r4, r1, 0x2c
 /* 8036358C 003604CC  93 E1 00 30 */	stw r31, 0x30(r1)

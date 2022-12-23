@@ -2446,7 +2446,7 @@ windTarget__Q34Game3Mar3ObjFv:
 /* 802812C0 0027E200  C0 42 D2 50 */	lfs f2, lbl_8051B5B0@sda21(r2)
 /* 802812C4 0027E204  80 BF 00 C0 */	lwz r5, 0xc0(r31)
 /* 802812C8 0027E208  3C 80 80 4B */	lis r4, __vt__Q24Game11Interaction@ha
-/* 802812CC 0027E20C  3C 60 80 4B */	lis r3, __vt__Q24Game12InteractWind@ha
+/* 802812CC 0027E20C  3C 60 80 4B */	lis r3, __vt__Q24Game16InteractAstonish@ha
 /* 802812D0 0027E210  C0 A2 D2 88 */	lfs f5, lbl_8051B5E8@sda21(r2)
 /* 802812D4 0027E214  EC 82 38 28 */	fsubs f4, f2, f7
 /* 802812D8 0027E218  C0 C5 06 04 */	lfs f6, 0x604(r5)
@@ -2457,7 +2457,7 @@ windTarget__Q34Game3Mar3ObjFv:
 /* 802812EC 0027E22C  EC 85 39 3A */	fmadds f4, f5, f4, f7
 /* 802812F0 0027E230  90 01 00 64 */	stw r0, 0x64(r1)
 /* 802812F4 0027E234  EC 76 18 7A */	fmadds f3, f22, f1, f3
-/* 802812F8 0027E238  38 03 49 74 */	addi r0, r3, __vt__Q24Game12InteractWind@l
+/* 802812F8 0027E238  38 03 49 74 */	addi r0, r3, __vt__Q24Game16InteractAstonish@l
 /* 802812FC 0027E23C  EC 17 00 7A */	fmadds f0, f23, f1, f0
 /* 80281300 0027E240  93 E1 00 68 */	stw r31, 0x68(r1)
 /* 80281304 0027E244  EC 24 00 F2 */	fmuls f1, f4, f3
@@ -2653,7 +2653,7 @@ windTarget__Q34Game3Mar3ObjFv:
 /* 802815D0 0027E510  C0 E2 D2 90 */	lfs f7, lbl_8051B5F0@sda21(r2)
 /* 802815D4 0027E514  3C 80 80 4B */	lis r4, __vt__Q24Game11Interaction@ha
 /* 802815D8 0027E518  C0 82 D2 58 */	lfs f4, lbl_8051B5B8@sda21(r2)
-/* 802815DC 0027E51C  3C 60 80 4B */	lis r3, __vt__Q24Game12InteractWind@ha
+/* 802815DC 0027E51C  3C 60 80 4B */	lis r3, __vt__Q24Game16InteractAstonish@ha
 /* 802815E0 0027E520  EC DB 00 32 */	fmuls f6, f27, f0
 /* 802815E4 0027E524  C1 02 D2 B0 */	lfs f8, lbl_8051B610@sda21(r2)
 /* 802815E8 0027E528  EC 7E 00 32 */	fmuls f3, f30, f0
@@ -2669,7 +2669,7 @@ windTarget__Q34Game3Mar3ObjFv:
 /* 80281610 0027E550  EC E8 38 BA */	fmadds f7, f8, f2, f7
 /* 80281614 0027E554  EC 37 18 7A */	fmadds f1, f23, f1, f3
 /* 80281618 0027E558  EC 45 20 BA */	fmadds f2, f5, f2, f4
-/* 8028161C 0027E55C  38 03 49 74 */	addi r0, r3, __vt__Q24Game12InteractWind@l
+/* 8028161C 0027E55C  38 03 49 74 */	addi r0, r3, __vt__Q24Game16InteractAstonish@l
 /* 80281620 0027E560  EC 67 01 B2 */	fmuls f3, f7, f6
 /* 80281624 0027E564  93 E1 00 50 */	stw r31, 0x50(r1)
 /* 80281628 0027E568  EC 27 00 72 */	fmuls f1, f7, f1

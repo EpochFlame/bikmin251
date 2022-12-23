@@ -1322,6 +1322,8 @@ update__Q24Game4PikiFv:
 /* 8014852C 0014546C  81 9E 00 00 */	lwz r12, 0(r30)
 /* 80148530 00145470  81 8C 02 10 */	lwz r12, 0x210(r12)
 /* 80148534 00145474  7D 89 03 A6 */	mtctr r12
+mr r3, r30
+bl leafBluePikmin__4GameFRQ24Game4Piki
 /* 80148538 00145478  4E 80 04 21 */	bctrl 
 /* 8014853C 0014547C  80 6D 9A EC */	lwz r3, sys@sda21(r13)
 /* 80148540 00145480  38 82 A0 D0 */	addi r4, r2, lbl_80518430@sda21
@@ -1400,8 +1402,8 @@ update__Q24Game4PikiFv:
 /* 8014865C 0014559C  40 82 00 74 */	bne .L_801486D0
 /* 80148660 001455A0  2C 1F 00 00 */	cmpwi r31, 0
 /* 80148664 001455A4  41 82 00 6C */	beq .L_801486D0
-/* 80148668 001455A8  2C 1F 00 05 */	cmpwi r31, 5
-/* 8014866C 001455AC  41 82 00 64 */	beq .L_801486D0
+#/* 80148668 001455A8  2C 1F 00 05 */	cmpwi r31, 5
+#/* 8014866C 001455AC  41 82 00 64 */	beq .L_801486D0
 /* 80148670 001455B0  80 6D 9B 54 */	lwz r3, moviePlayer__4Game@sda21(r13)
 /* 80148674 001455B4  80 03 00 18 */	lwz r0, 0x18(r3)
 /* 80148678 001455B8  2C 00 00 00 */	cmpwi r0, 0
@@ -1854,8 +1856,8 @@ inWaterCallback__Q24Game4PikiFPQ24Game8WaterBox:
 /* 80148C20 00145B60  40 82 00 60 */	bne .L_80148C80
 /* 80148C24 00145B64  2C 1F 00 00 */	cmpwi r31, 0
 /* 80148C28 00145B68  41 82 00 58 */	beq .L_80148C80
-/* 80148C2C 00145B6C  2C 1F 00 05 */	cmpwi r31, 5
-/* 80148C30 00145B70  41 82 00 50 */	beq .L_80148C80
+#/* 80148C2C 00145B6C  2C 1F 00 05 */	cmpwi r31, 5
+#/* 80148C30 00145B70  41 82 00 50 */	beq .L_80148C80
 /* 80148C34 00145B74  80 6D 9B 54 */	lwz r3, moviePlayer__4Game@sda21(r13)
 /* 80148C38 00145B78  80 03 00 18 */	lwz r0, 0x18(r3)
 /* 80148C3C 00145B7C  2C 00 00 00 */	cmpwi r0, 0
@@ -4285,62 +4287,107 @@ __sinit_piki_cpp: # static initializer
 /* 8014AC70 00147BB0  38 83 22 CC */	addi r4, r3, pikiColorsCursor__Q24Game4Piki@l
 /* 8014AC74 00147BB4  38 00 00 FA */	li r0, 0xfa
 /* 8014AC78 00147BB8  38 60 00 78 */	li r3, 0x78
-/* 8014AC7C 00147BBC  9B DF 00 00 */	stb r30, 0(r31)
-/* 8014AC80 00147BC0  99 9F 00 01 */	stb r12, 1(r31)
-/* 8014AC84 00147BC4  99 7F 00 02 */	stb r11, 2(r31)
+# seed colors
+li r7, 0x2e
+li r8, 0x4a
+li r9, 0xfb
+li r6, 0xed
+# id 0 seed
+/* 8014AC7C 00147BBC  9B DF 00 00 */	stb r7, 0(r31)
+/* 8014AC80 00147BC0  99 9F 00 01 */	stb r8, 1(r31)
+/* 8014AC84 00147BC4  99 7F 00 02 */	stb r30, 2(r31)
 /* 8014AC88 00147BC8  99 7F 00 03 */	stb r11, 3(r31)
+# id 1 seed
 /* 8014AC8C 00147BCC  99 7F 00 04 */	stb r11, 4(r31)
-/* 8014AC90 00147BD0  99 5F 00 05 */	stb r10, 5(r31)
-/* 8014AC94 00147BD4  9B DF 00 06 */	stb r30, 6(r31)
+/* 8014AC90 00147BD0  99 5F 00 05 */	stb r9, 5(r31)
+/* 8014AC94 00147BD4  9B DF 00 06 */	stb r6, 6(r31)
 /* 8014AC98 00147BD8  99 7F 00 07 */	stb r11, 7(r31)
+li r9, 0xd2
+# id 2 seed
 /* 8014AC9C 00147BDC  99 7F 00 08 */	stb r11, 8(r31)
 /* 8014ACA0 00147BE0  99 3F 00 09 */	stb r9, 9(r31)
 /* 8014ACA4 00147BE4  9B DF 00 0A */	stb r30, 0xa(r31)
 /* 8014ACA8 00147BE8  99 7F 00 0B */	stb r11, 0xb(r31)
-/* 8014ACAC 00147BEC  99 1F 00 0C */	stb r8, 0xc(r31)
-/* 8014ACB0 00147BF0  9B DF 00 0D */	stb r30, 0xd(r31)
-/* 8014ACB4 00147BF4  98 FF 00 0E */	stb r7, 0xe(r31)
+li r7, 0x29
+li r9, 0x24
+li r8, 0x20
+# id 3 seed
+/* 8014ACAC 00147BEC  99 1F 00 0C */	stb r7, 0xc(r31)
+/* 8014ACB0 00147BF0  9B DF 00 0D */	stb r9, 0xd(r31)
+/* 8014ACB4 00147BF4  98 FF 00 0E */	stb r8, 0xe(r31)
 /* 8014ACB8 00147BF8  99 7F 00 0F */	stb r11, 0xf(r31)
-/* 8014ACBC 00147BFC  99 7F 00 10 */	stb r11, 0x10(r31)
-/* 8014ACC0 00147C00  98 DF 00 11 */	stb r6, 0x11(r31)
-/* 8014ACC4 00147C04  99 7F 00 12 */	stb r11, 0x12(r31)
+li r7, 0x7d
+li r9, 0x1f
+li r8, 0x14
+# id 4 seed
+/* 8014ACBC 00147BFC  99 7F 00 10 */	stb r7, 0x10(r31)
+/* 8014ACC0 00147C00  98 DF 00 11 */	stb r9, 0x11(r31)
+/* 8014ACC4 00147C04  99 7F 00 12 */	stb r8, 0x12(r31)
 /* 8014ACC8 00147C08  99 7F 00 13 */	stb r11, 0x13(r31)
-/* 8014ACCC 00147C0C  99 7F 00 14 */	stb r11, 0x14(r31)
-/* 8014ACD0 00147C10  98 BF 00 15 */	stb r5, 0x15(r31)
-/* 8014ACD4 00147C14  9B DF 00 16 */	stb r30, 0x16(r31)
+li r7, 0x38
+li r9, 0x50
+# id 5 seed
+/* 8014ACCC 00147C0C  99 7F 00 14 */	stb r30, 0x14(r31)
+/* 8014ACD0 00147C10  98 BF 00 15 */	stb r7, 0x15(r31)
+/* 8014ACD4 00147C14  9B DF 00 16 */	stb r9, 0x16(r31)
 /* 8014ACD8 00147C18  99 7F 00 17 */	stb r11, 0x17(r31)
+# id 6 seed
 /* 8014ACDC 00147C1C  99 7F 00 18 */	stb r11, 0x18(r31)
 /* 8014ACE0 00147C20  99 7F 00 19 */	stb r11, 0x19(r31)
 /* 8014ACE4 00147C24  99 7F 00 1A */	stb r11, 0x1a(r31)
 /* 8014ACE8 00147C28  9B DF 00 1B */	stb r30, 0x1b(r31)
-/* 8014ACEC 00147C2C  9B C4 00 00 */	stb r30, 0(r4)
-/* 8014ACF0 00147C30  99 84 00 01 */	stb r12, 1(r4)
-/* 8014ACF4 00147C34  99 64 00 02 */	stb r11, 2(r4)
+# end seed colors
+# cursor colors
+li r7, 0x3a
+li r8, 0x5a
+li r9, 0x07
+li r6, 0xfb
+li r10, 0xed
+li r12, 0xb7
+li r5, 0x2f
+li r14, 0x2d
+li r15, 0x9b
+# id 0 cursor
+/* 8014ACEC 00147C2C  9B C4 00 00 */	stb r7, 0(r4)
+/* 8014ACF0 00147C30  99 84 00 01 */	stb r8, 1(r4)
+/* 8014ACF4 00147C34  99 64 00 02 */	stb r9, 2(r4)
 /* 8014ACF8 00147C38  99 64 00 03 */	stb r11, 3(r4)
+li r9, 0xd2
+# id 1 cursor
 /* 8014ACFC 00147C3C  99 64 00 04 */	stb r11, 4(r4)
-/* 8014AD00 00147C40  99 44 00 05 */	stb r10, 5(r4)
-/* 8014AD04 00147C44  9B C4 00 06 */	stb r30, 6(r4)
+/* 8014AD00 00147C40  99 44 00 05 */	stb r6, 5(r4)
+/* 8014AD04 00147C44  9B C4 00 06 */	stb r10, 6(r4)
 /* 8014AD08 00147C48  99 64 00 07 */	stb r11, 7(r4)
+# id 2 cursor
 /* 8014AD0C 00147C4C  99 64 00 08 */	stb r11, 8(r4)
 /* 8014AD10 00147C50  99 24 00 09 */	stb r9, 9(r4)
 /* 8014AD14 00147C54  9B C4 00 0A */	stb r30, 0xa(r4)
 /* 8014AD18 00147C58  99 64 00 0B */	stb r11, 0xb(r4)
-/* 8014AD1C 00147C5C  98 64 00 0C */	stb r3, 0xc(r4)
-/* 8014AD20 00147C60  9B C4 00 0D */	stb r30, 0xd(r4)
-/* 8014AD24 00147C64  98 04 00 0E */	stb r0, 0xe(r4)
+li r10, 0x1e
+li r6, 0x38
+li r7, 0x37
+li r8, 0x50
+# id 3 cursor
+/* 8014AD1C 00147C5C  98 64 00 0C */	stb r14, 0xc(r4)
+/* 8014AD20 00147C60  9B C4 00 0D */	stb r5, 0xd(r4)
+/* 8014AD24 00147C64  98 04 00 0E */	stb r5, 0xe(r4)
 /* 8014AD28 00147C68  99 64 00 0F */	stb r11, 0xf(r4)
-/* 8014AD2C 00147C6C  99 64 00 10 */	stb r11, 0x10(r4)
-/* 8014AD30 00147C70  98 C4 00 11 */	stb r6, 0x11(r4)
-/* 8014AD34 00147C74  99 64 00 12 */	stb r11, 0x12(r4)
+# id 4 cursor
+/* 8014AD2C 00147C6C  99 64 00 10 */	stb r15, 0x10(r4)
+/* 8014AD30 00147C70  98 C4 00 11 */	stb r7, 0x11(r4)
+/* 8014AD34 00147C74  99 64 00 12 */	stb r10, 0x12(r4)
 /* 8014AD38 00147C78  99 64 00 13 */	stb r11, 0x13(r4)
-/* 8014AD3C 00147C7C  99 64 00 14 */	stb r11, 0x14(r4)
-/* 8014AD40 00147C80  98 A4 00 15 */	stb r5, 0x15(r4)
-/* 8014AD44 00147C84  9B C4 00 16 */	stb r30, 0x16(r4)
+# id 5 cursor
+/* 8014AD3C 00147C7C  99 64 00 14 */	stb r30, 0x14(r4)
+/* 8014AD40 00147C80  98 A4 00 15 */	stb r6, 0x15(r4)
+/* 8014AD44 00147C84  9B C4 00 16 */	stb r8, 0x16(r4)
 /* 8014AD48 00147C88  99 64 00 17 */	stb r11, 0x17(r4)
+# id 6 cursor
 /* 8014AD4C 00147C8C  99 64 00 18 */	stb r11, 0x18(r4)
 /* 8014AD50 00147C90  99 64 00 19 */	stb r11, 0x19(r4)
 /* 8014AD54 00147C94  99 64 00 1A */	stb r11, 0x1a(r4)
 /* 8014AD58 00147C98  9B C4 00 1B */	stb r30, 0x1b(r4)
+# end cursor colors
 /* 8014AD5C 00147C9C  83 E1 00 1C */	lwz r31, 0x1c(r1)
 /* 8014AD60 00147CA0  93 8D 92 A0 */	stw r28, gu32NAN___Q24Game5P2JST@sda21(r13)
 /* 8014AD64 00147CA4  83 C1 00 18 */	lwz r30, 0x18(r1)

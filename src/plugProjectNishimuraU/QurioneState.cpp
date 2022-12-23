@@ -185,7 +185,7 @@ void StateMove::exec(EnemyBase* enemy)
 {
 	Obj* wisp = static_cast<Obj*>(enemy);
 	wisp->moveFaceDir();
-
+	StateID nextState      = QURIONE_Drop;
 	Vector3f position      = wisp->getPosition();
 	Vector3f spawnPosition = wisp->m_spawnPositions[wisp->m_spawnIndex];
 	f32 moveRadius         = wisp->getMoveRadius();
@@ -194,7 +194,10 @@ void StateMove::exec(EnemyBase* enemy)
 
 	Vector2f delta(spawnPosition.x - position.x, spawnPosition.z - position.z);
 	if (SQUARE(delta.x) + SQUARE(delta.y) > SQUARE(moveRadius)) {
-		transit(wisp, QURIONE_Disappear, nullptr);
+		if (gameSystem->m_mode == GSM_PIKLOPEDIA) {
+			nextState = QURIONE_Disappear;
+		}
+		transit(wisp, nextState, nullptr);
 	}
 }
 

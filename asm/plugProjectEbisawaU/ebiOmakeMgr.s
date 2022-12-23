@@ -289,7 +289,7 @@ do_init__Q33ebi5Omake20FSMState_OmakeScreenFPQ33ebi5Omake4TMgrPQ24Game8StateArg:
 /* 803EEE34 003EBD74  40 82 00 7C */	bne .L_803EEEB0
 /* 803EEE38 003EBD78  80 6D 9A EC */	lwz r3, sys@sda21(r13)
 /* 803EEE3C 003EBD7C  48 03 40 F5 */	bl getPlayCommonData__6SystemFv
-/* 803EEE40 003EBD80  4B E4 58 E5 */	bl isPerfectChallenge__Q24Game14PlayCommonDataFv
+/* 803EEE40 003EBD80  4B E4 58 E5 */	bl isBobuRescued__Q24Game14PlayCommonDataFv
 /* 803EEE44 003EBD84  7C 7F 1B 78 */	mr r31, r3
 /* 803EEE48 003EBD88  80 6D 9A EC */	lwz r3, sys@sda21(r13)
 /* 803EEE4C 003EBD8C  48 03 40 E5 */	bl getPlayCommonData__6SystemFv

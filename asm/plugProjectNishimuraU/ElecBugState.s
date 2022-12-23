@@ -216,7 +216,7 @@ lbl_8051B4A0:
 	.4byte 0x40000000
 .global lbl_8051B4A4
 lbl_8051B4A4:
-	.4byte 0x43960000
+	.float 1000.0
 .global lbl_8051B4A8
 lbl_8051B4A8:
 	.4byte 0x47000000

@@ -488,7 +488,7 @@ __vt__Q34Game8Damagumo3Obj:
 	.4byte dropCallBack__Q24Game9EnemyBaseFPQ24Game8Creature
 	.4byte earthquakeCallBack__Q24Game9EnemyBaseFPQ24Game8Creaturef
 	.4byte farmCallBack__Q24Game9EnemyBaseFPQ24Game8Creaturef
-	.4byte "bombCallBack__Q24Game9EnemyBaseFPQ24Game8CreatureR10Vector3<f>f"
+	.4byte "bombCallBack__Q34Game8BlackMan3ObjFPQ24Game8CreatureR10Vector3<f>f"
 	.4byte eatWhitePikminCallBack__Q24Game9EnemyBaseFPQ24Game8Creaturef
 	.4byte dopeCallBack__Q24Game9EnemyBaseFPQ24Game8Creaturei
 	.4byte doDopeCallBack__Q24Game9EnemyBaseFPQ24Game8Creaturei

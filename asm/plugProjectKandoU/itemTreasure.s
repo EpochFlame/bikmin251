@@ -916,7 +916,7 @@ onDamage__Q34Game12ItemTreasure11NormalStateFPQ34Game12ItemTreasure4Itemf:
 /* 801F339C 001F02DC  7D 89 03 A6 */	mtctr r12
 /* 801F33A0 001F02E0  4E 80 04 21 */	bctrl 
 /* 801F33A4 001F02E4  88 03 02 B8 */	lbz r0, 0x2b8(r3)
-/* 801F33A8 001F02E8  2C 00 00 04 */	cmpwi r0, 4
+/* 801F33A8 001F02E8  2C 00 00 04 */	cmpwi r0, 1 # reds can see buried treasure
 /* 801F33AC 001F02EC  40 82 00 0C */	bne .L_801F33B8
 /* 801F33B0 001F02F0  38 80 00 00 */	li r4, 0
 /* 801F33B4 001F02F4  4B F4 86 9D */	bl movie_begin__Q24Game8CreatureFb
@@ -1882,7 +1882,7 @@ ignoreAtari__Q34Game12ItemTreasure4ItemFPQ24Game8Creature:
 /* 801F4128 001F1068  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 801F412C 001F106C  41 82 00 18 */	beq .L_801F4144
 /* 801F4130 001F1070  88 1F 02 B8 */	lbz r0, 0x2b8(r31)
-/* 801F4134 001F1074  2C 00 00 04 */	cmpwi r0, 4
+/* 801F4134 001F1074  2C 00 00 04 */	cmpwi r0, 1 # reds can see buried treasure
 /* 801F4138 001F1078  40 82 00 0C */	bne .L_801F4144
 /* 801F413C 001F107C  38 60 00 00 */	li r3, 0
 /* 801F4140 001F1080  48 00 00 10 */	b .L_801F4150

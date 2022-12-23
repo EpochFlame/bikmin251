@@ -410,7 +410,7 @@ __vt__Q34Game5Queen3Obj:
 	.4byte dropCallBack__Q24Game9EnemyBaseFPQ24Game8Creature
 	.4byte earthquakeCallBack__Q34Game5Queen3ObjFPQ24Game8Creaturef
 	.4byte farmCallBack__Q24Game9EnemyBaseFPQ24Game8Creaturef
-	.4byte "bombCallBack__Q24Game9EnemyBaseFPQ24Game8CreatureR10Vector3<f>f"
+	.4byte "bombCallBack__Q34Game8BlackMan3ObjFPQ24Game8CreatureR10Vector3<f>f"
 	.4byte eatWhitePikminCallBack__Q24Game9EnemyBaseFPQ24Game8Creaturef
 	.4byte dopeCallBack__Q24Game9EnemyBaseFPQ24Game8Creaturei
 	.4byte doDopeCallBack__Q24Game9EnemyBaseFPQ24Game8Creaturei
@@ -771,7 +771,7 @@ setParameters__Q34Game5Queen3ObjFv:
 /* 80289814 00286754  81 8C 00 78 */	lwz r12, 0x78(r12)
 /* 80289818 00286758  7D 89 03 A6 */	mtctr r12
 /* 8028981C 0028675C  4E 80 04 21 */	bctrl 
-/* 80289820 00286760  3C 03 99 A1 */	subis r0, r3, 0x665f
+/* 80289820 00286760  3C 03 99 A1 */	subis r0, r3, 0x745f # emergence cave
 /* 80289824 00286764  28 00 30 31 */	cmplwi r0, 0x3031
 /* 80289828 00286768  40 82 00 20 */	bne .L_80289848
 /* 8028982C 0028676C  38 60 00 00 */	li r3, 0

@@ -24,16 +24,16 @@ govNAN___Q24Game5P2JST:
 	.float 0.0
 	.float 0.0
 "sColorTableNumerator__26@unnamed@carryInfoMgr_cpp@": # local object
-	.4byte 0x1E1EFFFF
-	.4byte 0xFF0000FF
+	.4byte 0x006F12FF
+	.4byte 0xEFEFEFFF
 	.4byte 0xEAEA00FF
 	.4byte 0xFFFFFFFF
 	.4byte 0xFFFFFFFF
 	.4byte 0x669999FF
 	.4byte 0x66D3D3FF
 "sColorTableDenominator__26@unnamed@carryInfoMgr_cpp@": # local object
-	.4byte 0x1E1EFFFF
-	.4byte 0xFF0000FF
+	.4byte 0x006F12FF
+	.4byte 0xEFEFEFFF
 	.4byte 0xEAEA00FF
 	.4byte 0xFFFFFFFF
 	.4byte 0xFFFFFFFF

@@ -1520,7 +1520,11 @@ placeObjects__Q24Game7MapRoomFPQ34Game4Cave9FloorInfob:
 /* 801B705C 001B3F9C  2C 00 00 02 */	cmpwi r0, 2
 /* 801B7060 001B3FA0  41 82 00 0C */	beq .L_801B706C
 /* 801B7064 001B3FA4  2C 00 00 03 */	cmpwi r0, 3
-/* 801B7068 001B3FA8  40 82 00 08 */	bne .L_801B7070
+/* 801B7068 001B3FA8  40 82 00 08 */	beq .L_801B706C
+# if exit is locked, lock exit
+lbz r0, isExitLocked__3mod@sda21(r13)
+cmplwi r0, 1
+bne .L_801B7070
 .L_801B706C:
 /* 801B706C 001B3FAC  38 60 00 01 */	li r3, 1
 .L_801B7070:
@@ -4352,6 +4356,21 @@ placeObjects__Q24Game10RoomMapMgrFv:
 /* 801B9878 001B67B8  41 82 FF 94 */	beq .L_801B980C
 /* 801B987C 001B67BC  48 00 01 00 */	b .L_801B997C
 .L_801B9880:
+lwz r3, 0x2c(r31)
+lwz r0, 0x2e8(r3)
+# store keyLockCount
+stw r0, keyLockCount__3mod@sda21(r13)
+cmpwi r0, 0
+beq isNotLocked
+# check for Seesaw Thing in caveinfo
+li r0, 1
+stb r0, isExitLocked__3mod@sda21(r13)
+b lbl_801B9880_a
+# case for Not Locked
+isNotLocked:
+li r0, 0
+stb r0, isExitLocked__3mod@sda21(r13)
+lbl_801B9880_a:
 /* 801B9880 001B67C0  80 61 00 24 */	lwz r3, 0x24(r1)
 /* 801B9884 001B67C4  81 83 00 00 */	lwz r12, 0(r3)
 /* 801B9888 001B67C8  81 8C 00 20 */	lwz r12, 0x20(r12)
@@ -4433,7 +4452,16 @@ placeObjects__Q24Game10RoomMapMgrFv:
 /* 801B99A8 001B68E8  80 7F 00 2C */	lwz r3, 0x2c(r31)
 /* 801B99AC 001B68EC  80 03 02 E8 */	lwz r0, 0x2e8(r3)
 /* 801B99B0 001B68F0  2C 00 00 00 */	cmpwi r0, 0
-/* 801B99B4 001B68F4  41 82 01 6C */	beq .L_801B9B20
+/* 801B99B4 001B68F4  41 82 01 6C */	beq isNotLocked_a
+# check for Seesaw Thing in caveinfo
+li r0, 1
+stb r0, isExitLocked__3mod@sda21(r13)
+b .L_801B9B20
+# case for Not Locked
+isNotLocked_a:
+li r0, 0
+stb r0, isExitLocked__3mod@sda21(r13)
+b .L_801B9B20
 /* 801B99B8 001B68F8  A0 04 00 1C */	lhz r0, 0x1c(r4)
 /* 801B99BC 001B68FC  3B 80 FF FF */	li r28, -1
 /* 801B99C0 001B6900  CB C2 B1 10 */	lfd f30, lbl_80519470@sda21(r2)

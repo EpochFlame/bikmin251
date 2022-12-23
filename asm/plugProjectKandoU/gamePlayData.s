@@ -942,6 +942,10 @@ isCompletePelletTrigger__Q24Game8PlayDataFv:
 /* 801E5E8C 001E2DCC  48 00 00 29 */	bl completeAll__Q24Game16PelletCropMemoryFv
 /* 801E5E90 001E2DD0  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 801E5E94 001E2DD4  41 82 00 0C */	beq .L_801E5EA0
+# 100% completion enables challenge mode
+lwz r3, sys@sda21(r13)
+bl getPlayCommonData__6SystemFv
+bl enableChallengeGame__Q24Game14PlayCommonDataFv
 /* 801E5E98 001E2DD8  38 60 00 01 */	li r3, 1
 /* 801E5E9C 001E2DDC  48 00 00 08 */	b .L_801E5EA4
 .L_801E5EA0:
@@ -2896,6 +2900,9 @@ obtainPellet_Cave__Q24Game8PlayDataFPQ24Game6Pellet:
 /* 801E7954 001E4894  7F C3 F3 78 */	mr r3, r30
 /* 801E7958 001E4898  4B F7 F0 89 */	bl getConfigIndex__Q24Game6PelletFv
 /* 801E795C 001E489C  7C 7D 1B 79 */	or. r29, r3, r3
+# set isTreasureCutscene to true
+li r3, 1
+stb r3, isTreasureCutscene@sda21(r13)
 /* 801E7960 001E48A0  38 60 00 00 */	li r3, 0
 /* 801E7964 001E48A4  41 80 00 14 */	blt .L_801E7978
 /* 801E7968 001E48A8  A0 1F 00 04 */	lhz r0, 4(r31)
@@ -2949,6 +2956,9 @@ obtainPellet_Cave__Q24Game8PlayDataFPQ24Game6Pellet:
 /* 801E7A18 001E4958  7F C3 F3 78 */	mr r3, r30
 /* 801E7A1C 001E495C  4B F7 EF C5 */	bl getConfigIndex__Q24Game6PelletFv
 /* 801E7A20 001E4960  7C 7D 1B 79 */	or. r29, r3, r3
+# set isTreasureCutscene to true
+li r3, 1
+stb r3, isTreasureCutscene@sda21(r13)
 /* 801E7A24 001E4964  38 60 00 00 */	li r3, 0
 /* 801E7A28 001E4968  41 80 00 14 */	blt .L_801E7A3C
 /* 801E7A2C 001E496C  A0 1F 00 0C */	lhz r0, 0xc(r31)
@@ -3651,6 +3661,9 @@ incGroundOtakara__Q24Game8PlayDataFi:
 /* 801E83B0 001E52F0  80 9E 00 DC */	lwz r4, 0xdc(r30)
 /* 801E83B4 001E52F4  7C 64 F8 AE */	lbzx r3, r4, r31
 /* 801E83B8 001E52F8  38 03 00 01 */	addi r0, r3, 1
+# set isTreasureCutscene to true
+li r3, 1
+stb r3, isTreasureCutscene@sda21(r13)
 /* 801E83BC 001E52FC  7C 04 F9 AE */	stbx r0, r4, r31
 /* 801E83C0 001E5300  83 E1 00 0C */	lwz r31, 0xc(r1)
 /* 801E83C4 001E5304  83 C1 00 08 */	lwz r30, 8(r1)

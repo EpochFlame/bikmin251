@@ -107,11 +107,11 @@ int ActBridge::exec()
 		_30 = 0;
 		return 0;
 	}
-
-	if (m_parent->inWater()) {
-		return 2;
-	}
-
+	// we want water bridges to work lol
+	/*	if (m_parent->inWater()) {
+	        return 2;
+	    }
+	*/
 	switch (m_state) {
 	case 2:
 		bool checkCode = m_followField->exec() != 0;

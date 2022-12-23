@@ -126,7 +126,7 @@ void Obj::effectDrawOff()
  */
 void Obj::interactCreature(Creature* creature)
 {
-	InteractBubble bubble(this, static_cast<EnemyParmsBase*>(m_parms)->m_general.m_attackDamage.m_value);
+	InteractGas bubble(this, static_cast<EnemyParmsBase*>(m_parms)->m_general.m_attackDamage.m_value);
 	creature->stimulate(bubble);
 }
 

@@ -1456,14 +1456,9 @@ newSoundSystem__Q26PSGame10SysFactoryFv:
 /* 80334FE0 00331F20  4B CE E7 D5 */	bl getFreeSize__7JKRHeapFv
 /* 80334FE4 00331F24  80 1B 00 14 */	lwz r0, 0x14(r27)
 /* 80334FE8 00331F28  7C 00 18 40 */	cmplw r0, r3
-/* 80334FEC 00331F2C  41 80 00 18 */	blt .L_80335004
-/* 80334FF0 00331F30  38 7F 00 00 */	addi r3, r31, 0
-/* 80334FF4 00331F34  38 BF 00 0C */	addi r5, r31, 0xc
-/* 80334FF8 00331F38  38 80 02 EC */	li r4, 0x2ec
-/* 80334FFC 00331F3C  4C C6 31 82 */	crclr 6
-/* 80335000 00331F40  4B CF 56 41 */	bl panic_f__12JUTExceptionFPCciPCce
-.L_80335004:
-/* 80335004 00331F44  80 7B 00 14 */	lwz r3, 0x14(r27)
+# probably some brocoli memory saving strategy
+lis r3,0xd
+ori r3,r3,0xb798
 /* 80335008 00331F48  7F A4 EB 78 */	mr r4, r29
 /* 8033500C 00331F4C  38 A0 00 00 */	li r5, 0
 /* 80335010 00331F50  4B CE FD 61 */	bl create__12JKRSolidHeapFUlP7JKRHeapb

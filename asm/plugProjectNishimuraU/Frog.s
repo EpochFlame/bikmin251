@@ -787,6 +787,9 @@ collisionCallback__Q34Game4Frog3ObjFRQ24Game9CollEvent:
 /* 80258C04 00255B44  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 80258C08 00255B48  41 82 00 4C */	beq .L_80258C54
 .L_80258C0C:
+mr r3, r29
+mr r4, r30
+bl frogDeathSphere__4GameFPQ24Game9EnemyBaseRQ24Game9CollEvent
 /* 80258C0C 00255B4C  80 BD 00 C0 */	lwz r5, 0xc0(r29)
 /* 80258C10 00255B50  3C 80 80 4B */	lis r4, __vt__Q24Game11Interaction@ha
 /* 80258C14 00255B54  3C 60 80 4B */	lis r3, __vt__Q24Game13InteractPress@ha
@@ -1218,7 +1221,19 @@ pressOnGround__Q34Game4Frog3ObjFv:
 /* 802591BC 002560FC  C0 25 05 3C */	lfs f1, 0x53c(r5)
 /* 802591C0 00256100  C0 45 04 C4 */	lfs f2, 0x4c4(r5)
 /* 802591C4 00256104  C0 65 04 EC */	lfs f3, 0x4ec(r5)
-/* 802591C8 00256108  4B EB 9F 55 */	bl "flickStickPikmin__Q24Game9EnemyFuncFPQ24Game8CreatureffffP23Condition<Q24Game4Piki>"
+# if marofrog, do not bomb stick pikmin
+lwz r12, 0(r3)
+lwz r12, 600(r12)
+mtctr r12
+bctrl
+cmpwi r3, 0x0012
+mr r3, r31
+beq marofrog
+bl "bombStickPikmin__Q24Game9EnemyFuncFPQ24Game8CreatureffffP23Condition<Q24Game4Piki>"
+b cont
+marofrog:
+bl "flickStickPikmin__Q24Game9EnemyFuncFPQ24Game8CreatureffffP23Condition<Q24Game4Piki>"
+cont:
 /* 802591CC 0025610C  C0 02 C7 6C */	lfs f0, lbl_8051AACC@sda21(r2)
 /* 802591D0 00256110  7F E3 FB 78 */	mr r3, r31
 /* 802591D4 00256114  38 81 00 44 */	addi r4, r1, 0x44
@@ -1278,6 +1293,17 @@ pressOnGround__Q34Game4Frog3ObjFv:
 /* 802592AC 002561EC  C0 22 C7 94 */	lfs f1, lbl_8051AAF4@sda21(r2)
 /* 802592B0 002561F0  7F E3 FB 78 */	mr r3, r31
 /* 802592B4 002561F4  48 21 55 8D */	bl PSStartEnemyDownWatSE__FPQ24Game9EnemyBasef
+# if marofrog, do not bomb effect
+mr r3, r31
+lwz r12, 0(r3)
+lwz r12, 600(r12)
+mtctr r12
+bctrl
+cmpwi r3, 0x0012
+mr r3, r31
+beq banana
+bl doFrogBombParticle__4GameFPQ24Game9EnemyBase
+banana:
 /* 802592B8 002561F8  48 00 00 8C */	b .L_80259344
 .L_802592BC:
 /* 802592BC 002561FC  3C 60 80 4B */	lis r3, __vt__Q23efx5TBase@ha
@@ -1314,6 +1340,16 @@ pressOnGround__Q34Game4Frog3ObjFv:
 /* 80259338 00256278  7F E3 FB 78 */	mr r3, r31
 /* 8025933C 0025627C  38 81 00 38 */	addi r4, r1, 0x38
 /* 80259340 00256280  4B EA A6 01 */	bl "createDropEffect__Q24Game9EnemyBaseFRC10Vector3<f>f"
+# if marofrog, do not bomb effect
+mr r3, r31
+lwz r12, 0(r3)
+lwz r12, 600(r12)
+mtctr r12
+bctrl
+cmpwi r3, 0x0012
+mr r3, r31
+beq .L_80259344
+bl doFrogBombParticle__4GameFPQ24Game9EnemyBase
 .L_80259344:
 /* 80259344 00256284  80 6D 96 A0 */	lwz r3, cameraMgr__4Game@sda21(r13)
 /* 80259348 00256288  38 A1 00 38 */	addi r5, r1, 0x38
@@ -1445,7 +1481,7 @@ finishJumpEffect__Q34Game4Frog3ObjFv:
 /* 80259504 00256444  38 21 00 10 */	addi r1, r1, 0x10
 /* 80259508 00256448  4E 80 00 20 */	blr 
 
-.global createDownEffect__Q34Game4Frog3ObjFf
+.global createDownEffect__Q34Game4Frog3ObjFf # runs when frog dies
 createDownEffect__Q34Game4Frog3ObjFf:
 /* 8025950C 0025644C  94 21 FF C0 */	stwu r1, -0x40(r1)
 /* 80259510 00256450  7C 08 02 A6 */	mflr r0
@@ -1490,6 +1526,17 @@ createDownEffect__Q34Game4Frog3ObjFf:
 /* 802595A4 002564E4  38 80 00 0B */	li r4, 0xb
 /* 802595A8 002564E8  38 C0 00 02 */	li r6, 2
 /* 802595AC 002564EC  4B FF A1 D5 */	bl "startRumble__Q24Game9RumbleMgrFiR10Vector3<f>i"
+# if marofrog, do not bomb effect
+mr r3, r31
+lwz r12, 0(r3)
+lwz r12, 600(r12)
+mtctr r12
+bctrl
+cmpwi r3, 0x0012
+mr r3, r31
+beq marofrogend
+bl doFrogBombParticle__4GameFPQ24Game9EnemyBase
+marofrogend:
 /* 802595B0 002564F0  E3 E1 00 38 */	psq_l f31, 56(r1), 0, qr0
 /* 802595B4 002564F4  80 01 00 44 */	lwz r0, 0x44(r1)
 /* 802595B8 002564F8  CB E1 00 30 */	lfd f31, 0x30(r1)

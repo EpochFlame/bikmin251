@@ -974,11 +974,11 @@ fallMeckGround__Q34Game5Sarai3ObjFv:
 /* 80273518 00270458  41 82 00 84 */	beq .L_8027359C
 /* 8027351C 0027045C  80 DF 00 C0 */	lwz r6, 0xc0(r31)
 /* 80273520 00270460  3C A0 80 4B */	lis r5, __vt__Q24Game11Interaction@ha
-/* 80273524 00270464  3C 80 80 4B */	lis r4, __vt__Q24Game16InteractFallMeck@ha
+/* 80273524 00270464  3C 80 80 4B */	lis r4, __vt__Q24Game12InteractBury@ha
 /* 80273528 00270468  7F C3 F3 78 */	mr r3, r30
 /* 8027352C 0027046C  C0 06 06 04 */	lfs f0, 0x604(r6)
 /* 80273530 00270470  38 A5 A3 00 */	addi r5, r5, __vt__Q24Game11Interaction@l
-/* 80273534 00270474  38 04 48 E4 */	addi r0, r4, __vt__Q24Game16InteractFallMeck@l
+/* 80273534 00270474  38 04 48 E4 */	addi r0, r4, __vt__Q24Game12InteractBury@l
 /* 80273538 00270478  38 81 00 14 */	addi r4, r1, 0x14
 /* 8027353C 0027047C  90 A1 00 14 */	stw r5, 0x14(r1)
 /* 80273540 00270480  93 E1 00 18 */	stw r31, 0x18(r1)

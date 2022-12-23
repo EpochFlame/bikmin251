@@ -483,6 +483,7 @@ void StateShot::exec(EnemyBase* enemy)
 
 		} else if ((u32)houdai->m_curAnim->m_type == KEYEVENT_3) {
 			if (!houdai->isFinishMotion()) {
+				houdai->setAnimSpeed(60.0f); // set anim speed to 60
 				Parms* parms = static_cast<Parms*>(houdai->m_parms);
 				EnemyFunc::flickStickPikmin(houdai, parms->m_general.m_shakeRateMaybe.m_value, parms->m_general.m_shakeKnockback.m_value,
 				                            parms->m_general.m_shakeDamage.m_value, -1000.0, nullptr);
@@ -505,6 +506,7 @@ void StateShot::exec(EnemyBase* enemy)
 			houdai->stopMotion();
 			houdai->finishShotGunRotation();
 			houdai->finishBossAttackLoopBGM();
+			houdai->resetAnimSpeed(); // reset anim speed
 
 		} else if ((u32)houdai->m_curAnim->m_type == KEYEVENT_END) {
 			if (houdai->m_health <= 0.0f) {

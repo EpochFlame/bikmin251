@@ -448,7 +448,7 @@ preUserCallback__FUsP9OSContextUlUl: #local function
 /* 80422190 0041F0D0  57 80 08 3C */	slwi r0, r28, 1
 /* 80422194 0041F0D4  7F BF 02 2E */	lhzx r29, r31, r0
 /* 80422198 0041F0D8  28 1D 00 00 */	cmplwi r29, 0
-/* 8042219C 0041F0DC  40 82 FF B8 */	bne .L_80422154
+#/* 8042219C 0041F0DC  40 82 FF B8 */	bne .L_80422154 # exception handler auto
 /* 804221A0 0041F0E0  80 6D 88 A4 */	lwz r3, sConsole__12JUTException@sda21(r13)
 /* 804221A4 0041F0E4  38 00 00 01 */	li r0, 1
 /* 804221A8 0041F0E8  98 0D 86 70 */	stb r0, sUseABXCommand@sda21(r13)
@@ -653,9 +653,9 @@ __ct__6SystemFv:
 /* 80422450 0041F390  93 CD 9A EC */	stw r30, sys@sda21(r13)
 /* 80422454 0041F394  98 0D 86 70 */	stb r0, sUseABXCommand@sda21(r13)
 /* 80422458 0041F398  48 00 0F BD */	bl initCurrentHeapMutex__6SystemFv
-/* 8042245C 0041F39C  3C 60 00 43 */	lis r3, 0x00428000@ha
+/* 8042245C 0041F39C  3C 60 00 43 */	lis r3, 0x38
 /* 80422460 0041F3A0  83 ED 88 2C */	lwz r31, sCurrentHeap__7JKRHeap@sda21(r13)
-/* 80422464 0041F3A4  38 63 80 00 */	addi r3, r3, 0x00428000@l
+/* 80422464 0041F3A4  38 63 80 00 */	ori r3,r3,0xeca0
 /* 80422468 0041F3A8  38 80 00 00 */	li r4, 0
 /* 8042246C 0041F3AC  38 A0 00 01 */	li r5, 1
 /* 80422470 0041F3B0  4B BF DA 59 */	bl create__10JKRExpHeapFUlP7JKRHeapb
@@ -1240,8 +1240,8 @@ initialize__6SystemFv:
 /* 80422CBC 0041FBFC  38 60 00 07 */	li r3, 7
 /* 80422CC0 0041FC00  64 63 00 07 */	oris r3, r3, 7
 /* 80422CC4 0041FC04  7C 75 E3 A6 */	mtspr 0x395, r3
-/* 80422CC8 0041FC08  3C 80 00 07 */	lis r4, 0x00070800@ha
-/* 80422CCC 0041FC0C  38 A4 08 00 */	addi r5, r4, 0x00070800@l
+/* 80422CC8 0041FC08  3C 80 00 07 */	lis r4, 0x00010800@ha
+/* 80422CCC 0041FC0C  38 A4 08 00 */	addi r5, r4, 0x00010800@l
 /* 80422CD0 0041FC10  38 E0 00 01 */	li r7, 1
 /* 80422CD4 0041FC14  3C C0 00 0A */	lis r6, 0xa
 /* 80422CD8 0041FC18  3C 80 00 90 */	lis r4, 0x90

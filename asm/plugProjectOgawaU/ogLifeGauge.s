@@ -1266,6 +1266,7 @@ update__Q32og6Screen13NaviLifeGaugeFv:
 /* 8030712C 0030406C  38 00 00 00 */	li r0, 0
 /* 80307130 00304070  98 03 00 24 */	stb r0, 0x24(r3)
 .L_80307134:
+bl setLowGravity__4GameFv
 /* 80307134 00304074  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 80307138 00304078  83 E1 00 0C */	lwz r31, 0xc(r1)
 /* 8030713C 0030407C  7C 08 03 A6 */	mtlr r0

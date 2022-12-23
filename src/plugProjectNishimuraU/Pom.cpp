@@ -213,26 +213,29 @@ void Obj::setPomColor(int pikiKind)
 	m_pikiKind = (EPikiKind)pikiKind;
 	switch (m_pikiKind) {
 	case Blue:
-		m_rgbColor.r = m_rgbColor.g = 50;
-		m_rgbColor.b                = 255;
+		m_rgbColor.r = 0;
+		m_rgbColor.g = 111;
+		m_rgbColor.b = 18;
 		break;
 	case Red:
 		m_rgbColor.r = 255;
-		m_rgbColor.g = m_rgbColor.b = 20;
+		m_rgbColor.g = 253;
+		m_rgbColor.b = 240;
 		break;
 	case Yellow:
-		m_rgbColor.r = m_rgbColor.g = 255;
-		m_rgbColor.b                = 20;
+		m_rgbColor.r = 255;
+		m_rgbColor.g = 255;
+		m_rgbColor.b = 20;
 		break;
 	case Purple:
-		m_rgbColor.r = 28;
-		m_rgbColor.g = 0;
-		m_rgbColor.b = 52;
+		m_rgbColor.r = 95;
+		m_rgbColor.g = 95;
+		m_rgbColor.b = 95;
 		break;
 	case White:
-		m_rgbColor.r = 200;
-		m_rgbColor.g = 255;
-		m_rgbColor.b = 220;
+		m_rgbColor.r = 255;
+		m_rgbColor.g = 217;
+		m_rgbColor.b = 179;
 		break;
 	}
 }

@@ -78,6 +78,7 @@ endif
 
 O_FILES :=	$(GROUP_0_FILES) $(JSYSTEM) $(DOLPHIN)\
 			$(YAMASHITA) $(KANDO) $(NISHIMURA) $(OGAWA) $(HIKINO) $(MORIMURA) $(EBISAWA) $(KONO)\
+			$(MODDING)\
 			$(BOOTUP) $(COMMON) $(GC) $(UTILITY)
 ifeq ($(EPILOGUE_PROCESS),1)
 E_FILES :=	$(EPILOGUE_UNSCHEDULED)
@@ -231,9 +232,9 @@ $(LDSCRIPT): ldscript.lcf
 
 $(DOL): $(ELF) | tools
 	$(QUIET) $(ELF2DOL) $< $@
-	$(QUIET) $(SHA1SUM) -c sha1/$(NAME).$(VERSION).sha1
+	#$(QUIET) $(SHA1SUM) -c sha1/$(NAME).$(VERSION).sha1
 ifneq ($(findstring -map,$(LDFLAGS)),)
-	$(QUIET) $(PYTHON) tools/calcprogress.py $(DOL) $(MAP)
+	#$(QUIET) $(PYTHON) tools/calcprogress.py $(DOL) $(MAP)
 endif
 ifeq ($(USE_AOI),1)
 	$(WINE) ./aoi.exe

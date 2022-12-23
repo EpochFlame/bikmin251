@@ -638,7 +638,7 @@ graspSituation_Fast__Q24Game4PikiFPPQ24Game8Creature:
 /* 801B0F4C 001ADE8C  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 801B0F50 001ADE90  40 82 03 CC */	bne .L_801B131C
 /* 801B0F54 001ADE94  88 17 02 B8 */	lbz r0, 0x2b8(r23)
-/* 801B0F58 001ADE98  2C 00 00 04 */	cmpwi r0, 4
+/* 801B0F58 001ADE98  2C 00 00 04 */	cmpwi r0, 1 # reds can see buried treasure
 /* 801B0F5C 001ADE9C  40 82 03 C0 */	bne .L_801B131C
 .L_801B0F60:
 /* 801B0F60 001ADEA0  7F 23 CB 78 */	mr r3, r25
@@ -2362,7 +2362,7 @@ graspSituation__Q24Game4PikiFPPQ24Game8Creature:
 /* 801B2870 001AF7B0  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 801B2874 001AF7B4  41 82 00 48 */	beq .L_801B28BC
 /* 801B2878 001AF7B8  88 1F 02 B8 */	lbz r0, 0x2b8(r31)
-/* 801B287C 001AF7BC  2C 00 00 04 */	cmpwi r0, 4
+/* 801B287C 001AF7BC  2C 00 00 04 */	cmpwi r0, 1 # reds can see buried treasure
 /* 801B2880 001AF7C0  41 82 00 14 */	beq .L_801B2894
 /* 801B2884 001AF7C4  7F 03 C3 78 */	mr r3, r24
 /* 801B2888 001AF7C8  48 04 17 D1 */	bl isVisible__Q34Game12ItemTreasure4ItemFv
@@ -3146,7 +3146,7 @@ invokeAI__Q24Game4PikiFPQ24Game9CollEventb:
 /* 801B33D8 001B0318  28 03 04 0E */	cmplwi r3, 0x40e
 /* 801B33DC 001B031C  40 82 00 28 */	bne .L_801B3404
 /* 801B33E0 001B0320  88 1E 02 B8 */	lbz r0, 0x2b8(r30)
-/* 801B33E4 001B0324  2C 00 00 04 */	cmpwi r0, 4
+/* 801B33E4 001B0324  2C 00 00 04 */	cmpwi r0, 1 # reds can see buried treasure
 /* 801B33E8 001B0328  41 82 00 1C */	beq .L_801B3404
 /* 801B33EC 001B032C  7F E3 FB 78 */	mr r3, r31
 /* 801B33F0 001B0330  48 04 0C 69 */	bl isVisible__Q34Game12ItemTreasure4ItemFv
@@ -3171,7 +3171,7 @@ invokeAI__Q24Game4PikiFPQ24Game9CollEventb:
 /* 801B3434 001B0374  28 03 04 0E */	cmplwi r3, 0x40e
 /* 801B3438 001B0378  40 82 01 34 */	bne .L_801B356C
 /* 801B343C 001B037C  88 1E 02 B8 */	lbz r0, 0x2b8(r30)
-/* 801B3440 001B0380  2C 00 00 04 */	cmpwi r0, 4
+/* 801B3440 001B0380  2C 00 00 04 */	cmpwi r0, 1 # reds can see buried treasure
 /* 801B3444 001B0384  40 82 01 28 */	bne .L_801B356C
 /* 801B3448 001B0388  57 A0 06 3F */	clrlwi. r0, r29, 0x18
 /* 801B344C 001B038C  41 82 01 20 */	beq .L_801B356C

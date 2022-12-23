@@ -2094,9 +2094,10 @@ checkMovie__Q24Game15PelletGoalStateFPQ24Game6Pellet:
 .L_801A4E14:
 /* 801A4E14 001A1D54  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 801A4E18 001A1D58  40 82 00 54 */	bne .L_801A4E6C
-/* 801A4E1C 001A1D5C  80 6D 9A EC */	lwz r3, sys@sda21(r13)
-/* 801A4E20 001A1D60  48 27 E1 11 */	bl getPlayCommonData__6SystemFv
-/* 801A4E24 001A1D64  48 08 F9 8D */	bl enableChallengeGame__Q24Game14PlayCommonDataFv
+# remove key unlocking challenge mode
+#/* 801A4E1C 001A1D5C  80 6D 9A EC */	lwz r3, sys@sda21(r13)
+#/* 801A4E20 001A1D60  48 27 E1 11 */	bl getPlayCommonData__6SystemFv
+#/* 801A4E24 001A1D64  48 08 F9 8D */	bl enableChallengeGame__Q24Game14PlayCommonDataFv
 /* 801A4E28 001A1D68  80 6D 9A EC */	lwz r3, sys@sda21(r13)
 /* 801A4E2C 001A1D6C  38 00 00 01 */	li r0, 1
 /* 801A4E30 001A1D70  80 63 00 60 */	lwz r3, 0x60(r3)
@@ -2127,6 +2128,9 @@ checkMovie__Q24Game15PelletGoalStateFPQ24Game6Pellet:
 /* 801A4E84 001A1DC4  80 6D 9A EC */	lwz r3, sys@sda21(r13)
 /* 801A4E88 001A1DC8  48 27 E0 A9 */	bl getPlayCommonData__6SystemFv
 /* 801A4E8C 001A1DCC  48 08 F9 55 */	bl enableLouieRescue__Q24Game14PlayCommonDataFv
+# queue bobu movie
+li r3, 1
+stb r3, isBobuMovieQueued__3mod@sda21(r13)
 /* 801A4E90 001A1DD0  80 6D 9A EC */	lwz r3, sys@sda21(r13)
 /* 801A4E94 001A1DD4  38 00 00 01 */	li r0, 1
 /* 801A4E98 001A1DD8  80 63 00 60 */	lwz r3, 0x60(r3)
@@ -2807,7 +2811,7 @@ checkMovie__Q24Game15PelletGoalStateFPQ24Game6Pellet:
 /* 801A58E8 001A2828  81 8C 01 F4 */	lwz r12, 0x1f4(r12)
 /* 801A58EC 001A282C  7D 89 03 A6 */	mtctr r12
 /* 801A58F0 001A2830  4E 80 04 21 */	bctrl 
-/* 801A58F4 001A2834  54 60 06 3F */	clrlwi. r0, r3, 0x18
+/* 801A58F4 001A2834  54 60 06 3F */	cmplwi r3, 1 # play first pellet cutscene upon first carcass collection
 /* 801A58F8 001A2838  40 82 00 DC */	bne .L_801A59D4
 /* 801A58FC 001A283C  80 6D 94 90 */	lwz r3, playData__4Game@sda21(r13)
 /* 801A5900 001A2840  38 80 00 31 */	li r4, 0x31

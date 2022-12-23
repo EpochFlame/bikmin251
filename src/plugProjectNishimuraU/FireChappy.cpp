@@ -117,7 +117,7 @@ void Obj::collisionCallback(CollEvent& collEvent)
 	ChappyBase::Obj::collisionCallback(collEvent);
 	if (m_onFire && collEvent.m_collidingCreature && collEvent.m_collidingCreature->isAlive()
 	    && (collEvent.m_collidingCreature->isPiki() || collEvent.m_collidingCreature->isNavi())) {
-		InteractFire fire(this, static_cast<ChappyBase::Parms*>(m_parms)->m_general.m_attackDamage.m_value);
+		InteractGas fire(this, static_cast<ChappyBase::Parms*>(m_parms)->m_general.m_attackDamage.m_value);
 		collEvent.m_collidingCreature->stimulate(fire);
 	}
 }

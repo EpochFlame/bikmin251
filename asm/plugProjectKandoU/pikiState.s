@@ -9985,7 +9985,8 @@ init__Q24Game14PikiDrownStateFPQ24Game4PikiPQ24Game8StateArg:
 /* 80190C3C 0018DB7C  FC 20 08 1E */	fctiwz f1, f1
 /* 80190C40 0018DB80  D8 21 00 10 */	stfd f1, 0x10(r1)
 /* 80190C44 0018DB84  80 81 00 14 */	lwz r4, 0x14(r1)
-/* 80190C48 0018DB88  38 84 00 06 */	addi r4, r4, 6
+# drowning timer loop thingy
+/* 80190C48 0018DB88  38 84 00 06 */	addi r4, r4, 4 # number of animation loops
 /* 80190C4C 0018DB8C  B0 9E 00 12 */	sth r4, 0x12(r30)
 /* 80190C50 0018DB90  D0 1F 01 E4 */	stfs f0, 0x1e4(r31)
 /* 80190C54 0018DB94  D0 1F 01 E8 */	stfs f0, 0x1e8(r31)
@@ -10640,6 +10641,10 @@ onKeyEvent__Q24Game14PikiDrownStateFPQ24Game4PikiRCQ28SysShape8KeyEvent:
 /* 8019157C 0018E4BC  28 00 00 00 */	cmplwi r0, 0
 /* 80191580 0018E4C0  40 82 00 78 */	bne .L_801915F8
 /* 80191584 0018E4C4  38 00 00 02 */	li r0, 2
+# anti-bulbmin drown death (struggle forever lol)
+lbz r6, 0x2b8(r31)
+cmpwi r6, 5
+beq .L_801915F8
 /* 80191588 0018E4C8  28 1F 00 00 */	cmplwi r31, 0
 /* 8019158C 0018E4CC  B0 03 00 10 */	sth r0, 0x10(r3)
 /* 80191590 0018E4D0  7F E6 FB 78 */	mr r6, r31

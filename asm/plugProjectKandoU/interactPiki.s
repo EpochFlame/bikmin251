@@ -138,7 +138,7 @@ __vt__Q24Game12InteractBury:
 	.4byte 0
 	.4byte actCommon__Q24Game11InteractionFPQ24Game8Creature
 	.4byte actPiki__Q24Game12InteractBuryFPQ24Game4Piki
-	.4byte actNavi__Q24Game12InteractBuryFPQ24Game4Navi
+	.4byte actNavi__Q24Game16InteractFallMeckFPQ24Game4Navi
 	.4byte actEnemy__Q24Game11InteractionFPQ24Game9EnemyBase
 	.4byte actPellet__Q24Game11InteractionFPQ24Game6Pellet
 	.4byte actOnyon__Q24Game11InteractionFPQ24Game5Onyon
@@ -1159,6 +1159,9 @@ actPiki__Q24Game12InteractDopeFPQ24Game4Piki:
 /* 80193950 00190890  93 A1 00 14 */	stw r29, 0x14(r1)
 /* 80193954 00190894  7C 7D 1B 78 */	mr r29, r3
 /* 80193958 00190898  80 03 00 08 */	lwz r0, 8(r3)
+# set happa state to 0
+li r12, 0
+stb r12, 0x2b9(r30)
 /* 8019395C 0019089C  83 E4 02 90 */	lwz r31, 0x290(r4)
 /* 80193960 001908A0  2C 00 00 01 */	cmpwi r0, 1
 /* 80193964 001908A4  41 82 00 60 */	beq .L_801939C4
@@ -1535,8 +1538,8 @@ actPiki__Q24Game13InteractDenkiFPQ24Game4Piki:
 /* 80193EA0 00190DE0  88 1E 02 B8 */	lbz r0, 0x2b8(r30)
 /* 80193EA4 00190DE4  2C 00 00 02 */	cmpwi r0, 2
 /* 80193EA8 00190DE8  41 82 00 5C */	beq .L_80193F04
-/* 80193EAC 00190DEC  2C 00 00 05 */	cmpwi r0, 5
-/* 80193EB0 00190DF0  41 82 00 54 */	beq .L_80193F04
+#/* 80193EAC 00190DEC  2C 00 00 05 */	cmpwi r0, 5
+#/* 80193EB0 00190DF0  41 82 00 54 */	beq .L_80193F04
 /* 80193EB4 00190DF4  28 1F 00 00 */	cmplwi r31, 0
 /* 80193EB8 00190DF8  41 82 00 4C */	beq .L_80193F04
 /* 80193EBC 00190DFC  7F E3 FB 78 */	mr r3, r31
@@ -1879,8 +1882,8 @@ actPiki__Q24Game12InteractFireFPQ24Game4Piki:
 /* 80194394 001912D4  41 82 00 8C */	beq .L_80194420
 /* 80194398 001912D8  2C 1F 00 01 */	cmpwi r31, 1
 /* 8019439C 001912DC  41 82 00 84 */	beq .L_80194420
-/* 801943A0 001912E0  2C 1F 00 05 */	cmpwi r31, 5
-/* 801943A4 001912E4  41 82 00 7C */	beq .L_80194420
+#/* 801943A0 001912E0  2C 1F 00 05 */	cmpwi r31, 5
+#/* 801943A4 001912E4  41 82 00 7C */	beq .L_80194420
 /* 801943A8 001912E8  80 7D 00 04 */	lwz r3, 4(r29)
 /* 801943AC 001912EC  81 83 00 00 */	lwz r12, 0(r3)
 /* 801943B0 001912F0  81 8C 00 7C */	lwz r12, 0x7c(r12)
@@ -1956,7 +1959,7 @@ actPiki__Q24Game16InteractAstonishFPQ24Game4Piki:
 /* 801944A8 001913E8  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 801944AC 001913EC  41 82 00 90 */	beq .L_8019453C
 /* 801944B0 001913F0  88 1E 02 B8 */	lbz r0, 0x2b8(r30)
-/* 801944B4 001913F4  2C 00 00 03 */	cmpwi r0, 3
+/* 801944B4 001913F4  2C 00 00 03 */	cmpwi r0, 1 # red pikmin immune to astonish
 /* 801944B8 001913F8  41 82 00 84 */	beq .L_8019453C
 /* 801944BC 001913FC  38 00 00 03 */	li r0, 3
 /* 801944C0 00191400  B0 01 00 08 */	sth r0, 8(r1)
@@ -2042,8 +2045,8 @@ actPiki__Q24Game14InteractBubbleFPQ24Game4Piki:
 /* 801945E0 00191520  41 82 00 8C */	beq .L_8019466C
 /* 801945E4 00191524  2C 1F 00 00 */	cmpwi r31, 0
 /* 801945E8 00191528  41 82 00 84 */	beq .L_8019466C
-/* 801945EC 0019152C  2C 1F 00 05 */	cmpwi r31, 5
-/* 801945F0 00191530  41 82 00 7C */	beq .L_8019466C
+#/* 801945EC 0019152C  2C 1F 00 05 */	cmpwi r31, 5
+#/* 801945F0 00191530  41 82 00 7C */	beq .L_8019466C
 /* 801945F4 00191534  80 7D 00 04 */	lwz r3, 4(r29)
 /* 801945F8 00191538  81 83 00 00 */	lwz r12, 0(r3)
 /* 801945FC 0019153C  81 8C 00 7C */	lwz r12, 0x7c(r12)
@@ -2128,8 +2131,8 @@ actPiki__Q24Game11InteractGasFPQ24Game4Piki:
 /* 80194714 00191654  41 82 00 94 */	beq .L_801947A8
 /* 80194718 00191658  2C 1F 00 04 */	cmpwi r31, 4
 /* 8019471C 0019165C  41 82 00 8C */	beq .L_801947A8
-/* 80194720 00191660  2C 1F 00 05 */	cmpwi r31, 5
-/* 80194724 00191664  41 82 00 84 */	beq .L_801947A8
+#/* 80194720 00191660  2C 1F 00 05 */	cmpwi r31, 5
+#/* 80194724 00191664  41 82 00 84 */	beq .L_801947A8
 /* 80194728 00191668  80 7D 00 04 */	lwz r3, 4(r29)
 /* 8019472C 0019166C  28 03 00 00 */	cmplwi r3, 0
 /* 80194730 00191670  41 82 00 40 */	beq .L_80194770

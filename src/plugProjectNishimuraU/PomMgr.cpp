@@ -53,7 +53,7 @@ EnemyBase* Mgr::birth(EnemyBirthArg& birthArg)
 			if (section) {
 				if (playData->hasMetPikmin(White)) {
 					// White flower garden
-					if (section->getCurrFloor() < 2 || section->getCaveID() == 'f_02') {
+					if (section->getCurrFloor() < 2 || section->getCaveID() == 't_01') {
 						const s32 cavePikis  = playData->m_caveSaveData.m_cavePikis.getColorSum(White);
 						const s32 whitePikis = GameStat::getAllPikmins(White);
 
@@ -62,7 +62,7 @@ EnemyBase* Mgr::birth(EnemyBirthArg& birthArg)
 							return nullptr;
 						}
 					}
-				} else if (section->getCaveID() != 'f_02') {
+				} else if (section->getCaveID() != 't_01') {
 					return nullptr;
 				}
 			}

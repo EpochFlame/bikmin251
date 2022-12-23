@@ -2731,6 +2731,7 @@ onInit__Q24Game6PelletFPQ24Game15CreatureInitArg:
 /* 801672FC 0016423C  90 1E 04 2C */	stw r0, 0x42c(r30)
 /* 80167300 00164240  80 7E 01 74 */	lwz r3, 0x174(r30)
 /* 80167304 00164244  48 2D 72 D1 */	bl getRoughBoundingRadius__Q28SysShape5ModelFv
+bl adjustBoundingRadius__3modFf # if radius is zero, use 50.0f
 /* 80167308 00164248  C0 02 A6 10 */	lfs f0, lbl_80518970@sda21(r2)
 /* 8016730C 0016424C  EC 00 00 72 */	fmuls f0, f0, f1
 /* 80167310 00164250  D0 1E 03 1C */	stfs f0, 0x31c(r30)

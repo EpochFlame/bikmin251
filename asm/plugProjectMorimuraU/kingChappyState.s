@@ -2274,9 +2274,9 @@ exec__Q34Game10KingChappy11StateWarCryFPQ24Game9EnemyBase:
 /* 8035AE64 00357DA4  3C 60 80 4B */	lis r3, __vt__Q24Game11Interaction@ha
 /* 8035AE68 00357DA8  C0 02 02 58 */	lfs f0, lbl_8051E5B8@sda21(r2)
 /* 8035AE6C 00357DAC  38 03 A3 00 */	addi r0, r3, __vt__Q24Game11Interaction@l
-/* 8035AE70 00357DB0  3C 60 80 4B */	lis r3, __vt__Q24Game16InteractAstonish@ha
+/* 8035AE70 00357DB0  3C 60 80 4B */	lis r3, __vt__Q24Game11InteractGas@ha
 /* 8035AE74 00357DB4  90 01 00 A4 */	stw r0, 0xa4(r1)
-/* 8035AE78 00357DB8  38 03 48 54 */	addi r0, r3, __vt__Q24Game16InteractAstonish@l
+/* 8035AE78 00357DB8  38 03 48 54 */	addi r0, r3, __vt__Q24Game11InteractGas@l
 /* 8035AE7C 00357DBC  7F C3 F3 78 */	mr r3, r30
 /* 8035AE80 00357DC0  38 81 00 A4 */	addi r4, r1, 0xa4
 /* 8035AE84 00357DC4  93 E1 00 A8 */	stw r31, 0xa8(r1)
