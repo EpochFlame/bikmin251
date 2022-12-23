@@ -249,8 +249,6 @@ int VsGameSection::getCurrFloor() { return m_currentFloor; }
 
 void VsGameSection::BikeborbEvent() {
 
-	PelletIterator iPellet;
-
 	Vector3f spawnLocations[7];
 	int spawnNum = 0;
 
@@ -262,9 +260,9 @@ void VsGameSection::BikeborbEvent() {
 			spawnNum++;
 		}
 	}
-	if (spawnNum) {
+	if (spawnNum > 0) {
 		Vector3f spawnPos = spawnLocations[(int)randWeightFloat(spawnNum)];
-		m_tekiMgr->birth(7, spawnPos, true);
+		m_tekiMgr->birth(5, spawnPos, true);
 		
 	}
 
