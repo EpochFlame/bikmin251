@@ -12773,6 +12773,22 @@ setupFloatMemory__Q24Game15BaseGameSectionFv:
 /* 80150FD0 0014DF10  81 8C 00 50 */	lwz r12, 0x50(r12)
 /* 80150FD4 0014DF14  7D 89 03 A6 */	mtctr r12
 /* 80150FD8 0014DF18  4E 80 04 21 */	bctrl 
+/* 80150F9C 0014DEDC  3C 80 80 4B */	lis r4, __vt__Q24Game11GameMessage@ha
+/* 80150FA0 0014DEE0  3C 60 80 4B */	lis r3, __vt__Q24Game21GameMessageVsAddEnemy@ha
+/* 80150FA4 0014DEE4  38 04 05 90 */	addi r0, r4, __vt__Q24Game11GameMessage@l
+/* 80150FA8 0014DEE8  38 A0 00 0E */	li r5, 0x23
+/* 80150FAC 0014DEEC  90 01 00 40 */	stw r0, 0x40(r1)
+/* 80150FB0 0014DEF0  38 83 61 6C */	addi r4, r3, __vt__Q24Game21GameMessageVsAddEnemy@l
+/* 80150FB4 0014DEF4  38 00 00 14 */	li r0, 0x1
+/* 80150FB8 0014DEF8  7F E3 FB 78 */	mr r3, r31
+/* 80150FBC 0014DEFC  90 81 00 40 */	stw r4, 0x40(r1)
+/* 80150FC0 0014DF00  38 81 00 40 */	addi r4, r1, 0x40
+/* 80150FC4 0014DF04  90 A1 00 44 */	stw r5, 0x44(r1)
+/* 80150FC8 0014DF08  90 01 00 48 */	stw r0, 0x48(r1)
+/* 80150FCC 0014DF0C  81 9F 00 00 */	lwz r12, 0(r31)
+/* 80150FD0 0014DF10  81 8C 00 50 */	lwz r12, 0x50(r12)
+/* 80150FD4 0014DF14  7D 89 03 A6 */	mtctr r12
+/* 80150FD8 0014DF18  4E 80 04 21 */	bctrl 
 .L_80150FDC:
 /* 80150FDC 0014DF1C  80 6D 9A EC */	lwz r3, sys@sda21(r13)
 /* 80150FE0 0014DF20  38 82 A2 38 */	addi r4, r2, lbl_80518598@sda21

@@ -87,6 +87,15 @@ struct VsGameSection : public BaseGameSection {
 	bool updateCaveMenus();
 	void useCard();
 
+	void RandomEvent();
+
+	enum Drought_RandomEvent {
+		BIKEBORB = 0,
+		PIKMIN_SWAP = 1,
+		BOTH_CHERRY_FIVE = 2,
+		EVENT_NUM
+	};
+
 	Pellet* createCardPellet();
 
 	static int mRedWinCount;
@@ -143,6 +152,7 @@ struct VsGameSection : public BaseGameSection {
 	int _3D4;                                       // _3D4
 	int _3D8;                                       // _3D8
 	int m_yellowMarbleCounts[2];                    // _3DC
+	f32 m_eventTimer;
 };
 } // namespace Game
 
