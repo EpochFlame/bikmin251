@@ -1416,6 +1416,12 @@ actPiki__Q24Game12InteractBombFPQ24Game4Piki:
 /* 80193CEC 00190C2C  38 60 00 00 */	li r3, 0
 /* 80193CF0 00190C30  48 00 01 08 */	b .L_80193DF8
 .L_80193CF4:
+lbz r0, 0x2b8(r31)
+cmpwi r0, 5
+beq .L_80193CF4_2
+li r3, 0
+b .L_80193DF8
+.L_80193CF4_2:
 /* 80193CF4 00190C34  80 6D 93 E8 */	lwz r3, gameSystem__4Game@sda21(r13)
 /* 80193CF8 00190C38  88 03 00 3C */	lbz r0, 0x3c(r3)
 /* 80193CFC 00190C3C  54 00 06 B5 */	rlwinm. r0, r0, 0, 0x1a, 0x1a
