@@ -1418,7 +1418,7 @@ actPiki__Q24Game12InteractBombFPQ24Game4Piki:
 .L_80193CF4:
 lbz r0, 0x2b8(r31)
 cmpwi r0, 5
-beq .L_80193CF4_2
+bne .L_80193CF4_2
 li r3, 0
 b .L_80193DF8
 .L_80193CF4_2:
