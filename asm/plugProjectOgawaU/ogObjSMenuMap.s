@@ -1184,8 +1184,16 @@ initMapIcon__Q32og9newScreen11ObjSMenuMapFP10JKRArchive:
 /* 80310350 0030D290  40 80 00 14 */	bge .L_80310364
 /* 80310354 0030D294  48 00 04 D4 */	b .L_80310828
 .L_80310358:
-/* 80310358 0030D298  2C 17 00 14 */	cmpwi r23, 0x14
-/* 8031035C 0030D29C  40 80 04 CC */	bge .L_80310828
+
+# Radar check code
+lwz     r3,playData__4Game@sda21(0) 
+li      r4,8
+addi    r3,r3,0x48
+bl      hasItem__Q24Game10OlimarDataFi
+clrlwi. r0,r3,0x18
+bne .L_80310828
+
+
 /* 80310360 0030D2A0  48 00 06 68 */	b .L_803109C8
 .L_80310364:
 /* 80310364 0030D2A4  38 00 00 00 */	li r0, 0
