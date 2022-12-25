@@ -6987,7 +6987,8 @@ setCamController__Q24Game15BaseGameSectionFv:
 /* 8014DEF4 0014AE34  40 82 00 70 */	bne .L_8014DF64
 /* 8014DEF8 0014AE38  38 60 00 01 */	li r3, 1
 /* 8014DEFC 0014AE3C  48 31 52 F1 */	bl PSSetCurCameraNo__FUc
-/* 8014DF00 0014AE40  48 1E 9E CD */	bl PSPlayerChangeToLugie__Fv
+#/* 8014DF00 0014AE40  48 1E 9E CD */	bl PSPlayerChangeToLugie__Fv
+ # no more swing time
 /* 8014DF04 0014AE44  48 00 00 60 */	b .L_8014DF64
 .L_8014DF08:
 /* 8014DF08 0014AE48  80 1F 01 04 */	lwz r0, 0x124(r31)
@@ -7131,7 +7132,8 @@ setCamController__Q24Game15BaseGameSectionFv:
 /* 8014DEF4 0014AE34  40 82 00 70 */	bne .L_8014DF64
 /* 8014DEF8 0014AE38  38 60 00 01 */	li r3, 1
 /* 8014DEFC 0014AE3C  48 31 52 F1 */	bl PSSetCurCameraNo__FUc
-/* 8014DF00 0014AE40  48 1E 9E CD */	bl PSPlayerChangeToLugie__Fv
+#/* 8014DF00 0014AE40  48 1E 9E CD */	bl PSPlayerChangeToLugie__Fv
+ # no more swing time
 /* 8014DF04 0014AE44  48 00 00 60 */	b .L_8014DF64
 .L_8014DF08:
 /* 8014DF08 0014AE48  80 1F 01 04 */	lwz r0, 0x104(r31)
