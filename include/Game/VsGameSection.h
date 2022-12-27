@@ -89,12 +89,7 @@ struct VsGameSection : public BaseGameSection {
 
 	void RandomEvent();
 
-	enum Drought_RandomEvent {
-		BIKEBORB = 0,
-		PIKMIN_SWAP = 1,
-		BOTH_CHERRY_FIVE = 2,
-		EVENT_NUM
-	};
+	enum Drought_RandomEvent { BIKEBORB = 0, PIKMIN_SWAP = 1, BOTH_CHERRY_FIVE = 2, EVENT_NUM };
 
 	Pellet* createCardPellet();
 
