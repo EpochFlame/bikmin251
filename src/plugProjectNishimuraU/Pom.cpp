@@ -233,9 +233,9 @@ void Obj::setPomColor(int pikiKind)
 		m_rgbColor.b = 95;
 		break;
 	case White:
-		m_rgbColor.r = 255;
-		m_rgbColor.g = 217;
-		m_rgbColor.b = 179;
+		m_rgbColor.r = 244;
+		m_rgbColor.g = 151;
+		m_rgbColor.b = 107;
 		break;
 	}
 }
