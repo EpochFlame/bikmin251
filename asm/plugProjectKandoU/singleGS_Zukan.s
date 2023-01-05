@@ -3952,7 +3952,7 @@ draw__Q34Game10SingleGame10ZukanStateFPQ24Game17SingleGameSectionR8Graphics:
 /* 80223D08 00220C48  7F A3 EB 78 */	mr r3, r29
 /* 80223D0C 00220C4C  7F C4 F3 78 */	mr r4, r30
 /* 80223D10 00220C50  7F E5 FB 78 */	mr r5, r31
-/* 80223D14 00220C54  48 00 06 79 */	bl drawLightEffect__Q34Game10SingleGame10ZukanStateFPQ24Game17SingleGameSectionR8Graphics
+#/* 80223D14 00220C54  48 00 06 79 */	bl drawLightEffect__Q34Game10SingleGame10ZukanStateFPQ24Game17SingleGameSectionR8Graphics
 /* 80223D18 00220C58  80 7D 00 CC */	lwz r3, 0xcc(r29)
 /* 80223D1C 00220C5C  38 80 00 00 */	li r4, 0
 /* 80223D20 00220C60  38 A0 00 00 */	li r5, 0
@@ -3964,7 +3964,7 @@ draw__Q34Game10SingleGame10ZukanStateFPQ24Game17SingleGameSectionR8Graphics:
 /* 80223D38 00220C78  7F A3 EB 78 */	mr r3, r29
 /* 80223D3C 00220C7C  7F C4 F3 78 */	mr r4, r30
 /* 80223D40 00220C80  7F E5 FB 78 */	mr r5, r31
-/* 80223D44 00220C84  48 00 00 D1 */	bl drawGradationEffect__Q34Game10SingleGame10ZukanStateFPQ24Game17SingleGameSectionR8Graphics
+#/* 80223D44 00220C84  48 00 00 D1 */	bl drawGradationEffect__Q34Game10SingleGame10ZukanStateFPQ24Game17SingleGameSectionR8Graphics
 /* 80223D48 00220C88  80 7D 00 CC */	lwz r3, 0xcc(r29)
 /* 80223D4C 00220C8C  38 80 00 00 */	li r4, 0
 /* 80223D50 00220C90  38 A0 00 00 */	li r5, 0
