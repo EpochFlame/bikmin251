@@ -1269,7 +1269,11 @@ doLoad__Q34Game10ItemBridge4ItemFR6Stream:
 /* 801EE52C 001EB46C  48 22 65 65 */	bl readInt__6StreamFv
 /* 801EE530 001EB470  90 7E 02 18 */	stw r3, 0x218(r30)
 /* 801EE534 001EB474  38 A0 00 00 */	li r5, 0
-/* 801EE538 001EB478  C0 02 B7 B0 */	lfs f0, lbl_80519B10@sda21(r2)
+# read bridge parms for bridge health
+lwz r4, mgr__Q24Game10ItemBridge@sda21(r13)
+lwz r4, 0x90(r4)
+lfs f0, 0x100(r4)
+# end read bridge parms for bridge health. load value into f0
 /* 801EE53C 001EB47C  38 80 00 00 */	li r4, 0
 /* 801EE540 001EB480  48 00 00 14 */	b .L_801EE554
 .L_801EE544:
