@@ -1403,7 +1403,10 @@ bl leafBluePikmin__4GameFRQ24Game4Piki
 /* 80148660 001455A0  2C 1F 00 00 */	cmpwi r31, 0
 /* 80148664 001455A4  41 82 00 6C */	beq .L_801486D0
 #/* 80148668 001455A8  2C 1F 00 05 */	cmpwi r31, 5
-#/* 8014866C 001455AC  41 82 00 64 */	beq .L_801486D0
+mr r3, r30
+bl isPikmin__Q24Game4PikiFv
+cmpwi r3, 0
+/* 8014866C 001455AC  41 82 00 64 */	beq .L_801486D0
 /* 80148670 001455B0  80 6D 9B 54 */	lwz r3, moviePlayer__4Game@sda21(r13)
 /* 80148674 001455B4  80 03 00 18 */	lwz r0, 0x18(r3)
 /* 80148678 001455B8  2C 00 00 00 */	cmpwi r0, 0
@@ -1857,7 +1860,10 @@ inWaterCallback__Q24Game4PikiFPQ24Game8WaterBox:
 /* 80148C24 00145B64  2C 1F 00 00 */	cmpwi r31, 0
 /* 80148C28 00145B68  41 82 00 58 */	beq .L_80148C80
 #/* 80148C2C 00145B6C  2C 1F 00 05 */	cmpwi r31, 5
-#/* 80148C30 00145B70  41 82 00 50 */	beq .L_80148C80
+mr r3, r29
+bl isPikmin__Q24Game4PikiFv
+cmpwi r3, 0
+/* 80148C30 00145B70  41 82 00 50 */	beq .L_80148C80
 /* 80148C34 00145B74  80 6D 9B 54 */	lwz r3, moviePlayer__4Game@sda21(r13)
 /* 80148C38 00145B78  80 03 00 18 */	lwz r0, 0x18(r3)
 /* 80148C3C 00145B7C  2C 00 00 00 */	cmpwi r0, 0
