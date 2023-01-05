@@ -2590,6 +2590,9 @@ doUpdate__Q24Game15BaseGameSectionFv:
 /* 8014BBCC 00148B0C  80 9F 01 0C */	lwz r4, 0x10c(r31)
 /* 8014BBD0 00148B10  38 A0 00 00 */	li r5, 0
 /* 8014BBD4 00148B14  48 2E 1A 95 */	bl update__Q24Game11MoviePlayerFP10ControllerP10Controller
+# 251 treasure cutscene skip function call:
+lwz r3, moviePlayer__4Game@sda21(r13)
+bl allowSkipTreasureCutscene__4GameFPQ24Game11MoviePlayer
 .L_8014BBD8:
 /* 8014BBD8 00148B18  80 6D 96 80 */	lwz r3, shadowMgr__4Game@sda21(r13)
 /* 8014BBDC 00148B1C  28 03 00 00 */	cmplwi r3, 0
