@@ -14,13 +14,14 @@ namespace newScreen {
 // clang-format off
 static CaveTitleMsgEntry CaveTitleMsg [] = {
 //   id, filler, msg,      fire,  elec,  water, poison, filler
-    {'t_01', 0, '8395_00', false, false, false, false, 0},		// Emergence Cave
-    {'t_02', 0, '8399_00', true , true , false, true , 0},		// Subterannean Complex
-    {'t_03', 0, '8400_00', true , true , true , true , 0},		// Frontier Cavern
+//   id, filler, msg,      POM,   BURY,  KOOPA, WATER,  filler
+    {'t_01', 0, '8395_00', true , false, false, false, 0},		// Emergence Cave
+    {'t_02', 0, '8399_00', true , false, true , true , 0},		// Subterannean Complex
+    {'t_03', 0, '8400_00', true , false, true , false, 0},		// Frontier Cavern
     {'f_01', 0, '8396_00', true , false, false, false, 0},		// Hole of Beasts
-    {'f_02', 0, '8398_00', true , false, false, true , 0},		// White Flower Garden
-    {'f_03', 0, '8401_00', true , true , false, false, 0},		// Bulblax Kingdom
-    {'f_04', 0, '8410_00', false, true , true , true , 0},		// Snagret Hole
+    {'f_02', 0, '8398_00', true , false, true , true , 0},		// White Flower Garden
+    {'f_03', 0, '8401_00', true , false, true , true , 0},		// Bulblax Kingdom
+    {'f_04', 0, '8410_00', true , true , true , false, 0},		// Snagret Hole
     {'y_01', 0, '8397_00', true , true , false, false, 0},		// Citadel of Spiders
     {'y_02', 0, '8402_00', false, true , false, false, 0},		// Gluttons Kitchen
     {'y_03', 0, '8403_00', true , true , true , true , 0},		// Shower Room
