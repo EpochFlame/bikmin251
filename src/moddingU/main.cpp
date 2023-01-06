@@ -150,7 +150,7 @@ void addPelletUnearthRadar(Game::ItemTreasure::Item* treasure) {
 			radarIcon = Radar::MAP_TREASURE;
 			break;
 		case PELTYPE_UPGRADE: // this should never happen, but you never know
-			radarIcon = Radar::MAP_SWALLOWED_TREASURE;
+			radarIcon = Radar::MAP_UPGRADE;
 			break;
 		default:
 			return;
