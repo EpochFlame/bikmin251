@@ -1110,6 +1110,8 @@ releasePellet__Q34Game12ItemTreasure4ItemFv:
 /* 801F3674 001F05B4  D0 21 00 4C */	stfs f1, 0x4c(r1)
 /* 801F3678 001F05B8  90 01 00 08 */	stw r0, 8(r1)
 /* 801F367C 001F05BC  48 1C 25 39 */	bl create__Q23efx10TOtakaraApFPQ23efx3Arg
+mr r3, r31
+bl addPelletUnearthRadar__FPQ34Game12ItemTreasure4Item
 /* 801F3680 001F05C0  80 7F 01 7C */	lwz r3, 0x17c(r31)
 /* 801F3684 001F05C4  38 80 38 33 */	li r4, 0x3833
 /* 801F3688 001F05C8  38 A0 00 00 */	li r5, 0
@@ -1286,6 +1288,7 @@ onInit__Q34Game12ItemTreasure4ItemFPQ24Game15CreatureInitArg:
 /* 801F390C 001F084C  38 A0 00 00 */	li r5, 0
 /* 801F3910 001F0850  38 E0 00 00 */	li r7, 0
 /* 801F3914 001F0854  4B F4 07 9D */	bl createSingleSphere__8CollTreeFPQ28SysShape9MtxObjectiRQ23Sys6SphereP11CollPartMgr
+
 /* 801F3918 001F0858  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 801F391C 001F085C  83 E1 00 0C */	lwz r31, 0xc(r1)
 /* 801F3920 001F0860  7C 08 03 A6 */	mtlr r0
@@ -1638,6 +1641,8 @@ setTreasure__Q34Game12ItemTreasure4ItemFPQ24Game6Pellet:
 /* 801F3DF4 001F0D34  80 9E 01 FC */	lwz r4, 0x1fc(r30)
 /* 801F3DF8 001F0D38  D0 04 03 20 */	stfs f0, 0x320(r4)
 /* 801F3DFC 001F0D3C  48 00 00 1D */	bl setLife__Q34Game12ItemTreasure4ItemFv
+mr r3, r31
+bl removeBurriedTreasureRadar__FPQ34Game12ItemTreasure4Item
 .L_801F3E00:
 /* 801F3E00 001F0D40  80 01 00 24 */	lwz r0, 0x24(r1)
 /* 801F3E04 001F0D44  83 E1 00 1C */	lwz r31, 0x1c(r1)

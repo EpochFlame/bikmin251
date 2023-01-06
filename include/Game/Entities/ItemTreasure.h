@@ -83,7 +83,7 @@ struct Item : public WorkItem<Item, FSM, State> {
 	void setLife();
 	void getCurrMaxLife();
 	void getWorkRadius();
-	void isVisible();
+	bool isVisible();
 
 	// _00      = VTABLE
 	// _00-_1EC = WorkItem
