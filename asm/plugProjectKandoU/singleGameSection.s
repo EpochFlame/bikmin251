@@ -4695,7 +4695,7 @@ openCaveInMenu__Q24Game17SingleGameSectionFPQ34Game8ItemCave4Itemi:
 /* 801541F4 00151134  57 E0 06 3F */	clrlwi. r0, r31, 0x18
 /* 801541F8 00151138  41 82 00 10 */	beq .L_80154208
 /* 801541FC 0015113C  88 1A 02 B8 */	lbz r0, 0x2b8(r26)
-/* 80154200 00151140  2C 00 00 00 */	cmpwi r4, 1 # only reds can enter submerged castle
+/* 80154200 00151140  2C 00 00 00 */	cmpwi r0, 1 # only reds can enter submerged castle
 /* 80154204 00151144  40 82 00 14 */	bne .L_80154218
 .L_80154208:
 /* 80154208 00151148  80 1A 01 7C */	lwz r0, 0x17c(r26)
@@ -4972,7 +4972,7 @@ openCaveInMenu__Q24Game17SingleGameSectionFPQ34Game8ItemCave4Itemi:
 /* 801541F4 00151134  57 E0 06 3F */	clrlwi. r0, r31, 0x18
 /* 801541F8 00151138  41 82 00 10 */	beq .L_80154208
 /* 801541FC 0015113C  88 1A 02 B8 */	lbz r0, 0x2b8(r26)
-/* 80154200 00151140  2C 00 00 00 */	cmpwi r4, 1 # only reds can enter submerged castle
+/* 80154200 00151140  2C 00 00 00 */	cmpwi r0, 1 # only reds can enter submerged castle
 /* 80154204 00151144  40 82 00 14 */	bne .L_80154218
 .L_80154208:
 /* 80154208 00151148  80 1A 01 7C */	lwz r0, 0x17c(r26)
