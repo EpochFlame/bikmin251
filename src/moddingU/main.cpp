@@ -127,37 +127,53 @@ void setLowGravity(void)
 	}
 }
 
+
+
 }; // namespace Game
 
 #include "Game/Entities/ItemTreasure.h"
 #include "Game/pelletMgr.h"
 #include "Radar.h"
 
-// linked to itemTreasure setTreasure
-// removes the pellet's icon
-void removeBuriedTreasureRadar(Game::ItemTreasure::Item* treasure) {
-	Radar::mgr->detach(treasure);
-	Radar::mgr->m_otakaraNum++;
-}
-
-// linked to itemTreasure releasePellet
-// re-adds the pellet's icon
-void addPelletUnearthRadar(Game::ItemTreasure::Item* treasure)
-{
-	Radar::cRadarType radarIcon;
-	switch (treasure->m_pellet->getKind()) {
-	case PELTYPE_TREASURE:
-		radarIcon = Radar::MAP_TREASURE;
-		break;
-	case PELTYPE_UPGRADE: // this should never happen, but you never know
-		radarIcon = Radar::MAP_UPGRADE;
-		break;
-	default:
-		return;
+Radar::Point* getPointFromObj(Game::TPositionObject* obj) {
+	Radar::Point* node = (Radar::Point*)Radar::mgr->m_pointNode1.m_child;
+	while (node->m_object != obj) {
+		node = (Radar::Point*)node->m_next;
 	}
-
-	Radar::mgr->attach(treasure->m_pellet, radarIcon, 0);
+	return node;
 }
+
+// no longer used for anything, though I don't feel like unlinking them if needed later
+void removeBuriedTreasureRadar(Game::ItemTreasure::Item* treasure) { }
+void addPelletUnearthRadar(Game::ItemTreasure::Item* treasure) { }
+
+bool hasTreasure(Game::Pellet* pellet) {
+	Iterator<Game::BaseItem> iTreasure = Game::ItemTreasure::mgr;
+	CI_LOOP(iTreasure) {
+		Game::ItemTreasure::Item* treasure = static_cast<Game::ItemTreasure::Item*>(*iTreasure);
+		if (pellet == treasure->m_pellet) return true;
+	}
+	return false;
+}
+
+
+
+bool shouldDrawTreasure(Radar::Point* point) {
+	if (!point || !point->m_object) return false;
+	if (point->m_objType == Radar::MAP_TREASURE || point->m_objType == Radar::MAP_UPGRADE) {
+		Game::Creature* obj = (Game::Creature*)point->m_object;
+		if (obj->isPellet()) {
+			Game::Pellet* pellet = (Game::Pellet*)obj;
+			if (hasTreasure(pellet)) {
+				return false;
+			}
+			return true;
+		}
+	}
+	return true;
+
+}
+
 
 namespace mod {
 int keyLockCount;
@@ -172,5 +188,8 @@ float adjustBoundingRadius(float radius)
 	else
 		return radius;
 }
+
+
+
 
 }; // namespace mod
