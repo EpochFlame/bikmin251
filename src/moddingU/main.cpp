@@ -127,15 +127,14 @@ void setLowGravity(void)
 	}
 }
 
-
-
 }; // namespace Game
 
 #include "Game/Entities/ItemTreasure.h"
 #include "Game/pelletMgr.h"
 #include "Radar.h"
 
-Radar::Point* getPointFromObj(Game::TPositionObject* obj) {
+Radar::Point* getPointFromObj(Game::TPositionObject* obj)
+{
 	Radar::Point* node = (Radar::Point*)Radar::mgr->m_pointNode1.m_child;
 	while (node->m_object != obj) {
 		node = (Radar::Point*)node->m_next;
@@ -147,19 +146,22 @@ Radar::Point* getPointFromObj(Game::TPositionObject* obj) {
 void removeBuriedTreasureRadar(Game::ItemTreasure::Item* treasure) { }
 void addPelletUnearthRadar(Game::ItemTreasure::Item* treasure) { }
 
-bool hasTreasure(Game::Pellet* pellet) {
+bool hasTreasure(Game::Pellet* pellet)
+{
 	Iterator<Game::BaseItem> iTreasure = Game::ItemTreasure::mgr;
-	CI_LOOP(iTreasure) {
+	CI_LOOP(iTreasure)
+	{
 		Game::ItemTreasure::Item* treasure = static_cast<Game::ItemTreasure::Item*>(*iTreasure);
-		if (pellet == treasure->m_pellet) return true;
+		if (pellet == treasure->m_pellet)
+			return true;
 	}
 	return false;
 }
 
-
-
-bool shouldDrawTreasure(Radar::Point* point) {
-	if (!point || !point->m_object) return false;
+bool shouldDrawTreasure(Radar::Point* point)
+{
+	if (!point || !point->m_object)
+		return false;
 	if (point->m_objType == Radar::MAP_TREASURE || point->m_objType == Radar::MAP_UPGRADE) {
 		Game::Creature* obj = (Game::Creature*)point->m_object;
 		if (obj->isPellet()) {
@@ -171,9 +173,7 @@ bool shouldDrawTreasure(Radar::Point* point) {
 		}
 	}
 	return true;
-
 }
-
 
 namespace mod {
 int keyLockCount;
@@ -188,8 +188,5 @@ float adjustBoundingRadius(float radius)
 	else
 		return radius;
 }
-
-
-
 
 }; // namespace mod
