@@ -139,6 +139,7 @@ void setLowGravity(void)
 // removes the pellet's icon
 void removeBurriedTreasureRadar(Game::ItemTreasure::Item* treasure) {
 	Radar::mgr->detach(treasure);
+	Radar::mgr->m_otakaraNum++;
 }
 
 // linked to itemTreasure releasePellet
