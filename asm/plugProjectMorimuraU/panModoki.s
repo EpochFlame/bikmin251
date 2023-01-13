@@ -4257,8 +4257,11 @@ endCarry__Q34Game13PanModokiBase3ObjFv:
 /* 80352AA0 0034F9E0  7D 89 03 A6 */	mtctr r12
 /* 80352AA4 0034F9E4  4E 80 04 21 */	bctrl 
 /* 80352AA8 0034F9E8  54 60 06 3E */	clrlwi r0, r3, 0x18
-/* 80352AAC 0034F9EC  28 00 00 03 */	cmplwi r0, 3
-/* 80352AB0 0034F9F0  40 82 00 58 */	bne .L_80352B08
+/* 80352AAC 0034F9EC  28 00 00 03 */	cmplwi r0, 3 # check otakara type
+/* 80352AB0 0034F9F0  40 82 00 58 */	beq .L_woo
+cmplwi r0, 4 # add check for item type
+bne .L_80352B08
+.L_woo:
 /* 80352AB4 0034F9F4  80 1E 03 88 */	lwz r0, 0x388(r30)
 /* 80352AB8 0034F9F8  54 00 10 3A */	slwi r0, r0, 2
 /* 80352ABC 0034F9FC  7C 7E 02 14 */	add r3, r30, r0
