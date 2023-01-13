@@ -127,8 +127,6 @@ void setLowGravity(void)
 	}
 }
 
-
-
 }; // namespace Game
 
 #include "Game/Entities/ItemTreasure.h"
@@ -137,29 +135,29 @@ void setLowGravity(void)
 
 // linked to itemTreasure setTreasure
 // removes the pellet's icon
-void removeBurriedTreasureRadar(Game::ItemTreasure::Item* treasure) {
+void removeBuriedTreasureRadar(Game::ItemTreasure::Item* treasure) {
 	Radar::mgr->detach(treasure);
 	Radar::mgr->m_otakaraNum++;
 }
 
 // linked to itemTreasure releasePellet
-// re-adds the pelle's icon
-void addPelletUnearthRadar(Game::ItemTreasure::Item* treasure) {
+// re-adds the pellet's icon
+void addPelletUnearthRadar(Game::ItemTreasure::Item* treasure)
+{
 	Radar::cRadarType radarIcon;
 	switch (treasure->m_pellet->getKind()) {
-		case PELTYPE_TREASURE:
-			radarIcon = Radar::MAP_TREASURE;
-			break;
-		case PELTYPE_UPGRADE: // this should never happen, but you never know
-			radarIcon = Radar::MAP_UPGRADE;
-			break;
-		default:
-			return;
+	case PELTYPE_TREASURE:
+		radarIcon = Radar::MAP_TREASURE;
+		break;
+	case PELTYPE_UPGRADE: // this should never happen, but you never know
+		radarIcon = Radar::MAP_UPGRADE;
+		break;
+	default:
+		return;
 	}
-	
+
 	Radar::mgr->attach(treasure->m_pellet, radarIcon, 0);
 }
-
 
 namespace mod {
 int keyLockCount;
@@ -174,8 +172,5 @@ float adjustBoundingRadius(float radius)
 	else
 		return radius;
 }
-
-
-
 
 }; // namespace mod
