@@ -160,6 +160,8 @@ bool hasTreasure(Game::Pellet* pellet)
 
 bool shouldDrawTreasure(Radar::Point* point)
 {
+	if (!Game::playData->m_olimarData[0].hasItem(8)) return false;
+
 	if (!point || !point->m_object)
 		return false;
 	if (point->m_objType == Radar::MAP_TREASURE || point->m_objType == Radar::MAP_UPGRADE) {
@@ -172,7 +174,7 @@ bool shouldDrawTreasure(Radar::Point* point)
 			return true;
 		}
 	}
-	return true;
+	return false;
 }
 
 namespace mod {
