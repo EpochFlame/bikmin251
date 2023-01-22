@@ -1080,6 +1080,7 @@ KONO:=\
 MODDING:=\
 	$(BUILD_DIR)/src/moddingU/main.o\
 	$(BUILD_DIR)/src/moddingU/waterpiki.o\
+	$(BUILD_DIR)/src/moddingU/bloyster.o\
 
 BOOTUP:=\
 	$(BUILD_DIR)/src/sysBootupU/sysBootup.o\

@@ -160,7 +160,8 @@ bool hasTreasure(Game::Pellet* pellet)
 
 bool shouldDrawTreasure(Radar::Point* point)
 {
-	if (!Game::playData->m_olimarData[0].hasItem(8)) return false;
+	if (!Game::playData->m_olimarData[0].hasItem(8))
+		return false;
 
 	if (!point || !point->m_object)
 		return false;
