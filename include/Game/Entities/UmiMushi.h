@@ -254,7 +254,7 @@ struct Mgr : public EnemyMgrBase {
 	virtual void loadTexData();                     // _D0
 	virtual J3DModelData* doLoadBmd(void* filename) // _D4 (weak)
 	{
-		return J3DModelLoaderDataBase::load(filename, 0x20240010);
+		return J3DModelLoaderDataBase::load(filename, 0x21240010);
 	}
 	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID() // _AC (weak)
 	{
