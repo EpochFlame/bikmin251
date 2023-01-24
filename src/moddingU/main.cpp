@@ -174,9 +174,10 @@ bool shouldDrawTreasure(Radar::Point* point)
 			}
 			return true;
 		}
-		else if (obj->isTeki()) {
-			return true;
-		}
+		return true;
+	}
+	if (point->m_objType == Radar::MAP_SWALLOWED_TREASURE) {
+		return true;
 	}
 	return false;
 }
