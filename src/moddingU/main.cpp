@@ -174,6 +174,9 @@ bool shouldDrawTreasure(Radar::Point* point)
 			}
 			return true;
 		}
+		else if (obj->isTeki()) {
+			return true;
+		}
 	}
 	return false;
 }
