@@ -127,6 +127,7 @@ struct DispMemberCave : public DispMemberBase {
 		m_isSpicyUnlocked   = false;
 		m_radarEnabled      = false;
 		m_allTreasureGotten = false;
+		m_keyCount = 69;
 	}
 
 	virtual u32 getSize() { return sizeof(DispMemberCave); } // _08 (weak)
@@ -148,6 +149,7 @@ struct DispMemberCave : public DispMemberBase {
 	bool m_allTreasureGotten; // _61
 	bool m_isBitterUnlocked;  // _62, have made first bitter spray from berries
 	bool m_isSpicyUnlocked;   // _63, have made first spicy spray from berries
+	u32 m_keyCount;
 };
 
 // size 0x28

@@ -10,6 +10,7 @@
 #include "trig.h"
 #include "System.h"
 #include "nans.h"
+#include "og/Screen/ogScreen.h"
 
 namespace og {
 namespace newScreen {
@@ -40,6 +41,7 @@ ObjCave::ObjCave(const char* name)
 	m_totalPokoTimer  = 0.0f;
 	m_paneChika       = nullptr;
 	m_paneFinalf      = nullptr;
+	m_keyCounter = nullptr;
 }
 
 /*
@@ -118,6 +120,14 @@ void ObjCave::doCreate(JKRArchive* arc)
 
 	m_otakara->setSensorVec1(msVal._2C, msVal._30);
 	m_doping->setDopingEnable(m_disp->m_isBitterUnlocked, m_disp->m_isSpicyUnlocked);
+
+	// needs actual key count in disp and check if keys are on floor to enable
+	m_keyCounter = og::Screen::setCallBack_CounterRV(m_pikiCounter, 'k_mr', 'k_mc', 0, &m_disp->m_keyCount, 2, 2, false, arc);
+	if (true) {
+		m_pikiCounter->search('Nkeys')->show();
+	} else {
+		m_pikiCounter->search('Nkeys')->hide();
+	}
 }
 
 /*
