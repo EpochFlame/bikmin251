@@ -207,6 +207,9 @@ float adjustBoundingRadius(float radius)
 }
 
 void updateDispMember() {
+	if (!Game::gameSystem->m_inCave) return;
+	if (!thisObjCave) return;
+	if (!thisObjCave->m_disp) return;
 	thisObjCave->m_disp->m_keyCount = keyLockCount;
 	thisObjCave->m_keyCounter->update();
 	if (!isExitLocked || keyLockCount == 0) {
