@@ -438,7 +438,9 @@ bool InteractSuckDone::actOnyon(Onyon* item)
 
 	if ((gameSystem->isChallengeMode() || mod::isExitLocked) && !strcmp(pellet->m_config->m_params.m_name.m_data, "key")) {
 		if (gameSystem->m_mode == GSM_STORY_MODE) {
-			if (--mod::keyLockCount) {
+			mod::keyLockCount--;
+			mod::updateDispMember();
+			if (mod::keyLockCount) {
 				goto bedamaCheck;
 			}
 		}

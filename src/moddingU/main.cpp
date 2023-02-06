@@ -17,6 +17,8 @@
 #include "efx/TSimple.h"
 #include "ObjectTypes.h"
 #include "Game/gamePlayData.h"
+#include "mod.h"
+#include "og/Screen/PikminCounter.h"
 
 bool isTreasureCutscene;
 
@@ -187,10 +189,13 @@ bool shouldDrawTreasure(Radar::Point* point)
 	return false;
 }
 
+
+
 namespace mod {
 int keyLockCount;
 bool isExitLocked;
 bool isBobuMovieQueued = FALSE;
+og::newScreen::ObjCave* thisObjCave = nullptr;
 
 // adjust treasure culling radius to 50.0f if radius was zero
 float adjustBoundingRadius(float radius)
@@ -200,5 +205,17 @@ float adjustBoundingRadius(float radius)
 	else
 		return radius;
 }
+
+void updateDispMember() {
+	thisObjCave->m_disp->m_keyCount = keyLockCount;
+	thisObjCave->m_keyCounter->update();
+	if (!isExitLocked || keyLockCount == 0) {
+		thisObjCave->m_pikiCounter->search('Nkeys')->hide();
+		
+	} else {
+		thisObjCave->m_pikiCounter->search('Nkeys')->show();
+	}
+}
+
 
 }; // namespace mod
