@@ -16,6 +16,7 @@
 #include "PSSystem/PSSystemIF.h"
 #include "efx/TSimple.h"
 #include "ObjectTypes.h"
+#include "Game/gamePlayData.h"
 
 bool isTreasureCutscene;
 
@@ -160,8 +161,12 @@ bool hasTreasure(Game::Pellet* pellet)
 
 bool shouldDrawTreasure(Radar::Point* point)
 {
-	if (!Game::playData->m_olimarData[0].hasItem(8))
+	if (!Game::playData->m_olimarData[0].hasItem(Game::OlimarData::ODII_PrototypeDetector)) {
 		return false;
+	}
+	if (Radar::mgr->m_fuefukiCount > 0) {
+		return false;
+	}
 
 	if (!point || !point->m_object)
 		return false;
