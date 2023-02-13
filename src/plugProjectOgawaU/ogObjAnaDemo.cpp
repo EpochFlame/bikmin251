@@ -14,21 +14,21 @@ namespace newScreen {
 // clang-format off
 static CaveTitleMsgEntry CaveTitleMsg [] = {
 //   id, filler, msg,      fire,  elec,  water, poison, filler
-//   id, filler, msg,      POM,   BURY,  KOOPA, WATER,  filler
-    {'t_01', 0, '8395_00', true , false, false, false, 0},		// Emergence Cave
-    {'t_02', 0, '8399_00', true , false, true , true , 0},		// Subterannean Complex
-    {'t_03', 0, '8400_00', true , false, true , false, 0},		// Frontier Cavern
-    {'f_01', 0, '8396_00', true , false, false, false, 0},		// Hole of Beasts
-    {'f_02', 0, '8398_00', true , false, true , true , 0},		// White Flower Garden
-    {'f_03', 0, '8401_00', true , false, true , true , 0},		// Bulblax Kingdom
-    {'f_04', 0, '8410_00', true , true , true , false, 0},		// Snagret Hole
-    {'y_01', 0, '8397_00', true , true , false, false, 0},		// Citadel of Spiders
-    {'y_02', 0, '8402_00', false, true , false, false, 0},		// Gluttons Kitchen
-    {'y_03', 0, '8403_00', true , true , true , true , 0},		// Shower Room
-    {'y_04', 0, '8411_00', true , true , true , true , 0},		// Submerged Castle
-    {'l_01', 0, '8412_00', true , true , true , true , 0},		// Cavern of Chaos
-    {'l_02', 0, '8413_00', true , true , true , true , 0},		// Hole of Heroes
-    {'l_03', 0, '8414_00', true , true , true , true , 0},		// Dream Den
+//   id, filler, msg,      KOOPA, SHROOM,BURIED,WATER,  filler
+    {'t_01', 0, '8395_00', false, true , false, false, 0},		// Overflowing Hole
+    {'t_02', 0, '8399_00', true , true , false, true , 0},		// Lobotomite Loo
+    {'t_03', 0, '8400_00', true , true , false, false, 0},		// Korodai Mines
+    {'f_01', 0, '8396_00', false, false, true , false, 0},		// Frozen Catacombs
+    {'f_02', 0, '8398_00', true , false, false, true , 0},		// Flood of Frogs
+    {'f_03', 0, '8401_00', true , false, true , true , 0},		// Bup Nation
+    {'f_04', 0, '8410_00', true , false, true , false, 0},		// Hyrule Tunnels
+    {'y_01', 0, '8397_00', false, false, false, false, 0},		// Factory Jamboree
+    {'y_02', 0, '8402_00', false, true , false, true , 0},		// Bread Aisle
+    {'y_03', 0, '8403_00', false, true , true , false, 0},		// Vent Chamber
+    {'y_04', 0, '8411_00', true , false, false, true , 0},		// Annoying Hole
+    {'l_01', 0, '8412_00', false, true , false, true , 0},		// J.N. Warehouse
+    {'l_02', 0, '8413_00', true , true , false, true , 0},		// Atrocity Facility
+    {'l_03', 0, '8414_00', true , true , false, true , 0},		// Roche Limit
     {'c_00', 0, '8395_00', false, false, false, false, 0},		// Challenge Mode 1
     {'c_01', 0, '8395_00', false, false, false, false, 0},		// Challenge Mode 2
     {'c_02', 0, '8395_00', false, false, false, false, 0},		// Challenge Mode 3
