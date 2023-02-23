@@ -14,7 +14,6 @@
 
 #include "mod.h"
 
-
 namespace og {
 namespace newScreen {
 
@@ -44,7 +43,7 @@ ObjCave::ObjCave(const char* name)
 	m_totalPokoTimer  = 0.0f;
 	m_paneChika       = nullptr;
 	m_paneFinalf      = nullptr;
-	m_keyCounter = nullptr;
+	m_keyCounter      = nullptr;
 }
 
 /*
@@ -61,7 +60,7 @@ ObjCave::~ObjCave() { }
  */
 void ObjCave::doCreate(JKRArchive* arc)
 {
-	mod::thisObjCave = this;
+	mod::thisObjCave                 = this;
 	og::Screen::DispMemberCave* disp = static_cast<og::Screen::DispMemberCave*>(getDispMember());
 	if (disp->isID(OWNER_OGA, MEMBER_CAVE)) {
 		m_disp = disp;

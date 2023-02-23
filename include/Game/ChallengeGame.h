@@ -8,6 +8,7 @@
 namespace Game {
 namespace ChallengeGame {
 struct StageData : public CNode {
+	StageData();
 	virtual ~StageData(); // _08 (weak)
 
 	void read(Stream&);
@@ -22,7 +23,7 @@ struct StageData : public CNode {
 	int m_floorCounts;             // _6C
 	s32 _70;                       // _70
 	int m_stageIndex;              // _74
-	int m_startNumYellowMarbles;   // _78
+	f32* mFloorTimerExtentions;    // _78
 };
 
 struct StageList : public CNode {

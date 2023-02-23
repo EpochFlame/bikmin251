@@ -3,7 +3,6 @@
 
 #include "og/newScreen/Cave.h"
 
-
 namespace mod {
 extern int keyLockCount;
 extern og::newScreen::ObjCave* thisObjCave;

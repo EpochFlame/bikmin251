@@ -189,12 +189,10 @@ bool shouldDrawTreasure(Radar::Point* point)
 	return false;
 }
 
-
-
 namespace mod {
 int keyLockCount;
 bool isExitLocked;
-bool isBobuMovieQueued = FALSE;
+bool isBobuMovieQueued              = FALSE;
 og::newScreen::ObjCave* thisObjCave = nullptr;
 
 // adjust treasure culling radius to 50.0f if radius was zero
@@ -206,19 +204,25 @@ float adjustBoundingRadius(float radius)
 		return radius;
 }
 
-void updateDispMember() {
-	if (!Game::gameSystem->m_inCave) return;
-	if (!thisObjCave) return;
-	if (!thisObjCave->m_disp) return;
+void updateDispMember()
+{
+	if (!Game::gameSystem->m_inCave) {
+		return;
+	}
+	if (!thisObjCave) {
+		return;
+	}
+	if (!thisObjCave->m_disp) {
+		return;
+	}
 	thisObjCave->m_disp->m_keyCount = keyLockCount;
 	thisObjCave->m_keyCounter->update();
 	if (!isExitLocked || keyLockCount == 0) {
 		thisObjCave->m_pikiCounter->search('Nkeys')->hide();
-		
+
 	} else {
 		thisObjCave->m_pikiCounter->search('Nkeys')->show();
 	}
 }
-
 
 }; // namespace mod

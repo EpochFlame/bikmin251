@@ -133,7 +133,9 @@ struct CardMgr {
 };
 
 struct StageData : public CNode {
+	StageData();
 	virtual ~StageData(); // _08 (weak)
+	void read(Stream&);
 
 	// _00 		= VTBL
 	// _00-_18	= CNode
