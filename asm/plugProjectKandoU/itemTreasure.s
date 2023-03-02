@@ -919,7 +919,7 @@ onDamage__Q34Game12ItemTreasure11NormalStateFPQ34Game12ItemTreasure4Itemf:
 /* 801F33A8 001F02E8  2C 00 00 04 */	cmpwi r0, 1 # reds can see buried treasure
 /* 801F33AC 001F02EC  40 82 00 0C */	bne .L_801F33B8
 /* 801F33B0 001F02F0  38 80 00 00 */	li r4, 0
-lfs f1, lbl_80519C20@sda21(r2)
+lfs f1, lbl_80519BFC@sda21(r2)
 fmuls f30, f1, f30
 /* 801F33B4 001F02F4  4B F4 86 9D */	bl movie_begin__Q24Game8CreatureFb
 .L_801F33B8:
