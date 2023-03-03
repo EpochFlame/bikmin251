@@ -115,8 +115,8 @@ void ResultState::prepareMorimuraInfo(VsGameSection* section)
 
 	if (isNormalEnd()) {
 		if (!sys->getPlayCommonData()->challenge_checkClear(stageIndex)) {
-			int courseID = sys->getPlayCommonData()->challenge_openNewCourse();
-			OSReport("——— Course %d Opened !!\n", courseID);
+			// int courseID = sys->getPlayCommonData()->challenge_openNewCourse();
+			// OSReport("——— Course %d Opened !!\n", courseID);
 			sys->getPlayCommonData()->challenge_setClear(stageIndex);
 		}
 
