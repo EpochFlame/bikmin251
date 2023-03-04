@@ -1130,6 +1130,9 @@ exec__Q26PikiAI12ActFormationFv:
 /* 8019DBA0 0019AAE0  88 03 02 B8 */	lbz r0, 0x2b8(r3)
 /* 8019DBA4 0019AAE4  2C 00 00 05 */	cmpwi r0, 5
 /* 8019DBA8 0019AAE8  41 82 01 24 */	beq .L_8019DCCC
+# carrots will not trip
+cmpwi r0, 6
+beq .L_8019DCCC
 # do not trip in nether
 # trip check
 lwz r3, playData__4Game@sda21(r13)
