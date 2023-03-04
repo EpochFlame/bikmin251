@@ -669,6 +669,9 @@ lbl_constructor:
 .obj mFireAlphaRate__Q28Morimura9TVsSelect, global
 	.float 0.5
 .endobj mFireAlphaRate__Q28Morimura9TVsSelect
+.obj mLoopDrum__Q28Morimura9TVsSelect, global
+	.byte 1
+.endobj mLoopDrum__Q28Morimura9TVsSelect
 
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
@@ -684,9 +687,6 @@ lbl_constructor:
 .obj mForceDemoStart__Q28Morimura9TVsSelect, global
 	.skip 0x1
 .endobj mForceDemoStart__Q28Morimura9TVsSelect
-.obj mLoopDrum__Q28Morimura9TVsSelect, global
-	.skip 0x1
-.endobj mLoopDrum__Q28Morimura9TVsSelect
 .obj mCanCancel__Q28Morimura9TVsSelect, global
 	.skip 0x1
 .endobj mCanCancel__Q28Morimura9TVsSelect
