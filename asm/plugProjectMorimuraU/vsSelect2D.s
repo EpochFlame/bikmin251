@@ -5,62 +5,63 @@ lbl_constructor:
 
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-.global lbl_80494B18
-lbl_80494B18:
+.obj lbl_80494B18, local
 	.asciz "vsSelect2D"
+.endobj lbl_80494B18
 .balign 4
-.global lbl_80494B24
-lbl_80494B24:
+.obj lbl_80494B24, local
 	.asciz "vsSelect2D.cpp"
+.endobj lbl_80494B24
 .balign 4
-.global lbl_80494B34
-lbl_80494B34:
+.obj lbl_80494B34, local
 	.asciz "P2Assert"
+.endobj lbl_80494B34
 .balign 4
-.global lbl_80494B40
-lbl_80494B40:
+.obj lbl_80494B40, local
 	.asciz "vsSelect"
+.endobj lbl_80494B40
 .balign 4
-.global lbl_80494B4C
-lbl_80494B4C:
+.obj lbl_80494B4C, local
 	.asciz "timg/otegaru.bti"
+.endobj lbl_80494B4C
 .balign 4
-.global lbl_80494B60
-lbl_80494B60:
+.obj lbl_80494B60, local
 	.asciz "timg/ujyaujya.bti"
+.endobj lbl_80494B60
 .balign 4
-.global lbl_80494B74
-lbl_80494B74:
+.obj lbl_80494B74, local
 	.asciz "timg/hirobiro.bti"
+.endobj lbl_80494B74
 .balign 4
-.global lbl_80494B88
-lbl_80494B88:
+.obj lbl_80494B88, local
 	.asciz "timg/karakuchi.bti"
+.endobj lbl_80494B88
 .balign 4
-.global lbl_80494B9C
-lbl_80494B9C:
+.obj lbl_80494B9C, local
 	.asciz "timg/semai.bti"
+.endobj lbl_80494B9C
 .balign 4
-.global lbl_80494BAC
-lbl_80494BAC:
+.obj lbl_80494BAC, local
 	.asciz "timg/hiyahiya.bti"
+.endobj lbl_80494BAC
 .balign 4
-.global lbl_80494BC0
-lbl_80494BC0:
+.obj lbl_80494BC0, local
 	.asciz "timg/nobinobi.bti"
+.endobj lbl_80494BC0
 .balign 4
-.global lbl_80494BD4
-lbl_80494BD4:
+.obj lbl_80494BD4, local
 	.asciz "timg/kakukaku.bti"
+.endobj lbl_80494BD4
 .balign 4
-.global lbl_80494BE8
-lbl_80494BE8:
+.obj lbl_80494BE8, local
 	.asciz "timg/meiro.bti"
+.endobj lbl_80494BE8
 .balign 4
-.global lbl_80494BF8
-lbl_80494BF8:
+.obj lbl_80494BF8, local
 	.asciz "timg/tile.bti"
+.endobj lbl_80494BF8
 .balign 4
+.obj lbl_80494C08, local
 	.4byte lbl_80494B4C
 	.4byte lbl_80494B60
 	.4byte lbl_80494B74
@@ -71,403 +72,315 @@ lbl_80494BF8:
 	.4byte lbl_80494BD4
 	.4byte lbl_80494BE8
 	.4byte lbl_80494BF8
-.global lbl_80494C30
-lbl_80494C30:
+.endobj lbl_80494C08
+.balign 4
+.obj lbl_80494C30, local
 	.asciz "timg/orima001.bti"
+.endobj lbl_80494C30
 .balign 4
-.global lbl_80494C44
-lbl_80494C44:
+.obj lbl_80494C44, local
 	.asciz "timg/orima002.bti"
+.endobj lbl_80494C44
 .balign 4
-.global lbl_80494C58
-lbl_80494C58:
+.obj lbl_80494C58, local
 	.asciz "timg/orima003.bti"
+.endobj lbl_80494C58
 .balign 4
-.global lbl_80494C6C
-lbl_80494C6C:
+.obj lbl_80494C6C, local
 	.asciz "timg/orima004.bti"
+.endobj lbl_80494C6C
 .balign 4
-.global lbl_80494C80
-lbl_80494C80:
+.obj lbl_80494C80, local
 	.asciz "timg/orima005.bti"
+.endobj lbl_80494C80
 .balign 4
+.obj lbl_80494C94, local
 	.4byte lbl_80494C30
 	.4byte lbl_80494C44
 	.4byte lbl_80494C58
 	.4byte lbl_80494C6C
 	.4byte lbl_80494C80
-.global lbl_80494CA8
-lbl_80494CA8:
+.endobj lbl_80494C94
+.balign 4
+.obj lbl_80494CA8, local
 	.asciz "timg/lui001.bti"
+.endobj lbl_80494CA8
 .balign 4
-.global lbl_80494CB8
-lbl_80494CB8:
+.obj lbl_80494CB8, local
 	.asciz "timg/lui002.bti"
+.endobj lbl_80494CB8
 .balign 4
-.global lbl_80494CC8
-lbl_80494CC8:
+.obj lbl_80494CC8, local
 	.asciz "timg/lui003.bti"
+.endobj lbl_80494CC8
 .balign 4
-.global lbl_80494CD8
-lbl_80494CD8:
+.obj lbl_80494CD8, local
 	.asciz "timg/lui004.bti"
+.endobj lbl_80494CD8
 .balign 4
-.global lbl_80494CE8
-lbl_80494CE8:
+.obj lbl_80494CE8, local
 	.asciz "timg/lui005.bti"
+.endobj lbl_80494CE8
 .balign 4
-lbl_80494CF8:
+.obj lbl_80494CF8, local
 	.4byte lbl_80494CA8
 	.4byte lbl_80494CB8
 	.4byte lbl_80494CC8
 	.4byte lbl_80494CD8
 	.4byte lbl_80494CE8
+.endobj lbl_80494CF8
 .balign 8
-lbl_80494D10:
-	.4byte 0x50306963
-	.4byte 0x6F6E3030
-	.4byte 0x50306963
-	.4byte 0x6F6E3031
-	.4byte 0x50306963
-	.4byte 0x6F6E3032
-	.4byte 0x50306963
-	.4byte 0x6F6E3033
-	.4byte 0x50306963
-	.4byte 0x6F6E3034
-	.4byte 0x50306963
-	.4byte 0x6F6E3035
-	.4byte 0x50316963
-	.4byte 0x6F6E3030
-	.4byte 0x50316963
-	.4byte 0x6F6E3031
-	.4byte 0x50316963
-	.4byte 0x6F6E3032
-	.4byte 0x50316963
-	.4byte 0x6F6E3033
-	.4byte 0x50316963
-	.4byte 0x6F6E3034
-	.4byte 0x50316963
-	.4byte 0x6F6E3035
-	.4byte 0x0054626D
-	.4byte 0x656E7533
-	.4byte 0x0054626D
-	.4byte 0x656E7534
-	.4byte 0x0054626D
-	.4byte 0x656E7535
-	.4byte 0x00004E72
-	.4byte 0x705F3030
-	.4byte 0x00004E72
-	.4byte 0x705F3031
-	.4byte 0x00004E72
-	.4byte 0x705F3032
-	.4byte 0x00004E72
-	.4byte 0x705F3033
-	.4byte 0x00004E72
-	.4byte 0x705F3034
-	.4byte 0x00004E72
-	.4byte 0x705F3035
-	.4byte 0x00004E72
-	.4byte 0x705F3036
-	.4byte 0x00004E72
-	.4byte 0x705F3037
-	.4byte 0x00004E72
-	.4byte 0x705F3038
-	.4byte 0x00004E72
-	.4byte 0x705F3039
-	.4byte 0x00004E62
-	.4byte 0x705F3030
-	.4byte 0x00004E62
-	.4byte 0x705F3031
-	.4byte 0x00004E62
-	.4byte 0x705F3032
-	.4byte 0x00004E62
-	.4byte 0x705F3033
-	.4byte 0x00004E62
-	.4byte 0x705F3034
-	.4byte 0x00004E62
-	.4byte 0x705F3035
-	.4byte 0x00004E62
-	.4byte 0x705F3036
-	.4byte 0x00004E62
-	.4byte 0x705F3037
-	.4byte 0x00004E62
-	.4byte 0x705F3038
-	.4byte 0x00004E62
-	.4byte 0x705F3039
-	.4byte 0x00546D65
-	.4byte 0x6E753030
-	.4byte 0x00546D65
-	.4byte 0x6E753031
-	.4byte 0x00546D65
-	.4byte 0x6E753032
-	.4byte 0x00546D65
-	.4byte 0x6E753033
-	.4byte 0x00546D65
-	.4byte 0x6E753034
-	.4byte 0x73657420
-	.4byte 0x44656275
-	.4byte 0x67486561
-	.4byte 0x70506172
-	.4byte 0x656E742E
-	.4byte 0x206D6169
-	.4byte 0x6C20746F
-	.4byte 0x206D6F72
-	.4byte 0x696D756E
-	.4byte 0x2E0A0000
-	.4byte 0x7265645F
-	.4byte 0x706F642E
-	.4byte 0x626C6F00
-	.4byte 0x7265645F
-	.4byte 0x706F642E
-	.4byte 0x62636B00
-	.4byte 0x7265645F
-	.4byte 0x706F642E
-	.4byte 0x62747000
-	.4byte 0x626C7565
-	.4byte 0x5F706F64
-	.4byte 0x2E626C6F
-	.4byte 0x00000000
-	.4byte 0x626C7565
-	.4byte 0x5F706F64
-	.4byte 0x2E62636B
-	.4byte 0x00000000
-	.4byte 0x626C7565
-	.4byte 0x5F706F64
-	.4byte 0x2E627470
-	.4byte 0x00000000
-	.4byte 0x76735365
-	.4byte 0x6C656374
-	.4byte 0x54657874
-	.4byte 0x75726500
-	.4byte 0x7265735F
-	.4byte 0x76735365
-	.4byte 0x6C656374
-	.4byte 0x54657874
-	.4byte 0x7572652E
-	.4byte 0x737A7300
-	.4byte 0x6172634E
-	.4byte 0x616D6520
-	.4byte 0x3D202573
-	.4byte 0x0A000000
-	.4byte 0x74696D67
-	.4byte 0x2F6C6F6F
-	.4byte 0x7A795F69
-	.4byte 0x636F6E2E
-	.4byte 0x62746900
-	.4byte 0x76735F73
-	.4byte 0x6C6F745F
-	.4byte 0x74657874
-	.4byte 0x7572652E
-	.4byte 0x626C6F00
-	.4byte 0x6F746567
-	.4byte 0x6172752E
-	.4byte 0x62746900
-	.4byte 0x414B5F6B
-	.4byte 0x61676572
-	.4byte 0x6F755252
-	.4byte 0x2E627469
-	.4byte 0x00000000
-	.4byte 0x76735F73
-	.4byte 0x656C6563
-	.4byte 0x745F6D61
-	.4byte 0x696E2E62
-	.4byte 0x6C6F0000
-	.4byte 0x76735F73
-	.4byte 0x656C6563
-	.4byte 0x745F6D61
-	.4byte 0x696E2E62
-	.4byte 0x746B0000
-	.4byte 0x76735F73
-	.4byte 0x656C6563
-	.4byte 0x745F6D61
-	.4byte 0x696E5F30
-	.4byte 0x322E6274
-	.4byte 0x6B000000
-	.4byte 0x62746E6D
-	.4byte 0x73675B25
-	.4byte 0x645D2069
-	.4byte 0x7320756E
-	.4byte 0x6B6E6F77
-	.4byte 0x6E000000
-	.4byte 0x76735F73
-	.4byte 0x656C6563
-	.4byte 0x745F6C69
-	.4byte 0x73742E62
-	.4byte 0x6C6F0000
-	.4byte 0x76735F73
-	.4byte 0x656C6563
-	.4byte 0x745F6267
-	.4byte 0x2E626C6F
-	.4byte 0x00000000
-	.4byte 0x76735F73
-	.4byte 0x656C6563
-	.4byte 0x745F6267
-	.4byte 0x2E62746B
-	.4byte 0x00000000
-	.4byte 0x76735F73
-	.4byte 0x656C6563
-	.4byte 0x745F6669
-	.4byte 0x72652E62
-	.4byte 0x6C6F0000
-	.4byte 0x76735F73
-	.4byte 0x656C6563
-	.4byte 0x745F6669
-	.4byte 0x72652E62
-	.4byte 0x746B0000
-	.4byte 0x76735F73
-	.4byte 0x656C6563
-	.4byte 0x745F6669
-	.4byte 0x72655F30
-	.4byte 0x322E6274
-	.4byte 0x6B000000
-	.4byte 0x76735F6D
-	.4byte 0x61696E5F
-	.4byte 0x72756C65
-	.4byte 0x5F77696E
-	.4byte 0x646F772E
-	.4byte 0x626C6F00
-	.4byte 0x76735F6D
-	.4byte 0x61696E5F
-	.4byte 0x72756C65
-	.4byte 0x5F77696E
-	.4byte 0x646F772E
-	.4byte 0x62746B00
-	.4byte 0x76735F6D
-	.4byte 0x61696E5F
-	.4byte 0x72756C65
-	.4byte 0x5F77696E
-	.4byte 0x646F775F
-	.4byte 0x30322E62
-	.4byte 0x746B0000
-	.4byte 0x76735F6D
-	.4byte 0x61696E5F
-	.4byte 0x72756C65
-	.4byte 0x5F77696E
-	.4byte 0x646F775F
-	.4byte 0x30332E62
-	.4byte 0x746B0000
-	.4byte 0x76735F6D
-	.4byte 0x61696E5F
-	.4byte 0x72756C65
-	.4byte 0x5F77696E
-	.4byte 0x646F775F
-	.4byte 0x30342E62
-	.4byte 0x746B0000
-	.4byte 0x76735F6D
-	.4byte 0x61696E5F
-	.4byte 0x72756C65
-	.4byte 0x5F77696E
-	.4byte 0x646F775F
-	.4byte 0x30352E62
-	.4byte 0x746B0000
-	.4byte 0x76735F6D
-	.4byte 0x61696E5F
-	.4byte 0x72756C65
-	.4byte 0x5F77696E
-	.4byte 0x646F775F
-	.4byte 0x30362E62
-	.4byte 0x746B0000
-	.4byte 0x76735F6D
-	.4byte 0x61696E5F
-	.4byte 0x72756C65
-	.4byte 0x5F77696E
-	.4byte 0x646F775F
-	.4byte 0x30372E62
-	.4byte 0x746B0000
-	.4byte 0x76735F6D
-	.4byte 0x61696E5F
-	.4byte 0x72756C65
-	.4byte 0x5F77696E
-	.4byte 0x646F775F
-	.4byte 0x30382E62
-	.4byte 0x746B0000
-	.4byte 0x76735F6D
-	.4byte 0x61696E5F
-	.4byte 0x72756C65
-	.4byte 0x5F77696E
-	.4byte 0x646F775F
-	.4byte 0x30392E62
-	.4byte 0x746B0000
-	.4byte 0x76735F6D
-	.4byte 0x61696E5F
-	.4byte 0x72756C65
-	.4byte 0x5F77696E
-	.4byte 0x646F775F
-	.4byte 0x31302E62
-	.4byte 0x746B0000
-	.4byte 0x76735F6D
-	.4byte 0x61696E5F
-	.4byte 0x72756C65
-	.4byte 0x5F77696E
-	.4byte 0x646F775F
-	.4byte 0x31312E62
-	.4byte 0x746B0000
-	.4byte 0x76735F6D
-	.4byte 0x61696E5F
-	.4byte 0x72756C65
-	.4byte 0x5F77696E
-	.4byte 0x646F775F
-	.4byte 0x31322E62
-	.4byte 0x746B0000
-.global lbl_80495184
-lbl_80495184:
-	.4byte 0x6E617669
-	.4byte 0x5F6C2E62
-	.4byte 0x74690000
-	.4byte 0x636F7572
-	.4byte 0x73656E61
-	.4byte 0x6D655B25
-	.4byte 0x645D206E
-	.4byte 0x6F742066
-	.4byte 0x696E640A
-	.4byte 0x00000000
-	.4byte 0x70696374
-	.4byte 0x75726566
-	.4byte 0x72616D65
-	.4byte 0x5B25645D
-	.4byte 0x206E6F74
-	.4byte 0x2066696E
-	.4byte 0x640A0000
-.global lbl_804951C8
-lbl_804951C8:
-	.4byte 0x656E6457
-	.4byte 0x696E646F
-	.4byte 0x77000000
-.global lbl_804951D4
-lbl_804951D4:
-	.4byte 0x7265735F
-	.4byte 0x76735365
-	.4byte 0x6C656374
-	.4byte 0x2E737A73
-	.4byte 0x00000000
-	.4byte 0x73637265
-	.4byte 0x656E4F62
-	.4byte 0x6A2E6800
+.obj lbl_80494D10, local
+	.8byte 0x503069636F6E3030
+	.8byte 0x503069636F6E3031
+	.8byte 0x503069636F6E3032
+	.8byte 0x503069636F6E3033
+	.8byte 0x503069636F6E3034
+	.8byte 0x503069636F6E3035
+	.8byte 0x503169636F6E3030
+	.8byte 0x503169636F6E3031
+	.8byte 0x503169636F6E3032
+	.8byte 0x503169636F6E3033
+	.8byte 0x503169636F6E3034
+	.8byte 0x503169636F6E3035
+.endobj lbl_80494D10
+.balign 8
+.obj lbl_80494D70, local
+	.8byte 0x0054626D656E7533
+	.8byte 0x0054626D656E7534
+	.8byte 0x0054626D656E7535
+.endobj lbl_80494D70
+.balign 8
+.obj lbl_80494D88, local
+	.8byte 0x00004E72705F3030
+	.8byte 0x00004E72705F3031
+	.8byte 0x00004E72705F3032
+	.8byte 0x00004E72705F3033
+	.8byte 0x00004E72705F3034
+	.8byte 0x00004E72705F3035
+	.8byte 0x00004E72705F3036
+	.8byte 0x00004E72705F3037
+	.8byte 0x00004E72705F3038
+	.8byte 0x00004E72705F3039
+.endobj lbl_80494D88
+.balign 8
+.obj lbl_80494DD8, local
+	.8byte 0x00004E62705F3030
+	.8byte 0x00004E62705F3031
+	.8byte 0x00004E62705F3032
+	.8byte 0x00004E62705F3033
+	.8byte 0x00004E62705F3034
+	.8byte 0x00004E62705F3035
+	.8byte 0x00004E62705F3036
+	.8byte 0x00004E62705F3037
+	.8byte 0x00004E62705F3038
+	.8byte 0x00004E62705F3039
+.endobj lbl_80494DD8
+.balign 8
+.obj lbl_80494E28, local
+	.8byte 0x00546D656E753030
+	.8byte 0x00546D656E753031
+	.8byte 0x00546D656E753032
+	.8byte 0x00546D656E753033
+	.8byte 0x00546D656E753034
+.endobj lbl_80494E28
+.balign 4
+.obj lbl_80494E50, local
+	.asciz "set DebugHeapParent. mail to morimun.\n"
+.endobj lbl_80494E50
+.balign 4
+.obj lbl_80494E78, local
+	.asciz "red_pod.blo"
+.endobj lbl_80494E78
+.balign 4
+.obj lbl_80494E84, local
+	.asciz "red_pod.bck"
+.endobj lbl_80494E84
+.balign 4
+.obj lbl_80494E90, local
+	.asciz "red_pod.btp"
+.endobj lbl_80494E90
+.balign 4
+.obj lbl_80494E9C, local
+	.asciz "blue_pod.blo"
+.endobj lbl_80494E9C
+.balign 4
+.obj lbl_80494EAC, local
+	.asciz "blue_pod.bck"
+.endobj lbl_80494EAC
+.balign 4
+.obj lbl_80494EBC, local
+	.asciz "blue_pod.btp"
+.endobj lbl_80494EBC
+.balign 4
+.obj lbl_80494ECC, local
+	.asciz "vsSelectTexture"
+.endobj lbl_80494ECC
+.balign 4
+.obj lbl_80494EDC, local
+	.asciz "res_vsSelectTexture.szs"
+.endobj lbl_80494EDC
+.balign 4
+.obj lbl_80494EF4, local
+	.asciz "arcName = %s\n"
+.endobj lbl_80494EF4
+.balign 4
+.obj lbl_80494F04, local
+	.asciz "timg/loozy_icon.bti"
+.endobj lbl_80494F04
+.balign 4
+.obj lbl_80494F18, local
+	.asciz "vs_slot_texture.blo"
+.endobj lbl_80494F18
+.balign 4
+.obj lbl_80494F2C, local
+	.asciz "otegaru.bti"
+.endobj lbl_80494F2C
+.balign 4
+.obj lbl_80494F38, local
+	.asciz "AK_kagerouRR.bti"
+.endobj lbl_80494F38
+.balign 4
+.obj lbl_80494F4C, local
+	.asciz "vs_select_main.blo"
+.endobj lbl_80494F4C
+.balign 4
+.obj lbl_80494F60, local
+	.asciz "vs_select_main.btk"
+.endobj lbl_80494F60
+.balign 4
+.obj lbl_80494F74, local
+	.asciz "vs_select_main_02.btk"
+.endobj lbl_80494F74
+.balign 4
+.obj lbl_80494F8C, local
+	.asciz "btnmsg[%d] is unknown"
+.endobj lbl_80494F8C
+.balign 4
+.obj lbl_80494FA4, local
+	.asciz "vs_select_list.blo"
+.endobj lbl_80494FA4
+.balign 4
+.obj lbl_80494FB8, local
+	.asciz "vs_select_bg.blo"
+.endobj lbl_80494FB8
+.balign 4
+.obj lbl_80494FCC, local
+	.asciz "vs_select_bg.btk"
+.endobj lbl_80494FCC
+.balign 4
+.obj lbl_80494FE0, local
+	.asciz "vs_select_fire.blo"
+.endobj lbl_80494FE0
+.balign 4
+.obj lbl_80494FF4, local
+	.asciz "vs_select_fire.btk"
+.endobj lbl_80494FF4
+.balign 4
+.obj lbl_80495008, local
+	.asciz "vs_select_fire_02.btk"
+.endobj lbl_80495008
+.balign 4
+.obj lbl_80495020, local
+	.asciz "vs_main_rule_window.blo"
+.endobj lbl_80495020
+.balign 4
+.obj lbl_80495038, local
+	.asciz "vs_main_rule_window.btk"
+.endobj lbl_80495038
+.balign 4
+.obj lbl_80495050, local
+	.asciz "vs_main_rule_window_02.btk"
+.endobj lbl_80495050
+.balign 4
+.obj lbl_8049506C, local
+	.asciz "vs_main_rule_window_03.btk"
+.endobj lbl_8049506C
+.balign 4
+.obj lbl_80495088, local
+	.asciz "vs_main_rule_window_04.btk"
+.endobj lbl_80495088
+.balign 4
+.obj lbl_804950A4, local
+	.asciz "vs_main_rule_window_05.btk"
+.endobj lbl_804950A4
+.balign 4
+.obj lbl_804950C0, local
+	.asciz "vs_main_rule_window_06.btk"
+.endobj lbl_804950C0
+.balign 4
+.obj lbl_804950DC, local
+	.asciz "vs_main_rule_window_07.btk"
+.endobj lbl_804950DC
+.balign 4
+.obj lbl_804950F8, local
+	.asciz "vs_main_rule_window_08.btk"
+.endobj lbl_804950F8
+.balign 4
+.obj lbl_80495114, local
+	.asciz "vs_main_rule_window_09.btk"
+.endobj lbl_80495114
+.balign 4
+.obj lbl_80495130, local
+	.asciz "vs_main_rule_window_10.btk"
+.endobj lbl_80495130
+.balign 4
+.obj lbl_8049514C, local
+	.asciz "vs_main_rule_window_11.btk"
+.endobj lbl_8049514C
+.balign 4
+.obj lbl_80495168, local
+	.asciz "vs_main_rule_window_12.btk"
+.endobj lbl_80495168
+.balign 4
+.obj lbl_80495184, local
+	.asciz "navi_l.bti"
+.endobj lbl_80495184
+.balign 4
+.obj lbl_80495190, local
+	.asciz "coursename[%d] not find\n"
+.endobj lbl_80495190
+.balign 4
+.obj lbl_804951AC, local
+	.asciz "pictureframe[%d] not find\n"
+.endobj lbl_804951AC
+.balign 4
+.obj lbl_804951C8, local
+	.asciz "endWindow"
+.endobj lbl_804951C8
+.balign 4
+.obj lbl_804951D4, local
+	.asciz "res_vsSelect.szs"
+.endobj lbl_804951D4
+.balign 4
+.obj lbl_804951E8, local
+	.asciz "screenObj.h"
+.endobj lbl_804951E8
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-.global lbl_804E5328
-lbl_804E5328:
+.obj lbl_804E5328, local # not in the map
 	.4byte 0x00000001
 	.4byte 0x00000002
 	.4byte 0x00000003
 	.4byte 0x00000000
-.global mOrimaTexture__Q28Morimura9TVsSelect
-mOrimaTexture__Q28Morimura9TVsSelect:
+.endobj lbl_804E5328
+.obj mOrimaTexture__Q28Morimura9TVsSelect, global
 	.4byte 0x00000000
 	.4byte 0x00000000
 	.4byte 0x00000000
 	.4byte 0x00000000
 	.4byte 0x00000000
-.global mLouieTexture__Q28Morimura9TVsSelect
-mLouieTexture__Q28Morimura9TVsSelect:
+.endobj mOrimaTexture__Q28Morimura9TVsSelect
+.obj mLouieTexture__Q28Morimura9TVsSelect, global
 	.4byte 0x00000000
 	.4byte 0x00000000
 	.4byte 0x00000000
 	.4byte 0x00000000
 	.4byte 0x00000000
-.global slotIDInfo__8Morimura
-slotIDInfo__8Morimura:
+.endobj mLouieTexture__Q28Morimura9TVsSelect
+.balign 8
+.obj slotIDInfo__8Morimura, local
 	.4byte 0x00000006
 	.4byte 0x00000000
 	.4byte 0x00323034
@@ -516,8 +429,9 @@ slotIDInfo__8Morimura:
 	.4byte 0x0000000B
 	.4byte 0x00323034
 	.4byte 0x335F3030
-.global __vt__Q28Morimura14TVsSelectScene
-__vt__Q28Morimura14TVsSelectScene:
+.endobj slotIDInfo__8Morimura
+.balign 4
+.obj __vt__Q28Morimura14TVsSelectScene, global
 	.4byte 0
 	.4byte 0
 	.4byte getSceneType__Q28Morimura14TVsSelectSceneFv
@@ -538,19 +452,20 @@ __vt__Q28Morimura14TVsSelectScene:
 	.4byte setDefaultDispMember__Q26Screen9SceneBaseFv
 	.4byte doSetBackupScene__Q26Screen9SceneBaseFRQ26Screen11SetSceneArg
 	.4byte doGetFinishState__Q26Screen9SceneBaseFv
+.endobj __vt__Q28Morimura14TVsSelectScene
 	.4byte 0
 	.4byte 0
 	.4byte 0
 	.4byte 0
 	.4byte 0
 	.4byte 0
-.global __vt__Q28Morimura19TVsSelectListScreen
-__vt__Q28Morimura19TVsSelectListScreen:
+.obj __vt__Q28Morimura19TVsSelectListScreen, weak
 	.4byte 0
 	.4byte 0
 	.4byte create__Q28Morimura19TVsSelectListScreenFPCcUl
 	.4byte update__Q28Morimura19TVsSelectListScreenFv
 	.4byte draw__Q28Morimura11TScreenBaseFR8GraphicsP13J2DPerspGraph
+.endobj __vt__Q28Morimura19TVsSelectListScreen
 	.4byte 0
 	.4byte 0
 	.4byte 0
@@ -576,8 +491,7 @@ __vt__Q28Morimura19TVsSelectListScreen:
 	.4byte 0
 	.4byte 0
 	.4byte 0
-.global __vt__Q28Morimura9TVsSelect
-__vt__Q28Morimura9TVsSelect:
+.obj __vt__Q28Morimura9TVsSelect, global
 	.4byte 0
 	.4byte 0
 	.4byte __dt__Q28Morimura9TVsSelectFv
@@ -621,6 +535,7 @@ __vt__Q28Morimura9TVsSelect:
 	.4byte changeTextTevBlock__Q28Morimura11TScrollListFi
 	.4byte updateIndex__Q28Morimura11TScrollListFb
 	.4byte setPaneCharacter__Q28Morimura11TScrollListFi
+.endobj __vt__Q28Morimura9TVsSelect
 	.4byte 0
 	.4byte 0
 	.4byte 0
@@ -638,8 +553,7 @@ __vt__Q28Morimura9TVsSelect:
 	.4byte 0
 	.4byte 0
 	.4byte 0
-.global __vt__Q28Morimura17TVsSelectCBWinNum
-__vt__Q28Morimura17TVsSelectCBWinNum:
+.obj __vt__Q28Morimura17TVsSelectCBWinNum, global
 	.4byte 0
 	.4byte 0
 	.4byte __dt__Q28Morimura17TVsSelectCBWinNumFv
@@ -652,6 +566,7 @@ __vt__Q28Morimura17TVsSelectCBWinNum:
 	.4byte hide__Q32og6Screen19CallBack_CounterDayFv
 	.4byte setValue__Q28Morimura17TVsSelectCBWinNumFbb
 	.4byte setValue__Q32og6Screen19CallBack_CounterDayFv
+.endobj __vt__Q28Morimura17TVsSelectCBWinNum
 	.4byte 0
 	.4byte 0
 	.4byte 0
@@ -666,21 +581,21 @@ __vt__Q28Morimura17TVsSelectCBWinNum:
 	.4byte 0
 	.4byte 0
 	.4byte 0
-.global __vt__Q28Morimura15TVsSelectScreen
-__vt__Q28Morimura15TVsSelectScreen:
+.obj __vt__Q28Morimura15TVsSelectScreen, global
 	.4byte 0
 	.4byte 0
 	.4byte create__Q28Morimura15TVsSelectScreenFPCcUl
 	.4byte update__Q28Morimura11TScreenBaseFv
 	.4byte draw__Q28Morimura11TScreenBaseFR8GraphicsP13J2DPerspGraph
-.global __vt__Q25efx2d13T2DBattleDive
-__vt__Q25efx2d13T2DBattleDive:
+.endobj __vt__Q28Morimura15TVsSelectScreen
+.obj __vt__Q25efx2d13T2DBattleDive, weak
 	.4byte 0
 	.4byte 0
 	.4byte create__Q25efx2d8TSimple3FPQ25efx2d3Arg
 	.4byte kill__Q25efx2d8TSimple3Fv
 	.4byte fade__Q25efx2d8TSimple3Fv
 	.4byte setGroup__Q25efx2d5TBaseFUc
+.endobj __vt__Q25efx2d13T2DBattleDive
 	.4byte 0
 	.4byte 0
 	.4byte 0
@@ -696,21 +611,21 @@ __vt__Q25efx2d13T2DBattleDive:
 	.4byte 0
 	.4byte 0
 	.4byte 0
-.global __vt__Q28Morimura26TVsSelectExplanationWindow
-__vt__Q28Morimura26TVsSelectExplanationWindow:
+.obj __vt__Q28Morimura26TVsSelectExplanationWindow, global
 	.4byte 0
 	.4byte 0
 	.4byte create__Q28Morimura26TVsSelectExplanationWindowFPCcUl
 	.4byte update__Q28Morimura24TSelectExplanationWindowFv
 	.4byte draw__Q28Morimura24TSelectExplanationWindowFR8GraphicsP13J2DPerspGraph
 	.4byte screenScaleUp__Q28Morimura26TVsSelectExplanationWindowFv
-.global __vt__Q28Morimura16TVsSelectIndPane
-__vt__Q28Morimura16TVsSelectIndPane:
+.endobj __vt__Q28Morimura26TVsSelectExplanationWindow
+.obj __vt__Q28Morimura16TVsSelectIndPane, global
 	.4byte 0
 	.4byte 0
 	.4byte __dt__Q28Morimura16TVsSelectIndPaneFv
 	.4byte getChildCount__5CNodeFv
 	.4byte draw__Q28Morimura16TVsSelectIndPaneFv
+.endobj __vt__Q28Morimura16TVsSelectIndPane
 
 .section .bss  # 0x804EFC20 - 0x8051467C
 # vsSelect2D.cpp
@@ -718,310 +633,307 @@ __vt__Q28Morimura16TVsSelectIndPane:
 
 .section .sdata, "wa"  # 0x80514680 - 0x80514D80
 .balign 8
-.global mAngRate__Q28Morimura9TVsSelect
-mAngRate__Q28Morimura9TVsSelect:
+.obj mAngRate__Q28Morimura9TVsSelect, global
 	.float 0.2
-.global mMoveSpeed__Q28Morimura9TVsSelect
-mMoveSpeed__Q28Morimura9TVsSelect:
+.endobj mAngRate__Q28Morimura9TVsSelect
+.obj mMoveSpeed__Q28Morimura9TVsSelect, global
 	.float 25.0
-.global mIndVal__Q28Morimura9TVsSelect
-mIndVal__Q28Morimura9TVsSelect:
+.endobj mMoveSpeed__Q28Morimura9TVsSelect
+.obj mIndVal__Q28Morimura9TVsSelect, global
 	.float 0.05
-.global mIndShuki__Q28Morimura9TVsSelect
-mIndShuki__Q28Morimura9TVsSelect:
+.endobj mIndVal__Q28Morimura9TVsSelect
+.obj mIndShuki__Q28Morimura9TVsSelect, global
 	.float 0.3
-.global mZoomFrameMax__Q28Morimura9TVsSelect
-mZoomFrameMax__Q28Morimura9TVsSelect:
+.endobj mIndShuki__Q28Morimura9TVsSelect
+.obj mZoomFrameMax__Q28Morimura9TVsSelect, global
 	.float 25.0
-.global mTestVal__Q28Morimura9TVsSelect
-mTestVal__Q28Morimura9TVsSelect:
+.endobj mZoomFrameMax__Q28Morimura9TVsSelect
+.obj mTestVal__Q28Morimura9TVsSelect, global
 	.float 10.0
-.global mAngUp__Q28Morimura9TVsSelect
-mAngUp__Q28Morimura9TVsSelect:
+.endobj mTestVal__Q28Morimura9TVsSelect
+.obj mAngUp__Q28Morimura9TVsSelect, global
 	.float 0.03
-.global mWindowScale__Q28Morimura9TVsSelect
-mWindowScale__Q28Morimura9TVsSelect:
+.endobj mAngUp__Q28Morimura9TVsSelect
+.obj mWindowScale__Q28Morimura9TVsSelect, global
 	.float 1.0
-.global mDemoScaleMax__Q28Morimura9TVsSelect
-mDemoScaleMax__Q28Morimura9TVsSelect:
+.endobj mWindowScale__Q28Morimura9TVsSelect
+.obj mDemoScaleMax__Q28Morimura9TVsSelect, global
 	.float 2.2
-.global mDemoScale__Q28Morimura9TVsSelect
-mDemoScale__Q28Morimura9TVsSelect:
+.endobj mDemoScaleMax__Q28Morimura9TVsSelect
+.obj mDemoScale__Q28Morimura9TVsSelect, global
 	.float 1.0
-.global mDemoOffsetMax__Q28Morimura9TVsSelect
-mDemoOffsetMax__Q28Morimura9TVsSelect:
+.endobj mDemoScale__Q28Morimura9TVsSelect
+.obj mDemoOffsetMax__Q28Morimura9TVsSelect, global
 	.float 290.0
-.global mFireAlphaRate__Q28Morimura9TVsSelect
-mFireAlphaRate__Q28Morimura9TVsSelect:
+.endobj mDemoOffsetMax__Q28Morimura9TVsSelect
+.obj mFireAlphaRate__Q28Morimura9TVsSelect, global
 	.float 0.5
+.endobj mFireAlphaRate__Q28Morimura9TVsSelect
 
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
-.global mDebugHeapParent__Q28Morimura9TVsSelect
-mDebugHeapParent__Q28Morimura9TVsSelect:
+.obj mDebugHeapParent__Q28Morimura9TVsSelect, global
 	.skip 0x4
-.global mDebugHeap__Q28Morimura9TVsSelect
-mDebugHeap__Q28Morimura9TVsSelect:
+.endobj mDebugHeapParent__Q28Morimura9TVsSelect
+.obj mDebugHeap__Q28Morimura9TVsSelect, global
 	.skip 0x4
-.global mPikiOffset__Q28Morimura7TVsPiki
-mPikiOffset__Q28Morimura7TVsPiki:
+.endobj mDebugHeap__Q28Morimura9TVsSelect
+.obj mPikiOffset__Q28Morimura7TVsPiki, global
 	.skip 0x8
-.global mForceDemoStart__Q28Morimura9TVsSelect
-mForceDemoStart__Q28Morimura9TVsSelect:
+.endobj mPikiOffset__Q28Morimura7TVsPiki
+.obj mForceDemoStart__Q28Morimura9TVsSelect, global
 	.skip 0x1
-.global mLoopDrum__Q28Morimura9TVsSelect
-mLoopDrum__Q28Morimura9TVsSelect:
+.endobj mForceDemoStart__Q28Morimura9TVsSelect
+.obj mLoopDrum__Q28Morimura9TVsSelect, global
 	.skip 0x1
-.global mCanCancel__Q28Morimura9TVsSelect
-mCanCancel__Q28Morimura9TVsSelect:
+.endobj mLoopDrum__Q28Morimura9TVsSelect
+.obj mCanCancel__Q28Morimura9TVsSelect, global
 	.skip 0x1
+.endobj mCanCancel__Q28Morimura9TVsSelect
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-.global lbl_8051F170
-lbl_8051F170:
-	.4byte 0x00000000
-.global lbl_8051F174
-lbl_8051F174:
-	.4byte 0x44200000
-.global lbl_8051F178
-lbl_8051F178:
-	.4byte 0x43F00000
-.global lbl_8051F17C
-lbl_8051F17C:
-	.4byte 0xBF800000
-.global lbl_8051F180
-lbl_8051F180:
+.obj lbl_8051F170, local
+	.float 0.0
+.endobj lbl_8051F170
+.obj lbl_8051F174, local
+	.float 640.0
+.endobj lbl_8051F174
+.obj lbl_8051F178, local
+	.float 480.0
+.endobj lbl_8051F178
+.obj lbl_8051F17C, local
+	.float -1.0
+.endobj lbl_8051F17C
+.obj lbl_8051F180, local
 	.float 1.0
-.global lbl_8051F184
-lbl_8051F184:
-	.4byte 0x3C8EFA35
-.global lbl_8051F188
-lbl_8051F188:
+.endobj lbl_8051F180
+.obj lbl_8051F184, local
+	.float 0.017453292
+.endobj lbl_8051F184
+.obj lbl_8051F188, local
 	.float 0.5
-.global lbl_8051F18C
-lbl_8051F18C:
-	.4byte 0xC4480000
-.global lbl_8051F190
-lbl_8051F190:
-	.4byte 0x41A00000
-	.4byte 0x00000000
-.global lbl_8051F198
-lbl_8051F198:
-	.4byte 0x43300000
-	.4byte 0x80000000
-.global lbl_8051F1A0
-lbl_8051F1A0:
-	.4byte 0x40A00000
-.global lbl_8051F1A4
-lbl_8051F1A4:
-	.4byte 0x3EA0D97C
-.global lbl_8051F1A8
-lbl_8051F1A8:
-	.4byte 0x40490FDB
-.global lbl_8051F1AC
-lbl_8051F1AC:
-	.4byte 0xC1A00000
-.global lbl_8051F1B0
-lbl_8051F1B0:
-	.4byte 0xC3A2F983
-.global lbl_8051F1B4
-lbl_8051F1B4:
-	.4byte 0x43A2F983
-.global lbl_8051F1B8
-lbl_8051F1B8:
-	.4byte 0x42480000
-.global lbl_8051F1BC
-lbl_8051F1BC:
-	.4byte 0x41400000
-.global lbl_8051F1C0
-lbl_8051F1C0:
-	.4byte 0xC2C80000
-.global lbl_8051F1C4
-lbl_8051F1C4:
-	.4byte 0x47000000
-.global lbl_8051F1C8
-lbl_8051F1C8:
-	.4byte 0x40C90FDB
-.global lbl_8051F1CC
-lbl_8051F1CC:
+.endobj lbl_8051F188
+.obj lbl_8051F18C, local
+	.float -800.0
+.endobj lbl_8051F18C
+.obj lbl_8051F190, local
+	.float 20.0
+.endobj lbl_8051F190
+.balign 8
+.obj lbl_8051F198, local
+	.8byte 0x4330000080000000
+.endobj lbl_8051F198
+.obj lbl_8051F1A0, local
+	.float 5.0
+.endobj lbl_8051F1A0
+.obj lbl_8051F1A4, local # pi/10
+	.float 0.31415927
+.endobj lbl_8051F1A4
+.obj lbl_8051F1A8, local # pi
+	.float 3.1415927
+.endobj lbl_8051F1A8
+.obj lbl_8051F1AC, local
+	.float -20.0
+.endobj lbl_8051F1AC
+.obj lbl_8051F1B0, local
+	.float -325.9493
+.endobj lbl_8051F1B0
+.obj lbl_8051F1B4, local
+	.float 325.9493
+.endobj lbl_8051F1B4
+.obj lbl_8051F1B8, local
+	.float 50.0
+.endobj lbl_8051F1B8
+.obj lbl_8051F1BC, local
+	.float 12.0
+.endobj lbl_8051F1BC
+.obj lbl_8051F1C0, local
+	.float -100.0
+.endobj lbl_8051F1C0
+.obj lbl_8051F1C4, local
+	.float 32768.0
+.endobj lbl_8051F1C4
+.obj lbl_8051F1C8, local # tau
+	.float 6.2831855
+.endobj lbl_8051F1C8
+.obj lbl_8051F1CC, local
 	.float 0.05
-.global lbl_8051F1D0
-lbl_8051F1D0:
-	.4byte 0x3ECCCCCD
-.global lbl_8051F1D4
-lbl_8051F1D4:
-	.4byte 0x43B40000
-.global lbl_8051F1D8
-lbl_8051F1D8:
+.endobj lbl_8051F1CC
+.obj lbl_8051F1D0, local
+	.float 0.4
+.endobj lbl_8051F1D0
+.obj lbl_8051F1D4, local
+	.float 360.0
+.endobj lbl_8051F1D4
+.obj lbl_8051F1D8, local
 	.float 0.1
-.global lbl_8051F1DC
-lbl_8051F1DC:
-	.4byte 0xC3700000
-.global lbl_8051F1E0
-lbl_8051F1E0:
-	.4byte 0xC3A00000
-.global lbl_8051F1E4
-lbl_8051F1E4:
-	.4byte 0x3FA00000
-.global lbl_8051F1E8
-lbl_8051F1E8:
-	.4byte 0xC1F00000
-.global lbl_8051F1EC
-lbl_8051F1EC:
-	.4byte 0x40000000
-.global lbl_8051F1F0
-lbl_8051F1F0:
-	.4byte 0x41800000
-.global lbl_8051F1F4
-lbl_8051F1F4:
-	.4byte 0x41F00000
-.global lbl_8051F1F8
-lbl_8051F1F8:
-	.4byte 0x3F4CCCCD
-.global lbl_8051F1FC
-lbl_8051F1FC:
+.endobj lbl_8051F1D8
+.obj lbl_8051F1DC, local
+	.float -240.0
+.endobj lbl_8051F1DC
+.obj lbl_8051F1E0, local
+	.float -320.0
+.endobj lbl_8051F1E0
+.obj lbl_8051F1E4, local
+	.float 1.25
+.endobj lbl_8051F1E4
+.obj lbl_8051F1E8, local
+	.float -30.0
+.endobj lbl_8051F1E8
+.obj lbl_8051F1EC, local
+	.float 2.0
+.endobj lbl_8051F1EC
+.obj lbl_8051F1F0, local
+	.float 16.0
+.endobj lbl_8051F1F0
+.obj lbl_8051F1F4, local
+	.float 30.0
+.endobj lbl_8051F1F4
+.obj lbl_8051F1F8, local
+	.float 0.8
+.endobj lbl_8051F1F8
+.obj lbl_8051F1FC, local
 	.float 0.25
-.global lbl_8051F200
-lbl_8051F200:
-	.4byte 0x42700000
-.global lbl_8051F204
-lbl_8051F204:
-	.4byte 0x42E60000
-.global lbl_8051F208
-lbl_8051F208:
-	.4byte 0x432A0000
-.global lbl_8051F20C
-lbl_8051F20C:
-	.4byte 0x43EB0000
-.global lbl_8051F210
-lbl_8051F210:
-	.4byte 0x43D20000
-.global lbl_8051F214
-lbl_8051F214:
-	.4byte 0xC1700000
-.global lbl_8051F218
-lbl_8051F218:
-	.4byte 0x3F7D70A4
-.global lbl_8051F21C
-lbl_8051F21C:
-	.4byte 0x3FC00000
-.global lbl_8051F220
-lbl_8051F220:
-	.4byte 0x40200000
-	.4byte 0x00000000
-.global lbl_8051F228
-lbl_8051F228:
-	.4byte 0x00343737
-	.4byte 0x315F3030
-.global lbl_8051F230
-lbl_8051F230:
-	.4byte 0x42C60000
-.global lbl_8051F234
-lbl_8051F234:
+.endobj lbl_8051F1FC
+.obj lbl_8051F200, local
+	.float 60.0
+.endobj lbl_8051F200
+.obj lbl_8051F204, local
+	.float 115.0
+.endobj lbl_8051F204
+.obj lbl_8051F208, local
+	.float 170.0
+.endobj lbl_8051F208
+.obj lbl_8051F20C, local
+	.float 470.0
+.endobj lbl_8051F20C
+.obj lbl_8051F210, local
+	.float 420.0
+.endobj lbl_8051F210
+.obj lbl_8051F214, local
+	.float -15.0
+.endobj lbl_8051F214
+.obj lbl_8051F218, local
+	.float 0.99
+.endobj lbl_8051F218
+.obj lbl_8051F21C, local
+	.float 1.5
+.endobj lbl_8051F21C
+.obj lbl_8051F220, local
+	.float 2.5
+.endobj lbl_8051F220
+.balign 8
+.obj lbl_8051F228, local # u64 literal
+	.8byte 0x00343737315F3030
+.endobj lbl_8051F228
+.obj lbl_8051F230, local
+	.float 99.0
+.endobj lbl_8051F230
+.obj lbl_8051F234, local
 	.float 0.7
-.global lbl_8051F238
-lbl_8051F238:
+.endobj lbl_8051F234
+.obj lbl_8051F238, local
 	.float 0.3
-.global lbl_8051F23C
-lbl_8051F23C:
-	.4byte 0x43A80000
-.global lbl_8051F240
-lbl_8051F240:
-	.4byte 0x43700000
-.global lbl_8051F244
-lbl_8051F244:
-	.4byte 0x43C80000
-.global lbl_8051F248
-lbl_8051F248:
-	.4byte 0x420C0000
-.global lbl_8051F24C
-lbl_8051F24C:
-	.4byte 0x42C80000
-.global lbl_8051F250
-lbl_8051F250:
-	.4byte 0x43730000
-.global lbl_8051F254
-lbl_8051F254:
-	.4byte 0x42200000
-.global lbl_8051F258
-lbl_8051F258:
-	.4byte 0x43A20000
-.global lbl_8051F25C
-lbl_8051F25C:
-	.4byte 0x3F8CCCCD
-.global lbl_8051F260
-lbl_8051F260:
-	.4byte 0xC0400000
-.global lbl_8051F264
-lbl_8051F264:
-	.4byte 0x44160000
-.global lbl_8051F268
-lbl_8051F268:
-	.4byte 0x3FC90FDB
-.global lbl_8051F26C
-lbl_8051F26C:
-	.4byte 0xC4160000
-.global lbl_8051F270
-lbl_8051F270:
-	.4byte 0x437F0000
-.global lbl_8051F274
-lbl_8051F274:
-	.4byte 0x3E4CCCCD
-.global lbl_8051F278
-lbl_8051F278:
-	.4byte 0x3F666666
-.global lbl_8051F27C
-lbl_8051F27C:
-	.4byte 0x43C10000
-.global lbl_8051F280
-lbl_8051F280:
-	.4byte 0x43910000
-.global lbl_8051F284
-lbl_8051F284:
-	.4byte 0x41C80000
-.global lbl_8051F288
-lbl_8051F288:
-	.4byte 0x43300000
-	.4byte 0x00000000
-.global lbl_8051F290
-lbl_8051F290:
-	.4byte 0x41200000
-.global lbl_8051F294
-lbl_8051F294:
-	.4byte 0x43A00000
-.global lbl_8051F298
-lbl_8051F298:
-	.4byte 0x481C4000
-.global lbl_8051F29C
-lbl_8051F29C:
-	.4byte 0x40800000
-.global lbl_8051F2A0
-lbl_8051F2A0:
-	.4byte 0x40400000
-.global lbl_8051F2A4
-lbl_8051F2A4:
-	.4byte 0x41700000
-.global lbl_8051F2A8
-lbl_8051F2A8:
-	.4byte 0xC2480000
-.global lbl_8051F2AC
-lbl_8051F2AC:
-	.4byte 0x43340000
-.global lbl_8051F2B0
-lbl_8051F2B0:
-	.4byte 0x41480000
-.global lbl_8051F2B4
-lbl_8051F2B4:
-	.4byte 0xBF000000
-.global lbl_8051F2B8
-lbl_8051F2B8:
-	.4byte 0x41000000
+.endobj lbl_8051F238
+.obj lbl_8051F23C, local
+	.float 336.0
+.endobj lbl_8051F23C
+.obj lbl_8051F240, local
+	.float 240.0
+.endobj lbl_8051F240
+.obj lbl_8051F244, local
+	.float 400.0
+.endobj lbl_8051F244
+.obj lbl_8051F248, local
+	.float 35.0
+.endobj lbl_8051F248
+.obj lbl_8051F24C, local
+	.float 100.0
+.endobj lbl_8051F24C
+.obj lbl_8051F250, local
+	.float 243.0
+.endobj lbl_8051F250
+.obj lbl_8051F254, local
+	.float 40.0
+.endobj lbl_8051F254
+.obj lbl_8051F258, local
+	.float 324.0
+.endobj lbl_8051F258
+.obj lbl_8051F25C, local
+	.float 1.1
+.endobj lbl_8051F25C
+.obj lbl_8051F260, local
+	.float -3.0
+.endobj lbl_8051F260
+.obj lbl_8051F264, local
+	.float 600.0
+.endobj lbl_8051F264
+.obj lbl_8051F268, local # pi/2
+	.float 1.5707964
+.endobj lbl_8051F268
+.obj lbl_8051F26C, local
+	.float -600.0
+.endobj lbl_8051F26C
+.obj lbl_8051F270, local
+	.float 255.0
+.endobj lbl_8051F270
+.obj lbl_8051F274, local
+	.float 0.2
+.endobj lbl_8051F274
+.obj lbl_8051F278, local
+	.float 0.9
+.endobj lbl_8051F278
+.obj lbl_8051F27C, local
+	.float 386.0
+.endobj lbl_8051F27C
+.obj lbl_8051F280, local
+	.float 290.0
+.endobj lbl_8051F280
+.obj lbl_8051F284, local
+	.float 25.0
+.endobj lbl_8051F284
+.balign 8
+.obj lbl_8051F288, local
+	.8byte 0x4330000000000000
+.endobj lbl_8051F288
+.obj lbl_8051F290, local
+	.float 10.0
+.endobj lbl_8051F290
+.obj lbl_8051F294, local
+	.float 320.0
+.endobj lbl_8051F294
+.obj lbl_8051F298, local
+	.float 160000.0
+.endobj lbl_8051F298
+.obj lbl_8051F29C, local
+	.float 4.0
+.endobj lbl_8051F29C
+.obj lbl_8051F2A0, local
+	.float 3.0
+.endobj lbl_8051F2A0
+.obj lbl_8051F2A4, local
+	.float 15.0
+.endobj lbl_8051F2A4
+.obj lbl_8051F2A8, local
+	.float -50.0
+.endobj lbl_8051F2A8
+.obj lbl_8051F2AC, local
+	.float 180.0
+.endobj lbl_8051F2AC
+.obj lbl_8051F2B0, local
+	.float 12.5
+.endobj lbl_8051F2B0
+.obj lbl_8051F2B4, local
+	.float -0.5
+.endobj lbl_8051F2B4
+.obj lbl_8051F2B8, local
+	.float 8.0
+.endobj lbl_8051F2B8
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global draw__Q28Morimura16TVsSelectIndPaneFv
-draw__Q28Morimura16TVsSelectIndPaneFv:
-bl __TRK_reset # lock out 2pbattle (reset console)
+.fn draw__Q28Morimura16TVsSelectIndPaneFv, global
+#bl __TRK_reset # lock out 2pbattle (reset console)
 /* 8039982C 0039676C  94 21 FE A0 */	stwu r1, -0x160(r1)
 /* 80399830 00396770  7C 08 02 A6 */	mflr r0
 /* 80399834 00396774  C0 22 0E 10 */	lfs f1, lbl_8051F170@sda21(r2)
@@ -1223,9 +1135,9 @@ bl __TRK_reset # lock out 2pbattle (reset console)
 /* 80399B34 00396A74  7C 08 03 A6 */	mtlr r0
 /* 80399B38 00396A78  38 21 01 60 */	addi r1, r1, 0x160
 /* 80399B3C 00396A7C  4E 80 00 20 */	blr 
+.endfn draw__Q28Morimura16TVsSelectIndPaneFv
 
-.global create__Q28Morimura26TVsSelectExplanationWindowFPCcUl
-create__Q28Morimura26TVsSelectExplanationWindowFPCcUl:
+.fn create__Q28Morimura26TVsSelectExplanationWindowFPCcUl, global
 /* 80399B40 00396A80  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80399B44 00396A84  7C 08 02 A6 */	mflr r0
 /* 80399B48 00396A88  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1241,17 +1153,17 @@ create__Q28Morimura26TVsSelectExplanationWindowFPCcUl:
 /* 80399B70 00396AB0  7C 08 03 A6 */	mtlr r0
 /* 80399B74 00396AB4  38 21 00 10 */	addi r1, r1, 0x10
 /* 80399B78 00396AB8  4E 80 00 20 */	blr 
+.endfn create__Q28Morimura26TVsSelectExplanationWindowFPCcUl
 
-.global screenScaleUp__Q28Morimura26TVsSelectExplanationWindowFv
-screenScaleUp__Q28Morimura26TVsSelectExplanationWindowFv:
+.fn screenScaleUp__Q28Morimura26TVsSelectExplanationWindowFv, global
 /* 80399B7C 00396ABC  4E 80 00 20 */	blr 
+.endfn screenScaleUp__Q28Morimura26TVsSelectExplanationWindowFv
 
-.global __ct__Q38Morimura7TVsPiki7posInfoFv
-__ct__Q38Morimura7TVsPiki7posInfoFv:
+.fn __ct__Q38Morimura7TVsPiki7posInfoFv, weak
 /* 80399B80 00396AC0  4E 80 00 20 */	blr 
+.endfn __ct__Q38Morimura7TVsPiki7posInfoFv
 
-.global update__Q28Morimura7TVsPikiFi
-update__Q28Morimura7TVsPikiFi:
+.fn update__Q28Morimura7TVsPikiFi, global
 /* 80399B84 00396AC4  94 21 FF 60 */	stwu r1, -0xa0(r1)
 /* 80399B88 00396AC8  7C 08 02 A6 */	mflr r0
 /* 80399B8C 00396ACC  90 01 00 A4 */	stw r0, 0xa4(r1)
@@ -1442,9 +1354,9 @@ update__Q28Morimura7TVsPikiFi:
 /* 80399E40 00396D80  7C 08 03 A6 */	mtlr r0
 /* 80399E44 00396D84  38 21 00 A0 */	addi r1, r1, 0xa0
 /* 80399E48 00396D88  4E 80 00 20 */	blr 
+.endfn update__Q28Morimura7TVsPikiFi
 
-.global draw__Q28Morimura7TVsPikiFv
-draw__Q28Morimura7TVsPikiFv:
+.fn draw__Q28Morimura7TVsPikiFv, global
 /* 80399E4C 00396D8C  94 21 FF 80 */	stwu r1, -0x80(r1)
 /* 80399E50 00396D90  7C 08 02 A6 */	mflr r0
 /* 80399E54 00396D94  90 01 00 84 */	stw r0, 0x84(r1)
@@ -1606,9 +1518,9 @@ draw__Q28Morimura7TVsPikiFv:
 /* 8039A0C0 00397000  7C 08 03 A6 */	mtlr r0
 /* 8039A0C4 00397004  38 21 00 80 */	addi r1, r1, 0x80
 /* 8039A0C8 00397008  4E 80 00 20 */	blr 
+.endfn draw__Q28Morimura7TVsPikiFv
 
-.global posUpdate__Q28Morimura14TVsSelectOnyonFf
-posUpdate__Q28Morimura14TVsSelectOnyonFf:
+.fn posUpdate__Q28Morimura14TVsSelectOnyonFf, global
 /* 8039A0CC 0039700C  94 21 FF C0 */	stwu r1, -0x40(r1)
 /* 8039A0D0 00397010  7C 08 02 A6 */	mflr r0
 /* 8039A0D4 00397014  90 01 00 44 */	stw r0, 0x44(r1)
@@ -1816,9 +1728,9 @@ posUpdate__Q28Morimura14TVsSelectOnyonFf:
 /* 8039A3C8 00397308  7C 08 03 A6 */	mtlr r0
 /* 8039A3CC 0039730C  38 21 00 40 */	addi r1, r1, 0x40
 /* 8039A3D0 00397310  4E 80 00 20 */	blr 
+.endfn posUpdate__Q28Morimura14TVsSelectOnyonFf
 
-.global getAngDist__Q28Morimura14TVsSelectOnyonFv
-getAngDist__Q28Morimura14TVsSelectOnyonFv:
+.fn getAngDist__Q28Morimura14TVsSelectOnyonFv, global
 /* 8039A3D4 00397314  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8039A3D8 00397318  7C 08 02 A6 */	mflr r0
 /* 8039A3DC 0039731C  C0 02 0E 10 */	lfs f0, lbl_8051F170@sda21(r2)
@@ -1852,9 +1764,9 @@ getAngDist__Q28Morimura14TVsSelectOnyonFv:
 /* 8039A444 00397384  7C 08 03 A6 */	mtlr r0
 /* 8039A448 00397388  38 21 00 10 */	addi r1, r1, 0x10
 /* 8039A44C 0039738C  4E 80 00 20 */	blr 
+.endfn getAngDist__Q28Morimura14TVsSelectOnyonFv
 
-.global create__Q28Morimura15TVsSelectScreenFPCcUl
-create__Q28Morimura15TVsSelectScreenFPCcUl:
+.fn create__Q28Morimura15TVsSelectScreenFPCcUl, global
 /* 8039A450 00397390  94 21 FF C0 */	stwu r1, -0x40(r1)
 /* 8039A454 00397394  7C 08 02 A6 */	mflr r0
 /* 8039A458 00397398  90 01 00 44 */	stw r0, 0x44(r1)
@@ -2033,9 +1945,9 @@ create__Q28Morimura15TVsSelectScreenFPCcUl:
 /* 8039A6F4 00397634  7C 08 03 A6 */	mtlr r0
 /* 8039A6F8 00397638  38 21 00 40 */	addi r1, r1, 0x40
 /* 8039A6FC 0039763C  4E 80 00 20 */	blr 
+.endfn create__Q28Morimura15TVsSelectScreenFPCcUl
 
-.global update__Q28Morimura17TVsSelectCBWinNumFv
-update__Q28Morimura17TVsSelectCBWinNumFv:
+.fn update__Q28Morimura17TVsSelectCBWinNumFv, global
 /* 8039A700 00397640  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8039A704 00397644  7C 08 02 A6 */	mflr r0
 /* 8039A708 00397648  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2058,9 +1970,9 @@ update__Q28Morimura17TVsSelectCBWinNumFv:
 /* 8039A74C 0039768C  7C 08 03 A6 */	mtlr r0
 /* 8039A750 00397690  38 21 00 10 */	addi r1, r1, 0x10
 /* 8039A754 00397694  4E 80 00 20 */	blr 
+.endfn update__Q28Morimura17TVsSelectCBWinNumFv
 
-.global setValue__Q28Morimura17TVsSelectCBWinNumFbb
-setValue__Q28Morimura17TVsSelectCBWinNumFbb:
+.fn setValue__Q28Morimura17TVsSelectCBWinNumFbb, global
 /* 8039A758 00397698  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8039A75C 0039769C  7C 08 02 A6 */	mflr r0
 /* 8039A760 003976A0  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2089,9 +2001,9 @@ setValue__Q28Morimura17TVsSelectCBWinNumFbb:
 /* 8039A7B4 003976F4  7C 08 03 A6 */	mtlr r0
 /* 8039A7B8 003976F8  38 21 00 10 */	addi r1, r1, 0x10
 /* 8039A7BC 003976FC  4E 80 00 20 */	blr 
+.endfn setValue__Q28Morimura17TVsSelectCBWinNumFbb
 
-.global __ct__Q28Morimura9TVsSelectFv
-__ct__Q28Morimura9TVsSelectFv:
+.fn __ct__Q28Morimura9TVsSelectFv, global
 /* 8039A7C0 00397700  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8039A7C4 00397704  7C 08 02 A6 */	mflr r0
 /* 8039A7C8 00397708  3C 80 80 49 */	lis r4, lbl_80494B40@ha
@@ -2326,9 +2238,9 @@ __ct__Q28Morimura9TVsSelectFv:
 /* 8039AB54 00397A94  7C 08 03 A6 */	mtlr r0
 /* 8039AB58 00397A98  38 21 00 10 */	addi r1, r1, 0x10
 /* 8039AB5C 00397A9C  4E 80 00 20 */	blr 
+.endfn __ct__Q28Morimura9TVsSelectFv
 
-.global __dt__Q28Morimura9TVsSelectFv
-__dt__Q28Morimura9TVsSelectFv:
+.fn __dt__Q28Morimura9TVsSelectFv, global
 /* 8039AB60 00397AA0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8039AB64 00397AA4  7C 08 02 A6 */	mflr r0
 /* 8039AB68 00397AA8  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2399,9 +2311,9 @@ __dt__Q28Morimura9TVsSelectFv:
 /* 8039AC60 00397BA0  7C 08 03 A6 */	mtlr r0
 /* 8039AC64 00397BA4  38 21 00 10 */	addi r1, r1, 0x10
 /* 8039AC68 00397BA8  4E 80 00 20 */	blr 
+.endfn __dt__Q28Morimura9TVsSelectFv
 
-.global doCreate__Q28Morimura9TVsSelectFP10JKRArchive
-doCreate__Q28Morimura9TVsSelectFP10JKRArchive:
+.fn doCreate__Q28Morimura9TVsSelectFP10JKRArchive, global
 /* 8039AC6C 00397BAC  94 21 FD 80 */	stwu r1, -0x280(r1)
 /* 8039AC70 00397BB0  7C 08 02 A6 */	mflr r0
 /* 8039AC74 00397BB4  90 01 02 84 */	stw r0, 0x284(r1)
@@ -4911,9 +4823,9 @@ doCreate__Q28Morimura9TVsSelectFP10JKRArchive:
 /* 8039D1B4 0039A0F4  7C 08 03 A6 */	mtlr r0
 /* 8039D1B8 0039A0F8  38 21 02 80 */	addi r1, r1, 0x280
 /* 8039D1BC 0039A0FC  4E 80 00 20 */	blr 
+.endfn doCreate__Q28Morimura9TVsSelectFP10JKRArchive
 
-.global create__Q28Morimura19TVsSelectListScreenFPCcUl
-create__Q28Morimura19TVsSelectListScreenFPCcUl:
+.fn create__Q28Morimura19TVsSelectListScreenFPCcUl, weak
 /* 8039D1C0 0039A100  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8039D1C4 0039A104  7C 08 02 A6 */	mflr r0
 /* 8039D1C8 0039A108  90 01 00 14 */	stw r0, 0x14(r1)
@@ -4922,9 +4834,9 @@ create__Q28Morimura19TVsSelectListScreenFPCcUl:
 /* 8039D1D4 0039A114  7C 08 03 A6 */	mtlr r0
 /* 8039D1D8 0039A118  38 21 00 10 */	addi r1, r1, 0x10
 /* 8039D1DC 0039A11C  4E 80 00 20 */	blr 
+.endfn create__Q28Morimura19TVsSelectListScreenFPCcUl
 
-.global doUpdate__Q28Morimura9TVsSelectFv
-doUpdate__Q28Morimura9TVsSelectFv:
+.fn doUpdate__Q28Morimura9TVsSelectFv, global
 /* 8039D1E0 0039A120  94 21 FF 00 */	stwu r1, -0x100(r1)
 /* 8039D1E4 0039A124  7C 08 02 A6 */	mflr r0
 /* 8039D1E8 0039A128  90 01 01 04 */	stw r0, 0x104(r1)
@@ -6167,9 +6079,9 @@ doUpdate__Q28Morimura9TVsSelectFv:
 /* 8039E418 0039B358  7C 08 03 A6 */	mtlr r0
 /* 8039E41C 0039B35C  38 21 01 00 */	addi r1, r1, 0x100
 /* 8039E420 0039B360  4E 80 00 20 */	blr 
+.endfn doUpdate__Q28Morimura9TVsSelectFv
 
-.global update__Q28Morimura19TVsSelectListScreenFv
-update__Q28Morimura19TVsSelectListScreenFv:
+.fn update__Q28Morimura19TVsSelectListScreenFv, weak
 /* 8039E424 0039B364  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8039E428 0039B368  7C 08 02 A6 */	mflr r0
 /* 8039E42C 0039B36C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -6182,9 +6094,9 @@ update__Q28Morimura19TVsSelectListScreenFv:
 /* 8039E448 0039B388  7C 08 03 A6 */	mtlr r0
 /* 8039E44C 0039B38C  38 21 00 10 */	addi r1, r1, 0x10
 /* 8039E450 0039B390  4E 80 00 20 */	blr 
+.endfn update__Q28Morimura19TVsSelectListScreenFv
 
-.global doDraw__Q28Morimura9TVsSelectFR8Graphics
-doDraw__Q28Morimura9TVsSelectFR8Graphics:
+.fn doDraw__Q28Morimura9TVsSelectFR8Graphics, global
 /* 8039E454 0039B394  94 21 F9 20 */	stwu r1, -0x6e0(r1)
 /* 8039E458 0039B398  7C 08 02 A6 */	mflr r0
 /* 8039E45C 0039B39C  90 01 06 E4 */	stw r0, 0x6e4(r1)
@@ -6902,9 +6814,9 @@ doDraw__Q28Morimura9TVsSelectFR8Graphics:
 /* 8039EF38 0039BE78  7C 08 03 A6 */	mtlr r0
 /* 8039EF3C 0039BE7C  38 21 06 E0 */	addi r1, r1, 0x6e0
 /* 8039EF40 0039BE80  4E 80 00 20 */	blr 
+.endfn doDraw__Q28Morimura9TVsSelectFR8Graphics
 
-.global __as__10J2DPictureFRC10J2DPicture
-__as__10J2DPictureFRC10J2DPicture:
+.fn __as__10J2DPictureFRC10J2DPicture, weak
 /* 8039EF44 0039BE84  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8039EF48 0039BE88  7C 08 02 A6 */	mflr r0
 /* 8039EF4C 0039BE8C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -7022,9 +6934,9 @@ __as__10J2DPictureFRC10J2DPicture:
 /* 8039F10C 0039C04C  7C 08 03 A6 */	mtlr r0
 /* 8039F110 0039C050  38 21 00 10 */	addi r1, r1, 0x10
 /* 8039F114 0039C054  4E 80 00 20 */	blr 
+.endfn __as__10J2DPictureFRC10J2DPicture
 
-.global __as__7J2DPaneFRC7J2DPane
-__as__7J2DPaneFRC7J2DPane:
+.fn __as__7J2DPaneFRC7J2DPane, weak
 /* 8039F118 0039C058  A0 A4 00 04 */	lhz r5, 4(r4)
 /* 8039F11C 0039C05C  80 04 00 08 */	lwz r0, 8(r4)
 /* 8039F120 0039C060  B0 A3 00 04 */	sth r5, 4(r3)
@@ -7160,15 +7072,15 @@ __as__7J2DPaneFRC7J2DPane:
 /* 8039F328 0039C268  90 A3 00 F4 */	stw r5, 0xf4(r3)
 /* 8039F32C 0039C26C  90 03 00 F8 */	stw r0, 0xf8(r3)
 /* 8039F330 0039C270  4E 80 00 20 */	blr 
+.endfn __as__7J2DPaneFRC7J2DPane
 
-.global doUpdateFadeinFinish__Q28Morimura9TVsSelectFv
-doUpdateFadeinFinish__Q28Morimura9TVsSelectFv:
+.fn doUpdateFadeinFinish__Q28Morimura9TVsSelectFv, global
 /* 8039F334 0039C274  38 00 00 01 */	li r0, 1
 /* 8039F338 0039C278  98 03 00 45 */	stb r0, 0x45(r3)
 /* 8039F33C 0039C27C  4E 80 00 20 */	blr 
+.endfn doUpdateFadeinFinish__Q28Morimura9TVsSelectFv
 
-.global doUpdateFadeoutFinish__Q28Morimura9TVsSelectFv
-doUpdateFadeoutFinish__Q28Morimura9TVsSelectFv:
+.fn doUpdateFadeoutFinish__Q28Morimura9TVsSelectFv, global
 /* 8039F340 0039C280  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8039F344 0039C284  7C 08 02 A6 */	mflr r0
 /* 8039F348 0039C288  90 01 00 14 */	stw r0, 0x14(r1)
@@ -7215,9 +7127,9 @@ doUpdateFadeoutFinish__Q28Morimura9TVsSelectFv:
 /* 8039F3E0 0039C320  7C 08 03 A6 */	mtlr r0
 /* 8039F3E4 0039C324  38 21 00 10 */	addi r1, r1, 0x10
 /* 8039F3E8 0039C328  4E 80 00 20 */	blr 
+.endfn doUpdateFadeoutFinish__Q28Morimura9TVsSelectFv
 
-.global paneInit__Q28Morimura9TVsSelectFv
-paneInit__Q28Morimura9TVsSelectFv:
+.fn paneInit__Q28Morimura9TVsSelectFv, global
 /* 8039F3EC 0039C32C  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8039F3F0 0039C330  7C 08 02 A6 */	mflr r0
 /* 8039F3F4 0039C334  3C C0 80 49 */	lis r6, lbl_80494B18@ha
@@ -7469,9 +7381,9 @@ paneInit__Q28Morimura9TVsSelectFv:
 /* 8039F7AC 0039C6EC  7C 08 03 A6 */	mtlr r0
 /* 8039F7B0 0039C6F0  38 21 00 20 */	addi r1, r1, 0x20
 /* 8039F7B4 0039C6F4  4E 80 00 20 */	blr 
+.endfn paneInit__Q28Morimura9TVsSelectFv
 
-.global changePaneInfo__Q28Morimura9TVsSelectFv
-changePaneInfo__Q28Morimura9TVsSelectFv:
+.fn changePaneInfo__Q28Morimura9TVsSelectFv, global
 /* 8039F7B8 0039C6F8  94 21 FF C0 */	stwu r1, -0x40(r1)
 /* 8039F7BC 0039C6FC  7C 08 02 A6 */	mflr r0
 /* 8039F7C0 0039C700  90 01 00 44 */	stw r0, 0x44(r1)
@@ -7628,9 +7540,9 @@ changePaneInfo__Q28Morimura9TVsSelectFv:
 /* 8039F9EC 0039C92C  7C 08 03 A6 */	mtlr r0
 /* 8039F9F0 0039C930  38 21 00 40 */	addi r1, r1, 0x40
 /* 8039F9F4 0039C934  4E 80 00 20 */	blr 
+.endfn changePaneInfo__Q28Morimura9TVsSelectFv
 
-.global getNameID__Q28Morimura9TVsSelectFi
-getNameID__Q28Morimura9TVsSelectFi:
+.fn getNameID__Q28Morimura9TVsSelectFi, global
 /* 8039F9F8 0039C938  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8039F9FC 0039C93C  7C 08 02 A6 */	mflr r0
 /* 8039FA00 0039C940  90 01 00 14 */	stw r0, 0x14(r1)
@@ -7665,14 +7577,14 @@ getNameID__Q28Morimura9TVsSelectFi:
 /* 8039FA70 0039C9B0  7C 08 03 A6 */	mtlr r0
 /* 8039FA74 0039C9B4  38 21 00 10 */	addi r1, r1, 0x10
 /* 8039FA78 0039C9B8  4E 80 00 20 */	blr 
+.endfn getNameID__Q28Morimura9TVsSelectFi
 
-.global getIdMax__Q28Morimura9TVsSelectFv
-getIdMax__Q28Morimura9TVsSelectFv:
+.fn getIdMax__Q28Morimura9TVsSelectFv, weak
 /* 8039FA7C 0039C9BC  80 63 02 48 */	lwz r3, 0x248(r3)
 /* 8039FA80 0039C9C0  4E 80 00 20 */	blr 
+.endfn getIdMax__Q28Morimura9TVsSelectFv
 
-.global getCourseID__Q28Morimura9TVsSelectFi
-getCourseID__Q28Morimura9TVsSelectFi:
+.fn getCourseID__Q28Morimura9TVsSelectFi, global
 /* 8039FA84 0039C9C4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8039FA88 0039C9C8  7C 08 02 A6 */	mflr r0
 /* 8039FA8C 0039C9CC  90 01 00 14 */	stw r0, 0x14(r1)
@@ -7689,9 +7601,9 @@ getCourseID__Q28Morimura9TVsSelectFi:
 /* 8039FAB4 0039C9F4  7C 08 03 A6 */	mtlr r0
 /* 8039FAB8 0039C9F8  38 21 00 10 */	addi r1, r1, 0x10
 /* 8039FABC 0039C9FC  4E 80 00 20 */	blr 
+.endfn getCourseID__Q28Morimura9TVsSelectFi
 
-.global doZoom__Q28Morimura9TVsSelectFv
-doZoom__Q28Morimura9TVsSelectFv:
+.fn doZoom__Q28Morimura9TVsSelectFv, global
 /* 8039FAC0 0039CA00  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 8039FAC4 0039CA04  7C 08 02 A6 */	mflr r0
 /* 8039FAC8 0039CA08  90 01 00 34 */	stw r0, 0x34(r1)
@@ -7825,9 +7737,9 @@ doZoom__Q28Morimura9TVsSelectFv:
 /* 8039FCA8 0039CBE8  7C 08 03 A6 */	mtlr r0
 /* 8039FCAC 0039CBEC  38 21 00 30 */	addi r1, r1, 0x30
 /* 8039FCB0 0039CBF0  4E 80 00 20 */	blr 
+.endfn doZoom__Q28Morimura9TVsSelectFv
 
-.global doMoveOnyon__Q28Morimura9TVsSelectFv
-doMoveOnyon__Q28Morimura9TVsSelectFv:
+.fn doMoveOnyon__Q28Morimura9TVsSelectFv, global
 /* 8039FCB4 0039CBF4  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8039FCB8 0039CBF8  7C 08 02 A6 */	mflr r0
 /* 8039FCBC 0039CBFC  90 01 00 24 */	stw r0, 0x24(r1)
@@ -7857,9 +7769,9 @@ doMoveOnyon__Q28Morimura9TVsSelectFv:
 /* 8039FD14 0039CC54  7C 08 03 A6 */	mtlr r0
 /* 8039FD18 0039CC58  38 21 00 20 */	addi r1, r1, 0x20
 /* 8039FD1C 0039CC5C  4E 80 00 20 */	blr 
+.endfn doMoveOnyon__Q28Morimura9TVsSelectFv
 
-.global doScreenEffect__Q28Morimura9TVsSelectFv
-doScreenEffect__Q28Morimura9TVsSelectFv:
+.fn doScreenEffect__Q28Morimura9TVsSelectFv, global
 /* 8039FD20 0039CC60  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 8039FD24 0039CC64  7C 08 02 A6 */	mflr r0
 /* 8039FD28 0039CC68  C0 02 0E 68 */	lfs f0, lbl_8051F1C8@sda21(r2)
@@ -8005,9 +7917,9 @@ doScreenEffect__Q28Morimura9TVsSelectFv:
 /* 8039FF28 0039CE68  7C 08 03 A6 */	mtlr r0
 /* 8039FF2C 0039CE6C  38 21 00 30 */	addi r1, r1, 0x30
 /* 8039FF30 0039CE70  4E 80 00 20 */	blr 
+.endfn doScreenEffect__Q28Morimura9TVsSelectFv
 
-.global onyonDemoInit__Q28Morimura9TVsSelectFv
-onyonDemoInit__Q28Morimura9TVsSelectFv:
+.fn onyonDemoInit__Q28Morimura9TVsSelectFv, global
 /* 8039FF34 0039CE74  94 21 FE D0 */	stwu r1, -0x130(r1)
 /* 8039FF38 0039CE78  7C 08 02 A6 */	mflr r0
 /* 8039FF3C 0039CE7C  90 01 01 34 */	stw r0, 0x134(r1)
@@ -8341,9 +8253,9 @@ onyonDemoInit__Q28Morimura9TVsSelectFv:
 /* 803A0424 0039D364  7C 08 03 A6 */	mtlr r0
 /* 803A0428 0039D368  38 21 01 30 */	addi r1, r1, 0x130
 /* 803A042C 0039D36C  4E 80 00 20 */	blr 
+.endfn onyonDemoInit__Q28Morimura9TVsSelectFv
 
-.global demoStart__Q28Morimura9TVsSelectFv
-demoStart__Q28Morimura9TVsSelectFv:
+.fn demoStart__Q28Morimura9TVsSelectFv, global
 /* 803A0430 0039D370  94 21 FF 60 */	stwu r1, -0xa0(r1)
 /* 803A0434 0039D374  7C 08 02 A6 */	mflr r0
 /* 803A0438 0039D378  90 01 00 A4 */	stw r0, 0xa4(r1)
@@ -8458,9 +8370,9 @@ demoStart__Q28Morimura9TVsSelectFv:
 /* 803A05E4 0039D524  7C 08 03 A6 */	mtlr r0
 /* 803A05E8 0039D528  38 21 00 A0 */	addi r1, r1, 0xa0
 /* 803A05EC 0039D52C  4E 80 00 20 */	blr 
+.endfn demoStart__Q28Morimura9TVsSelectFv
 
-.global changeCourseTexture__Q28Morimura9TVsSelectFv
-changeCourseTexture__Q28Morimura9TVsSelectFv:
+.fn changeCourseTexture__Q28Morimura9TVsSelectFv, global
 /* 803A05F0 0039D530  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 803A05F4 0039D534  7C 08 02 A6 */	mflr r0
 /* 803A05F8 0039D538  90 01 00 24 */	stw r0, 0x24(r1)
@@ -8503,9 +8415,9 @@ changeCourseTexture__Q28Morimura9TVsSelectFv:
 /* 803A0680 0039D5C0  7C 08 03 A6 */	mtlr r0
 /* 803A0684 0039D5C4  38 21 00 20 */	addi r1, r1, 0x20
 /* 803A0688 0039D5C8  4E 80 00 20 */	blr 
+.endfn changeCourseTexture__Q28Morimura9TVsSelectFv
 
-.global changeIndirectTexture__Q28Morimura9TVsSelectFv
-changeIndirectTexture__Q28Morimura9TVsSelectFv:
+.fn changeIndirectTexture__Q28Morimura9TVsSelectFv, global
 /* 803A068C 0039D5CC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803A0690 0039D5D0  7C 08 02 A6 */	mflr r0
 /* 803A0694 0039D5D4  90 01 00 14 */	stw r0, 0x14(r1)
@@ -8559,9 +8471,9 @@ changeIndirectTexture__Q28Morimura9TVsSelectFv:
 /* 803A0750 0039D690  7C 08 03 A6 */	mtlr r0
 /* 803A0754 0039D694  38 21 00 10 */	addi r1, r1, 0x10
 /* 803A0758 0039D698  4E 80 00 20 */	blr 
+.endfn changeIndirectTexture__Q28Morimura9TVsSelectFv
 
-.global setShortenIndex__Q28Morimura9TVsSelectFiib
-setShortenIndex__Q28Morimura9TVsSelectFiib:
+.fn setShortenIndex__Q28Morimura9TVsSelectFiib, global
 /* 803A075C 0039D69C  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 803A0760 0039D6A0  7C 08 02 A6 */	mflr r0
 /* 803A0764 0039D6A4  90 01 00 24 */	stw r0, 0x24(r1)
@@ -8610,9 +8522,9 @@ setShortenIndex__Q28Morimura9TVsSelectFiib:
 /* 803A0808 0039D748  7C 08 03 A6 */	mtlr r0
 /* 803A080C 0039D74C  38 21 00 20 */	addi r1, r1, 0x20
 /* 803A0810 0039D750  4E 80 00 20 */	blr 
+.endfn setShortenIndex__Q28Morimura9TVsSelectFiib
 
-.global updateFacePicture__Q28Morimura9TVsSelectFv
-updateFacePicture__Q28Morimura9TVsSelectFv:
+.fn updateFacePicture__Q28Morimura9TVsSelectFv, global
 /* 803A0814 0039D754  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 803A0818 0039D758  7C 08 02 A6 */	mflr r0
 /* 803A081C 0039D75C  90 01 00 24 */	stw r0, 0x24(r1)
@@ -8698,9 +8610,9 @@ updateFacePicture__Q28Morimura9TVsSelectFv:
 /* 803A0948 0039D888  7C 08 03 A6 */	mtlr r0
 /* 803A094C 0039D88C  38 21 00 20 */	addi r1, r1, 0x20
 /* 803A0950 0039D890  4E 80 00 20 */	blr 
+.endfn updateFacePicture__Q28Morimura9TVsSelectFv
 
-.global changeFaceTexture__Q28Morimura9TVsSelectFv
-changeFaceTexture__Q28Morimura9TVsSelectFv:
+.fn changeFaceTexture__Q28Morimura9TVsSelectFv, global
 /* 803A0954 0039D894  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803A0958 0039D898  7C 08 02 A6 */	mflr r0
 /* 803A095C 0039D89C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -8841,9 +8753,9 @@ changeFaceTexture__Q28Morimura9TVsSelectFv:
 /* 803A0B3C 0039DA7C  7C 08 03 A6 */	mtlr r0
 /* 803A0B40 0039DA80  38 21 00 10 */	addi r1, r1, 0x10
 /* 803A0B44 0039DA84  4E 80 00 20 */	blr 
+.endfn changeFaceTexture__Q28Morimura9TVsSelectFv
 
-.global changeOrimaTexture__Q28Morimura9TVsSelectFi
-changeOrimaTexture__Q28Morimura9TVsSelectFi:
+.fn changeOrimaTexture__Q28Morimura9TVsSelectFi, global
 /* 803A0B48 0039DA88  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 803A0B4C 0039DA8C  7C 08 02 A6 */	mflr r0
 /* 803A0B50 0039DA90  3C A0 80 4E */	lis r5, mOrimaTexture__Q28Morimura9TVsSelect@ha
@@ -8885,9 +8797,9 @@ changeOrimaTexture__Q28Morimura9TVsSelectFi:
 /* 803A0BD8 0039DB18  7C 08 03 A6 */	mtlr r0
 /* 803A0BDC 0039DB1C  38 21 00 20 */	addi r1, r1, 0x20
 /* 803A0BE0 0039DB20  4E 80 00 20 */	blr 
+.endfn changeOrimaTexture__Q28Morimura9TVsSelectFi
 
-.global changeLouieTexture__Q28Morimura9TVsSelectFi
-changeLouieTexture__Q28Morimura9TVsSelectFi:
+.fn changeLouieTexture__Q28Morimura9TVsSelectFi, global
 /* 803A0BE4 0039DB24  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 803A0BE8 0039DB28  7C 08 02 A6 */	mflr r0
 /* 803A0BEC 0039DB2C  3C A0 80 4E */	lis r5, mLouieTexture__Q28Morimura9TVsSelect@ha
@@ -8929,9 +8841,9 @@ changeLouieTexture__Q28Morimura9TVsSelectFi:
 /* 803A0C74 0039DBB4  7C 08 03 A6 */	mtlr r0
 /* 803A0C78 0039DBB8  38 21 00 20 */	addi r1, r1, 0x20
 /* 803A0C7C 0039DBBC  4E 80 00 20 */	blr 
+.endfn changeLouieTexture__Q28Morimura9TVsSelectFi
 
-.global changeSlotPage__Q28Morimura9TVsSelectFv
-changeSlotPage__Q28Morimura9TVsSelectFv:
+.fn changeSlotPage__Q28Morimura9TVsSelectFv, global
 /* 803A0C80 0039DBC0  88 03 02 2C */	lbz r0, 0x22c(r3)
 /* 803A0C84 0039DBC4  28 00 00 00 */	cmplwi r0, 0
 /* 803A0C88 0039DBC8  41 82 00 88 */	beq .L_803A0D10
@@ -9011,9 +8923,9 @@ changeSlotPage__Q28Morimura9TVsSelectFv:
 /* 803A0D8C 0039DCCC  90 04 00 18 */	stw r0, 0x18(r4)
 /* 803A0D90 0039DCD0  41 80 FF 8C */	blt .L_803A0D1C
 /* 803A0D94 0039DCD4  4E 80 00 20 */	blr 
+.endfn changeSlotPage__Q28Morimura9TVsSelectFv
 
-.global doCreateObj__Q28Morimura14TVsSelectSceneFP10JKRArchive
-doCreateObj__Q28Morimura14TVsSelectSceneFP10JKRArchive:
+.fn doCreateObj__Q28Morimura14TVsSelectSceneFP10JKRArchive, global
 /* 803A0D98 0039DCD8  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 803A0D9C 0039DCDC  7C 08 02 A6 */	mflr r0
 /* 803A0DA0 0039DCE0  90 01 00 24 */	stw r0, 0x24(r1)
@@ -9055,9 +8967,9 @@ doCreateObj__Q28Morimura14TVsSelectSceneFP10JKRArchive:
 /* 803A0E28 0039DD68  7C 08 03 A6 */	mtlr r0
 /* 803A0E2C 0039DD6C  38 21 00 20 */	addi r1, r1, 0x20
 /* 803A0E30 0039DD70  4E 80 00 20 */	blr 
+.endfn doCreateObj__Q28Morimura14TVsSelectSceneFP10JKRArchive
 
-.global doStart__Q28Morimura14TVsSelectSceneFPQ26Screen13StartSceneArg
-doStart__Q28Morimura14TVsSelectSceneFPQ26Screen13StartSceneArg:
+.fn doStart__Q28Morimura14TVsSelectSceneFPQ26Screen13StartSceneArg, global
 /* 803A0E34 0039DD74  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803A0E38 0039DD78  7C 08 02 A6 */	mflr r0
 /* 803A0E3C 0039DD7C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -9071,34 +8983,34 @@ doStart__Q28Morimura14TVsSelectSceneFPQ26Screen13StartSceneArg:
 /* 803A0E5C 0039DD9C  7C 08 03 A6 */	mtlr r0
 /* 803A0E60 0039DDA0  38 21 00 10 */	addi r1, r1, 0x10
 /* 803A0E64 0039DDA4  4E 80 00 20 */	blr 
+.endfn doStart__Q28Morimura14TVsSelectSceneFPQ26Screen13StartSceneArg
 
-.global getResName__Q28Morimura14TVsSelectSceneCFv
-getResName__Q28Morimura14TVsSelectSceneCFv:
+.fn getResName__Q28Morimura14TVsSelectSceneCFv, weak
 /* 803A0E68 0039DDA8  3C 60 80 49 */	lis r3, lbl_804951D4@ha
 /* 803A0E6C 0039DDAC  38 63 51 D4 */	addi r3, r3, lbl_804951D4@l
 /* 803A0E70 0039DDB0  4E 80 00 20 */	blr 
+.endfn getResName__Q28Morimura14TVsSelectSceneCFv
 
-.global getSceneType__Q28Morimura14TVsSelectSceneFv
-getSceneType__Q28Morimura14TVsSelectSceneFv:
+.fn getSceneType__Q28Morimura14TVsSelectSceneFv, weak
 /* 803A0E74 0039DDB4  38 60 27 39 */	li r3, 0x2739
 /* 803A0E78 0039DDB8  4E 80 00 20 */	blr 
+.endfn getSceneType__Q28Morimura14TVsSelectSceneFv
 
-.global getOwnerID__Q28Morimura14TVsSelectSceneFv
-getOwnerID__Q28Morimura14TVsSelectSceneFv:
+.fn getOwnerID__Q28Morimura14TVsSelectSceneFv, weak
 /* 803A0E7C 0039DDBC  3C 60 4D 52 */	lis r3, 0x4D524D52@ha
 /* 803A0E80 0039DDC0  38 63 4D 52 */	addi r3, r3, 0x4D524D52@l
 /* 803A0E84 0039DDC4  4E 80 00 20 */	blr 
+.endfn getOwnerID__Q28Morimura14TVsSelectSceneFv
 
-.global getMemberID__Q28Morimura14TVsSelectSceneFv
-getMemberID__Q28Morimura14TVsSelectSceneFv:
+.fn getMemberID__Q28Morimura14TVsSelectSceneFv, weak
 /* 803A0E88 0039DDC8  3C 80 4C 45 */	lis r4, 0x4C454354@ha
 /* 803A0E8C 0039DDCC  3C 60 56 53 */	lis r3, 0x56535345@ha
 /* 803A0E90 0039DDD0  38 84 43 54 */	addi r4, r4, 0x4C454354@l
 /* 803A0E94 0039DDD4  38 63 53 45 */	addi r3, r3, 0x56535345@l
 /* 803A0E98 0039DDD8  4E 80 00 20 */	blr 
+.endfn getMemberID__Q28Morimura14TVsSelectSceneFv
 
-.global getDispMemberBase__Q28Morimura9TVsSelectFv
-getDispMemberBase__Q28Morimura9TVsSelectFv:
+.fn getDispMemberBase__Q28Morimura9TVsSelectFv, weak
 /* 803A0E9C 0039DDDC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803A0EA0 0039DDE0  7C 08 02 A6 */	mflr r0
 /* 803A0EA4 0039DDE4  90 01 00 14 */	stw r0, 0x14(r1)
@@ -9114,9 +9026,9 @@ getDispMemberBase__Q28Morimura9TVsSelectFv:
 /* 803A0EC4 0039DE04  7C 08 03 A6 */	mtlr r0
 /* 803A0EC8 0039DE08  38 21 00 10 */	addi r1, r1, 0x10
 /* 803A0ECC 0039DE0C  4E 80 00 20 */	blr 
+.endfn getDispMemberBase__Q28Morimura9TVsSelectFv
 
-.global __dt__Q28Morimura17TVsSelectCBWinNumFv
-__dt__Q28Morimura17TVsSelectCBWinNumFv:
+.fn __dt__Q28Morimura17TVsSelectCBWinNumFv, weak
 /* 803A0ED0 0039DE10  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803A0ED4 0039DE14  7C 08 02 A6 */	mflr r0
 /* 803A0ED8 0039DE18  90 01 00 14 */	stw r0, 0x14(r1)
@@ -9159,9 +9071,9 @@ __dt__Q28Morimura17TVsSelectCBWinNumFv:
 /* 803A0F64 0039DEA4  7C 08 03 A6 */	mtlr r0
 /* 803A0F68 0039DEA8  38 21 00 10 */	addi r1, r1, 0x10
 /* 803A0F6C 0039DEAC  4E 80 00 20 */	blr 
+.endfn __dt__Q28Morimura17TVsSelectCBWinNumFv
 
-.global __dt__Q28Morimura16TVsSelectIndPaneFv
-__dt__Q28Morimura16TVsSelectIndPaneFv:
+.fn __dt__Q28Morimura16TVsSelectIndPaneFv, weak
 /* 803A0F70 0039DEB0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803A0F74 0039DEB4  7C 08 02 A6 */	mflr r0
 /* 803A0F78 0039DEB8  90 01 00 14 */	stw r0, 0x14(r1)
@@ -9192,9 +9104,9 @@ __dt__Q28Morimura16TVsSelectIndPaneFv:
 /* 803A0FD4 0039DF14  7C 08 03 A6 */	mtlr r0
 /* 803A0FD8 0039DF18  38 21 00 10 */	addi r1, r1, 0x10
 /* 803A0FDC 0039DF1C  4E 80 00 20 */	blr 
+.endfn __dt__Q28Morimura16TVsSelectIndPaneFv
 
-.global __sinit_vsSelect2D_cpp
-__sinit_vsSelect2D_cpp:
+.fn __sinit_vsSelect2D_cpp, local
 /* 803A0FE0 0039DF20  C0 82 0F 58 */	lfs f4, lbl_8051F2B8@sda21(r2)
 /* 803A0FE4 0039DF24  3C 60 80 51 */	lis r3, mScrollParm__Q28Morimura9TVsSelect@ha
 /* 803A0FE8 0039DF28  C0 C2 0F 50 */	lfs f6, lbl_8051F2B0@sda21(r2)
@@ -9212,8 +9124,9 @@ __sinit_vsSelect2D_cpp:
 /* 803A1018 0039DF58  D0 23 00 0C */	stfs f1, 0xc(r3)
 /* 803A101C 0039DF5C  D0 03 00 10 */	stfs f0, 0x10(r3)
 /* 803A1020 0039DF60  4E 80 00 20 */	blr 
+.endfn __sinit_vsSelect2D_cpp
 
-.global "@24@__dt__Q28Morimura9TVsSelectFv"
-"@24@__dt__Q28Morimura9TVsSelectFv":
+.fn "@24@__dt__Q28Morimura9TVsSelectFv", weak
 /* 803A1024 0039DF64  38 63 FF E8 */	addi r3, r3, -24
 /* 803A1028 0039DF68  4B FF 9B 38 */	b __dt__Q28Morimura9TVsSelectFv
+.endfn "@24@__dt__Q28Morimura9TVsSelectFv"
