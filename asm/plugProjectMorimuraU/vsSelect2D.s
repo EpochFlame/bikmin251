@@ -1021,6 +1021,7 @@ lbl_8051F2B8:
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global draw__Q28Morimura16TVsSelectIndPaneFv
 draw__Q28Morimura16TVsSelectIndPaneFv:
+bl __TRK_reset # lock out 2pbattle (reset console)
 /* 8039982C 0039676C  94 21 FE A0 */	stwu r1, -0x160(r1)
 /* 80399830 00396770  7C 08 02 A6 */	mflr r0
 /* 80399834 00396774  C0 22 0E 10 */	lfs f1, lbl_8051F170@sda21(r2)
