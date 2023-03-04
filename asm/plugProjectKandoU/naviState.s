@@ -3019,9 +3019,10 @@ collisionCallback__Q24Game13NaviWalkStateFPQ24Game4NaviRQ24Game9CollEvent:
 /* 8017F004 0017BF44  40 82 00 E4 */	bne .L_8017F0E8
 /* 8017F008 0017BF48  80 6D 93 E8 */	lwz r3, gameSystem__4Game@sda21(r13)
 /* 8017F00C 0017BF4C  80 03 00 44 */	lwz r0, 0x44(r3)
-/* 8017F010 0017BF50  2C 00 00 01 */	cmpwi r0, 1
-/* 8017F014 0017BF54  40 82 00 D4 */	bgt .L_8017F0E8
-beq lbl_versus # allow pickups in vsmode, require brute knuckles in story
+/* 8017F010 0017BF50  2C 00 00 01 */	cmpwi r0, 4
+/* 8017F014 0017BF54  40 82 00 D4 */	beq .L_8017F0E8
+cmpwi r0, 1
+bge lbl_versus # allow pickups in vsmode, require brute knuckles in story
 li r4, 0
 lwz r5, playData__4Game@sda21(r13)
 addi r3, r5, 0x48
