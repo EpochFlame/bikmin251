@@ -86,9 +86,9 @@ J2DPane* TagSearch(J2DScreen*, u64);
 void TagToHex(u64, char*);
 void TagToName(u64, char*);
 
-extern const char* PikiIconTextureName[19];
+extern const char* PikiIconTextureName[22];
 
-extern ResTIMG* PikiIconTextureResTIMG[19];
+extern ResTIMG* PikiIconTextureResTIMG[22];
 
 } // namespace Screen
 } // namespace og

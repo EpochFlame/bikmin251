@@ -12,7 +12,7 @@
 namespace og {
 namespace Screen {
 
-ResTIMG* PikiIconTextureResTIMG[19];
+ResTIMG* PikiIconTextureResTIMG[22];
 
 void _Print(char* format, ...)
 {
@@ -232,7 +232,7 @@ u64 maskTag(u64 tag, u16 num, u16 mask)
 const char* PikiIconTextureName[]
     = { "toumei_piki.bti", "bp_l64.bti", "bp_b64.bti", "bp_f64.bti",  "rp_l64.bti",  "rp_b64.bti",  "rp_f64.bti",
 	    "yp_l64.bti",      "yp_b64.bti", "yp_f64.bti", "blp_l64.bti", "blp_b64.bti", "blp_f64.bti", "wp_l64.bti",
-	    "wp_b64.bti",      "wp_f64.bti", "cha_l.bti",  "cha_b.bti",   "cha_f.bti" };
+	    "wp_b64.bti",      "wp_f64.bti", "cha_l.bti",  "cha_b.bti",   "cha_f.bti", "wog_l.bti", "wog_b.bti", "wog_f.bti" };
 
 /*
  * --INFO--

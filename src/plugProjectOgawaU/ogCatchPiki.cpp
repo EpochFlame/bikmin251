@@ -31,7 +31,7 @@ void CallBack_CatchPiki::init(J2DScreen* screen, u64 tag, u32* pikiType, JKRArch
 	char** iconNames   = (char**)PikiIconTextureName;
 	ResTIMG** textures = PikiIconTextureResTIMG;
 
-	for (int i = 0; i < 19; i++) {
+	for (int i = 0; i < ARRAY_SIZE(PikiIconTextureName); i++) {
 		textures[i] = static_cast<ResTIMG*>(archive->getResource('TIMG', iconNames[i]));
 	}
 
@@ -48,7 +48,7 @@ void CallBack_CatchPiki::update()
 {
 	if (m_pikiType && m_pikiIcon) {
 		u32 pikiType = *m_pikiType;
-		if (pikiType != m_currPikiType && pikiType < 19) {
+		if (pikiType != m_currPikiType && pikiType < ARRAY_SIZE(PikiIconTextureResTIMG)) {
 			setPikiIcon(pikiType);
 			m_scaleMgr.up(0.4f, 30.0f, 0.7f, 0.0f);
 			m_currPikiType = pikiType;
@@ -67,7 +67,7 @@ void CallBack_CatchPiki::update()
  */
 void CallBack_CatchPiki::setPikiIcon(int pikiType)
 {
-	if (pikiType < 19) {
+	if (pikiType < ARRAY_SIZE(PikiIconTextureResTIMG)) {
 		m_pikiIcon->changeTexture(PikiIconTextureResTIMG[pikiType], 0);
 	}
 }
