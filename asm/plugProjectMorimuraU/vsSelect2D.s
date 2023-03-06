@@ -2674,8 +2674,10 @@ lbl_constructor:
 /* 8039B1BC 003980FC  38 9E 03 B4 */	addi r4, r30, 0x3b4
 /* 8039B1C0 00398100  38 A0 00 00 */	li r5, 0
 /* 8039B1C4 00398104  48 08 81 99 */	bl heapStatusStart__6SystemFPcP7JKRHeap
+bl getVsTextureResName__Fv
+mr r4, r3
+lwz r3, sys@sda21(r13)
 /* 8039B1C8 00398108  38 00 00 00 */	li r0, 0
-/* 8039B1CC 0039810C  38 9E 03 C4 */	addi r4, r30, 0x3c4
 /* 8039B1D0 00398110  90 1F 00 B4 */	stw r0, 0xb4(r31)
 /* 8039B1D4 00398114  38 61 00 C8 */	addi r3, r1, 0xc8
 /* 8039B1D8 00398118  4B F7 CD 75 */	bl makeLanguageResName__Q22og9newScreenFPcPCc

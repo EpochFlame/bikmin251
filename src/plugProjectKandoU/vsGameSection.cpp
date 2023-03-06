@@ -1226,7 +1226,7 @@ void VsGameSection::RandomEvent()
 		break;
 	}
 	case PIKMIN_SWAP: {
-		int pikiSwaps[2] = {0, 0};
+		int pikiSwaps[2] = { 0, 0 };
 
 		Iterator<Piki> iPiki = pikiMgr;
 

@@ -1,14 +1,11 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-.global lbl_80483A88
 lbl_80483A88:
 	.asciz "gamePlayCommonData.cpp"
-	.skip 1
-.global lbl_80483AA0
+.balign 4
 lbl_80483AA0:
 	.asciz "P2Assert"
-	.skip 3
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
@@ -17,7 +14,6 @@ __vt__Q24Game8Lowscore:
 	.4byte 0
 	.4byte 0
 	.4byte do_higher__Q24Game8LowscoreFii
-	.4byte 0
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q24Game14PlayCommonDataFv
