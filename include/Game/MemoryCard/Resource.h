@@ -2,7 +2,7 @@
 #define _GAME_MEMORYCARD_RESOURCE_H
 
 #include "Game/MemoryCard/Mgr.h"
-#include "JSystem/JKRDisposer.h"
+#include "JSystem/JKR/JKRDisposer.h"
 #include "types.h"
 
 namespace Game {

@@ -1,3 +1,4 @@
+#include "MemoryCardMgr.h"
 #include "types.h"
 
 /*
@@ -186,10 +187,10 @@
  * Address:	........
  * Size:	00000C
  */
-void MemoryCardMgr::setTmpHeap(JKRHeap*)
-{
-	// UNUSED FUNCTION
-}
+// void MemoryCardMgr::setTmpHeap(JKRHeap*)
+//{
+// UNUSED FUNCTION
+//}
 
 /*
  * --INFO--
@@ -198,59 +199,13 @@ void MemoryCardMgr::setTmpHeap(JKRHeap*)
  */
 MemoryCardMgr::MemoryCardMgr()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	lis      r4, __vt__13MemoryCardMgr@ha
-	li       r5, 0
-	stw      r0, 0x14(r1)
-	addi     r0, r4, __vt__13MemoryCardMgr@l
-	li       r6, 0x20
-	li       r7, 5
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	lis      r3, __defctor__20MemoryCardMgrCommandFv@ha
-	stw      r0, 0(r31)
-	addi     r4, r3, __defctor__20MemoryCardMgrCommandFv@l
-	addi     r3, r31, 4
-	bl       __construct_array
-	li       r0, 0
-	mr       r3, r31
-	stw      r0, 0xa4(r31)
-	stw      r0, 0xa8(r31)
-	stw      r0, 0xcc(r31)
-	stb      r0, 0xd0(r31)
-	stw      r0, 0xd4(r31)
-	lwz      r0, sSystemHeap__7JKRHeap@sda21(r13)
-	stw      r0, 0xcc(r31)
-	bl       resetCommandFlagQueue__13MemoryCardMgrFv
-	lwz      r0, 0x14(r1)
-	mr       r3, r31
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	8044066C
- * Size:	000024
- */
-void MemoryCardMgrCommand::__defctor()
-{
-	/*
-	lis      r5, __vt__24MemoryCardMgrCommandBase@ha
-	lis      r4, __vt__20MemoryCardMgrCommand@ha
-	addi     r0, r5, __vt__24MemoryCardMgrCommandBase@l
-	li       r5, 0
-	stw      r0, 4(r3)
-	addi     r0, r4, __vt__20MemoryCardMgrCommand@l
-	stw      r5, 0(r3)
-	stw      r0, 4(r3)
-	blr
-	*/
+	_A4         = 0;
+	mIsCard     = 0;
+	mHeap       = 0;
+	_D0         = 0;
+	mStatusFlag = INSIDESTATUS_Unk;
+	mHeap       = JKRHeap::sSystemHeap;
+	resetCommandFlagQueue();
 }
 
 /*
@@ -260,6 +215,13 @@ void MemoryCardMgrCommand::__defctor()
  */
 void MemoryCardMgr::resetCommandFlagQueue()
 {
+	mCommands[0]._00 = 0;
+	mCommands[1]._00 = 0;
+	mCommands[2]._00 = 0;
+	mCommands[3]._00 = 0;
+	mCommands[4]._00 = 0;
+	_A4              = 0;
+	mIsCard          = 0;
 	/*
 	li       r0, 0
 	stw      r0, 4(r3)
@@ -288,8 +250,9 @@ void MemoryCardMgr::getCurrentCommand()
  * Address:	804406B4
  * Size:	000040
  */
-void MemoryCardMgr::setCommand(int)
+void MemoryCardMgr::setCommand(int param_1)
 {
+	setCommand(&mCommands[param_1]);
 	/*
 	stwu     r1, -0x30(r1)
 	mflr     r0
@@ -315,8 +278,31 @@ void MemoryCardMgr::setCommand(int)
  * Address:	804406F4
  * Size:	000138
  */
-void MemoryCardMgr::setCommand(MemoryCardMgrCommandBase*)
+u32 MemoryCardMgr::setCommand(MemoryCardMgrCommandBase* command)
 {
+	P2ASSERTLINE(225, (command->getClassSize() <= 0x20));
+	OSLockMutex(&mOsMutex);
+	u32 i                  = 0;
+	MemoryCardMgr* memCard = this;
+	while (mCommands[i]._00 != 0) {
+		i++;
+		JUT_ASSERTLINE(240, i != 5, "command Queue is full.");
+	}
+	i = _A4;
+	while (mCommands[i]._00 != 0) {
+		i++;
+		if (i == 5) {
+			i = 0;
+		}
+	}
+	memcpy((void*)(&mCommands), (void*)command, 0x20);
+	mIsCard++;
+	P2ASSERTLINE(254, mIsCard <= 5);
+	if (mIsCard + 1 == 5) {
+		OSUnlockMutex(&mOsMutex);
+		OSSignalCond(&mCond);
+		return 1;
+	}
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0
@@ -426,8 +412,37 @@ void MemoryCardMgr::releaseCurrentCommand()
  * Address:	8044082C
  * Size:	0002A0
  */
-void MemoryCardMgr::cardFormat(MemoryCardMgr::ECardSlot)
+bool MemoryCardMgr::cardFormat(MemoryCardMgr::ECardSlot param_1)
 {
+	bool result;
+	if (OSTryLockMutex(&mOsMutex)) {
+		result = true;
+		if (!param_1) {
+			P2ASSERTLINE(225, (mCommands[2].getClassSize() <= 0x20));
+			OSLockMutex(&mOsMutex);
+			u32 i                  = 0;
+			MemoryCardMgr* memCard = this;
+			while (mCommands[i]._00 != 0) {
+				i++;
+				JUT_ASSERTLINE(240, i != 5, "command Queue is full.");
+			}
+			i = _A4;
+			while (mCommands[i]._00 != 0) {
+				i++;
+				if (i == 5) {
+					i = 0;
+				}
+			}
+			memcpy((void*)(&mCommands), (void*)&mCommands[2], 0x20);
+			mIsCard++;
+			P2ASSERTLINE(254, mIsCard <= 5);
+			if (mIsCard + 1 == 5) {
+				OSUnlockMutex(&mOsMutex);
+				OSSignalCond(&mCond);
+				return true;
+			}
+		}
+	}
 	/*
 	stwu     r1, -0x60(r1)
 	mflr     r0
@@ -927,7 +942,7 @@ lbl_80440E58:
  * Address:	80440E6C
  * Size:	000150
  */
-void MemoryCardMgr::cardMount()
+bool MemoryCardMgr::cardMount()
 {
 	/*
 	stwu     r1, -0x40(r1)
@@ -1034,7 +1049,7 @@ lbl_80440F94:
  * Address:	80440FBC
  * Size:	000104
  */
-void MemoryCardMgr::checkStatus()
+u32 MemoryCardMgr::checkStatus()
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -1344,7 +1359,7 @@ u32 MemoryCardMgr::doCardProc(void*, MemoryCardMgrCommand*) { return 0x1; }
  * Address:	80441318
  * Size:	000110
  */
-void MemoryCardMgr::isErrorOccured()
+bool MemoryCardMgr::isErrorOccured()
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -1453,7 +1468,7 @@ lbl_804413FC:
  * Address:	80441428
  * Size:	0001A0
  */
-void MemoryCardMgr::fileOpen(CARDFileInfo*, MemoryCardMgr::ECardSlot, const char*)
+bool MemoryCardMgr::fileOpen(CARDFileInfo*, MemoryCardMgr::ECardSlot, const char*)
 {
 	/*
 	.loc_0x0:
@@ -2021,7 +2036,7 @@ lbl_80441A7C:
  * Address:	80441A9C
  * Size:	000204
  */
-void MemoryCardMgr::write(MemoryCardMgr::ECardSlot, const char*, unsigned char*, long, long)
+bool MemoryCardMgr::write(MemoryCardMgr::ECardSlot, const char*, unsigned char*, long, long)
 {
 	/*
 	.loc_0x0:
@@ -2252,7 +2267,7 @@ lbl_80441D3C:
  * Address:	80441D64
  * Size:	000280
  */
-void MemoryCardMgr::read(MemoryCardMgr::ECardSlot, const char*, unsigned char*, long, long)
+bool MemoryCardMgr::read(MemoryCardMgr::ECardSlot, const char*, unsigned char*, long, long)
 {
 	/*
 	.loc_0x0:
@@ -2714,7 +2729,7 @@ lbl_80442288:
  * Address:	804422A8
  * Size:	0000FC
  */
-void MemoryCardMgr::checkSpace(MemoryCardMgr::ECardSlot, int)
+s32 MemoryCardMgr::checkSpace(MemoryCardMgr::ECardSlot, int)
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -3030,7 +3045,7 @@ void MemoryCardMgr::doSetCardStat(CARDStat*)
  * Address:	80442690
  * Size:	0000F8
  */
-void MemoryCardMgr::calcCheckSum(void*, unsigned long)
+bool MemoryCardMgr::calcCheckSum(void*, unsigned long)
 {
 	/*
 	srwi     r5, r5, 1
@@ -3111,7 +3126,7 @@ lbl_80442780:
  * Address:	80442788
  * Size:	0000B8
  */
-void MemoryCardMgr::readCardSerialNo(unsigned long long*, MemoryCardMgr::ECardSlot)
+bool MemoryCardMgr::readCardSerialNo(unsigned long long*, MemoryCardMgr::ECardSlot)
 {
 	/*
 	.loc_0x0:
@@ -3199,11 +3214,7 @@ void MemoryCardMgr::setInsideStatusFlag(MemoryCardMgr::EInsideStatusFlag)
  * Address:	80442854
  * Size:	000008
  */
-void MemoryCardMgr::resetInsideStatusFlag(MemoryCardMgr::EInsideStatusFlag a1)
-{
-	// Generated from stw r4, 0xD4(r3)
-	_D4 = a1;
-}
+void MemoryCardMgr::resetInsideStatusFlag(MemoryCardMgr::EInsideStatusFlag a1) { mStatusFlag = a1; }
 
 /*
  * --INFO--

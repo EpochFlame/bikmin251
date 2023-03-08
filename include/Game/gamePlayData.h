@@ -369,7 +369,7 @@ struct PlayData : public CNode {
 	CaveSaveData m_caveSaveData;             // _4C
 	kh::Screen::MailSaveData m_mailSaveData; // _84
 	PikiContainer m_pikiContainer;           // _A8
-	PelletFirstMemory* _B0;                  // _B0
+	PelletFirstMemory* m_zukanStat;          // _B0
 	PelletCropMemory* m_mainCropMemory;      // _B4
 	PelletCropMemory* m_caveCropMemory;      // _B8
 	int _BC;                                 // _BC

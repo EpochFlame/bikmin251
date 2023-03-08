@@ -398,20 +398,7 @@ u32 OSWaitCond(OSThreadQueue* threadQueue, OSMutexObject* mutex)
  * Address:	800EFF2C
  * Size:	000020
  */
-void OSSignalCond(OSThreadQueue* threadQueue)
-{
-	/*
-	.loc_0x0:
-	  mflr      r0
-	  stw       r0, 0x4(r1)
-	  stwu      r1, -0x8(r1)
-	  bl        0x2AA0
-	  lwz       r0, 0xC(r1)
-	  addi      r1, r1, 0x8
-	  mtlr      r0
-	  blr
-	*/
-}
+void OSSignalCond(OSCond* cond) { OSWakeupThread(&cond->queue); }
 
 /*
  * --INFO--
