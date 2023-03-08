@@ -9,7 +9,7 @@ __declspec(section ".init") extern char _db_stack_end[];
 #define OS_DBINTERFACE_ADDR     0x40
 #define OS_BI2_DEBUG_ADDRESS    0x800000F4
 #define OS_BI2_DEBUGFLAG_OFFSET 0xC
-#define OS_BASE_CACHED          0x80000000
+//#define OS_BASE_CACHED          0x80000000
 #define PAD3_BUTTON_ADDR        0x800030E4
 #define OS_DVD_DEVICECODE       0x800030E6
 #define DEBUGFLAG_ADDR          0x800030E8
@@ -56,7 +56,7 @@ void __OSInitSram();
 void __OSInitSystemCall();
 void __OSInterruptInit();
 void __OSThreadInit();
-u64 __OSGetSystemTime();
+s64 __OSGetSystemTime();
 void DBPrintf(const char*, ...);
 BOOL __DBIsExceptionMarked(u8);
 void __OSUnhandledException(__OSException exception, OSContext* context, u32 dsisr, u32 dar);
@@ -112,7 +112,7 @@ static f64 ZeroF;
 static f32 ZeroPS[2];
 static BOOL AreWeInitialized = FALSE;
 static __OSExceptionHandler* OSExceptionTable;
-u64 __OSStartTime;
+s64 __OSStartTime;
 BOOL __OSInIPL;
 void* __OSSavedRegionStart;
 void* __OSSavedRegionEnd;
