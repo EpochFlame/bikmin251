@@ -110,6 +110,7 @@ struct JKRHeap : public JKRDisposer {
 	static void state_dumpDifference(const TState&, const TState&);
 	static JKRHeap* findFromRoot(void*);
 	static JKRHeapErrorHandler* setErrorHandler(JKRHeapErrorHandler*);
+	static JKRHeap* getCurrentHeap() { return sCurrentHeap; }
 	/////////////// METHODS END
 
 	static u8 sDefaultFillFlag;

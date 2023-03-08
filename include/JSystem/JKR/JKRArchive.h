@@ -9,8 +9,13 @@
 struct JKRArcFinder;
 
 struct JKRArchive : public JKRFileLoader {
-	enum EMountMode { EMM_Unk0 = 0, EMM_Mem, EMM_Aram, EMM_Dvd, EMM_Comp = 4 };
-	enum EMountDirection { EMD_Unk0 = 0, EMD_Unk1, EMD_Unk2 };
+	enum EMountMode { EMM_Unk0 = 0, EMM_Mem = 1, EMM_Aram = 2, EMM_Dvd = 3, EMM_Comp = 4 };
+
+	enum EMountDirection {
+		EMD_Unk0 = 0,
+		EMD_Head = 1,
+		EMD_Tail = 2,
+	};
 
 	struct CArcName {
 		/**

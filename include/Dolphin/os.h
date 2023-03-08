@@ -8,6 +8,19 @@
 extern "C" {
 #endif // ifdef __cplusplus
 
+///// USEFUL MACROS/DEFINES //////
+// Macro for making clear things are addresses.
+// if-def for future proofing and so VSCode doesn't yell.
+#ifdef __MWERKS__
+#define AT_ADDRESS(addr) : (addr)
+#else
+#define AT_ADDRESS(addr)
+#endif
+
+// Defines for cached and uncached memory.
+#define OS_BASE_CACHED   (0x80000000)
+#define OS_BASE_UNCACHED (0xC0000000)
+
 #define OSCachedToPhysical(paddr) ((void*)((u32)(paddr) + 0x80000000))
 
 #define OS_CACHED_REGION_PREFIX   0x8000
@@ -28,7 +41,7 @@ void OSPanic(const char* file, int line, const char* message, ...);
 typedef u8 __OSException;
 typedef u16 OSError;
 typedef s16 __OSInterrupt;
-typedef u64 OSTime;
+//typedef u64 OSTime;
 
 #define OS_ERROR_SYSTEM_RESET       0
 #define OS_ERROR_MACHINE_CHECK      1
@@ -416,7 +429,7 @@ void LCFlushQueue(void);
 
 #define LCGetBase() ((void*)LC_BASE)
 
-u64 OSGetTime();
+s64 OSGetTime();
 u32 OSGetTick();
 
 #define OS_SYS_CALL_HANDLER  ((void*)0x80000C00)
@@ -461,6 +474,10 @@ struct OSMutexQueue {
 struct OSMutexLink {
 	OSMutex* next;
 	OSMutex* prev;
+};
+
+struct OSCond {
+	OSThreadQueue queue; // _00
 };
 
 struct OSThread {
@@ -552,7 +569,7 @@ void __OSUnlockAllMutex(OSThread*);
 BOOL OSTryLockMutex(OSMutexObject*);
 void OSInitCond(OSThreadQueue*);
 u32 OSWaitCond(OSThreadQueue*, OSMutexObject*);
-void OSSignalCond(OSThreadQueue*);
+void OSSignalCond(OSCond*);
 
 void __OSUnlockSramEx(int);
 u8* __OSLockSramEx(void);
@@ -620,6 +637,58 @@ inline void OSInitFastCast()
 		mtspr 0x395, r3
 	}
 }
+
+////////// CLOCK UTILS ///////////
+// Time and tick typedefs for convenience.
+typedef s64 OSTime;
+typedef u32 OSTick;
+
+extern OSTime __OSStartTime;
+
+// Clock speeds.
+u32 __OSBusClock AT_ADDRESS(OS_BASE_CACHED | 0x00F8);
+u32 __OSCoreClock AT_ADDRESS(OS_BASE_CACHED | 0x00FC);
+
+OSTime __OSGetSystemTime();
+
+#define OS_BUS_CLOCK   __OSBusClock
+#define OS_CORE_CLOCK  __OSCoreClock
+#define OS_TIMER_CLOCK (OS_BUS_CLOCK / 4)
+
+// Tick conversions.
+#define OSTicksToCycles(ticks)       (((ticks) * ((OS_CORE_CLOCK * 2) / OS_TIMER_CLOCK)) / 2)
+#define OSTicksToSeconds(ticks)      ((ticks) / OS_TIMER_CLOCK)
+#define OSTicksToMilliseconds(ticks) ((ticks) / (OS_TIMER_CLOCK / 1000))
+#define OSTicksToMicroseconds(ticks) (((ticks)*8) / (OS_TIMER_CLOCK / 125000))
+#define OSTicksToNanoseconds(ticks)  (((ticks)*8000) / (OS_TIMER_CLOCK / 125000))
+#define OSSecondsToTicks(sec)        ((sec)*OS_TIMER_CLOCK)
+#define OSMillisecondsToTicks(msec)  ((msec) * (OS_TIMER_CLOCK / 1000))
+#define OSMicrosecondsToTicks(usec)  (((usec) * (OS_TIMER_CLOCK / 125000)) / 8)
+#define OSNanosecondsToTicks(nsec)   (((nsec) * (OS_TIMER_CLOCK / 125000)) / 8000)
+
+#define OSDiffTick(tick1, tick0) ((s32)(tick1) - (s32)(tick0))
+
+// Time-related getters.
+OSTick OSGetTick();
+OSTime OSGetTime();
+
+// Struct for 'calendar time'.
+typedef struct OSCalendarTime {
+	int sec;  // _00, secs after minute
+	int min;  // _04, mins after hour
+	int hour; // _08, hours since midnight
+	int mday; // _0C, day of month
+	int mon;  // _10, month since Jan
+	int year; // _14, years since 0000
+	int wday; // _18, days since Sunday
+	int yday; // _1C, days since Jan 1
+	int msec; // _20, millisecs after sec
+	int usec; // _24, microsecs after millisec
+} OSCalendarTime;
+
+// Calendar time functions.
+OSTime OSCalendarTimeToTicks(OSCalendarTime* timeDate);
+void OSTicksToCalendarTime(OSTime ticks, OSCalendarTime* timeDate);
 
 #ifdef __cplusplus
 };

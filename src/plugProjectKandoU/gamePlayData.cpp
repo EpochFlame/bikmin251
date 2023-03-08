@@ -466,7 +466,7 @@ void PelletFirstMemory::losePellet(Game::BasePelletMgr* mgr, int id)
 bool PlayData::isCompletePelletTrigger()
 {
 	// has payed debt, has not seen all treasures ending before, has all treasures
-	if (isStoryFlag(STORY_DebtPaid) && !isStoryFlag(STORY_AllTreasuresCollected) && _B0->completeAll()) {
+	if (isStoryFlag(STORY_DebtPaid) && !isStoryFlag(STORY_AllTreasuresCollected) && m_zukanStat->completeAll()) {
 		return true;
 	}
 
@@ -645,7 +645,7 @@ PlayData::PlayData()
 	int items     = PelletList::Mgr::getCount(PelletList::ITEM);
 	int carcasses = PelletList::Mgr::getCount(PelletList::CARCASS);
 
-	_B0              = new PelletFirstMemory(treasures, items, carcasses);
+	m_zukanStat              = new PelletFirstMemory(treasures, items, carcasses);
 	m_mainCropMemory = new PelletCropMemory(treasures, items, carcasses);
 	m_caveCropMemory = new PelletCropMemory(treasures, items, carcasses);
 	m_demoFlags.create(57, nullptr);
@@ -1347,7 +1347,7 @@ void PlayData::reset()
 	initCaveOtakaras();
 	m_mainCropMemory->clear();
 	m_caveCropMemory->clear();
-	_B0->clear();
+	m_zukanStat->clear();
 	_BC = 0;
 	for (int i = 0; i < stageList->m_courseCount; i++) {
 		m_groundOtakaraCollected[i]    = 0;
@@ -2074,7 +2074,7 @@ void PlayData::getCurrentCave(ID32& outCaveID, int& outCaveFloor)
  */
 bool PlayData::firstCarryPellet(Game::Pellet* pellet)
 {
-	return _B0->firstCarryPellet(pellet);
+	return m_zukanStat->firstCarryPellet(pellet);
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -2096,14 +2096,14 @@ bool PlayData::firstCarryPellet(Game::Pellet* pellet)
  * Address:	801E7594
  * Size:	000030
  */
-void PlayData::obtainPellet(BasePelletMgr* mgr, int p2) { _B0->obtainPellet(mgr, p2); }
+void PlayData::obtainPellet(BasePelletMgr* mgr, int p2) { m_zukanStat->obtainPellet(mgr, p2); }
 
 /*
  * --INFO--
  * Address:	801E75C4
  * Size:	000030
  */
-void PlayData::losePellet(Game::BasePelletMgr* mgr, int p2) { _B0->losePellet(mgr, p2); }
+void PlayData::losePellet(Game::BasePelletMgr* mgr, int p2) { m_zukanStat->losePellet(mgr, p2); }
 
 /*
  * --INFO--
@@ -2150,7 +2150,7 @@ void PlayData::obtainPellet_Main(Game::Pellet* pellet)
 	}
 
 	if (mgr) {
-		_B0->obtainPellet(mgr, pellet->getConfigIndex());
+		m_zukanStat->obtainPellet(mgr, pellet->getConfigIndex());
 	}
 	m_pokoCount += pellet->m_config->m_params.m_money.m_data;
 }
@@ -2215,14 +2215,14 @@ bool PlayData::isPelletEverGot(Pellet*) { }
 bool PlayData::isPelletEverGot(unsigned char type, unsigned char id)
 {
 	if (type == PELTYPE_UPGRADE) {
-		bool check = (id < _B0->m_carcass.m_numKinds);
+		bool check = (id < m_zukanStat->m_carcass.m_numKinds);
 		P2ASSERTLINE(330, check);
-		u8* kinds = _B0->m_item(id);
+		u8* kinds = m_zukanStat->m_item(id);
 		return (*kinds != 0);
 	} else if (type == PELTYPE_TREASURE) {
-		bool check = (id < _B0->m_carcass.m_numKinds);
+		bool check = (id < m_zukanStat->m_carcass.m_numKinds);
 		P2ASSERTLINE(330, check);
-		u8* kinds = _B0->m_otakara(id);
+		u8* kinds = m_zukanStat->m_otakara(id);
 		return (*kinds != 0);
 	} else {
 		JUT_PANICLINE(1406, "otakara or item !\n");
@@ -2323,10 +2323,10 @@ bool PlayData::isPelletZukanVisible(int id)
 	if (config) {
 		int index = config->m_params.m_index;
 
-		bool check = (index >= 0 && index < _B0->m_otakara.m_numKinds);
+		bool check = (index >= 0 && index < m_zukanStat->m_otakara.m_numKinds);
 		P2ASSERTLINE(330, check);
 
-		u8* kinds = _B0->m_otakara(index);
+		u8* kinds = m_zukanStat->m_otakara(index);
 		return (*kinds & 2);
 	} else {
 		list   = PelletList::Mgr::getConfigList(PelletList::ITEM);
@@ -2334,10 +2334,10 @@ bool PlayData::isPelletZukanVisible(int id)
 		if (config) {
 			int index = config->m_params.m_index;
 
-			bool check = (index >= 0 && index < _B0->m_item.m_numKinds);
+			bool check = (index >= 0 && index < m_zukanStat->m_item.m_numKinds);
 			P2ASSERTLINE(330, check);
 
-			u8* kinds = _B0->m_item(index);
+			u8* kinds = m_zukanStat->m_item(index);
 			return (*kinds & 2);
 		}
 	}
@@ -2446,10 +2446,10 @@ bool PlayData::isPelletZukanWhatsNew(int id)
 	if (config) {
 		int index = config->m_params.m_index;
 
-		bool check = (index >= 0 && index < _B0->m_otakara.m_numKinds);
+		bool check = (index >= 0 && index < m_zukanStat->m_otakara.m_numKinds);
 		P2ASSERTLINE(330, check);
 
-		u8* kinds = _B0->m_otakara(index);
+		u8* kinds = m_zukanStat->m_otakara(index);
 		return (*kinds & 2 && !(*kinds & 4));
 	} else {
 		list   = PelletList::Mgr::getConfigList(PelletList::ITEM);
@@ -2457,10 +2457,10 @@ bool PlayData::isPelletZukanWhatsNew(int id)
 		if (config) {
 			int index = config->m_params.m_index;
 
-			bool check = (index >= 0 && index < _B0->m_item.m_numKinds);
+			bool check = (index >= 0 && index < m_zukanStat->m_item.m_numKinds);
 			P2ASSERTLINE(330, check);
 
-			u8* kinds = _B0->m_item(index);
+			u8* kinds = m_zukanStat->m_item(index);
 			return (*kinds & 2 && !(*kinds & 4));
 		}
 	}
@@ -2568,20 +2568,20 @@ lbl_801E7EE4:
  */
 bool PlayData::hasPelletZukanWhatsNew()
 {
-	for (int i = 0; i < _B0->m_otakara.m_numKinds; i++) {
-		bool check = (i >= 0 && i < _B0->m_otakara.m_numKinds);
+	for (int i = 0; i < m_zukanStat->m_otakara.m_numKinds; i++) {
+		bool check = (i >= 0 && i < m_zukanStat->m_otakara.m_numKinds);
 		P2ASSERTLINE(330, check);
 
-		u8* kinds = _B0->m_otakara(i);
+		u8* kinds = m_zukanStat->m_otakara(i);
 		if (!(*kinds & 4))
 			return true;
 	}
 
-	for (int i = 0; i < _B0->m_item.m_numKinds; i++) {
-		bool check = (i >= 0 && i < _B0->m_item.m_numKinds);
+	for (int i = 0; i < m_zukanStat->m_item.m_numKinds; i++) {
+		bool check = (i >= 0 && i < m_zukanStat->m_item.m_numKinds);
 		P2ASSERTLINE(330, check);
 
-		u8* kinds = _B0->m_item(i);
+		u8* kinds = m_zukanStat->m_item(i);
 		if (!(*kinds & 4))
 			return true;
 	}
@@ -2739,22 +2739,22 @@ lbl_801E809C:
  */
 void PlayData::setPelletZukanOutOfDateAll()
 {
-	for (int i = 0; i < _B0->m_item.m_numKinds; i++) {
-		bool check = (i >= 0 && i < _B0->m_otakara.m_numKinds);
+	for (int i = 0; i < m_zukanStat->m_item.m_numKinds; i++) {
+		bool check = (i >= 0 && i < m_zukanStat->m_otakara.m_numKinds);
 		P2ASSERTLINE(330, check);
-		if (_B0->m_otakara.m_kinds[i]) {
-			check = (i >= 0 && i < _B0->m_otakara.m_numKinds);
+		if (m_zukanStat->m_otakara.m_kinds[i]) {
+			check = (i >= 0 && i < m_zukanStat->m_otakara.m_numKinds);
 			P2ASSERTLINE(330, check);
-			_B0->m_otakara.m_kinds[i] |= 4;
+			m_zukanStat->m_otakara.m_kinds[i] |= 4;
 		}
 	}
-	for (int i = 0; i < _B0->m_item.m_numKinds; i++) {
-		bool check = (i >= 0 && i < _B0->m_item.m_numKinds);
+	for (int i = 0; i < m_zukanStat->m_item.m_numKinds; i++) {
+		bool check = (i >= 0 && i < m_zukanStat->m_item.m_numKinds);
 		P2ASSERTLINE(330, check);
-		if (_B0->m_item.m_kinds[i]) {
-			check = (i >= 0 && i < _B0->m_otakara.m_numKinds);
+		if (m_zukanStat->m_item.m_kinds[i]) {
+			check = (i >= 0 && i < m_zukanStat->m_otakara.m_numKinds);
 			P2ASSERTLINE(330, check);
-			_B0->m_item.m_kinds[i] |= 4;
+			m_zukanStat->m_item.m_kinds[i] |= 4;
 		}
 	}
 	/*

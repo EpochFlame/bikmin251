@@ -35,7 +35,7 @@ DvdStatus::DvdStatus()
 bool DvdStatus::isErrorOccured()
 {
 	bool retval = false;
-	if (!((m_fader == nullptr) || (sys->m_cardMgr->_E4 & 1))) {
+	if (!((m_fader == nullptr) || (sys->m_cardMgr->mFlags.typeView & 1))) {
 		retval = true;
 	}
 	return retval;
