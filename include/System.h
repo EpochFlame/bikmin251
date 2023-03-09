@@ -52,7 +52,12 @@ struct Mgr;
 }
 } // namespace Game
 
-struct System {
+struct System : public OSMutex {
+	enum ERenderMode {
+		RENDERMODE_NULL = 0,
+	};
+
+#define SINGLE_FRAME_LENGTH (1.0f / 60.0f)
 	enum LanguageID { LANG_ENGLISH = 0, LANG_FRENCH, LANG_GERMAN, LANG_HOL_UNUSED, LANG_ITALIAN, LANG_JAPANESE, LANG_SPANISH };
 	struct FragmentationChecker {
 		FragmentationChecker(char*, bool);
@@ -118,8 +123,8 @@ struct System {
 	JKRHeap* mBackupHeap;                 // _18
 	u32 mCpuRetraceCount;                 // _1C
 	u32 mCpuLockCount;                    // _20
-	Graphics* m_gfx;                       // _24
-	SysTimers* m_timers;                   // _28
+	Graphics* m_gfx;                      // _24
+	SysTimers* m_timers;                  // _28
 	u32 _2C;                              // _2C
 	u32 _30;                              // _30
 	u32 _34;                              // _34
@@ -128,9 +133,9 @@ struct System {
 	struct DvdThread* mDvdThread;         // _40
 	struct ResetManager* mResetMgr;       // _44
 	struct DvdStatus* mDvdStatus;         // _48
-	struct JFWDisplay* m_display;          // _4C
+	struct JFWDisplay* m_display;         // _4C
 	HeapStatus* mHeapStatus;              // _50
-	f32 m_deltaTime;                       // _54
+	f32 m_deltaTime;                      // _54
 	struct JKRTask* mTask;                // _58
 	Game::MemoryCard::Mgr* m_cardMgr;     // _5C
 	Game::CommonSaveData::Mgr* mPlayData; // _60
