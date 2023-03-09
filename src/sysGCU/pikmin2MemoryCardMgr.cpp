@@ -2063,16 +2063,15 @@ bool Mgr::resetError()
 void Mgr::doMakeHeader(u8* param_1)
 {
 	OSCalendarTime calendar;
-	snprintf((char*)(param_1 + 0x1800), 0x20, "PIKMIN 2");
+	snprintf((char*)(param_1 + 0x1800), 0x20, "BIKMIN 269");
 	OSTime time = OSGetTime();
 	OSTicksToCalendarTime(time, &calendar);
-	snprintf((char*)(param_1 + 0x1820), 0x20, "%02d/%02d/%04d %02d:%02d:%02d", calendar.mon + 1, calendar.mday, calendar.year,
-	         calendar.hour, calendar.min, calendar.sec);
+	snprintf((char*)(param_1 + 0x1820), 0x20, "Everywhere, frogs.");
 	if (mBannerImageFile && mIconImageFile) {
 		memcpy(param_1, mBannerImageFile, 0xe00);
 		memcpy(param_1 + 0xe00, mIconImageFile, 0x400);
-		memcpy(param_1 + 0x1200, mIconImageFile, 0x400);
-		memcpy(param_1 + 0x1600, (void*)((u32)mIconImageFile + 0x400), 0x200);
+		memcpy(param_1 + 0x1200, (void*)((u32)mIconImageFile + 0x400), 0x400);
+		memcpy(param_1 + 0x1600, (void*)((u32)mIconImageFile + 0x800), 0x200);
 	} else {
 		memset(param_1, 0, 0xc00);
 		memset(param_1 + 0xc00, 0xff, 0x200);
