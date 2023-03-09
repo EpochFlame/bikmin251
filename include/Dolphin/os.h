@@ -41,7 +41,7 @@ void OSPanic(const char* file, int line, const char* message, ...);
 typedef u8 __OSException;
 typedef u16 OSError;
 typedef s16 __OSInterrupt;
-//typedef u64 OSTime;
+// typedef u64 OSTime;
 
 #define OS_ERROR_SYSTEM_RESET       0
 #define OS_ERROR_MACHINE_CHECK      1

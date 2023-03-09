@@ -1151,7 +1151,7 @@ GC:=\
 	$(BUILD_DIR)/asm/sysGCU/sysShapeModel.o\
 	$(BUILD_DIR)/asm/sysGCU/windowMessage.o\
 	$(BUILD_DIR)/asm/sysGCU/memoryCard.o\
-	$(BUILD_DIR)/src/sysGCU/pikmin2MemoryCardMgr.o\
+	$(BUILD_DIR)/asm/sysGCU/pikmin2MemoryCardMgr.o\
 	$(BUILD_DIR)/asm/sysGCU/commonSaveData.o\
 	$(BUILD_DIR)/asm/sysGCU/bootSection.o\
 	$(BUILD_DIR)/asm/sysGCU/titleSection.o\

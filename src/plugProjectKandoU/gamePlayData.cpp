@@ -645,7 +645,7 @@ PlayData::PlayData()
 	int items     = PelletList::Mgr::getCount(PelletList::ITEM);
 	int carcasses = PelletList::Mgr::getCount(PelletList::CARCASS);
 
-	m_zukanStat              = new PelletFirstMemory(treasures, items, carcasses);
+	m_zukanStat      = new PelletFirstMemory(treasures, items, carcasses);
 	m_mainCropMemory = new PelletCropMemory(treasures, items, carcasses);
 	m_caveCropMemory = new PelletCropMemory(treasures, items, carcasses);
 	m_demoFlags.create(57, nullptr);
