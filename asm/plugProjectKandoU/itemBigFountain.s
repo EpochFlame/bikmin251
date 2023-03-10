@@ -1549,6 +1549,8 @@ interactGotKey__Q34Game15ItemBigFountain4ItemFRQ24Game14InteractGotKey:
 /* 801ECA00 001E9940  93 E3 01 94 */	stw r31, 0x194(r3)
 /* 801ECA04 001E9944  80 6D 9B 54 */	lwz r3, moviePlayer__4Game@sda21(r13)
 /* 801ECA08 001E9948  48 23 FF C9 */	bl play__Q24Game11MoviePlayerFRQ24Game12MoviePlayArg
+mr r3, r31
+bl StopHoleTrap__FPQ24Game8Creature
 /* 801ECA0C 001E994C  38 60 00 01 */	li r3, 1
 /* 801ECA10 001E9950  48 00 00 08 */	b .L_801ECA18
 .L_801ECA14:

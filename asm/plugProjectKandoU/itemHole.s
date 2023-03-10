@@ -1001,6 +1001,8 @@ interactGotKey__Q34Game8ItemHole4ItemFRQ24Game14InteractGotKey:
 /* 801D1DE4 001CED24  93 E3 01 94 */	stw r31, 0x194(r3)
 /* 801D1DE8 001CED28  80 6D 9B 54 */	lwz r3, moviePlayer__4Game@sda21(r13)
 /* 801D1DEC 001CED2C  48 25 AB E5 */	bl play__Q24Game11MoviePlayerFRQ24Game12MoviePlayArg
+mr r3, r31
+bl StopHoleTrap__FPQ24Game8Creature
 /* 801D1DF0 001CED30  38 60 00 01 */	li r3, 1
 /* 801D1DF4 001CED34  48 00 00 08 */	b .L_801D1DFC
 .L_801D1DF8:
@@ -1742,7 +1744,7 @@ onLoadResources__Q34Game8ItemHole3MgrFv:
 /* 801D2854 001CF794  90 7D 00 8C */	stw r3, 0x8c(r29)
 /* 801D2858 001CF798  38 61 00 08 */	addi r3, r1, 8
 /* 801D285C 001CF79C  38 80 00 01 */	li r4, 1
-/* 801D2860 001CF7A0  38 A0 00 02 */	li r5, 2
+/* 801D2860 001CF7A0  38 A0 00 02 */	li r5, 0
 /* 801D2864 001CF7A4  38 C0 00 01 */	li r6, 1
 /* 801D2868 001CF7A8  48 24 9B F1 */	bl setCode__Q27MapCode4CodeFiib
 /* 801D286C 001CF7AC  80 7D 00 88 */	lwz r3, 0x88(r29)
@@ -1750,7 +1752,7 @@ onLoadResources__Q34Game8ItemHole3MgrFv:
 /* 801D2874 001CF7B4  4B F6 0E 81 */	bl setMapCodeAll__8PlatformFRQ27MapCode4Code
 /* 801D2878 001CF7B8  38 61 00 08 */	addi r3, r1, 8
 /* 801D287C 001CF7BC  38 80 00 01 */	li r4, 1
-/* 801D2880 001CF7C0  38 A0 00 01 */	li r5, 1
+/* 801D2880 001CF7C0  38 A0 00 01 */	li r5, 0
 /* 801D2884 001CF7C4  38 C0 00 01 */	li r6, 1
 /* 801D2888 001CF7C8  48 24 9B D1 */	bl setCode__Q27MapCode4CodeFiib
 /* 801D288C 001CF7CC  80 7D 00 8C */	lwz r3, 0x8c(r29)

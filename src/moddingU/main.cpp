@@ -19,14 +19,12 @@
 #include "Game/gamePlayData.h"
 #include "mod.h"
 #include "og/Screen/PikminCounter.h"
+#include "Game/Navi.h"
+
 
 bool isTreasureCutscene;
 
 namespace Game {
-
-struct Navi {
-	void procActionButton();
-};
 
 struct NaviWalkState {
 	void execAI(Navi*);
@@ -187,6 +185,38 @@ bool shouldDrawTreasure(Radar::Point* point)
 		return true;
 	}
 	return false;
+}
+
+
+void StopHoleTrap(Game::Creature* hole) {
+	float launch = (hole->getObjType() == OBJTYPE_Hole) ? 30 : 75;
+	Sys::Sphere boundingSphere;
+	hole->getBoundingSphere(boundingSphere);
+	Game::CellIteratorArg cellArg = boundingSphere;
+	Game::CellIterator iCell = cellArg;
+	CI_LOOP(iCell) {
+		
+		Game::CellObject* obj = *iCell;
+		if (obj->isPiki() || obj->isNavi()) {
+			Game::FakePiki* piki = static_cast<Game::FakePiki*>(obj);
+			piki->m_collisionPosition.y += launch;
+			piki->m_position2.y += launch;
+			piki->m_shadowParam.m_position.y += launch;
+			piki->m_shadowParam.m_boundingSphere.m_position.y += launch;
+		}
+		if (obj->getObjType() == OBJTYPE_Pellet) {
+			Game::Pellet* pellet = static_cast<Game::Pellet*>(obj);
+			pellet->m_pelletPosition.y += launch;
+			pellet->m_collisionPosition.y += launch;
+			pellet->m_lodSphere.m_position.y += launch;
+		}
+		if (obj->getObjType() == OBJTYPE_Teki) {
+			Game::EnemyBase* enemy = static_cast<Game::EnemyBase*>(obj);
+			enemy->m_collisionPosition.y += launch;
+			enemy->m_position.y += launch;
+		}
+		
+	}
 }
 
 namespace mod {
