@@ -21,7 +21,6 @@
 #include "og/Screen/PikminCounter.h"
 #include "Game/Navi.h"
 
-
 bool isTreasureCutscene;
 
 namespace Game {
@@ -187,15 +186,16 @@ bool shouldDrawTreasure(Radar::Point* point)
 	return false;
 }
 
-
-void StopHoleTrap(Game::Creature* hole) {
+void StopHoleTrap(Game::Creature* hole)
+{
 	float launch = (hole->getObjType() == OBJTYPE_Hole) ? 30 : 75;
 	Sys::Sphere boundingSphere;
 	hole->getBoundingSphere(boundingSphere);
 	Game::CellIteratorArg cellArg = boundingSphere;
-	Game::CellIterator iCell = cellArg;
-	CI_LOOP(iCell) {
-		
+	Game::CellIterator iCell      = cellArg;
+	CI_LOOP(iCell)
+	{
+
 		Game::CellObject* obj = *iCell;
 		if (obj->isPiki() || obj->isNavi()) {
 			Game::FakePiki* piki = static_cast<Game::FakePiki*>(obj);
@@ -215,7 +215,6 @@ void StopHoleTrap(Game::Creature* hole) {
 			enemy->m_collisionPosition.y += launch;
 			enemy->m_position.y += launch;
 		}
-		
 	}
 }
 
