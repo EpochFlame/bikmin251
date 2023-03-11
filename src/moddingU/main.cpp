@@ -264,7 +264,7 @@ bool Game::InteractTroll::actPiki(Game::Piki* piki)
 		return false;
 	}
 	int pikiKind = piki->m_pikiKind;
-	if (pikiKind == Blue) {
+	if (pikiKind != Blue) {
 		efx::createSimpleChiru(*piki->m_effectsObj->_0C, piki->m_effectsObj->_08);
 		piki->startSound(PSSE_PK_FLOWER_VOICE, true);
 		piki->m_happaKind = Flower;
@@ -276,4 +276,33 @@ bool Game::InteractTroll::actPiki(Game::Piki* piki)
 	BlowStateArg witherArg(m_direction, 1.0f, false, 6, m_creature);
 	piki->m_fsm->transit(piki, PIKISTATE_Blow, &witherArg);
 	return true;
+}
+
+bool Game::InteractPress::actPiki(Game::Piki* piki)
+{
+	if (!(gameSystem->m_flags & 0x20) && gameSystem->m_inCave) {
+		return false;
+	}
+	if (piki->m_currentState->invincible(piki)) {
+		return false;
+	}
+	int pikiKind = piki->m_pikiKind;
+	if (pikiKind == Bulbmin) {
+		piki->m_happaKind = Flower;
+		InteractBury buryOrange (m_creature, m_damage);
+		piki->stimulate(buryOrange);
+		return false;
+	}
+	if (piki->m_currentState->pressable()) {
+		if (m_creature->isTeki()) {
+			EnemyBase* teki = static_cast<EnemyBase*>(m_creature);
+			piki->setTekiKillID(teki->getEnemyTypeID());
+		} else {
+			piki->m_tekiKillID = -1;
+		}
+		piki->m_fsm->transit(piki, PIKISTATE_Pressed, nullptr);
+		piki->startSound(PSSE_PK_VC_PRESSED, false); // why isn't this in PikiPressedState's init?
+		return true;
+	}
+	return false;
 }
