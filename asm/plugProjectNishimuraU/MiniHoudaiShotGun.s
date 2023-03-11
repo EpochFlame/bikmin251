@@ -777,11 +777,11 @@ update__Q34Game10MiniHoudai21MiniHoudaiShotGunNodeFv:
 .L_802EE5E4:
 /* 802EE5E4 002EB524  81 1C 00 1C */	lwz r8, 0x1c(r28)
 /* 802EE5E8 002EB528  3C A0 80 4B */	lis r5, __vt__Q24Game11Interaction@ha
-/* 802EE5EC 002EB52C  3C 80 80 4B */	lis r4, __vt__Q24Game12InteractWind@ha
+/* 802EE5EC 002EB52C  3C 80 80 4B */	lis r4, __vt__Q24Game13InteractTroll@ha
 /* 802EE5F0 002EB530  3C 60 80 4B */	lis r3, __vt__Q24Game12InteractBomb@ha
 /* 802EE5F4 002EB534  80 E8 00 C0 */	lwz r7, 0xc0(r8)
 /* 802EE5F8 002EB538  38 C5 A3 00 */	addi r6, r5, __vt__Q24Game11Interaction@l
-/* 802EE5FC 002EB53C  38 A4 49 74 */	addi r5, r4, __vt__Q24Game12InteractWind@l
+/* 802EE5FC 002EB53C  38 A4 49 74 */	addi r5, r4, __vt__Q24Game13InteractTroll@l
 /* 802EE600 002EB540  38 03 49 2C */	addi r0, r3, __vt__Q24Game12InteractBomb@l
 /* 802EE604 002EB544  C0 07 06 04 */	lfs f0, 0x604(r7)
 /* 802EE608 002EB548  7F A3 EB 78 */	mr r3, r29
@@ -811,12 +811,12 @@ update__Q34Game10MiniHoudai21MiniHoudaiShotGunNodeFv:
 /* 802EE664 002EB5A4  7C 1D 28 40 */	cmplw r29, r5
 /* 802EE668 002EB5A8  41 82 00 68 */	beq .L_802EE6D0
 /* 802EE66C 002EB5AC  3C 60 80 4B */	lis r3, __vt__Q24Game11Interaction@ha
-/* 802EE670 002EB5B0  3C 80 80 4B */	lis r4, __vt__Q24Game12InteractWind@ha
+/* 802EE670 002EB5B0  3C 80 80 4B */	lis r4, __vt__Q24Game13InteractTroll@ha
 /* 802EE674 002EB5B4  38 03 A3 00 */	addi r0, r3, __vt__Q24Game11Interaction@l
 /* 802EE678 002EB5B8  C0 62 EC E8 */	lfs f3, lbl_8051D048@sda21(r2)
 /* 802EE67C 002EB5BC  90 01 00 A4 */	stw r0, 0xa4(r1)
 /* 802EE680 002EB5C0  3C 60 80 51 */	lis r3, "zero__10Vector3<f>"@ha
-/* 802EE684 002EB5C4  38 84 49 74 */	addi r4, r4, __vt__Q24Game12InteractWind@l
+/* 802EE684 002EB5C4  38 84 49 74 */	addi r4, r4, __vt__Q24Game13InteractTroll@l
 /* 802EE688 002EB5C8  C0 43 41 E4 */	lfs f2, "zero__10Vector3<f>"@l(r3)
 /* 802EE68C 002EB5CC  3C 60 80 4B */	lis r3, __vt__Q24Game12InteractBomb@ha
 /* 802EE690 002EB5D0  C0 3F 00 04 */	lfs f1, 4(r31)
@@ -924,9 +924,9 @@ update__Q34Game10MiniHoudai21MiniHoudaiShotGunNodeFv:
 /* 802EE804 002EB744  ED EF 04 B2 */	fmuls f15, f15, f18
 /* 802EE808 002EB748  C0 02 EC C0 */	lfs f0, lbl_8051D020@sda21(r2)
 /* 802EE80C 002EB74C  EE 10 04 B2 */	fmuls f16, f16, f18
-/* 802EE810 002EB750  3C 60 80 4B */	lis r3, __vt__Q24Game12InteractWind@ha
+/* 802EE810 002EB750  3C 60 80 4B */	lis r3, __vt__Q24Game13InteractTroll@ha
 /* 802EE814 002EB754  90 01 00 8C */	stw r0, 0x8c(r1)
-/* 802EE818 002EB758  38 03 49 74 */	addi r0, r3, __vt__Q24Game12InteractWind@l
+/* 802EE818 002EB758  38 03 49 74 */	addi r0, r3, __vt__Q24Game13InteractTroll@l
 /* 802EE81C 002EB75C  7F A3 EB 78 */	mr r3, r29
 /* 802EE820 002EB760  38 81 00 8C */	addi r4, r1, 0x8c
 /* 802EE824 002EB764  90 A1 00 90 */	stw r5, 0x90(r1)
@@ -968,10 +968,10 @@ update__Q34Game10MiniHoudai21MiniHoudaiShotGunNodeFv:
 /* 802EE8B0 002EB7F0  80 BC 00 1C */	lwz r5, 0x1c(r28)
 /* 802EE8B4 002EB7F4  3C 60 80 4B */	lis r3, __vt__Q24Game11Interaction@ha
 /* 802EE8B8 002EB7F8  38 03 A3 00 */	addi r0, r3, __vt__Q24Game11Interaction@l
-/* 802EE8BC 002EB7FC  3C 80 80 4B */	lis r4, __vt__Q24Game12InteractWind@ha
+/* 802EE8BC 002EB7FC  3C 80 80 4B */	lis r4, __vt__Q24Game13InteractTroll@ha
 /* 802EE8C0 002EB800  90 01 00 74 */	stw r0, 0x74(r1)
 /* 802EE8C4 002EB804  3C 60 80 51 */	lis r3, "zero__10Vector3<f>"@ha
-/* 802EE8C8 002EB808  38 84 49 74 */	addi r4, r4, __vt__Q24Game12InteractWind@l
+/* 802EE8C8 002EB808  38 84 49 74 */	addi r4, r4, __vt__Q24Game13InteractTroll@l
 /* 802EE8CC 002EB80C  C0 43 41 E4 */	lfs f2, "zero__10Vector3<f>"@l(r3)
 /* 802EE8D0 002EB810  C0 62 EC E8 */	lfs f3, lbl_8051D048@sda21(r2)
 /* 802EE8D4 002EB814  3C 60 80 4B */	lis r3, __vt__Q24Game12InteractBomb@ha

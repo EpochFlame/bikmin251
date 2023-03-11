@@ -604,6 +604,18 @@ struct InteractHanaChirashi : public InteractWind {
 	// _00		= VTBL
 	// _00-_18	= InteractWind
 };
+
+struct InteractTroll : public InteractWind {
+	inline InteractTroll(Creature* parent, f32 force, Vector3f* direction)
+	    : InteractWind(parent, force, direction)
+	{
+	}
+
+	virtual bool actPiki(Piki*); // _0C
+
+	// _00		= VTBL
+	// _00-_18	= InteractWind
+};
 ///////////////////////////////////////
 } // namespace Game
 

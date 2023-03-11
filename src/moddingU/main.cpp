@@ -15,11 +15,13 @@
 #include "SoundID.h"
 #include "PSSystem/PSSystemIF.h"
 #include "efx/TSimple.h"
+#include "efx/TPk.h"
 #include "ObjectTypes.h"
 #include "Game/gamePlayData.h"
 #include "mod.h"
 #include "og/Screen/PikminCounter.h"
 #include "Game/Navi.h"
+#include "Game/PikiState.h"
 
 bool isTreasureCutscene;
 
@@ -255,3 +257,23 @@ void updateDispMember()
 }
 
 }; // namespace mod
+
+bool Game::InteractTroll::actPiki(Game::Piki* piki)
+{
+	if (piki->m_currentState->invincible(piki)) {
+		return false;
+	}
+	int pikiKind = piki->m_pikiKind;
+	if (pikiKind == Blue) {
+		efx::createSimpleChiru(*piki->m_effectsObj->_0C, piki->m_effectsObj->_08);
+		piki->startSound(PSSE_PK_FLOWER_VOICE, true);
+		piki->m_happaKind = Flower;
+		return false;
+	}
+	if (piki->m_currentState->dead()) {
+		return false;
+	}
+	BlowStateArg witherArg(m_direction, 1.0f, false, 6, m_creature);
+	piki->m_fsm->transit(piki, PIKISTATE_Blow, &witherArg);
+	return true;
+}
