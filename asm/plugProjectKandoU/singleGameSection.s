@@ -4324,14 +4324,14 @@ saveMainMapSituation__Q24Game17SingleGameSectionFb:
 .else
 .global saveMainMapSituation__Q24Game17SingleGameSectionFb
 saveMainMapSituation__Q24Game17SingleGameSectionFb:
-/* 80153CC8 00150C08  94 21 FF D0 */	stwu r1, -0x30(r1)
+/* 80153CC8 00150C08  94 21 FF D0 */	stwu r1, -0x34(r1)
 /* 80153CCC 00150C0C  7C 08 02 A6 */	mflr r0
-/* 80153CD0 00150C10  90 01 00 34 */	stw r0, 0x34(r1)
-/* 80153CD4 00150C14  54 80 06 3F */	clrlwi. r0, r4, 0x18
+/* 80153CD0 00150C10  90 01 00 34 */	stw r0, 0x38(r1)
+stw r29, 0x30(r1)
 /* 80153CD8 00150C18  93 E1 00 2C */	stw r31, 0x2c(r1)
 /* 80153CDC 00150C1C  7C 7F 1B 78 */	mr r31, r3
 /* 80153CE0 00150C20  93 C1 00 28 */	stw r30, 0x28(r1)
-/* 80153CE4 00150C24  41 82 02 34 */	beq .L_80153F18
+mr r29, r4
 /* 80153CE8 00150C28  38 00 00 00 */	li r0, 0
 /* 80153CEC 00150C2C  80 6D 92 F4 */	lwz r3, pikiMgr__4Game@sda21(r13)
 /* 80153CF0 00150C30  3C 80 80 4B */	lis r4, "__vt__22Iterator<Q24Game4Piki>"@ha
@@ -4399,8 +4399,11 @@ saveMainMapSituation__Q24Game17SingleGameSectionFb:
 /* 80153DD8 00150D18  4E 80 04 21 */	bctrl 
 /* 80153DDC 00150D1C  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 80153DE0 00150D20  41 82 00 5C */	beq .L_80153E3C
-/* 80153DE4 00150D24  88 9E 02 B8 */	lbz r4, 0x2b8(r30)
-/* 80153DE8 00150D28  2C 04 00 00 */	cmpwi r4, 1 # only reds can enter submerged castle
+
+mr r3, r30
+mr r4, r29
+bl canEnterCave__FPQ24Game4PikiUl
+/* 80153DE8 00150D28  2C 04 00 00 */	cmpwi r3, 1 # only reds can enter submerged castle
 /* 80153DEC 00150D2C  41 82 00 50 */	beq .L_80153E3C
 /* 80153DF0 00150D30  80 6D 94 90 */	lwz r3, playData__4Game@sda21(r13)
 /* 80153DF4 00150D34  88 BE 02 B9 */	lbz r5, 0x2b9(r30)
@@ -4496,11 +4499,12 @@ saveMainMapSituation__Q24Game17SingleGameSectionFb:
 /* 80153F44 00150E84  D0 04 00 68 */	stfs f0, 0x68(r4)
 /* 80153F48 00150E88  80 9F 02 2C */	lwz r4, 0x22c(r31)
 /* 80153F4C 00150E8C  4B FF 98 45 */	bl saveToGeneratorCache__Q24Game15BaseGameSectionFPQ24Game10CourseInfo
-/* 80153F50 00150E90  80 01 00 34 */	lwz r0, 0x34(r1)
+/* 80153F50 00150E90  80 01 00 34 */	lwz r0, 0x38(r1)
 /* 80153F54 00150E94  83 E1 00 2C */	lwz r31, 0x2c(r1)
 /* 80153F58 00150E98  83 C1 00 28 */	lwz r30, 0x28(r1)
+lwz r29, 0x30(r1)
 /* 80153F5C 00150E9C  7C 08 03 A6 */	mtlr r0
-/* 80153F60 00150EA0  38 21 00 30 */	addi r1, r1, 0x30
+/* 80153F60 00150EA0  38 21 00 30 */	addi r1, r1, 0x34
 /* 80153F64 00150EA4  4E 80 00 20 */	blr 
 .endif
 
@@ -4969,10 +4973,10 @@ openCaveInMenu__Q24Game17SingleGameSectionFPQ34Game8ItemCave4Itemi:
 /* 801541E8 00151128  A0 03 02 DC */	lhz r0, 0x2dc(r3)
 /* 801541EC 0015112C  7C 1D 00 00 */	cmpw r29, r0
 /* 801541F0 00151130  40 82 00 28 */	bne .L_80154218
-/* 801541F4 00151134  57 E0 06 3F */	clrlwi. r0, r31, 0x18
-/* 801541F8 00151138  41 82 00 10 */	beq .L_80154208
-/* 801541FC 0015113C  88 1A 02 B8 */	lbz r0, 0x2b8(r26)
-/* 80154200 00151140  2C 00 00 00 */	cmpwi r0, 1 # only reds can enter submerged castle
+mr r3, r26
+lwz r4, 0x1f0(r28)
+bl canEnterCave__FPQ24Game4PikiUl
+/* 80154200 00151140  2C 00 00 00 */	cmpwi r3, 1 # only reds can enter submerged castle
 /* 80154204 00151144  40 82 00 14 */	bne .L_80154218
 .L_80154208:
 /* 80154208 00151148  80 1A 01 7C */	lwz r0, 0x17c(r26)

@@ -306,3 +306,14 @@ bool Game::InteractPress::actPiki(Game::Piki* piki)
 	}
 	return false;
 }
+
+
+bool canEnterCave(Game::Piki* piki, u32 id) {
+	if (id == 'f_03') {
+		return piki->m_pikiKind == Game::Blue;
+	}
+	if (id == 'y_04') {
+		return piki->m_pikiKind == Game::Red;
+	}
+	return true;
+}
