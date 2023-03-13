@@ -313,17 +313,13 @@ struct CaveVRBox {
 	SysShape::Model* m_model;
 };
 
-struct TexNode : CNode
-{
+struct TexNode : CNode {
 	Sys::MatTexAnimation m_anim;
 };
 
-struct TevNode : CNode
-{
+struct TevNode : CNode {
 	Sys::MatTevRegAnimation m_anim;
 };
-
-
 
 } // namespace Game
 

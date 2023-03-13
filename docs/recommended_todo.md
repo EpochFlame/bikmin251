@@ -33,8 +33,8 @@
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/Dolphin/OSError.c">OSError.c</a> | 6942 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/Dolphin/GXGeometry.c">GXGeometry.c</a> | 6983 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/Dolphin/CARDBlock.c">CARDBlock.c</a> | 7163 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/Dolphin/dsp_task.c">dsp_task.c</a> | 7801 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/Dolphin/THPAudio.c">THPAudio.c</a> | 7974 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/Dolphin/arq.c">arq.c</a> | 8041 |
-| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/Dolphin/OSReset.c">OSReset.c</a> | 8117 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/Dolphin/OSTime.c">OSTime.c</a> | 8247 |
-| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/Dolphin/CARDRead.c">CARDRead.c</a> | 8271 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/Dolphin/OSMutex.c">OSMutex.c</a> | 8333 |
+| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/Dolphin/OSReset.c">OSReset.c</a> | 8117 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/Dolphin/OSMutex.c">OSMutex.c</a> | 8157 |
+| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/Dolphin/OSTime.c">OSTime.c</a> | 8247 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/Dolphin/CARDRead.c">CARDRead.c</a> | 8271 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/Dolphin/CARDOpen.c">CARDOpen.c</a> | 8692 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/Dolphin/CARDStat.c">CARDStat.c</a> | 8905 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/Dolphin/dolphin_trk_glue.c">dolphin_trk_glue.c</a> | 10320 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/Dolphin/EXIUart.c">EXIUart.c</a> | 10329 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/Dolphin/dolphin_trk.c">dolphin_trk.c</a> | 11230 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/Dolphin/alloc.c">alloc.c</a> | 12018 |

@@ -289,7 +289,7 @@ bool Game::InteractPress::actPiki(Game::Piki* piki)
 	int pikiKind = piki->m_pikiKind;
 	if (pikiKind == Bulbmin) {
 		piki->m_happaKind = Flower;
-		InteractBury buryOrange (m_creature, m_damage);
+		InteractBury buryOrange(m_creature, m_damage);
 		piki->stimulate(buryOrange);
 		return false;
 	}
@@ -307,8 +307,8 @@ bool Game::InteractPress::actPiki(Game::Piki* piki)
 	return false;
 }
 
-
-bool canEnterCave(Game::Piki* piki, u32 id) {
+bool canEnterCave(Game::Piki* piki, u32 id)
+{
 	if (id == 'f_03') {
 		return piki->m_pikiKind == Game::Blue;
 	}

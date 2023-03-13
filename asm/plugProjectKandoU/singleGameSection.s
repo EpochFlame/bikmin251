@@ -4402,8 +4402,8 @@ mr r29, r4
 
 mr r3, r30
 mr r4, r29
-bl canEnterCave__FPQ24Game4PikiUl
-/* 80153DE8 00150D28  2C 04 00 00 */	cmpwi r3, 1 # only reds can enter submerged castle
+bl canEnterCave__FPQ24Game4PikiUl # return true if type can enter cave
+/* 80153DE8 00150D28  2C 04 00 00 */	cmpwi r3, 1 
 /* 80153DEC 00150D2C  41 82 00 50 */	beq .L_80153E3C
 /* 80153DF0 00150D30  80 6D 94 90 */	lwz r3, playData__4Game@sda21(r13)
 /* 80153DF4 00150D34  88 BE 02 B9 */	lbz r5, 0x2b9(r30)
@@ -4975,8 +4975,8 @@ openCaveInMenu__Q24Game17SingleGameSectionFPQ34Game8ItemCave4Itemi:
 /* 801541F0 00151130  40 82 00 28 */	bne .L_80154218
 mr r3, r26
 lwz r4, 0x1f0(r28)
-bl canEnterCave__FPQ24Game4PikiUl
-/* 80154200 00151140  2C 00 00 00 */	cmpwi r3, 1 # only reds can enter submerged castle
+bl canEnterCave__FPQ24Game4PikiUl # return true if type can enter cave
+/* 80154200 00151140  2C 00 00 00 */	cmpwi r3, 1
 /* 80154204 00151144  40 82 00 14 */	bne .L_80154218
 .L_80154208:
 /* 80154208 00151148  80 1A 01 7C */	lwz r0, 0x17c(r26)
