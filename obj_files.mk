@@ -1082,6 +1082,7 @@ MODDING:=\
 	$(BUILD_DIR)/src/moddingU/waterpiki.o\
 	$(BUILD_DIR)/src/moddingU/bloyster.o\
 	$(BUILD_DIR)/src/moddingU/artGallery.o\
+	$(BUILD_DIR)/src/moddingU/VRBoxAnim.o\
 
 BOOTUP:=\
 	$(BUILD_DIR)/src/sysBootupU/sysBootup.o\

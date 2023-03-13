@@ -230,6 +230,8 @@ struct MapRoom : public CellObject {
 	Sys::Sphere _190;                       // _190
 };
 
+struct CaveVRBox;
+
 struct RoomMapMgr : public MapMgr {
 	RoomMapMgr(Cave::CaveInfo*);
 
@@ -276,7 +278,7 @@ struct RoomMapMgr : public MapMgr {
 	// _00     = GenericObjectMgr
 	// _04     = VTBL
 	// _00-_24 = MapMgr
-	SysShape::Model* _24;                 // _24, m_modelOrCaveVRBoxOrBothMaybe
+	CaveVRBox* _24;                       // _24, m_modelOrCaveVRBoxOrBothMaybe
 	Cave::CaveInfo* m_caveInfo;           // _28
 	Cave::FloorInfo* m_floorInfo;         // _2C
 	int _30;                              // _30
@@ -298,7 +300,43 @@ struct RoomMapMgr : public MapMgr {
 };
 
 struct CaveVRBox {
+	CaveVRBox() { m_model = nullptr; }
+
+	void loadResources(JKRArchive*);
+	void animate();
+	static void clearNodes();
+
+	static CNode texAnims;
+	static CNode tevAnims;
+	static Sys::MatLoopAnimator* animators[2]; // array of array
+
+	SysShape::Model* m_model;
 };
+
+struct TexNode : CNode
+{
+	TexNode() {
+		m_anim = new Sys::MatTexAnimation;
+	}
+	virtual ~TexNode() {
+		delete m_anim;
+	}
+	Sys::MatTexAnimation* m_anim;
+};
+
+struct TevNode : CNode
+{
+	TevNode() {
+		m_anim = new Sys::MatTevRegAnimation;
+	}
+	virtual ~TevNode() {
+		delete m_anim;
+	}
+	Sys::MatTevRegAnimation* m_anim;
+};
+
+
+
 } // namespace Game
 
 #endif
