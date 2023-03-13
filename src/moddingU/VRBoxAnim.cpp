@@ -5,35 +5,17 @@
 namespace Game
 {
 
-CNode CaveVRBox::texAnims;
-CNode CaveVRBox::tevAnims;
+Sys::MatTexAnimation* CaveVRBox::texAnims[100];
+Sys::MatTevRegAnimation* CaveVRBox::tevAnims[100];
 int countBrk = 0;
 int countBtk = 0;
 Sys::MatLoopAnimator* CaveVRBox::animators[2];
 
-void CaveVRBox::clearNodes() {
-    CNode* node = texAnims.m_child;
-    while (node)
-    {
-        CNode* copyPtr = node;
-        node = node->m_next;
-        delete copyPtr;
-    }
-
-    node = tevAnims.m_child;
-    while (node)
-    {
-        CNode* copyPtr = node;
-        node = node->m_next;
-        delete copyPtr;
-    }
-    
-}
 
 void CaveVRBox::loadResources(JKRArchive* rarc) {
     OSReport("loading %x... \n", this);
     void* bmd = rarc->getResource("model.bmd");
-    J3DModelData* model = J3DModelLoaderDataBase::load(bmd, 0x20000000);
+    J3DModelData* model = J3DModelLoaderDataBase::load(bmd, 0x21240030);
     model->newSharedDisplayList(0x40000);
     model->makeSharedDL();
     OSReport("model stuff\n");
@@ -44,14 +26,16 @@ void CaveVRBox::loadResources(JKRArchive* rarc) {
     OSReport("mtx stuff\n");
     m_model->m_j3dModel->calc();
     m_model->m_j3dModel->calcMaterial();
+    m_model->m_j3dModel->makeDL();
     OSReport("calced\n");
     m_model->enableMaterialAnim(0);
     OSReport("made materials...\n");
 	
-    clearNodes();
     OSReport("cleaned nodes\n");
     countBtk = 0;
-    for (int i = 0; i < 100; i++) {
+
+
+    for (int i = 0; i < 99; i++) {
 
         char filename[128];
         sprintf(filename, "texanm_%d.btk", i);
@@ -60,26 +44,29 @@ void CaveVRBox::loadResources(JKRArchive* rarc) {
         
 
         if (btkFile) {
-            TexNode* node = new TexNode;
-            texAnims.add(node);
-            node->m_anim->attachResource(btkFile, m_model->m_j3dModel->m_modelData);
+            delete texAnims[countBtk];
+            OSReport("found btkfile\n");
+            texAnims[countBtk] = new Sys::MatTexAnimation;
+            texAnims[countBtk]->attachResource(btkFile, m_model->m_j3dModel->m_modelData);
             countBtk++;
         }
     }
 
     OSReport("Made btks...\n");
 
-    countBrk = 0;
-    for (int i = 0; i < 100; i++) { 
 
+    countBrk = 0;
+    for (int i = 0; i < 99; i++) { 
+        
         char filename[128];
         sprintf(filename, "tevanm_%d.brk", i);
 
         void* brkFile = rarc->getResource(filename);
         if (brkFile) {
-            TevNode* node = new TevNode;
-            tevAnims.add(node);
-            node->m_anim->attachResource(brkFile, m_model->m_j3dModel->m_modelData);
+            delete tevAnims[countBrk];
+            OSReport("found brkfile\n");
+            tevAnims[countBrk] = new Sys::MatTevRegAnimation;
+            tevAnims[countBrk]->attachResource(brkFile, m_model->m_j3dModel->m_modelData);
             countBrk++;
         }
     }
@@ -90,13 +77,11 @@ void CaveVRBox::loadResources(JKRArchive* rarc) {
     animators[1] = new Sys::MatLoopAnimator[countBrk];
 
     for (int i = 0; i < countBtk; i++) {
-        TexNode* node = (TexNode*)texAnims.getChildAt(i);
-        animators[0][i].start(node->m_anim);
+        animators[0][i].start(texAnims[i]);
     }
 
     for (int i = 0; i < countBrk; i++) {
-        TevNode* node = (TevNode*)tevAnims.getChildAt(i);
-        animators[1][i].start(node->m_anim);
+        animators[1][i].start(tevAnims[i]);
     }
 
     OSReport("Done!\n");

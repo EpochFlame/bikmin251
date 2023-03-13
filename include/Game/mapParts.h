@@ -306,8 +306,8 @@ struct CaveVRBox {
 	void animate();
 	static void clearNodes();
 
-	static CNode texAnims;
-	static CNode tevAnims;
+	static Sys::MatTexAnimation* texAnims[100];
+	static Sys::MatTevRegAnimation* tevAnims[100];
 	static Sys::MatLoopAnimator* animators[2]; // array of array
 
 	SysShape::Model* m_model;
@@ -315,24 +315,12 @@ struct CaveVRBox {
 
 struct TexNode : CNode
 {
-	TexNode() {
-		m_anim = new Sys::MatTexAnimation;
-	}
-	virtual ~TexNode() {
-		delete m_anim;
-	}
-	Sys::MatTexAnimation* m_anim;
+	Sys::MatTexAnimation m_anim;
 };
 
 struct TevNode : CNode
 {
-	TevNode() {
-		m_anim = new Sys::MatTevRegAnimation;
-	}
-	virtual ~TevNode() {
-		delete m_anim;
-	}
-	Sys::MatTevRegAnimation* m_anim;
+	Sys::MatTevRegAnimation m_anim;
 };
 
 
