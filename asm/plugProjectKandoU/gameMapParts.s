@@ -9486,8 +9486,9 @@ doEntry__Q24Game10RoomMapMgrFv:
 /* 801BE32C 001BB26C  80 1E 00 24 */	lwz r0, 0x24(r30)
 /* 801BE330 001BB270  28 00 00 00 */	cmplwi r0, 0
 /* 801BE334 001BB274  41 82 00 28 */	beq .L_801BE35C
+bl getCavebox__Fv
+mr r4, r3
 /* 801BE338 001BB278  7F E3 FB 78 */	mr r3, r31
-/* 801BE33C 001BB27C  38 80 00 06 */	li r4, 1
 /* 801BE340 001BB280  4B F9 31 1D */	bl setDrawBuffer__Q24Game15BaseGameSectionFi
 /* 801BE344 001BB284  80 7E 00 24 */	lwz r3, 0x24(r30)
 /* 801BE348 001BB288  80 63 00 08 */	lwz r3, 8(r3)

@@ -100,4 +100,10 @@ void CaveVRBox::animate()
 	}
 }
 
+
+
 } // namespace Game
+
+int getCavebox() {
+	return (Game::countBtk > 0 || Game::countBrk > 0) ? 1 : 6;
+}
