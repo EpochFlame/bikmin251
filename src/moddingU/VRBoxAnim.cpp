@@ -81,8 +81,8 @@ void CaveVRBox::loadResources(JKRArchive* rarc)
 	}
 
 	OSReport("Done!\n");
-	OSReport("Count BTK: %i", countBtk);
-	OSReport("Count BRK: %i", countBrk);
+	OSReport("Count BTK: %i\n", countBtk);
+	OSReport("Count BRK: %i\n", countBrk);
 }
 
 void CaveVRBox::animate()

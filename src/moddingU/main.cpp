@@ -235,6 +235,61 @@ float adjustBoundingRadius(float radius)
 		return radius;
 }
 
+bool isKeyUnlock()
+{
+	bool retval = false;
+	if (Game::gameSystem && Game::gameSystem->m_inCave && Game::gameSystem->m_mode == Game::GSM_STORY_MODE) {
+		Game::GameSystem* gs           = Game::gameSystem;
+		Game::BaseGameSection* section = gs->m_section;
+		if (section) {
+			switch (section->getCaveID()) {
+			case 't_01':
+				retval = Game::playData->m_olimarData[0].hasItem(Game::OlimarData::ODII_SphericalAtlas);
+				break;
+			case 't_02':
+				retval = Game::playData->m_olimarData[0].hasItem(Game::OlimarData::ODII_StellarOrb);
+				break;
+			case 't_03':
+				retval = Game::playData->m_olimarData[0].hasItem(Game::OlimarData::ODII_ProfessionalNoisemaker);
+				break;
+			case 'f_01':
+				retval = Game::playData->m_olimarData[0].hasItem(Game::OlimarData::ODII_BruteKnuckles);
+				break;
+			case 'f_02':
+				retval = Game::playData->m_olimarData[0].hasItem(Game::OlimarData::ODII_AmplifiedAmplifier);
+				break;
+			case 'f_03':
+				retval = Game::playData->m_olimarData[0].hasItem(Game::OlimarData::ODII_RepugnantAppendage);
+				break;
+			case 'f_04':
+				retval = Game::playData->m_olimarData[0].hasItem(Game::OlimarData::ODII_GeographicProjection);
+				break;
+			case 'y_01':
+				retval = Game::playData->m_olimarData[0].hasItem(Game::OlimarData::ODII_ForgedCourage);
+				break;
+			case 'y_02':
+				retval = Game::playData->m_olimarData[0].hasItem(Game::OlimarData::ODII_FiveManNapsack);
+				break;
+			case 'y_03':
+				retval = Game::playData->m_olimarData[0].hasItem(Game::OlimarData::ODII_DreamMaterial);
+				break;
+			case 'y_04':
+				retval = Game::playData->m_olimarData[0].hasItem(Game::OlimarData::ODII_JusticeAlloy);
+				break;
+			default:
+			case 'l_01':
+			case 'l_02':
+			case 'l_03':
+				break;
+			}
+		}
+	}
+	if (retval) {
+		isExitLocked = false;
+	}
+	return retval;
+}
+
 void updateDispMember()
 {
 	if (!Game::gameSystem->m_inCave) {
@@ -251,9 +306,8 @@ void updateDispMember()
 	}
 	thisObjCave->m_disp->m_keyCount = keyLockCount;
 	thisObjCave->m_keyCounter->update();
-	if (!isExitLocked || keyLockCount == 0) {
+	if (!isExitLocked || keyLockCount == 0 || isKeyUnlock()) {
 		thisObjCave->m_pikiCounter->search('Nkeys')->hide();
-
 	} else {
 		thisObjCave->m_pikiCounter->search('Nkeys')->show();
 	}

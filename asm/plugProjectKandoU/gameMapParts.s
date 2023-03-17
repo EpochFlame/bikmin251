@@ -1525,6 +1525,10 @@ placeObjects__Q24Game7MapRoomFPQ34Game4Cave9FloorInfob:
 lbz r0, isExitLocked__3mod@sda21(r13)
 cmplwi r0, 1
 bne .L_801B7070
+bl isKeyUnlock__3modFv
+cmplwi r3, 1
+li r3, 0
+beq .L_801B7070
 .L_801B706C:
 /* 801B706C 001B3FAC  38 60 00 01 */	li r3, 1
 .L_801B7070:
