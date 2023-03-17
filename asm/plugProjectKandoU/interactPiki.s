@@ -1160,8 +1160,12 @@ actPiki__Q24Game12InteractDopeFPQ24Game4Piki:
 /* 80193954 00190894  7C 7D 1B 78 */	mr r29, r3
 /* 80193958 00190898  80 03 00 08 */	lwz r0, 8(r3)
 # set happa state to 0
+lbz r12, 0x2b9(r30)
+cmpwi r12, 1
+beq .L_skip
 li r12, 0
 stb r12, 0x2b9(r30)
+.L_skip:
 /* 8019395C 0019089C  83 E4 02 90 */	lwz r31, 0x290(r4)
 /* 80193960 001908A0  2C 00 00 01 */	cmpwi r0, 1
 /* 80193964 001908A4  41 82 00 60 */	beq .L_801939C4
