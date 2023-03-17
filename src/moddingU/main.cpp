@@ -246,6 +246,9 @@ void updateDispMember()
 	if (!thisObjCave->m_disp) {
 		return;
 	}
+	if (keyLockCount < 0) {
+		keyLockCount = 0;
+	}
 	thisObjCave->m_disp->m_keyCount = keyLockCount;
 	thisObjCave->m_keyCounter->update();
 	if (!isExitLocked || keyLockCount == 0) {
