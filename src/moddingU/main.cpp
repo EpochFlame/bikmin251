@@ -276,10 +276,16 @@ bool isKeyUnlock()
 			case 'y_04':
 				retval = Game::playData->m_olimarData[0].hasItem(Game::OlimarData::ODII_JusticeAlloy);
 				break;
-			default:
 			case 'l_01':
+				retval = Game::playData->isPelletZukanVisible(93);
+				break;
 			case 'l_02':
+				retval = Game::playData->isPelletZukanVisible(34);
+				break;
 			case 'l_03':
+				retval = Game::playData->isPelletZukanVisible(68);
+				break;
+			default:
 				break;
 			}
 		}
