@@ -350,18 +350,19 @@ struct DispMemberGround : public DispMemberBase {
 	// _00     = VTBL
 	// _00-_08 = DispMemberBase
 	DataGame m_dataGame;                 // _08
-	DataNavi m_dataNavi[2];              // _24
-	f32 _54;                             // _54
-	int _58;                             // _58
-	u8 _5C;                              // _5C
-	u8 _5D;                              // _5D
-	u8 _5E;                              // _5E
-	bool _5F;                            // _5F
-	bool _60;                            // _60
-	u8 _61;                              // _61
-	u8 _62;                              // _62
-	bool _63;                            // _63
-	bool _64;                            // _64
+	DataNavi m_olimarData;               // _24
+	DataNavi m_louieData;                // _3C
+	f32 m_treasureDist;                  // _54
+	int m_radarState;                    // _58
+	bool m_hasRadar;                     // _5C
+	bool m_isNotDay1;                    // _5D
+	bool m_payDebt;                      // _5E
+	bool m_unlockedSpicy;                // _5F
+	bool m_unlockedBitter;               // _60
+	bool m_hasBitter;                    // _61
+	bool m_hasSpicy;                     // _62
+	bool m_radarEnabled;                 // _63
+	bool m_allTreasuresGotten;           // _64
 	DispMemberDayEndCount m_dayEndCount; // _68
 	DispMemberHurryUp m_hurryUp;         // _78
 };

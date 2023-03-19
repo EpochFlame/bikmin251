@@ -79,8 +79,13 @@ struct ObjCave : public ::Screen::ObjBase {
 	f32 m_totalPokoTimer;                         // _6C
 	J2DPane* m_paneChika;                         // _70
 	J2DPane* m_paneFinalf;                        // _74
+	J2DPane* m_paneChika2;
+	J2DPane* m_paneFinalf2;
 	bool m_doSensorEff;                           // _78
 	og::Screen::CallBack_CounterRV* m_keyCounter;
+	og::Screen::CallBack_CounterRV* m_keyCounter2p;
+	og::Screen::PikminCounterCave* m_pikiCounterOlimar;
+	og::Screen::PikminCounterCave* m_pikiCounterLouie;
 
 	static struct StaticValues {
 		inline StaticValues()

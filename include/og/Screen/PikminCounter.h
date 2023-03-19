@@ -17,6 +17,9 @@ struct PikminCounter : public P2DScreen::Mgr_tuning {
 	virtual void update();                 // _30
 	virtual void setCallBack(JKRArchive*); // _A0
 
+	void setCallBackCommon(JKRArchive* arc, bool flag);
+	void setCallBackNoDay(JKRArchive* arc);
+
 	void setParam(DataGame&, DataNavi&);
 
 	// _00      = VTBL
@@ -37,6 +40,8 @@ struct PikminCounter : public P2DScreen::Mgr_tuning {
 struct PikminCounterCave : public PikminCounter {
 	virtual ~PikminCounterCave();          // _08 (weak)
 	virtual void setCallBack(JKRArchive*); // _A0
+
+	void setCallBackNoDay(JKRArchive* arc);
 
 	// _00      = VTBL
 	// _00-_1A8 = PikminCounter

@@ -11,6 +11,7 @@
 #include "System.h"
 #include "nans.h"
 #include "og/Screen/ogScreen.h"
+#include "TwoPlayer.h"
 
 #include "mod.h"
 
@@ -36,6 +37,8 @@ ObjCave::ObjCave(const char* name)
 	m_lifeGauge1      = nullptr;
 	m_lifeGauge2      = nullptr;
 	m_pikiCounter     = nullptr;
+	m_pikiCounterLouie = nullptr;
+	m_pikiCounterOlimar = nullptr;
 	m_totalPoko       = nullptr;
 	m_sensorScreen    = nullptr;
 	m_totalPokoActive = false;
@@ -75,16 +78,20 @@ void ObjCave::doCreate(JKRArchive* arc)
 	m_lifeGauge1   = new og::Screen::NaviLifeGauge;
 	m_lifeGauge2   = new og::Screen::NaviLifeGauge;
 	m_pikiCounter  = new og::Screen::PikminCounterCave;
+	m_pikiCounterOlimar = new og::Screen::PikminCounterCave;
+	m_pikiCounterLouie = new og::Screen::PikminCounterCave;
 	m_totalPoko    = new og::Screen::TotalPokoScreen;
 	m_sensorScreen = new P2DScreen::Mgr_tuning;
 
-	m_bloGroup = new og::Screen::BloGroup(6);
+	m_bloGroup = new og::Screen::BloGroup(8);
 	m_bloGroup->addBlo("doping.blo", m_doping, 0x1040000, arc);
 	m_bloGroup->addBlo("orima.blo", m_lifeGauge1, 0x1040000, arc);
 	m_bloGroup->addBlo("orima.blo", m_lifeGauge2, 0x1040000, arc);
 	m_bloGroup->addBlo("cave_pikmin.blo", m_pikiCounter, 0x1040000, arc);
 	m_bloGroup->addBlo("grand_cave_poko.blo", m_totalPoko, 0x1040000, arc);
 	m_bloGroup->addBlo("sensor.blo", m_sensorScreen, 0x1040000, arc);
+	m_bloGroup->addBlo("cave_r_pikmin.blo", m_pikiCounterOlimar, 0x1040000, arc);
+	m_bloGroup->addBlo("cave_b_pikmin.blo", m_pikiCounterLouie, 0x1040000, arc);
 
 	m_doping->setCallBack(arc);
 	m_lifeGauge1->setCallBack(&m_disp->m_dataNavi1, og::Screen::CallBack_LifeGauge::LIFEGAUGE_OLIMAR);
@@ -96,6 +103,8 @@ void ObjCave::doCreate(JKRArchive* arc)
 	}
 
 	m_pikiCounter->setCallBack(arc);
+	m_pikiCounterOlimar->setCallBack(arc);
+	m_pikiCounterLouie->setCallBackNoDay(arc);
 	m_totalPoko->setCallBack(arc, msVal._08, msVal._0C, msVal._10, msVal._14);
 	m_paneChika  = og::Screen::TagSearch(m_pikiCounter, 'Pchika');
 	m_paneFinalf = og::Screen::TagSearch(m_pikiCounter, 'Nfinalf');
@@ -125,6 +134,7 @@ void ObjCave::doCreate(JKRArchive* arc)
 
 	// needs actual key count in disp and check if keys are on floor to enable
 	m_keyCounter = og::Screen::setCallBack_CounterRV(m_pikiCounter, 'k_mr', 'k_mc', 0, &m_disp->m_keyCount, 2, 2, false, arc);
+	m_keyCounter2p = og::Screen::setCallBack_CounterRV(m_pikiCounterOlimar, 'k_mr', 'k_mc', 0, &m_disp->m_keyCount, 2, 2, false, arc);
 	mod::updateDispMember();
 }
 
@@ -148,7 +158,11 @@ void ObjCave::commonUpdate()
 		m_doping->setParam(m_disp->m_dataNavi1);
 
 		og::Screen::DispMemberCave* disp = m_disp;
-		if (disp->m_dataNavi1.m_activeNaviID) {
+		if (TwoPlayer::twoPlayerActive) {
+			m_pikiCounterOlimar->setParam(m_disp->m_dataGame, m_disp->m_dataNavi1);
+			m_pikiCounterLouie->setParam(m_disp->m_dataGame, m_disp->m_dataNavi2);
+		}
+		else if (disp->m_dataNavi1.m_activeNaviID) {
 			m_pikiCounter->setParam(disp->m_dataGame, disp->m_dataNavi1);
 		} else {
 			m_pikiCounter->setParam(disp->m_dataGame, disp->m_dataNavi2);
@@ -190,6 +204,20 @@ void ObjCave::commonUpdate()
 
 		} else {
 			m_lifeGauge2->setType(og::Screen::CallBack_LifeGauge::LIFEGAUGE_LOUIE);
+		}
+		if (TwoPlayer::twoPlayerActive) {
+			m_pikiCounter->hide();
+			m_pikiCounterLouie->show();
+			m_pikiCounterOlimar->show();
+			m_paneChika  = og::Screen::TagSearch(m_pikiCounterOlimar, 'Pchika');
+			m_paneFinalf = og::Screen::TagSearch(m_pikiCounterOlimar, 'Nfinalf');
+		}
+		else {
+			m_pikiCounter->show();
+			m_pikiCounterLouie->hide();
+			m_pikiCounterOlimar->hide();
+			m_paneChika  = og::Screen::TagSearch(m_pikiCounter, 'Pchika');
+			m_paneFinalf = og::Screen::TagSearch(m_pikiCounter, 'Nfinalf');
 		}
 	}
 

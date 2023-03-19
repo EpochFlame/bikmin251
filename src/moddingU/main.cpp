@@ -23,6 +23,7 @@
 #include "Game/Navi.h"
 #include "Game/PikiState.h"
 #include "Game/NaviState.h"
+#include "TwoPlayer.h"
 
 bool isTreasureCutscene;
 
@@ -308,12 +309,23 @@ void updateDispMember()
 		keyLockCount = 0;
 	}
 	thisObjCave->m_disp->m_keyCount = keyLockCount;
-	thisObjCave->m_keyCounter->update();
-	if (!isExitLocked || keyLockCount == 0 || isKeyUnlock()) {
-		thisObjCave->m_pikiCounter->search('Nkeys')->hide();
-	} else {
-		thisObjCave->m_pikiCounter->search('Nkeys')->show();
+	if (TwoPlayer::twoPlayerActive) {
+		thisObjCave->m_keyCounter2p->update();
+		if (!isExitLocked || keyLockCount == 0 || isKeyUnlock()) {
+			thisObjCave->m_pikiCounterOlimar->search('Nkeys')->hide();
+		} else {
+			thisObjCave->m_pikiCounterOlimar->search('Nkeys')->show();
+		}
 	}
+	else {
+		thisObjCave->m_keyCounter->update();
+		if (!isExitLocked || keyLockCount == 0 || isKeyUnlock()) {
+			thisObjCave->m_pikiCounter->search('Nkeys')->hide();
+		} else {
+			thisObjCave->m_pikiCounter->search('Nkeys')->show();
+		}
+	}
+	
 }
 
 }; // namespace mod
