@@ -6963,6 +6963,8 @@ exec__Q24Game19NaviNukuAdjustStateFPQ24Game4Navi:
 /* 801827E8 0017F728  7F A3 EB 78 */	mr r3, r29
 /* 801827EC 0017F72C  A0 84 01 F6 */	lhz r4, 0x1f6(r4)
 /* 801827F0 0017F730  4B FC 7F 81 */	bl changeHappa__Q24Game4PikiFi
+mr r3, r29
+bl makeSonicHappa__FPQ24Game4Piki
 /* 801827F4 0017F734  80 9E 00 44 */	lwz r4, 0x44(r30)
 /* 801827F8 0017F738  38 61 00 20 */	addi r3, r1, 0x20
 /* 801827FC 0017F73C  81 84 00 00 */	lwz r12, 0(r4)
