@@ -22,6 +22,7 @@
 #include "og/Screen/PikminCounter.h"
 #include "Game/Navi.h"
 #include "Game/PikiState.h"
+#include "Game/NaviState.h"
 
 bool isTreasureCutscene;
 
@@ -369,6 +370,18 @@ bool Game::InteractPress::actPiki(Game::Piki* piki)
 	}
 	return false;
 }
+
+bool Game::InteractBomb::actNavi(Game::Navi* navi)
+{
+	if (!(gameSystem->m_flags & GAMESYS_Unk6) || Game::playData->m_olimarData[0].hasItem(Game::OlimarData::ODII_ForgedCourage)) {
+		return false;
+	}
+
+	Game::NaviFlickArg flickArg(m_creature, m_direction, m_damage);
+	navi->transit(Game::NSID_Flick, &flickArg);
+	return true;
+}
+
 
 bool canEnterCave(Game::Piki* piki, u32 id)
 {
