@@ -28,10 +28,6 @@ bool isTreasureCutscene;
 
 namespace Game {
 
-struct NaviWalkState {
-	void execAI(Navi*);
-};
-
 void autopluck(NaviWalkState* walkstate, Navi* captain)
 // performs Pikmin 3-style autopluck of pikmin seeds
 {
