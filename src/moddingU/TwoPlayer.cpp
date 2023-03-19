@@ -6,6 +6,7 @@
 #include "utilityU.h"
 #include "PSGame/SceneInfo.h"
 #include "og/Screen/PikminCounter.h"
+#include "Game/Data.h"
 namespace TwoPlayer
 {
     bool useTwoPlayer = true;
@@ -13,12 +14,8 @@ namespace TwoPlayer
     int deadPlayer = 0;
 
     void initTwoPlayer() {
-        // if (useTwoPlayer) {
-        //     Game::playData->_20 |= 1;
-        // }
-        // else {
-        //     Game::playData->_20 &= ~1;
-        // }
+		OSReport("setting two player: %d\n", sys->getPlayCommonData()->mDeflicker);
+        useTwoPlayer = sys->getPlayCommonData()->mDeflicker;
     }
 
     // setModeInCutscene__9TwoPlayerFv

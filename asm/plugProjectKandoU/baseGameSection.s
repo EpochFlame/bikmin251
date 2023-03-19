@@ -969,6 +969,7 @@ __ct__Q24Game15BaseGameSectionFP7JKRHeap:
 /* 8014AF94 00147ED4  38 7E 00 4C */	addi r3, r30, 0x4c
 /* 8014AF98 00147ED8  48 2E 0F 21 */	bl __ct__11WipeInFaderFv
 .L_8014AF9C:
+bl initTwoPlayer__9TwoPlayerFv
 /* 8014AF9C 00147EDC  93 DF 00 DC */	stw r30, 0xdc(r31)
 /* 8014AFA0 00147EE0  7F E3 FB 78 */	mr r3, r31
 /* 8014AFA4 00147EE4  80 01 00 34 */	lwz r0, 0x34(r1)
