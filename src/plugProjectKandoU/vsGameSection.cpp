@@ -513,7 +513,7 @@ void VsGameSection::openCaveMoreMenu(ItemHole::Item* hole, Controller* controlle
 	if (gameSystem->isMultiplayerMode() && controller) {
 		Screen::gGame2DMgr->setGamePad(controller);
 	} else {
-		Screen::gGame2DMgr->setGamePad(_10C);
+		Screen::gGame2DMgr->setGamePad(m_controllerP1);
 	}
 
 	og::Screen::DispMemberCaveMore cave;
@@ -550,7 +550,7 @@ void VsGameSection::openKanketuMenu(ItemBigFountain::Item* fountain, Controller*
 	if (gameSystem->isMultiplayerMode() && controller) {
 		Screen::gGame2DMgr->setGamePad(controller);
 	} else {
-		Screen::gGame2DMgr->setGamePad(_10C);
+		Screen::gGame2DMgr->setGamePad(m_controllerP1);
 	}
 
 	og::Screen::DispMemberKanketuMenu cave;

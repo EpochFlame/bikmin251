@@ -60,6 +60,9 @@ JAISe* PSStartTreasureLaderSE(f64);
 JAISe* PSStartTreasureLaderNoiseSE(f64, u8, u32, u32, u8);
 u8 PSStop2DStream();
 
+void PSPlayerChangeToOrimer();
+void PSPlayerChangeToLugie();
+
 // f32 sLaderNoiseFuefukiSensMax = 0.3f;
 // f32 sLaderNoiseFuefukiSensMin;
 // s16 sLaderNoiseFuefukiTimerCenter = 0x3C;

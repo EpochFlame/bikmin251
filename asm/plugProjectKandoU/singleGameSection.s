@@ -2452,10 +2452,7 @@ onSetSoundScene__Q24Game17SingleGameSectionFv:
 /* 801530E4 00150024  4E 80 04 21 */	bctrl 
 /* 801530E8 00150028  80 6D 93 E8 */	lwz r3, gameSystem__4Game@sda21(r13)
 /* 801530EC 0015002C  80 03 00 44 */	lwz r0, 0x44(r3)
-/* 801530F0 00150030  2C 00 00 00 */	cmpwi r0, 0
-/* 801530F4 00150034  40 82 00 0C */	bne .L_80153100
-/* 801530F8 00150038  38 60 00 00 */	li r3, 0
-/* 801530FC 0015003C  48 31 00 F1 */	bl PSSetCurCameraNo__FUc
+bl loadSound__9TwoPlayerFv
 .L_80153100:
 /* 80153100 00150040  80 01 00 A4 */	lwz r0, 0xa4(r1)
 /* 80153104 00150044  83 E1 00 9C */	lwz r31, 0x9c(r1)

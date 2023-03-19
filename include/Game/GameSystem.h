@@ -19,7 +19,6 @@ enum GameSystemMode {
 	GSM_ONE_PLAYER_CHALLENGE,
 	GSM_TWO_PLAYER_CHALLENGE,
 	GSM_PIKLOPEDIA,
-	GSM_TWO_PLAYER_STORY_MODE
 };
 
 enum GameSystemFlags {
@@ -72,9 +71,9 @@ struct GameSystem : public NodeObjectMgr<GenericObjectMgr> {
 	int startPause(bool, int, char*);
 
 	inline bool isVersusMode() { return m_mode == GSM_VERSUS_MODE; }
-	inline bool isMultiplayerMode() { return (m_mode == GSM_VERSUS_MODE || m_mode == GSM_TWO_PLAYER_CHALLENGE || m_mode == GSM_TWO_PLAYER_STORY_MODE); }
+	inline bool isMultiplayerMode() { return (m_mode == GSM_VERSUS_MODE || m_mode == GSM_TWO_PLAYER_CHALLENGE); }
 	inline bool isChallengeMode() { return (m_mode == GSM_ONE_PLAYER_CHALLENGE || m_mode == GSM_TWO_PLAYER_CHALLENGE); }
-	inline bool isStoryMode() { return m_mode == GSM_STORY_MODE || m_mode == GSM_TWO_PLAYER_STORY_MODE; }
+	inline bool isStoryMode() { return m_mode == GSM_STORY_MODE; }
 
 
 	inline void setFlag(u32 flag) { m_flags |= flag; }

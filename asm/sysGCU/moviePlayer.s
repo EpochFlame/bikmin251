@@ -462,6 +462,7 @@ play__Q24Game11MoviePlayerFRQ24Game12MoviePlayArg:
 # set isTreasureCutscene to false
 li r3, 0
 stb r3, isTreasureCutscene@sda21(r13)
+bl setModeInCutscene__9TwoPlayerFv
 /* 8042CA18 00429958  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 8042CA1C 0042995C  83 E1 00 0C */	lwz r31, 0xc(r1)
 /* 8042CA20 00429960  83 C1 00 08 */	lwz r30, 8(r1)
@@ -2026,6 +2027,7 @@ stop__Q24Game11MoviePlayerFv:
 /* 8042E024 0042AF64  38 00 00 00 */	li r0, 0
 /* 8042E028 0042AF68  90 1F 00 B0 */	stw r0, 0xb0(r31)
 .L_8042E02C:
+bl setModeOutCutscene__9TwoPlayerFv
 /* 8042E02C 0042AF6C  38 00 00 00 */	li r0, 0
 /* 8042E030 0042AF70  90 1F 01 8C */	stw r0, 0x18c(r31)
 /* 8042E034 0042AF74  90 1F 01 94 */	stw r0, 0x194(r31)

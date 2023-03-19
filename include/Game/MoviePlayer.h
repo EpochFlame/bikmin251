@@ -194,7 +194,7 @@ struct MoviePlayer : public JKRDisposer {
 	MovieContext _128;                          // _128
 	int m_suspend;                              // _184
 	int m_contextsCount;                        // _188
-	Navi* _18C;                                 // _18C
+	Navi* m_targetNavi;                                 // _18C
 	PlayCamera* m_actingCamera;                           // _190
 	Creature* m_targetObject;                   // _194
 	Viewport* m_viewport;                       // _198
