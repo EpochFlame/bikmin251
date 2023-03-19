@@ -1083,6 +1083,7 @@ MODDING:=\
 	$(BUILD_DIR)/src/moddingU/bloyster.o\
 	$(BUILD_DIR)/src/moddingU/artGallery.o\
 	$(BUILD_DIR)/src/moddingU/VRBoxAnim.o\
+	$(BUILD_DIR)/src/moddingU/TwoPlayer.o
 
 BOOTUP:=\
 	$(BUILD_DIR)/src/sysBootupU/sysBootup.o\

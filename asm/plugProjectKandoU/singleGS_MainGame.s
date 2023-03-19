@@ -893,6 +893,7 @@ init__Q34Game10SingleGame9GameStateFPQ24Game17SingleGameSectionPQ24Game8StateArg
 /* 802135D4 00210514  90 0D 96 18 */	stw r0, mSoundDeathCount__Q24Game8DeathMgr@sda21(r13)
 /* 802135D8 00210518  80 6D 9B 54 */	lwz r3, moviePlayer__4Game@sda21(r13)
 /* 802135DC 0021051C  48 21 92 D5 */	bl reset__Q24Game11MoviePlayerFv
+bl initTwoPlayer__9TwoPlayerFv
 /* 802135E0 00210520  80 8D 93 E8 */	lwz r4, gameSystem__4Game@sda21(r13)
 /* 802135E4 00210524  38 00 00 00 */	li r0, 0
 /* 802135E8 00210528  88 64 00 3C */	lbz r3, 0x3c(r4)

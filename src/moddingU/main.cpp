@@ -235,7 +235,7 @@ float adjustBoundingRadius(float radius)
 bool isKeyUnlock()
 {
 	bool retval = false;
-	if (Game::gameSystem && Game::gameSystem->m_inCave && Game::gameSystem->m_mode == Game::GSM_STORY_MODE) {
+	if (Game::gameSystem && Game::gameSystem->m_inCave && Game::gameSystem->isStoryMode()) {
 		Game::GameSystem* gs           = Game::gameSystem;
 		Game::BaseGameSection* section = gs->m_section;
 		if (section) {

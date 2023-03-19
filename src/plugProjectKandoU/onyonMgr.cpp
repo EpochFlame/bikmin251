@@ -437,7 +437,7 @@ bool InteractSuckDone::actOnyon(Onyon* item)
 	}
 
 	if ((gameSystem->isChallengeMode() || mod::isExitLocked) && !strcmp(pellet->m_config->m_params.m_name.m_data, "key")) {
-		if (gameSystem->m_mode == GSM_STORY_MODE) {
+		if (gameSystem->isStoryMode()) {
 			mod::keyLockCount--;
 			mod::updateDispMember();
 			if (mod::keyLockCount) {
@@ -681,7 +681,7 @@ void Onyon::onSetPosition(void)
 		efx::OnyonSpotArg spotarg(m_position, m_onyonType);
 		m_spotbeam_model = particleMgr->createModelEffect(&spotarg);
 		setSpotState(SPOTSTATE_Closed);
-		if (gameSystem->m_mode == GSM_STORY_MODE) {
+		if (gameSystem->isStoryMode()) {
 			if (!playData->hasBootContainer(m_onyonType)) {
 				setSpotState(SPOTSTATE_Opened);
 				startWaitMotion();
@@ -1323,7 +1323,7 @@ void Onyon::doEmit(Creature* seed, bool isSetAngle)
 	layFX.create(&arg);
 	seed->setPosition(onyonpos, false);
 
-	if (gameSystem->m_mode == GSM_STORY_MODE && moviePlayer->m_flags & 1 && moviePlayer->isPlaying("x18_exp_pellet")) {
+	if (gameSystem->isStoryMode() && moviePlayer->m_flags & 1 && moviePlayer->isPlaying("x18_exp_pellet")) {
 		seed->movie_begin(0);
 	}
 
@@ -2074,7 +2074,7 @@ void Onyon::on_movie_end(bool)
 		}
 	} else {
 		bool checkboot = false;
-		if (m_onyonType <= ONYON_TYPE_YELLOW && gameSystem->m_mode == GSM_STORY_MODE) {
+		if (m_onyonType <= ONYON_TYPE_YELLOW && gameSystem->isStoryMode()) {
 			checkboot = true;
 		}
 		if (checkboot) {

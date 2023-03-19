@@ -9,7 +9,7 @@ namespace Game {
  */
 void TekiStat::Info::incKilled(void)
 {
-	if (gameSystem && gameSystem->m_mode == GSM_STORY_MODE) {
+	if (gameSystem && gameSystem->isStoryMode()) {
 		m_killedTekiCount++;
 		m_state |= TEKISTAT_STATE_UPDATED;
 	}
@@ -22,7 +22,7 @@ void TekiStat::Info::incKilled(void)
  */
 void TekiStat::Info::incKillPikmin(void)
 {
-	if (gameSystem && gameSystem->m_mode == GSM_STORY_MODE) {
+	if (gameSystem && gameSystem->isStoryMode()) {
 		m_killedPikminCount++;
 	}
 }

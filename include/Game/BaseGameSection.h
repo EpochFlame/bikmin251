@@ -225,10 +225,10 @@ struct BaseGameSection : public BaseHIOSection {
 	TreasureLight::Mgr* m_treasureLightMgr;               // _F8
 	JKRHeap* m_theExpHeap;                                // _FC
 	JKRHeap* _100;                                        // _100
-	PlayCamera* _104;                                     // _104
-	PlayCamera* _108;                                     // _108
-	Controller* _10C;                                     // _10C
-	Controller* _110;                                     // _110
+	PlayCamera* m_olimarCamera;                           // _104
+	PlayCamera* m_louieCamera;                            // _108
+	Controller* m_controllerP1;                           // _10C
+	Controller* m_controllerP2;                           // _110
 	int m_playerMode;                                     // _114
 	HorizonalSplitter* m_splitter;                        // _118
 	u8 _11C;                                              // _11C

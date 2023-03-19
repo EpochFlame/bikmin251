@@ -4479,7 +4479,7 @@ Onyon* Pellet::getPelletGoal()
 
 		int type  = onyonType[idx];
 		goalOnyon = ItemOnyon::mgr->getOnyon(type);
-		if ((gameSystem->m_mode == GSM_STORY_MODE) && (!playData->hasBootContainer(type))) {
+		if ((gameSystem->isStoryMode()) && (!playData->hasBootContainer(type))) {
 			goalOnyon = nullptr;
 		}
 
