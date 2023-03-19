@@ -389,3 +389,10 @@ bool canEnterCave(Game::Piki* piki, u32 id)
 	}
 	return true;
 }
+
+// makeSonicHappa__FPQ24Game4Piki
+void makeSonicHappa(Game::Piki* piki) {
+	if (Game::playData->m_olimarData[0].hasItem(Game::OlimarData::ODII_RepugnantAppendage)) {
+		piki->changeHappa(Game::Bud);
+	}
+}
