@@ -378,7 +378,6 @@ bool Game::InteractBomb::actNavi(Game::Navi* navi)
 	return true;
 }
 
-
 bool canEnterCave(Game::Piki* piki, u32 id)
 {
 	if (id == 'f_03') {
@@ -391,7 +390,8 @@ bool canEnterCave(Game::Piki* piki, u32 id)
 }
 
 // makeSonicHappa__FPQ24Game4Piki
-void makeSonicHappa(Game::Piki* piki) {
+void makeSonicHappa(Game::Piki* piki)
+{
 	if (Game::playData->m_olimarData[0].hasItem(Game::OlimarData::ODII_RepugnantAppendage)) {
 		piki->changeHappa(Game::Bud);
 	}
