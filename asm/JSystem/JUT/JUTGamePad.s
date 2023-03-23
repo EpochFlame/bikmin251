@@ -26,7 +26,7 @@ __vt__10JUTGamePad:
 .lcomm lbl_804F03F0, 0xC, 4
 .lcomm lbl_804F03FC, 0xC, 4
 # JUTGamePad.cpp
-.comm mPadList__10JUTGamePad, 0x188, 4
+.comm mPadList__10JUTGamePad, 0xC, 4
 .comm mPadStatus__10JUTGamePad, 0x30, 4
 .comm mPadButton__10JUTGamePad, 0xC0, 4
 .comm mPadMStick__10JUTGamePad, 0x40, 4

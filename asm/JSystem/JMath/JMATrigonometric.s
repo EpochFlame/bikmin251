@@ -5,7 +5,7 @@ lbl_constructor:
 
 .section .bss  # 0x804EFC20 - 0x8051467C
 # JMATrigonometric.cpp
-.comm sincosTable___5JMath, 0x6040, 32
+.comm sincosTable___5JMath, 0x4000, 32
 .comm atanTable___5JMath, 0x1020, 32
 .comm asinAcosTable___5JMath, 0x1020, 32
 
