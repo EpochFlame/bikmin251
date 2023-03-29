@@ -173,7 +173,7 @@ lbl_804A1900:
 
 .section .bss  # 0x804EFC20 - 0x8051467C
 # J3DTevs.cpp
-.comm j3dTexCoordTable, 0x2528, 4
+.comm j3dTexCoordTable, 0x1DC8, 4
 .comm j3dTevSwapTableTable, 0x400, 4
 .comm j3dAlphaCmpTable, 0x300, 4
 .comm j3dZModeTable, 0x60, 4

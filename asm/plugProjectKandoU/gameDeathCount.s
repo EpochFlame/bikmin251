@@ -19,7 +19,7 @@ lbl_80483920:
 
 .section .bss  # 0x804EFC20 - 0x8051467C
 # gameDeathCount.cpp
-.comm mToday__Q24Game8BirthMgr, 0xC0, 4
+.comm mToday__Q24Game8BirthMgr, 0x1C, 4
 .comm mCave__Q24Game8BirthMgr, 0x1C, 4
 .comm mTotal__Q24Game8BirthMgr, 0x1C, 4
 .comm mToday__Q24Game8DeathMgr, 0x24, 4

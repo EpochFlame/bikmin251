@@ -470,6 +470,10 @@ int Creature::checkHell(Creature::CheckHellArg& hellArg)
 	Vector3f pos = getPosition();
 
 	if (pos.y < -500.0f) {
+		if (isNavi()) {
+			return 2;
+		}
+
 		if (isPiki() && static_cast<FakePiki*>(this)->isPikmin()) {
 			deathMgr->inc(0);
 		}

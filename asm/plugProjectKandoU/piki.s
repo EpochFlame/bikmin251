@@ -243,7 +243,7 @@ __vt__Q23efx7TPkMoeA:
 
 .section .bss  # 0x804EFC20 - 0x8051467C
 # piki.cpp
-.comm pikiColors__Q24Game4Piki, 0x40, 4
+.comm pikiColors__Q24Game4Piki, 0x20, 4
 .comm pikiColorsCursor__Q24Game4Piki, 0x20, 4
 
 .section .sbss # 0x80514D80 - 0x80516360
