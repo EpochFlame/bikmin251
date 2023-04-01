@@ -31,10 +31,11 @@ namespace TwoPlayer
 			JUT_ASSERT(Game::gameSystem->m_section, "Section Missing!\n");
 			JUT_ASSERT(Game::naviMgr, "NaviMgr Missing!\n");
 			JUT_ASSERT(sys->m_gfx, "gfx Missing!\n");
-            if (section->m_prevNaviIdx == 0 && Game::naviMgr->getAliveCount() != 2) {
+			int alive = Game::naviMgr->getAliveCount();
+            if (section->m_prevNaviIdx == 1 && alive != 2) {
 				OSReport("Second Mode\n");
                 //section->setPlayerMode(1);
-				section->setSplitter(false);
+				if (alive == 2) section->setSplitter(false);
 				TwoPlayer::twoPlayerActive = false;
                 Game::moviePlayer->m_viewport     = sys->m_gfx->getViewport(1);
 
@@ -44,7 +45,7 @@ namespace TwoPlayer
 				OSReport("First Mode\n");
 				TwoPlayer::twoPlayerActive = false;
                 //section->setPlayerMode(0);
-				section->setSplitter(false);
+				if (alive == 2) section->setSplitter(false);
                 Game::moviePlayer->m_viewport     = sys->m_gfx->getViewport(0);
                 Game::moviePlayer->m_actingCamera = section->m_olimarCamera;
 			}
@@ -76,8 +77,11 @@ namespace TwoPlayer
 
 	// resumeInputsOther__9TwoPlayerFPQ24Game4Navi
 	void resumeInputsOther(Game::Navi* navi) {
-		Game::Navi* other = Game::naviMgr->getAt(1 - navi->m_naviIndex.typeView);
-		other->m_padinput = other->m_padinput2;
+		int alive = Game::naviMgr->getAliveCount();
+		if (alive == 2 && useTwoPlayer) {
+			Game::Navi* other = Game::naviMgr->getAt(1 - navi->m_naviIndex.typeView);
+			other->m_padinput = other->m_padinput2;
+		}
 	}
 
 	inline bool checkPause(Game::SingleGameSection* section, int player) {
@@ -150,26 +154,25 @@ void BaseGameSection::pmTogglePlayer()
 }
 
 inline void BaseGameSection::TogglePlayer() {
-    if (TwoPlayer::useTwoPlayer && naviMgr->getAliveCount() == 2) {
+	int alive = naviMgr->getAliveCount();
+    if (TwoPlayer::useTwoPlayer && alive == 2) {
 		TwoPlayer::twoPlayerActive = true;
         setPlayerMode(2);
         moviePlayer->m_viewport     = sys->m_gfx->getViewport(0);
         moviePlayer->m_actingCamera = m_olimarCamera;
     }
-	else if (m_prevNaviIdx == 0) {
+	else if ((m_prevNaviIdx == 0) || (m_prevNaviIdx == 1 && TwoPlayer::useTwoPlayer)) {
 		TwoPlayer::twoPlayerActive = false;
 		setPlayerMode(1);
 		moviePlayer->m_viewport     = sys->m_gfx->getViewport(1);
 		moviePlayer->m_actingCamera = m_louieCamera;
-	} else if (m_prevNaviIdx == 1) {
+	} else if ((m_prevNaviIdx == 1) || (m_prevNaviIdx == 0 && TwoPlayer::useTwoPlayer)) {
 		TwoPlayer::twoPlayerActive = false;
 		setPlayerMode(0);
 		moviePlayer->m_viewport     = sys->m_gfx->getViewport(0);
 		moviePlayer->m_actingCamera = m_olimarCamera;
 	}
-	if (!TwoPlayer::useTwoPlayer) {
-		onTogglePlayer();
-	}
+	onTogglePlayer();
 }
 
 void BaseGameSection::setCamController()
