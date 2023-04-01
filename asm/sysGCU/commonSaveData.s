@@ -68,7 +68,7 @@ setDefault__Q34Game14CommonSaveData3MgrFv:
 /* 80446CE4 00443C24  98 A3 00 3A */	stb r5, 0x3a(r3)
 /* 80446CE8 00443C28  98 83 00 3B */	stb r4, 0x3b(r3)
 /* 80446CEC 00443C2C  98 83 00 3C */	stb r4, 0x3c(r3)
-/* 80446CF0 00443C30  98 83 00 3D */	stb r4, 0x3d(r3)
+/* 80446CF0 00443C30  98 83 00 3D */	stb r6, 0x3d(r3)
 /* 80446CF4 00443C34  80 8D 9A EC */	lwz r4, sys@sda21(r13)
 /* 80446CF8 00443C38  80 84 00 D4 */	lwz r4, 0xd4(r4)
 /* 80446CFC 00443C3C  98 83 00 3E */	stb r4, 0x3e(r3)
