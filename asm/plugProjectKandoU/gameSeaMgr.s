@@ -579,7 +579,7 @@ doEntry__Q24Game12AABBWaterBoxFv:
 /* 801AE860 001AB7A0  93 E1 00 7C */	stw r31, 0x7c(r1)
 /* 801AE864 001AB7A4  7C 7F 1B 78 */	mr r31, r3
 /* 801AE868 001AB7A8  93 C1 00 78 */	stw r30, 0x78(r1)
-lwz r5, useTwoPlayer__9TwoPlayer@sda21(r13)
+lbz r5, useTwoPlayer__9TwoPlayer@sda21(r13)
 cmpwi r5, 0
 bne .L_WATERBOX0
 /* 801AE86C 001AB7AC  80 8D 93 E8 */	lwz r4, gameSystem__4Game@sda21(r13)
@@ -591,7 +591,7 @@ bne .L_WATERBOX0
 /* 801AE884 001AB7C4  2C 03 00 04 */	cmpwi r3, 4
 /* 801AE888 001AB7C8  41 82 00 8C */	beq .L_801AE914
 /* 801AE88C 001AB7CC  2C 03 00 02 */	cmpwi r3, 2
-/* 801AE890 001AB7D0  38 00 00 00 */	li r0, 1
+lbz r0, useTwoPlayer__9TwoPlayer@sda21(r13)
 /* 801AE894 001AB7D4  41 82 00 0C */	beq .L_801AE8A0
 .L_WATERBOX0:
 /* 801AE898 001AB7D8  2C 03 00 03 */	cmpwi r3, 3
@@ -602,7 +602,7 @@ bne .L_WATERBOX0
 /* 801AE8A4 001AB7E4  54 00 06 3F */	clrlwi. r0, r0, 0x18
 /* 801AE8A8 001AB7E8  41 82 00 24 */	beq .L_801AE8CC
 /* 801AE8AC 001AB7EC  2C 03 00 01 */	cmpwi r3, 1
-/* 801AE8B0 001AB7F0  38 00 00 00 */	li r0, 1
+lbz r0, useTwoPlayer__9TwoPlayer@sda21(r13)
 /* 801AE8B4 001AB7F4  41 82 00 0C */	beq .L_801AE8C0
 /* 801AE8B8 001AB7F8  2C 03 00 03 */	cmpwi r3, 3
 /* 801AE8BC 001AB7FC  40 82 00 08 */	bne .L_801AE8C4
@@ -631,8 +631,8 @@ bne .L_WATERBOX0
 /* 801AE90C 001AB84C  4E 80 04 21 */	bctrl 
 /* 801AE910 001AB850  48 00 04 64 */	b .L_801AED74
 .L_801AE914:
-lwz r5, useTwoPlayer__9TwoPlayer@sda21(r13)
-cmpwi r5, 0
+lbz r5, useTwoPlayer__9TwoPlayer@sda21(r13)
+cmplwi r5, 0
 bne .L_WATERBOX1
 /* 801AE914 001AB854  80 04 00 44 */	lwz r0, 0x44(r4)
 /* 801AE918 001AB858  2C 00 00 00 */	cmpwi r0, 0
@@ -933,8 +933,8 @@ doEntry__Q24Game12AABBWaterBoxFv:
 /* 801AE860 001AB7A0  93 E1 00 7C */	stw r31, 0x7c(r1)
 /* 801AE864 001AB7A4  7C 7F 1B 78 */	mr r31, r3
 /* 801AE868 001AB7A8  93 C1 00 78 */	stw r30, 0x78(r1)
-lwz r5, useTwoPlayer__9TwoPlayer@sda21(r13)
-cmpwi r5, 0
+lbz r5, useTwoPlayer__9TwoPlayer@sda21(r13)
+cmplwi r5, 0
 bne .L_WATERBOX0
 /* 801AE86C 001AB7AC  80 8D 93 E8 */	lwz r4, gameSystem__4Game@sda21(r13)
 /* 801AE870 001AB7B0  28 04 00 00 */	cmplwi r4, 0
@@ -985,8 +985,8 @@ bne .L_WATERBOX0
 /* 801AE90C 001AB84C  4E 80 04 21 */	bctrl 
 /* 801AE910 001AB850  48 00 04 64 */	b .L_801AED74
 .L_801AE914:
-lwz r5, useTwoPlayer__9TwoPlayer@sda21(r13)
-cmpwi r5, 0
+lbz r5, useTwoPlayer__9TwoPlayer@sda21(r13)
+cmplwi r5, 0
 bne .L_WATERBOX1
 /* 801AE914 001AB854  80 04 00 44 */	lwz r0, 0x44(r4)
 /* 801AE918 001AB858  2C 00 00 00 */	cmpwi r0, 0
@@ -1758,7 +1758,7 @@ __ct__Q24Game6SeaMgrFv:
 /* 801AF41C 001AC35C  28 03 00 00 */	cmplwi r3, 0
 /* 801AF420 001AC360  41 82 00 44 */	beq .L_801AF464
 /* 801AF424 001AC364  80 63 00 44 */	lwz r3, 0x44(r3)
-/* 801AF428 001AC368  38 00 00 00 */	li r0, 1
+lbz r0, useTwoPlayer__9TwoPlayer@sda21(r13)
 /* 801AF42C 001AC36C  2C 03 00 01 */	cmpwi r3, 1
 /* 801AF430 001AC370  41 82 00 0C */	beq .L_801AF43C
 /* 801AF434 001AC374  2C 03 00 03 */	cmpwi r3, 3
@@ -1795,7 +1795,7 @@ __ct__Q24Game6SeaMgrFv:
 /* 801AF49C 001AC3DC  28 03 00 00 */	cmplwi r3, 0
 /* 801AF4A0 001AC3E0  41 82 00 44 */	beq .L_801AF4E4
 /* 801AF4A4 001AC3E4  80 63 00 44 */	lwz r3, 0x44(r3)
-/* 801AF4A8 001AC3E8  38 00 00 00 */	li r0, 1
+lbz r0, useTwoPlayer__9TwoPlayer@sda21(r13)
 /* 801AF4AC 001AC3EC  2C 03 00 01 */	cmpwi r3, 1
 /* 801AF4B0 001AC3F0  41 82 00 0C */	beq .L_801AF4BC
 /* 801AF4B4 001AC3F4  2C 03 00 03 */	cmpwi r3, 3
@@ -1824,7 +1824,7 @@ __ct__Q24Game6SeaMgrFv:
 /* 801AF500 001AC440  28 04 00 00 */	cmplwi r4, 0
 /* 801AF504 001AC444  41 82 00 34 */	beq .L_801AF538
 /* 801AF508 001AC448  80 84 00 44 */	lwz r4, 0x44(r4)
-/* 801AF50C 001AC44C  38 00 00 00 */	li r0, 1
+lbz r0, useTwoPlayer__9TwoPlayer@sda21(r13)
 /* 801AF510 001AC450  2C 04 00 01 */	cmpwi r4, 1
 /* 801AF514 001AC454  41 82 00 0C */	beq .L_801AF520
 /* 801AF518 001AC458  2C 04 00 03 */	cmpwi r4, 3
@@ -1863,7 +1863,7 @@ __ct__Q24Game6SeaMgrFv:
 /* 801AF58C 001AC4CC  28 03 00 00 */	cmplwi r3, 0
 /* 801AF590 001AC4D0  41 82 00 48 */	beq .L_801AF5D8
 /* 801AF594 001AC4D4  80 63 00 44 */	lwz r3, 0x44(r3)
-/* 801AF598 001AC4D8  38 00 00 00 */	li r0, 1
+lbz r0, useTwoPlayer__9TwoPlayer@sda21(r13)
 /* 801AF59C 001AC4DC  2C 03 00 01 */	cmpwi r3, 1
 /* 801AF5A0 001AC4E0  41 82 00 0C */	beq .L_801AF5AC
 /* 801AF5A4 001AC4E4  2C 03 00 03 */	cmpwi r3, 3
