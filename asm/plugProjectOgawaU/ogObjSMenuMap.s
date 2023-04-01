@@ -915,7 +915,7 @@ initMapIcon__Q32og9newScreen11ObjSMenuMapFP10JKRArchive:
 /* 8030FF58 0030CE98  28 00 00 00 */	cmplwi r0, 0
 /* 8030FF5C 0030CE9C  41 82 01 54 */	beq .L_803100B0
 /* 8030FF60 0030CEA0  80 6D 92 E0 */	lwz r3, naviMgr__4Game@sda21(r13)
-/* 8030FF64 0030CEA4  4B E4 AC BD */	bl getActiveNavi__Q24Game7NaviMgrFv
+/* 8030FF64 0030CEA4  4B E4 AC BD */	bl getCurrentNavi__9TwoPlayerFv
 /* 8030FF68 0030CEA8  7C 64 1B 78 */	mr r4, r3
 /* 8030FF6C 0030CEAC  38 61 00 7C */	addi r3, r1, 0x7c
 /* 8030FF70 0030CEB0  81 84 00 00 */	lwz r12, 0(r4)

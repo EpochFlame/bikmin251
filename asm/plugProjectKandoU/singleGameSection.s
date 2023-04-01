@@ -5088,6 +5088,8 @@ bl canEnterCave__FPQ24Game4PikiUl # return true if type can enter cave
 /* 801543A8 001512E8  38 A4 CF 34 */	addi r5, r4, lbl_8047CF34@l
 /* 801543AC 001512EC  38 80 00 01 */	li r4, 1
 /* 801543B0 001512F0  48 06 0B D5 */	bl setMoviePause__Q24Game10GameSystemFbPc
+mr r3, r29
+bl setController__9TwoPlayerFi
 .L_801543B4:
 /* 801543B4 001512F4  BB 41 00 48 */	lmw r26, 0x48(r1)
 /* 801543B8 001512F8  80 01 00 64 */	lwz r0, 0x64(r1)
@@ -5229,7 +5231,9 @@ openCaveMoreMenu__Q24Game17SingleGameSectionFPQ34Game8ItemHole4ItemP10Controller
 /* 801543E4 00151324  93 C1 00 38 */	stw r30, 0x38(r1)
 /* 801543E8 00151328  7C 7E 1B 78 */	mr r30, r3
 /* 801543EC 0015132C  93 A1 00 34 */	stw r29, 0x34(r1)
-/* 801543F0 00151330  88 03 01 94 */	lbz r0, 0x194(r3)
+mr r3, r5
+bl setController__9TwoPlayerFP10Controller
+/* 801543F0 00151330  88 03 01 94 */	lbz r0, 0x194(r30)
 /* 801543F4 00151334  28 00 00 00 */	cmplwi r0, 0
 /* 801543F8 00151338  40 82 01 58 */	bne .L_80154550
 /* 801543FC 0015133C  88 1E 01 80 */	lbz r0, 0x180(r30)
@@ -5459,7 +5463,9 @@ openKanketuMenu__Q24Game17SingleGameSectionFPQ34Game15ItemBigFountain4ItemP10Con
 /* 801545AC 001514EC  93 C1 00 38 */	stw r30, 0x38(r1)
 /* 801545B0 001514F0  7C 7E 1B 78 */	mr r30, r3
 /* 801545B4 001514F4  93 A1 00 34 */	stw r29, 0x34(r1)
-/* 801545B8 001514F8  88 03 01 94 */	lbz r0, 0x194(r3)
+mr r3, r5
+bl setController__9TwoPlayerFP10Controller
+/* 801545B8 001514F8  88 03 01 94 */	lbz r0, 0x194(r30)
 /* 801545BC 001514FC  28 00 00 00 */	cmplwi r0, 0
 /* 801545C0 00151500  40 82 01 40 */	bne .L_80154700
 /* 801545C4 00151504  88 1E 01 80 */	lbz r0, 0x180(r30)
@@ -6808,8 +6814,7 @@ setDispMemberSMenu__Q24Game17SingleGameSectionFRQ32og6Screen18DispMemberSMenuAll
 /* 80154FE4 00151F24  BF 41 00 08 */	stmw r26, 8(r1)
 /* 80154FE8 00151F28  7C 7C 1B 78 */	mr r28, r3
 /* 80154FEC 00151F2C  7C 9D 23 78 */	mr r29, r4
-/* 80154FF0 00151F30  80 6D 92 E0 */	lwz r3, naviMgr__4Game@sda21(r13)
-/* 80154FF4 00151F34  48 00 5C 2D */	bl getActiveNavi__Q24Game7NaviMgrFv
+/* 80154FF4 00151F34  48 00 5C 2D */	bl getCurrentNavi__9TwoPlayerFv
 /* 80154FF8 00151F38  28 03 00 00 */	cmplwi r3, 0
 /* 80154FFC 00151F3C  3B C0 00 00 */	li r30, 0
 /* 80155000 00151F40  41 82 00 08 */	beq .L_80155008

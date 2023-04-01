@@ -3529,7 +3529,7 @@ exec__Q34Game10SingleGame9GameStateFPQ24Game17SingleGameSection:
 .L_80214EA0:
 /* 80214EA0 00211DE0  80 6D 9A A0 */	lwz r3, gGame2DMgr__6Screen@sda21(r13)
 /* 80214EA4 00211DE4  80 9E 01 0C */	lwz r4, 0x12c(r30)
-/* 80214EA8 00211DE8  48 1E 71 D1 */	bl setGamePad__Q26Screen9Game2DMgrFP10Controller
+# /* 80214EA8 00211DE8  48 1E 71 D1 */	bl setGamePad__Q26Screen9Game2DMgrFP10Controller
 /* 80214EAC 00211DEC  80 6D 9A A0 */	lwz r3, gGame2DMgr__6Screen@sda21(r13)
 /* 80214EB0 00211DF0  48 1E 80 81 */	bl check_SMenu__Q26Screen9Game2DMgrFv
 /* 80214EB4 00211DF4  2C 03 00 02 */	cmpwi r3, 2
@@ -3633,40 +3633,8 @@ exec__Q34Game10SingleGame9GameStateFPQ24Game17SingleGameSection:
 /* 80215024 00211F64  4B E1 56 1D */	bl panic_f__12JUTExceptionFPCciPCce
 /* 80215028 00211F68  48 00 00 8C */	b .L_802150B4
 .L_8021502C:
-/* 8021502C 00211F6C  80 6D 93 E8 */	lwz r3, gameSystem__4Game@sda21(r13)
-/* 80215030 00211F70  88 03 00 3C */	lbz r0, 0x3c(r3)
-/* 80215034 00211F74  54 00 07 39 */	rlwinm. r0, r0, 0, 0x1c, 0x1c
-/* 80215038 00211F78  40 82 00 7C */	bne .L_802150B4
-/* 8021503C 00211F7C  80 8D 9B 54 */	lwz r4, moviePlayer__4Game@sda21(r13)
-/* 80215040 00211F80  80 04 00 18 */	lwz r0, 0x18(r4)
-/* 80215044 00211F84  2C 00 00 00 */	cmpwi r0, 0
-/* 80215048 00211F88  40 82 00 6C */	bne .L_802150B4
-/* 8021504C 00211F8C  4B F9 FF 7D */	bl paused__Q24Game10GameSystemFv
-/* 80215050 00211F90  54 60 06 3F */	clrlwi. r0, r3, 0x18
-/* 80215054 00211F94  40 82 00 60 */	bne .L_802150B4
-/* 80215058 00211F98  80 7E 01 0C */	lwz r3, 0x12c(r30)
-/* 8021505C 00211F9C  80 03 00 1C */	lwz r0, 0x1c(r3)
-/* 80215060 00211FA0  54 00 04 E7 */	rlwinm. r0, r0, 0, 0x13, 0x13
-/* 80215064 00211FA4  41 82 00 50 */	beq .L_802150B4
-/* 80215068 00211FA8  38 61 00 60 */	addi r3, r1, 0x60
-/* 8021506C 00211FAC  48 00 02 8D */	bl __ct__Q32og6Screen18DispMemberSMenuAllFv
-/* 80215070 00211FB0  7F C3 F3 78 */	mr r3, r30
-/* 80215074 00211FB4  38 81 00 60 */	addi r4, r1, 0x60
-/* 80215078 00211FB8  4B F3 FF 61 */	bl setDispMemberSMenu__Q24Game17SingleGameSectionFRQ32og6Screen18DispMemberSMenuAll
-/* 8021507C 00211FBC  80 6D 9A A0 */	lwz r3, gGame2DMgr__6Screen@sda21(r13)
-/* 80215080 00211FC0  38 81 00 60 */	addi r4, r1, 0x60
-/* 80215084 00211FC4  48 1E 7C 4D */	bl open_SMenu__Q26Screen9Game2DMgrFRQ32og6Screen18DispMemberSMenuAll
-/* 80215088 00211FC8  54 60 06 3F */	clrlwi. r0, r3, 0x18
-/* 8021508C 00211FCC  41 82 00 28 */	beq .L_802150B4
-/* 80215090 00211FD0  80 6D 93 E8 */	lwz r3, gameSystem__4Game@sda21(r13)
-/* 80215094 00211FD4  38 80 00 01 */	li r4, 1
-/* 80215098 00211FD8  38 A2 BC 70 */	addi r5, r2, lbl_80519FD0@sda21
-/* 8021509C 00211FDC  38 C0 00 03 */	li r6, 3
-/* 802150A0 00211FE0  4B F9 FE F5 */	bl setPause__Q24Game10GameSystemFbPci
-/* 802150A4 00211FE4  80 6D 93 E8 */	lwz r3, gameSystem__4Game@sda21(r13)
-/* 802150A8 00211FE8  38 80 00 01 */	li r4, 1
-/* 802150AC 00211FEC  38 A2 BC 70 */	addi r5, r2, lbl_80519FD0@sda21
-/* 802150B0 00211FF0  4B F9 FE D5 */	bl setMoviePause__Q24Game10GameSystemFbPc
+mr r3, r30
+bl pauseMap__9TwoPlayerFPQ24Game17SingleGameSection
 .L_802150B4:
 /* 802150B4 00211FF4  80 6D 93 E8 */	lwz r3, gameSystem__4Game@sda21(r13)
 /* 802150B8 00211FF8  4B F9 FF 09 */	bl paused_soft__Q24Game10GameSystemFv
@@ -3995,7 +3963,7 @@ exec__Q34Game10SingleGame9GameStateFPQ24Game17SingleGameSection:
 .L_80214EA0:
 /* 80214EA0 00211DE0  80 6D 9A A0 */	lwz r3, gGame2DMgr__6Screen@sda21(r13)
 /* 80214EA4 00211DE4  80 9E 01 0C */	lwz r4, 0x10c(r30)
-/* 80214EA8 00211DE8  48 1E 71 D1 */	bl setGamePad__Q26Screen9Game2DMgrFP10Controller
+# /* 80214EA8 00211DE8  48 1E 71 D1 */	bl setGamePad__Q26Screen9Game2DMgrFP10Controller
 /* 80214EAC 00211DEC  80 6D 9A A0 */	lwz r3, gGame2DMgr__6Screen@sda21(r13)
 /* 80214EB0 00211DF0  48 1E 80 81 */	bl check_SMenu__Q26Screen9Game2DMgrFv
 /* 80214EB4 00211DF4  2C 03 00 02 */	cmpwi r3, 2
@@ -4099,40 +4067,8 @@ exec__Q34Game10SingleGame9GameStateFPQ24Game17SingleGameSection:
 /* 80215024 00211F64  4B E1 56 1D */	bl panic_f__12JUTExceptionFPCciPCce
 /* 80215028 00211F68  48 00 00 8C */	b .L_802150B4
 .L_8021502C:
-/* 8021502C 00211F6C  80 6D 93 E8 */	lwz r3, gameSystem__4Game@sda21(r13)
-/* 80215030 00211F70  88 03 00 3C */	lbz r0, 0x3c(r3)
-/* 80215034 00211F74  54 00 07 39 */	rlwinm. r0, r0, 0, 0x1c, 0x1c
-/* 80215038 00211F78  40 82 00 7C */	bne .L_802150B4
-/* 8021503C 00211F7C  80 8D 9B 54 */	lwz r4, moviePlayer__4Game@sda21(r13)
-/* 80215040 00211F80  80 04 00 18 */	lwz r0, 0x18(r4)
-/* 80215044 00211F84  2C 00 00 00 */	cmpwi r0, 0
-/* 80215048 00211F88  40 82 00 6C */	bne .L_802150B4
-/* 8021504C 00211F8C  4B F9 FF 7D */	bl paused__Q24Game10GameSystemFv
-/* 80215050 00211F90  54 60 06 3F */	clrlwi. r0, r3, 0x18
-/* 80215054 00211F94  40 82 00 60 */	bne .L_802150B4
-/* 80215058 00211F98  80 7E 01 0C */	lwz r3, 0x10c(r30)
-/* 8021505C 00211F9C  80 03 00 1C */	lwz r0, 0x1c(r3)
-/* 80215060 00211FA0  54 00 04 E7 */	rlwinm. r0, r0, 0, 0x13, 0x13
-/* 80215064 00211FA4  41 82 00 50 */	beq .L_802150B4
-/* 80215068 00211FA8  38 61 00 60 */	addi r3, r1, 0x60
-/* 8021506C 00211FAC  48 00 02 8D */	bl __ct__Q32og6Screen18DispMemberSMenuAllFv
-/* 80215070 00211FB0  7F C3 F3 78 */	mr r3, r30
-/* 80215074 00211FB4  38 81 00 60 */	addi r4, r1, 0x60
-/* 80215078 00211FB8  4B F3 FF 61 */	bl setDispMemberSMenu__Q24Game17SingleGameSectionFRQ32og6Screen18DispMemberSMenuAll
-/* 8021507C 00211FBC  80 6D 9A A0 */	lwz r3, gGame2DMgr__6Screen@sda21(r13)
-/* 80215080 00211FC0  38 81 00 60 */	addi r4, r1, 0x60
-/* 80215084 00211FC4  48 1E 7C 4D */	bl open_SMenu__Q26Screen9Game2DMgrFRQ32og6Screen18DispMemberSMenuAll
-/* 80215088 00211FC8  54 60 06 3F */	clrlwi. r0, r3, 0x18
-/* 8021508C 00211FCC  41 82 00 28 */	beq .L_802150B4
-/* 80215090 00211FD0  80 6D 93 E8 */	lwz r3, gameSystem__4Game@sda21(r13)
-/* 80215094 00211FD4  38 80 00 01 */	li r4, 1
-/* 80215098 00211FD8  38 A2 BC 70 */	addi r5, r2, lbl_80519FD0@sda21
-/* 8021509C 00211FDC  38 C0 00 03 */	li r6, 3
-/* 802150A0 00211FE0  4B F9 FE F5 */	bl setPause__Q24Game10GameSystemFbPci
-/* 802150A4 00211FE4  80 6D 93 E8 */	lwz r3, gameSystem__4Game@sda21(r13)
-/* 802150A8 00211FE8  38 80 00 01 */	li r4, 1
-/* 802150AC 00211FEC  38 A2 BC 70 */	addi r5, r2, lbl_80519FD0@sda21
-/* 802150B0 00211FF0  4B F9 FE D5 */	bl setMoviePause__Q24Game10GameSystemFbPc
+mr r3, r30
+bl pauseMap__9TwoPlayerFPQ24Game17SingleGameSection
 .L_802150B4:
 /* 802150B4 00211FF4  80 6D 93 E8 */	lwz r3, gameSystem__4Game@sda21(r13)
 /* 802150B8 00211FF8  4B F9 FF 09 */	bl paused_soft__Q24Game10GameSystemFv

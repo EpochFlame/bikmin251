@@ -9192,6 +9192,8 @@ init__Q24Game18NaviContainerStateFPQ24Game4NaviPQ24Game8StateArg:
 /* 80184780 001816C0  80 6D 9A A0 */	lwz r3, gGame2DMgr__6Screen@sda21(r13)
 /* 80184784 001816C4  80 9D 02 78 */	lwz r4, 0x278(r29)
 /* 80184788 001816C8  48 27 78 F1 */	bl setGamePad__Q26Screen9Game2DMgrFP10Controller
+mr r3, r29
+bl stopInputsOther__9TwoPlayerFPQ24Game4Navi
 /* 8018478C 001816CC  80 7C 00 10 */	lwz r3, 0x10(r28)
 /* 80184790 001816D0  38 00 00 00 */	li r0, 0
 /* 80184794 001816D4  A3 C3 02 2E */	lhz r30, 0x22e(r3)
@@ -9592,6 +9594,8 @@ exec__Q24Game18NaviContainerStateFPQ24Game4Navi:
 /* 80184D6C 00181CAC  81 8C 00 1C */	lwz r12, 0x1c(r12)
 /* 80184D70 00181CB0  7D 89 03 A6 */	mtctr r12
 /* 80184D74 00181CB4  4E 80 04 21 */	bctrl 
+mr r3, r31
+bl resumeInputsOther__9TwoPlayerFPQ24Game4Navi
 /* 80184D78 00181CB8  48 00 02 18 */	b .L_80184F90
 .L_80184D7C:
 /* 80184D7C 00181CBC  80 7E 00 10 */	lwz r3, 0x10(r30)
@@ -9615,6 +9619,8 @@ exec__Q24Game18NaviContainerStateFPQ24Game4Navi:
 /* 80184DC0 00181D00  81 8C 00 1C */	lwz r12, 0x1c(r12)
 /* 80184DC4 00181D04  7D 89 03 A6 */	mtctr r12
 /* 80184DC8 00181D08  4E 80 04 21 */	bctrl 
+mr r3, r31
+bl resumeInputsOther__9TwoPlayerFPQ24Game4Navi
 /* 80184DCC 00181D0C  48 00 01 C4 */	b .L_80184F90
 .L_80184DD0:
 /* 80184DD0 00181D10  80 6D 9A A0 */	lwz r3, gGame2DMgr__6Screen@sda21(r13)
@@ -9675,6 +9681,8 @@ exec__Q24Game18NaviContainerStateFPQ24Game4Navi:
 /* 80184E8C 00181DCC  81 8C 00 1C */	lwz r12, 0x1c(r12)
 /* 80184E90 00181DD0  7D 89 03 A6 */	mtctr r12
 /* 80184E94 00181DD4  4E 80 04 21 */	bctrl 
+mr r3, r31
+bl resumeInputsOther__9TwoPlayerFPQ24Game4Navi
 /* 80184E98 00181DD8  48 00 00 F8 */	b .L_80184F90
 .L_80184E9C:
 /* 80184E9C 00181DDC  C0 02 A8 80 */	lfs f0, lbl_80518BE0@sda21(r2)
@@ -9703,6 +9711,8 @@ exec__Q24Game18NaviContainerStateFPQ24Game4Navi:
 /* 80184EF0 00181E30  81 8C 00 1C */	lwz r12, 0x1c(r12)
 /* 80184EF4 00181E34  7D 89 03 A6 */	mtctr r12
 /* 80184EF8 00181E38  4E 80 04 21 */	bctrl 
+mr r3, r31
+bl resumeInputsOther__9TwoPlayerFPQ24Game4Navi
 /* 80184EFC 00181E3C  48 00 00 94 */	b .L_80184F90
 .L_80184F00:
 /* 80184F00 00181E40  80 6D 9A A0 */	lwz r3, gGame2DMgr__6Screen@sda21(r13)
@@ -9736,6 +9746,8 @@ exec__Q24Game18NaviContainerStateFPQ24Game4Navi:
 /* 80184F64 00181EA4  81 8C 00 1C */	lwz r12, 0x1c(r12)
 /* 80184F68 00181EA8  7D 89 03 A6 */	mtctr r12
 /* 80184F6C 00181EAC  4E 80 04 21 */	bctrl 
+mr r3, r31
+bl resumeInputsOther__9TwoPlayerFPQ24Game4Navi
 /* 80184F70 00181EB0  48 00 00 20 */	b .L_80184F90
 .L_80184F74:
 /* 80184F74 00181EB4  C0 02 A8 80 */	lfs f0, lbl_80518BE0@sda21(r2)

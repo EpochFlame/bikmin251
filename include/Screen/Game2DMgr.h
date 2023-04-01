@@ -84,7 +84,7 @@ struct Game2DMgr : public JKRDisposer {
 	void check_VsStatus();
 	void open_GameChallenge2P(og::Screen::DispMemberChallenge2P&, int);
 	void open_GameChallenge1P(og::Screen::DispMemberChallenge1P&, int);
-	void open_SMenu(og::Screen::DispMemberSMenuAll&);
+	bool open_SMenu(og::Screen::DispMemberSMenuAll&);
 	void open_SMenu_Sub(og::Screen::DispMemberSMenuAll&);
 	void check_SMenu();
 	void open_WorldMapInfoWin0(og::Screen::DispMemberWorldMapInfoWin0&);

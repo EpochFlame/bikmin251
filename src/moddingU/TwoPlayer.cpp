@@ -8,10 +8,13 @@
 #include "og/Screen/PikminCounter.h"
 #include "Game/Data.h"
 #include "Splitter.h"
+#include "Game/SingleGameSection.h"
+#include "Screen/Game2DMgr.h"
 namespace TwoPlayer
 {
     bool useTwoPlayer = true;
 	bool twoPlayerActive = true;
+	Game::Navi* pausingNavi = nullptr;
     int deadPlayer = 0;
 
     void initTwoPlayer() {
@@ -62,8 +65,75 @@ namespace TwoPlayer
         	Game::naviMgr->createPSMDirectorUpdator();
 		}
 		PSSetCurCameraNo(0);
-		
 	}
+
+	// stopInputsOther__9TwoPlayerFPQ24Game4Navi
+	void stopInputsOther(Game::Navi* navi) {
+		Game::Navi* other = Game::naviMgr->getAt(1 - navi->m_naviIndex.typeView);
+		other->disableController();
+		other->m_velocity = Vector3f(0.0f);
+	}
+
+	// resumeInputsOther__9TwoPlayerFPQ24Game4Navi
+	void resumeInputsOther(Game::Navi* navi) {
+		Game::Navi* other = Game::naviMgr->getAt(1 - navi->m_naviIndex.typeView);
+		other->m_padinput = other->m_padinput2;
+	}
+
+	inline bool checkPause(Game::SingleGameSection* section, int player) {
+		Controller* control = Game::naviMgr->getAt(player)->m_padinput;
+		if (control && control->isButtonDown(PAD_BUTTON_START)) {
+			og::Screen::DispMemberSMenuAll member;
+			Screen::gGame2DMgr->setGamePad(control);
+			section->setDispMemberSMenu(member);
+			bool shouldPause = Screen::gGame2DMgr->open_SMenu(member);
+			if (shouldPause) {
+				Game::gameSystem->setPause(true, "open-sm", 3);
+				Game::gameSystem->setMoviePause(true, "open-sm");
+				return true;
+			}
+		}
+		return false;
+	}
+
+	// pauseMap__9TwoPlayerFPQ24Game17SingleGameSection
+	void pauseMap(Game::SingleGameSection* section) {
+		if (!(Game::gameSystem->m_flags & 0x8) && 
+			Game::moviePlayer->m_demoState == 0 && 
+			!Game::gameSystem->paused())  {
+			bool p1Pause = checkPause(section, 0);
+			if (p1Pause) {
+				OSReport("p1 paused\n");
+				pausingNavi = Game::naviMgr->getAt(0);
+				return;
+			}
+			bool p2Pause = checkPause(section, 1);
+			if (p2Pause) {
+				pausingNavi = Game::naviMgr->getAt(1);
+				OSReport("p2 paused\n");
+			}
+		}
+	}
+
+	// setController__9TwoPlayerFP10Controller
+	void setController(Controller* controller) {
+		Screen::gGame2DMgr->setGamePad(controller);
+	}
+
+	// setController__9TwoPlayerFi
+	void setController(int id) {
+		Screen::gGame2DMgr->setGamePad(Game::naviMgr->getAt(id)->m_padinput);
+	}
+	// getCurrentNavi__9TwoPlayerFv
+	Game::Navi* getCurrentNavi() {
+		OSReport("Getting Navi\n");
+		if (useTwoPlayer) { 
+			return pausingNavi;
+		}
+		return Game::naviMgr->getActiveNavi();
+	}
+
+	
 
 } // namespace TwoPlayer
 
@@ -169,7 +239,6 @@ void BaseGameSection::setCamController()
 	}
 	on_setCamController(m_prevNaviIdx);
 }
-
 
 } // namespace Game
 
