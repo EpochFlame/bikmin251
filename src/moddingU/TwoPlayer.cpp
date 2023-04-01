@@ -7,6 +7,7 @@
 #include "PSGame/SceneInfo.h"
 #include "og/Screen/PikminCounter.h"
 #include "Game/Data.h"
+#include "Splitter.h"
 namespace TwoPlayer
 {
     bool useTwoPlayer = true;
@@ -15,50 +16,54 @@ namespace TwoPlayer
 
     void initTwoPlayer() {
 		OSReport("setting two player: %d\n", sys->getPlayCommonData()->mDeflicker);
-        useTwoPlayer = sys->getPlayCommonData()->mDeflicker;
+        twoPlayerActive = useTwoPlayer = sys->getPlayCommonData()->mDeflicker && Game::gameSystem->isStoryMode();
     }
 
     // setModeInCutscene__9TwoPlayerFv
     void setModeInCutscene() {
         OSReport("toggle mode called ---------------------------------\n");
-        if (useTwoPlayer) {
-            
+        if (twoPlayerActive) {
             OSReport("set player mode ---------------------------------\n");
             Game::BaseGameSection* section = Game::gameSystem->m_section;
-            if (Game::naviMgr->getAliveCount() == 2) {
-				TwoPlayer::twoPlayerActive = false;
-                section->setPlayerMode(0);
-                Game::moviePlayer->m_viewport     = sys->m_gfx->getViewport(0);
-                Game::moviePlayer->m_actingCamera = section->m_olimarCamera;
-            }
-            else if (section->m_prevNaviIdx == 0) {
-                section->setPlayerMode(1);
+			JUT_ASSERT(Game::gameSystem->m_section, "Section Missing!\n");
+			JUT_ASSERT(Game::naviMgr, "NaviMgr Missing!\n");
+			JUT_ASSERT(sys->m_gfx, "gfx Missing!\n");
+            if (section->m_prevNaviIdx == 0 && Game::naviMgr->getAliveCount() != 2) {
+				OSReport("Second Mode\n");
+                //section->setPlayerMode(1);
+				section->setSplitter(false);
 				TwoPlayer::twoPlayerActive = false;
                 Game::moviePlayer->m_viewport     = sys->m_gfx->getViewport(1);
+
                 Game::moviePlayer->m_actingCamera = section->m_louieCamera;
-            } else if (section->m_prevNaviIdx == 1) {
-				TwoPlayer::twoPlayerActive = false;
-                section->setPlayerMode(0);
-                Game::moviePlayer->m_viewport     = sys->m_gfx->getViewport(0);
-                Game::moviePlayer->m_actingCamera = section->m_olimarCamera;
-            }
+			}
 			else {
+				OSReport("First Mode\n");
 				TwoPlayer::twoPlayerActive = false;
-                section->setPlayerMode(0);
+                //section->setPlayerMode(0);
+				section->setSplitter(false);
                 Game::moviePlayer->m_viewport     = sys->m_gfx->getViewport(0);
                 Game::moviePlayer->m_actingCamera = section->m_olimarCamera;
 			}
+			JUT_ASSERT(Game::moviePlayer->m_viewport, "Viewport Missing\n");
+			JUT_ASSERT(Game::moviePlayer->m_actingCamera, "Camera Missing!\n");
         }
     }
 
     // setModeOutCutscene__9TwoPlayerFv
     void setModeOutCutscene() {
-        Game::gameSystem->m_section->pmTogglePlayer();
+		if (useTwoPlayer) {
+        	Game::gameSystem->m_section->TogglePlayer();
+		}
     }
     // loadSound__9TwoPlayerFv
     void loadSound() {
-        Game::naviMgr->createPSMDirectorUpdator();
-    }
+		if (useTwoPlayer) {
+        	Game::naviMgr->createPSMDirectorUpdator();
+		}
+		PSSetCurCameraNo(0);
+		
+	}
 
 } // namespace TwoPlayer
 
@@ -68,6 +73,12 @@ namespace Game
 
 void BaseGameSection::pmTogglePlayer()
 {
+	if (!TwoPlayer::useTwoPlayer) {
+		TogglePlayer();
+	}
+}
+
+inline void BaseGameSection::TogglePlayer() {
     if (TwoPlayer::useTwoPlayer && naviMgr->getAliveCount() == 2) {
 		TwoPlayer::twoPlayerActive = true;
         setPlayerMode(2);
@@ -85,7 +96,9 @@ void BaseGameSection::pmTogglePlayer()
 		moviePlayer->m_viewport     = sys->m_gfx->getViewport(0);
 		moviePlayer->m_actingCamera = m_olimarCamera;
 	}
-	onTogglePlayer();
+	if (!TwoPlayer::useTwoPlayer) {
+		onTogglePlayer();
+	}
 }
 
 void BaseGameSection::setCamController()
@@ -116,11 +129,11 @@ void BaseGameSection::setCamController()
 	case 1: {
 		navis[0]->disableController();
 		PlayCamera* louieCam        = m_louieCamera;
-		navis[1]->m_camera           = louieCam;
-		navis[1]->m_camera2          = louieCam;
+		navis[1]->m_camera          = louieCam;
+		navis[1]->m_camera2         = louieCam;
 		Controller* louieController = (TwoPlayer::useTwoPlayer) ? m_controllerP2 : m_controllerP1;
-		navis[1]->m_padinput      = louieController;
-		navis[1]->m_padinput2      = louieController;
+		navis[1]->m_padinput        = louieController;
+		navis[1]->m_padinput2       = louieController;
         navis[0]->disableController();
 		moviePlayer->m_targetNavi    = navis[1];
 		moviePlayer->m_viewport      = sys->m_gfx->getViewport(1);

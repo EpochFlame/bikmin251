@@ -969,7 +969,6 @@ __ct__Q24Game15BaseGameSectionFP7JKRHeap:
 /* 8014AF94 00147ED4  38 7E 00 4C */	addi r3, r30, 0x4c
 /* 8014AF98 00147ED8  48 2E 0F 21 */	bl __ct__11WipeInFaderFv
 .L_8014AF9C:
-bl initTwoPlayer__9TwoPlayerFv
 /* 8014AF9C 00147EDC  93 DF 00 DC */	stw r30, 0xdc(r31)
 /* 8014AFA0 00147EE0  7F E3 FB 78 */	mr r3, r31
 /* 8014AFA4 00147EE4  80 01 00 34 */	lwz r0, 0x34(r1)
@@ -2054,6 +2053,7 @@ init__Q24Game15BaseGameSectionFv:
 /* 8014B7F4 00148734  81 8C 00 F0 */	lwz r12, 0xf0(r12)
 /* 8014B7F8 00148738  7D 89 03 A6 */	mtctr r12
 /* 8014B7FC 0014873C  4E 80 04 21 */	bctrl 
+bl initTwoPlayer__9TwoPlayerFv
 /* 8014B800 00148740  80 6D 9A EC */	lwz r3, sys@sda21(r13)
 /* 8014B804 00148744  38 9F 00 A4 */	addi r4, r31, 0xa4
 /* 8014B808 00148748  48 2D 7B 5D */	bl heapStatusEnd__6SystemFPc

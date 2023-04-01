@@ -12,8 +12,8 @@ struct Splitter {
 	// _00 VTBL
 };
 
-struct HorizontalSplitter : public Splitter {
-	HorizontalSplitter(Graphics*);
+struct HorizonalSplitter : public Splitter {
+	HorizonalSplitter(Graphics*);
 
 	virtual void split2(f32); // _08
 

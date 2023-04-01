@@ -201,6 +201,8 @@ struct BaseGameSection : public BaseHIOSection {
 	void startKantei2D();
 	void onKanteiDone(Rect<f32>&);
 
+	void TogglePlayer();
+
 	// _00 		= VTBL
 	// _00-_48 	= BaseHIOSection
 	// should there not be another 0x4 here in USA (not demo)? ...
