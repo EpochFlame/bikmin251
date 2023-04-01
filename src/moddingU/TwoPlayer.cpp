@@ -73,7 +73,8 @@ namespace Game
 
 void BaseGameSection::pmTogglePlayer()
 {
-	if (!TwoPlayer::useTwoPlayer) {
+	//OSReport("are we two player? %s\n", TwoPlayer::useTwoPlayer);
+	if (!(sys->getPlayCommonData()->mDeflicker && Game::gameSystem->isStoryMode())) {
 		TogglePlayer();
 	}
 }
@@ -85,12 +86,12 @@ inline void BaseGameSection::TogglePlayer() {
         moviePlayer->m_viewport     = sys->m_gfx->getViewport(0);
         moviePlayer->m_actingCamera = m_olimarCamera;
     }
-	else if (m_prevNaviIdx == 1) {
+	else if (m_prevNaviIdx == 0) {
 		TwoPlayer::twoPlayerActive = false;
 		setPlayerMode(1);
 		moviePlayer->m_viewport     = sys->m_gfx->getViewport(1);
 		moviePlayer->m_actingCamera = m_louieCamera;
-	} else if (m_prevNaviIdx == 0) {
+	} else if (m_prevNaviIdx == 1) {
 		TwoPlayer::twoPlayerActive = false;
 		setPlayerMode(0);
 		moviePlayer->m_viewport     = sys->m_gfx->getViewport(0);
