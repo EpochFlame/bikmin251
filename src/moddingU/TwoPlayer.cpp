@@ -56,7 +56,8 @@ namespace TwoPlayer
 
     // setModeOutCutscene__9TwoPlayerFv
     void setModeOutCutscene() {
-		if (useTwoPlayer) {
+		int alive = Game::naviMgr->getAliveCount();
+		if (useTwoPlayer && alive == 2) {
         	Game::gameSystem->m_section->TogglePlayer();
 		}
     }
