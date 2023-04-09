@@ -398,6 +398,9 @@ bool canEnterCave(Game::Piki* piki, u32 id)
 	if (id == 'y_04') {
 		return piki->m_pikiKind == Game::Red;
 	}
+	if (id == 't_02') {
+		return piki->m_pikiKind == Game::White;
+	}
 	return true;
 }
 
