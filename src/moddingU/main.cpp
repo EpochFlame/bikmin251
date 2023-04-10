@@ -26,6 +26,7 @@
 #include "TwoPlayer.h"
 
 bool isTreasureCutscene;
+bool isKeyCheat = false;
 
 namespace Game {
 
@@ -288,7 +289,7 @@ bool isKeyUnlock()
 			}
 		}
 	}
-	if (retval) {
+	if (retval || isKeyCheat) {
 		isExitLocked = false;
 	}
 	return retval;
