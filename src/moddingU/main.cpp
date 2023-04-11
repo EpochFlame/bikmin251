@@ -236,6 +236,7 @@ float adjustBoundingRadius(float radius)
 
 bool isKeyUnlock()
 {
+if(isKeyCheat){return true;}
 	bool retval = false;
 	if (Game::gameSystem && Game::gameSystem->m_inCave && Game::gameSystem->isStoryMode()) {
 		Game::GameSystem* gs           = Game::gameSystem;
@@ -289,7 +290,7 @@ bool isKeyUnlock()
 			}
 		}
 	}
-	if (retval || isKeyCheat) {
+	if (retval) {
 		isExitLocked = false;
 	}
 	return retval;
