@@ -27,26 +27,26 @@ static const char objCaveUnusedArray[] = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
  */
 ObjCave::ObjCave(const char* name)
 {
-	m_fadeLevel       = 0.0f;
-	m_scale           = 0.0f;
-	m_name            = name;
-	m_disp            = nullptr;
-	m_otakara         = nullptr;
-	m_bloGroup        = nullptr;
-	m_doping          = nullptr;
-	m_lifeGauge1      = nullptr;
-	m_lifeGauge2      = nullptr;
-	m_pikiCounter     = nullptr;
-	m_pikiCounterLouie = nullptr;
+	m_fadeLevel         = 0.0f;
+	m_scale             = 0.0f;
+	m_name              = name;
+	m_disp              = nullptr;
+	m_otakara           = nullptr;
+	m_bloGroup          = nullptr;
+	m_doping            = nullptr;
+	m_lifeGauge1        = nullptr;
+	m_lifeGauge2        = nullptr;
+	m_pikiCounter       = nullptr;
+	m_pikiCounterLouie  = nullptr;
 	m_pikiCounterOlimar = nullptr;
-	m_totalPoko       = nullptr;
-	m_sensorScreen    = nullptr;
-	m_totalPokoActive = false;
-	m_pokos           = 0;
-	m_totalPokoTimer  = 0.0f;
-	m_paneChika       = nullptr;
-	m_paneFinalf      = nullptr;
-	m_keyCounter      = nullptr;
+	m_totalPoko         = nullptr;
+	m_sensorScreen      = nullptr;
+	m_totalPokoActive   = false;
+	m_pokos             = 0;
+	m_totalPokoTimer    = 0.0f;
+	m_paneChika         = nullptr;
+	m_paneFinalf        = nullptr;
+	m_keyCounter        = nullptr;
 }
 
 /*
@@ -74,14 +74,14 @@ void ObjCave::doCreate(JKRArchive* arc)
 		JUT_PANICLINE(189, "ERR! in ObjCave Create¸”sI\n");
 	}
 
-	m_doping       = new og::Screen::DopingScreen;
-	m_lifeGauge1   = new og::Screen::NaviLifeGauge;
-	m_lifeGauge2   = new og::Screen::NaviLifeGauge;
-	m_pikiCounter  = new og::Screen::PikminCounterCave;
+	m_doping            = new og::Screen::DopingScreen;
+	m_lifeGauge1        = new og::Screen::NaviLifeGauge;
+	m_lifeGauge2        = new og::Screen::NaviLifeGauge;
+	m_pikiCounter       = new og::Screen::PikminCounterCave;
 	m_pikiCounterOlimar = new og::Screen::PikminCounterCave;
-	m_pikiCounterLouie = new og::Screen::PikminCounterCave;
-	m_totalPoko    = new og::Screen::TotalPokoScreen;
-	m_sensorScreen = new P2DScreen::Mgr_tuning;
+	m_pikiCounterLouie  = new og::Screen::PikminCounterCave;
+	m_totalPoko         = new og::Screen::TotalPokoScreen;
+	m_sensorScreen      = new P2DScreen::Mgr_tuning;
 
 	m_bloGroup = new og::Screen::BloGroup(8);
 	m_bloGroup->addBlo("doping.blo", m_doping, 0x1040000, arc);
@@ -133,7 +133,7 @@ void ObjCave::doCreate(JKRArchive* arc)
 	m_doping->setDopingEnable(m_disp->m_isBitterUnlocked, m_disp->m_isSpicyUnlocked);
 
 	// needs actual key count in disp and check if keys are on floor to enable
-	m_keyCounter = og::Screen::setCallBack_CounterRV(m_pikiCounter, 'k_mr', 'k_mc', 0, &m_disp->m_keyCount, 2, 2, false, arc);
+	m_keyCounter   = og::Screen::setCallBack_CounterRV(m_pikiCounter, 'k_mr', 'k_mc', 0, &m_disp->m_keyCount, 2, 2, false, arc);
 	m_keyCounter2p = og::Screen::setCallBack_CounterRV(m_pikiCounterOlimar, 'k_mr', 'k_mc', 0, &m_disp->m_keyCount, 2, 2, false, arc);
 	mod::updateDispMember();
 }
@@ -161,8 +161,7 @@ void ObjCave::commonUpdate()
 		if (TwoPlayer::twoPlayerActive) {
 			m_pikiCounterOlimar->setParam(m_disp->m_dataGame, m_disp->m_dataNavi1);
 			m_pikiCounterLouie->setParam(m_disp->m_dataGame, m_disp->m_dataNavi2);
-		}
-		else if (disp->m_dataNavi1.m_activeNaviID) {
+		} else if (disp->m_dataNavi1.m_activeNaviID) {
 			m_pikiCounter->setParam(disp->m_dataGame, disp->m_dataNavi1);
 		} else {
 			m_pikiCounter->setParam(disp->m_dataGame, disp->m_dataNavi2);
@@ -211,8 +210,7 @@ void ObjCave::commonUpdate()
 			m_pikiCounterOlimar->show();
 			m_paneChika  = og::Screen::TagSearch(m_pikiCounterOlimar, 'Pchika');
 			m_paneFinalf = og::Screen::TagSearch(m_pikiCounterOlimar, 'Nfinalf');
-		}
-		else {
+		} else {
 			m_pikiCounter->show();
 			m_pikiCounterLouie->hide();
 			m_pikiCounterOlimar->hide();

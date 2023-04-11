@@ -81,7 +81,7 @@ struct ObjCave : public ::Screen::ObjBase {
 	J2DPane* m_paneFinalf;                        // _74
 	J2DPane* m_paneChika2;
 	J2DPane* m_paneFinalf2;
-	bool m_doSensorEff;                           // _78
+	bool m_doSensorEff; // _78
 	og::Screen::CallBack_CounterRV* m_keyCounter;
 	og::Screen::CallBack_CounterRV* m_keyCounter2p;
 	og::Screen::PikminCounterCave* m_pikiCounterOlimar;

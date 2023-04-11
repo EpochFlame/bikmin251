@@ -26,21 +26,21 @@ ObjGround::ObjGround(char const* name)
     : m_fadeLevel(0.0f)
     , m_scale(0.0f)
 {
-	m_name         = name;
-	m_disp         = nullptr;
-	m_otakara      = nullptr;
-	m_bloGroup     = nullptr;
-	m_sunMeter     = nullptr;
-	m_doping       = nullptr;
-	m_lifeGauge1   = nullptr;
-	m_lifeGauge2   = nullptr;
-	m_pikiCounter  = nullptr;
-	m_pikiCounterLouie = nullptr;
+	m_name              = name;
+	m_disp              = nullptr;
+	m_otakara           = nullptr;
+	m_bloGroup          = nullptr;
+	m_sunMeter          = nullptr;
+	m_doping            = nullptr;
+	m_lifeGauge1        = nullptr;
+	m_lifeGauge2        = nullptr;
+	m_pikiCounter       = nullptr;
+	m_pikiCounterLouie  = nullptr;
 	m_pikiCounterOlimar = nullptr;
-	m_sensorScreen = nullptr;
-	_64           = false;
-	m_pokos        = 0;
-	_6C           = 0.0f;
+	m_sensorScreen      = nullptr;
+	_64                 = false;
+	m_pokos             = 0;
+	_6C                 = 0.0f;
 }
 
 /*
@@ -55,7 +55,8 @@ ObjGround::~ObjGround() { }
  * Address:	8030DFF8
  * Size:	000464
  */
-void ObjGround::doCreate(JKRArchive* arc) {
+void ObjGround::doCreate(JKRArchive* arc)
+{
 	og::Screen::DispMemberGround* disp = static_cast<og::Screen::DispMemberGround*>(getDispMember());
 	if (disp->isID(OWNER_OGA, MEMBER_GROUND)) {
 		m_disp = disp;
@@ -75,7 +76,7 @@ void ObjGround::doCreate(JKRArchive* arc) {
 	m_sensorScreen = new P2DScreen::Mgr_tuning;
 
 	m_pikiCounterOlimar = new og::Screen::PikminCounter;
-	m_pikiCounterLouie = new og::Screen::PikminCounter;
+	m_pikiCounterLouie  = new og::Screen::PikminCounter;
 
 	m_bloGroup = new og::Screen::BloGroup(8);
 	m_bloGroup->addBlo("sun_meter.blo", m_sunMeter, 0x1040000, arc);
@@ -100,7 +101,7 @@ void ObjGround::doCreate(JKRArchive* arc) {
 	m_pikiCounterOlimar->setCallBackNoDay(arc);
 	m_pikiCounterLouie->setCallBack(arc);
 	m_pokos = m_disp->m_dataGame.m_pokoCount;
-	_6C    = 0.0f;
+	_6C     = 0.0f;
 
 	m_otakara = new og::Screen::OtakaraSensor;
 	m_otakara->init(m_sensorScreen->search('Nhari'), m_sensorScreen->search('Nsensor'), m_disp->m_radarState);
@@ -122,8 +123,7 @@ void ObjGround::commonUpdate()
 			m_doping->setParam(disp->m_olimarData);
 			m_pikiCounterOlimar->setParam(m_disp->m_dataGame, m_disp->m_olimarData);
 			m_pikiCounterLouie->setParam(m_disp->m_dataGame, m_disp->m_louieData);
-		}
-		else if (disp->m_olimarData.m_activeNaviID) {
+		} else if (disp->m_olimarData.m_activeNaviID) {
 			m_doping->setParam(disp->m_olimarData);
 			m_pikiCounter->setParam(m_disp->m_dataGame, m_disp->m_olimarData);
 		} else {
@@ -142,15 +142,12 @@ void ObjGround::commonUpdate()
 			m_pikiCounter->hide();
 			m_pikiCounterLouie->show();
 			m_pikiCounterOlimar->show();
-		}
-		else {
+		} else {
 			m_pikiCounter->show();
 			m_pikiCounterLouie->hide();
 			m_pikiCounterOlimar->hide();
 		}
 	}
-
-
 
 	u16 width  = System::getRenderModeObj()->fbWidth;
 	u16 height = System::getRenderModeObj()->efbHeight;
@@ -253,7 +250,7 @@ bool ObjGround::doUpdateFadein()
 	m_fadeLevel += sys->m_deltaTime;
 	if (m_fadeLevel > m_sVal._00) {
 		m_fadeLevel = m_sVal._00;
-		check      = true;
+		check       = true;
 	}
 
 	m_scale = m_fadeLevel / m_sVal._00;
@@ -286,7 +283,7 @@ bool ObjGround::doUpdateFadeout()
 	m_fadeLevel += sys->m_deltaTime;
 	if (m_fadeLevel > m_sVal._04) {
 		m_fadeLevel = m_sVal._04;
-		check      = true;
+		check       = true;
 	}
 
 	m_scale = 1.0f - m_fadeLevel / m_sVal._04;

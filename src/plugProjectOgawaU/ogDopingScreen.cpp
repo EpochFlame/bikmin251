@@ -126,10 +126,10 @@ void DopingScreen::update()
 	}
 	m_dopingCheck->update();
 
-	f32 yoffs     = m_rootPosition.y + m_offset.y;
-	J2DPane* pane = m_paneAll;
-	pane->m_offset.x  = m_rootPosition.x + m_offset.x;
-	pane->m_offset.y  = yoffs;
+	f32 yoffs        = m_rootPosition.y + m_offset.y;
+	J2DPane* pane    = m_paneAll;
+	pane->m_offset.x = m_rootPosition.x + m_offset.x;
+	pane->m_offset.y = yoffs;
 	pane->calcMtx();
 
 	// when spray 0 is first goten

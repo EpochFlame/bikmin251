@@ -239,7 +239,7 @@ struct J2DPane {
 	}
 
 	inline void setMsgID(u64 msgID) { m_messageID = msgID; }
-	
+
 	const Mtx* getMtx() const { return &m_positionMatrix; }
 
 	void setMtx(Mtx mtx) { PSMTXCopy(mtx, m_positionMatrix); }
@@ -269,14 +269,14 @@ struct J2DPane {
 	u8 _00C[4];                      // _00C
 	u64 m_tag;                       // _010
 	u64 m_messageID;                 // _018
-	JGeometry::TBox2f m_bound;          // _020
+	JGeometry::TBox2f m_bound;       // _020
 	JGeometry::TBox2f _030;          // _030
 	float _040;                      // _040
 	float _044;                      // _044
 	float _048;                      // _048
 	float _04C;                      // _04C
-	Mtx m_positionMatrix;                        // _050
-	Mtx m_globalMatrix;                        // _080
+	Mtx m_positionMatrix;            // _050
+	Mtx m_globalMatrix;              // _080
 	bool m_isVisible;                // _0B0
 	u8 m_cullMode;                   // _0B1
 	u8 m_alpha;                      // _0B2
@@ -285,12 +285,12 @@ struct J2DPane {
 	u8 _0B5;                         // _0B5
 	u8 m_rotationAxisMaybe;          // _0B6
 	u8 m_basePosition;               // _0B7
-	float m_angleX;                      // _0B8
-	float m_angleY;                      // _0BC
-	float m_angleZ;                   // _0C0
+	float m_angleX;                  // _0B8
+	float m_angleY;                  // _0BC
+	float m_angleZ;                  // _0C0
 	JGeometry::TVec2f m_anchorPoint; // _0C4
 	JGeometry::TVec2f m_scale;       // _0CC
-	JGeometry::TVec2f m_offset;          // _0D4 /* offset X,Y? */
+	JGeometry::TVec2f m_offset;      // _0D4 /* offset X,Y? */
 	JSUTree<J2DPane> m_tree;         // _0DC
 	J2DAnmTransform* m_transform;    // _0F8
 	u8 _0FC[4];                      // _0FC

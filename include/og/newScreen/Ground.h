@@ -81,41 +81,41 @@ struct ObjGround : public ::Screen::ObjBase {
 	og::Screen::NaviLifeGauge* m_lifeGauge1;  // _4C
 	og::Screen::NaviLifeGauge* m_lifeGauge2;  // _50
 	og::Screen::PikminCounter* m_pikiCounter; // _54
-	
-	P2DScreen::Mgr_tuning* m_sensorScreen;    // _58
-	f32 m_fadeLevel;                          // _5C
-	f32 m_scale;                              // _60
-	u8 _64;                                  // _64
-	u32 m_pokos;                              // _68
-	f32 _6C;                                 // _6C
+
+	P2DScreen::Mgr_tuning* m_sensorScreen; // _58
+	f32 m_fadeLevel;                       // _5C
+	f32 m_scale;                           // _60
+	u8 _64;                                // _64
+	u32 m_pokos;                           // _68
+	f32 _6C;                               // _6C
 
 	og::Screen::PikminCounter* m_pikiCounterOlimar;
 	og::Screen::PikminCounter* m_pikiCounterLouie;
 	static struct StaticValues {
 		inline StaticValues()
 		{
-			_00          = 0.3f;
-			_04          = 0.1f;
-			_08          = -50.0f;
-			_0C          = 0.0f;
+			_00           = 0.3f;
+			_04           = 0.1f;
+			_08           = -50.0f;
+			_0C           = 0.0f;
 			m_sensorX     = 10.0f;
 			m_sensorY     = -40.0f;
 			m_sensorScale = 0.9f;
-			_24          = 0;
+			_24           = 0;
 			m_dopingX     = 0.0f;
 			m_dopingY     = -30.0f;
 		}
 
-		f32 _00;          // _00
-		f32 _04;          // _04
-		f32 _08;          // _08
-		f32 _0C;          // _0C
+		f32 _00;           // _00
+		f32 _04;           // _04
+		f32 _08;           // _08
+		f32 _0C;           // _0C
 		f32 m_sensorX;     // _10
 		f32 m_sensorY;     // _14
 		f32 m_sensorScale; // _18
 		f32 m_dopingX;     // _1C
 		f32 m_dopingY;     // _20
-		u8 _24;           // _24
+		u8 _24;            // _24
 	} m_sVal;
 };
 

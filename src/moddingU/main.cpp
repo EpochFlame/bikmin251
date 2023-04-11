@@ -2,6 +2,7 @@
 #include "Dolphin/os.h"
 #include "Game/AIConstants.h"
 #include "Game/gamePlayData.h"
+#include "Game/Data.h"
 #include "Game/GameSystem.h"
 #include "Game/CameraMgr.h"
 #include "Game/CollEvent.h"
@@ -17,7 +18,6 @@
 #include "efx/TSimple.h"
 #include "efx/TPk.h"
 #include "ObjectTypes.h"
-#include "Game/gamePlayData.h"
 #include "mod.h"
 #include "og/Screen/PikminCounter.h"
 #include "Game/Navi.h"
@@ -26,7 +26,7 @@
 #include "TwoPlayer.h"
 
 bool isTreasureCutscene;
-bool isKeyCheat = false;
+bool isKeyCheat = false; // set all keylocks to open if true
 
 namespace Game {
 
@@ -222,7 +222,7 @@ void StopHoleTrap(Game::Creature* hole)
 namespace mod {
 int keyLockCount;
 bool isExitLocked;
-bool isBobuMovieQueued              = FALSE;
+bool isBobuMovieQueued              = false;
 og::newScreen::ObjCave* thisObjCave = nullptr;
 
 // adjust treasure culling radius to 50.0f if radius was zero
@@ -236,7 +236,9 @@ float adjustBoundingRadius(float radius)
 
 bool isKeyUnlock()
 {
-if(isKeyCheat){return true;}
+	if (isKeyCheat) {
+		return true;
+	}
 	bool retval = false;
 	if (Game::gameSystem && Game::gameSystem->m_inCave && Game::gameSystem->isStoryMode()) {
 		Game::GameSystem* gs           = Game::gameSystem;
@@ -318,8 +320,7 @@ void updateDispMember()
 		} else {
 			thisObjCave->m_pikiCounterOlimar->search('Nkeys')->show();
 		}
-	}
-	else {
+	} else {
 		thisObjCave->m_keyCounter->update();
 		if (!isExitLocked || keyLockCount == 0 || isKeyUnlock()) {
 			thisObjCave->m_pikiCounter->search('Nkeys')->hide();
@@ -327,7 +328,6 @@ void updateDispMember()
 			thisObjCave->m_pikiCounter->search('Nkeys')->show();
 		}
 	}
-	
 }
 
 }; // namespace mod
@@ -411,5 +411,17 @@ void makeSonicHappa(Game::Piki* piki)
 {
 	if (Game::playData->m_olimarData[0].hasItem(Game::OlimarData::ODII_RepugnantAppendage)) {
 		piki->changeHappa(Game::Bud);
+	}
+}
+
+void setKeyCheat()
+{
+	if (sys->getPlayCommonData()->isChallengeGamePlayable()) {
+		if (JUTGamePad::mPadStatus[0].button & JUTGamePad::PRESS_L) {
+			if (!isKeyCheat) {
+				PSSystem::spSysIF->playSystemSe(PSSTR_GET_BEEDAMA, 0);
+			}
+			isKeyCheat = true; // set all keylocks open
+		}
 	}
 }

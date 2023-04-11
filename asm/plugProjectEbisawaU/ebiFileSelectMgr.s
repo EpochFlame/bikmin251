@@ -1378,6 +1378,7 @@ update__Q33ebi10FileSelect4TMgrFv:
 /* 803E21E8 003DF128  38 03 FF FF */	addi r0, r3, -1
 /* 803E21EC 003DF12C  90 1F 0F 40 */	stw r0, 0xf40(r31)
 .L_803E21F0:
+bl setKeyCheat__Fv
 /* 803E21F0 003DF130  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 803E21F4 003DF134  83 E1 00 0C */	lwz r31, 0xc(r1)
 /* 803E21F8 003DF138  7C 08 03 A6 */	mtlr r0
