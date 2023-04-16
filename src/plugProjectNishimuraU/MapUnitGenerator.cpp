@@ -1,4 +1,5 @@
 #include "Game/Cave/RandMapMgr.h"
+#include "Dolphin/os.h"
 #include "Dolphin/rand.h"
 #include "nans.h"
 
@@ -43,6 +44,8 @@ MapUnitGenerator::MapUnitGenerator(MapUnitInterface* interface, int p1, FloorInf
 	} else {
 		m_isVersusMode = false;
 	}
+	
+	OSReport("Cave Seed: %08X\n", GetRandSeed());
 
 	createEditMapInfo(editInfo);
 	createMemList(interface, p1);
