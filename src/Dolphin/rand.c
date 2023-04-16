@@ -1,13 +1,13 @@
 #include "Dolphin/rand.h"
 
-static u32 next = 1;
+static unsigned next = 1;
 
 /*
  * --INFO--
  * Address:	800C9598
  * Size:	000008
  */
-void srand(u32 seed) { next = seed; }
+void srand(unsigned seed) { next = seed; }
 
 /*
  * --INFO--
@@ -20,7 +20,7 @@ int rand()
 	return ((next >> 16) & 0x7fff);
 }
 
-u32 GetRandSeed()
+unsigned GetRandSeed()
 {
-	return (u32)next;
+	return next;
 }

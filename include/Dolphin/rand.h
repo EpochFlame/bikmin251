@@ -9,9 +9,9 @@ extern "C" {
 
 #define RAND_MAX (32768.0f)
 
-void srand(u32);
+void srand(unsigned);
 int rand();
-u32 GetRandSeed();
+unsigned GetRandSeed();
 
 inline f32 randFloat() { return (float)rand() / RAND_MAX; }
 inline f32 randWeightFloat(f32 range) { return (range * (f32)rand()) / RAND_MAX; }
