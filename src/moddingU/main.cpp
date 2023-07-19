@@ -383,7 +383,7 @@ bool Game::InteractPress::actPiki(Game::Piki* piki)
 
 bool Game::InteractBomb::actNavi(Game::Navi* navi)
 {
-	if (!(gameSystem->m_flags & GAMESYS_Unk6) || Game::playData->m_olimarData[0].hasItem(Game::OlimarData::ODII_ForgedCourage)) {
+	if (!(gameSystem->m_flags & GAMESYS_Unk6) || Game::playData->m_olimarData[0].hasItem(Game::OlimarData::ODII_JusticeAlloy)) {
 		return false;
 	}
 
