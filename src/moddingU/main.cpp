@@ -65,8 +65,7 @@ void frogDeathSphere(Game::EnemyBase* frog, Game::CollEvent& event)
 	efx::TSimple1 simpleFx(12, nullptr);
 	efx::Arg arg(fxPos);
 	simpleFx.create(&arg);
-
-	PSSystem::spSysIF->playSystemSe(PSSE_PK_SE_BOMB, 0);
+	frog->getJAIObject()->startSound(PSSE_PK_SE_BOMB, 0);
 
 	cameraMgr->startVibration(12, fxPos, 2);
 	rumbleMgr->startRumble(15, fxPos, 2);
@@ -102,7 +101,7 @@ void doFrogBombParticle(Game::EnemyBase* frog)
 	efx::Arg arg(fxPos);
 	simpleFx.create(&arg);
 
-	PSSystem::spSysIF->playSystemSe(PSSE_PK_SE_BOMB, 0);
+	frog->getJAIObject()->startSound(PSSE_PK_SE_BOMB, 0);
 }
 
 bool isLowGravity()
