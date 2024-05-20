@@ -1258,77 +1258,88 @@ constructor__Q34Game10ItemBridge4ItemFv:
 
 .global doLoad__Q34Game10ItemBridge4ItemFR6Stream
 doLoad__Q34Game10ItemBridge4ItemFR6Stream:
-/* 801EE50C 001EB44C  94 21 FF F0 */	stwu r1, -0x10(r1)
-/* 801EE510 001EB450  7C 08 02 A6 */	mflr r0
-/* 801EE514 001EB454  90 01 00 14 */	stw r0, 0x14(r1)
-/* 801EE518 001EB458  93 E1 00 0C */	stw r31, 0xc(r1)
-/* 801EE51C 001EB45C  7C 9F 23 78 */	mr r31, r4
-/* 801EE520 001EB460  93 C1 00 08 */	stw r30, 8(r1)
-/* 801EE524 001EB464  7C 7E 1B 78 */	mr r30, r3
-/* 801EE528 001EB468  7F E3 FB 78 */	mr r3, r31
-/* 801EE52C 001EB46C  48 22 65 65 */	bl readInt__6StreamFv
-/* 801EE530 001EB470  90 7E 02 18 */	stw r3, 0x218(r30)
-/* 801EE534 001EB474  38 A0 00 00 */	li r5, 0
-# read bridge parms for bridge health
-lwz r4, mgr__Q24Game10ItemBridge@sda21(r13)
-lwz r4, 0x90(r4)
-lfs f0, 0x100(r4)
-# end read bridge parms for bridge health. load value into f0
-/* 801EE53C 001EB47C  38 80 00 00 */	li r4, 0
-/* 801EE540 001EB480  48 00 00 14 */	b .L_801EE554
-.L_801EE544:
-/* 801EE544 001EB484  80 7E 02 20 */	lwz r3, 0x220(r30)
-/* 801EE548 001EB488  38 A5 00 01 */	addi r5, r5, 1
-/* 801EE54C 001EB48C  7C 03 25 2E */	stfsx f0, r3, r4
-/* 801EE550 001EB490  38 84 00 04 */	addi r4, r4, 4
-.L_801EE554:
-/* 801EE554 001EB494  80 1E 02 1C */	lwz r0, 0x21c(r30)
-/* 801EE558 001EB498  7C 05 00 00 */	cmpw r5, r0
-/* 801EE55C 001EB49C  41 80 FF E8 */	blt .L_801EE544
-/* 801EE560 001EB4A0  7F E3 FB 78 */	mr r3, r31
-/* 801EE564 001EB4A4  48 22 68 49 */	bl readFloat__6StreamFv
-/* 801EE568 001EB4A8  80 9E 02 18 */	lwz r4, 0x218(r30)
-/* 801EE56C 001EB4AC  80 1E 02 1C */	lwz r0, 0x21c(r30)
-/* 801EE570 001EB4B0  7C 04 00 00 */	cmpw r4, r0
-/* 801EE574 001EB4B4  41 80 00 64 */	blt .L_801EE5D8
-/* 801EE578 001EB4B8  7F C3 F3 78 */	mr r3, r30
-/* 801EE57C 001EB4BC  38 80 00 00 */	li r4, 0
-/* 801EE580 001EB4C0  81 9E 00 00 */	lwz r12, 0(r30)
-/* 801EE584 001EB4C4  81 8C 00 AC */	lwz r12, 0xac(r12)
-/* 801EE588 001EB4C8  7D 89 03 A6 */	mtctr r12
-/* 801EE58C 001EB4CC  4E 80 04 21 */	bctrl 
-/* 801EE590 001EB4D0  80 7E 01 FC */	lwz r3, 0x1fc(r30)
-/* 801EE594 001EB4D4  28 03 00 00 */	cmplwi r3, 0
-/* 801EE598 001EB4D8  41 82 00 4C */	beq .L_801EE5E4
-/* 801EE59C 001EB4DC  80 1E 02 00 */	lwz r0, 0x200(r30)
-/* 801EE5A0 001EB4E0  28 00 00 00 */	cmplwi r0, 0
-/* 801EE5A4 001EB4E4  41 82 00 40 */	beq .L_801EE5E4
-/* 801EE5A8 001EB4E8  38 80 00 01 */	li r4, 1
-/* 801EE5AC 001EB4EC  4B F8 42 C9 */	bl setOpen__Q24Game8WayPointFb
-/* 801EE5B0 001EB4F0  80 7E 02 00 */	lwz r3, 0x200(r30)
-/* 801EE5B4 001EB4F4  38 80 00 01 */	li r4, 1
-/* 801EE5B8 001EB4F8  4B F8 42 BD */	bl setOpen__Q24Game8WayPointFb
-/* 801EE5BC 001EB4FC  80 7E 01 FC */	lwz r3, 0x1fc(r30)
-/* 801EE5C0 001EB500  38 80 00 00 */	li r4, 0
-/* 801EE5C4 001EB504  4B F8 42 D9 */	bl setWater__Q24Game8WayPointFb
-/* 801EE5C8 001EB508  80 7E 02 00 */	lwz r3, 0x200(r30)
-/* 801EE5CC 001EB50C  38 80 00 00 */	li r4, 0
-/* 801EE5D0 001EB510  4B F8 42 CD */	bl setWater__Q24Game8WayPointFb
-/* 801EE5D4 001EB514  48 00 00 10 */	b .L_801EE5E4
+stwu     r1,-16(r1)
+mflr     r0
+stw      r0,20(r1)
+stw      r31,12(r1)
+mr       r31,r4
+stw      r30,8(r1)
+mr       r30,r3
+mr       r3,r31
+bl       readInt__6StreamFv
+stw      r3,536(r30)
+li       r5,0
+lfs      f0,lbl_80519B10@sda21(r2)
+li       r4,0
+lwz      r3,mgr__Q24Game10ItemBridge@sda21(r13)
+lwz      r3,144(r3)
+lfs      f1,256(r3)
+b        .L_CCCC                    # 0x00001148
+.L_AAAA:
+lwz      r3,544(r30)
+addi     r5,r5,1
+stfsx    f0,r3,r4
+addi     r4,r4,4
+.L_CCCC:
+lwz      r3,536(r30)
+cmpw     r5,r3
+ble      .L_AAAA                    # 0x00001138
+addi     r5,r3,1
+slwi     r4,r5,2
+b        .L_DDDD                    # 0x00001170
+.L_BBBB:
+lwz      r3,544(r30)
+addi     r5,r5,1
+stfsx    f1,r3,r4
+addi     r4,r4,4
+.L_DDDD:
+lwz      r0,540(r30)
+cmpw     r5,r0
+blt      .L_BBBB                    # 0x00001160
+mr       r3,r31
+bl       readFloat__6StreamFv
+lwz      r4,536(r30)
+lwz      r0,540(r30)
+cmpw     r4,r0
+blt      .L_801EE5D8                   # 0x000011F4
+mr       r3,r30
+li       r4,0
+lwz      r12,0(r30)
+lwz      r12,172(r12)
+mtctr    r12
+bctrl
+lwz      r3,508(r30)
+cmplwi   r3,0x0000
+beq      .L_801EE5E4                    # 0x00001200
+lwz      r0,512(r30)
+cmplwi   r0,0x0000
+beq      .L_801EE5E4                    # 0x00001200
+li       r4,1
+bl       setOpen__Q24Game8WayPointFb
+lwz      r3,512(r30)
+li       r4,1
+bl       setOpen__Q24Game8WayPointFb
+lwz      r3,508(r30)
+li       r4,0
+bl       setWater__Q24Game8WayPointFb
+lwz      r3,512(r30)
+li       r4,0
+bl       setWater__Q24Game8WayPointFb
+b        .L_801EE5E4                    # 0x00001200
 .L_801EE5D8:
-/* 801EE5D8 001EB518  80 7E 02 20 */	lwz r3, 0x220(r30)
-/* 801EE5DC 001EB51C  54 80 10 3A */	slwi r0, r4, 2
-/* 801EE5E0 001EB520  7C 23 05 2E */	stfsx f1, r3, r0
+lwz      r3,544(r30)
+slwi     r0,r4,2
+stfsx    f1,r3,r0
 .L_801EE5E4:
-/* 801EE5E4 001EB524  80 9E 02 18 */	lwz r4, 0x218(r30)
-/* 801EE5E8 001EB528  7F C3 F3 78 */	mr r3, r30
-/* 801EE5EC 001EB52C  48 00 04 09 */	bl setCurrStage__Q34Game10ItemBridge4ItemFi
-/* 801EE5F0 001EB530  80 01 00 14 */	lwz r0, 0x14(r1)
-/* 801EE5F4 001EB534  83 E1 00 0C */	lwz r31, 0xc(r1)
-/* 801EE5F8 001EB538  83 C1 00 08 */	lwz r30, 8(r1)
-/* 801EE5FC 001EB53C  7C 08 03 A6 */	mtlr r0
-/* 801EE600 001EB540  38 21 00 10 */	addi r1, r1, 0x10
-/* 801EE604 001EB544  4E 80 00 20 */	blr 
+lwz      r4,536(r30)
+mr       r3,r30
+bl       setCurrStage__Q34Game10ItemBridge4ItemFi
+lwz      r0,20(r1)
+lwz      r31,12(r1)
+lwz      r30,8(r1)
+mtlr     r0
+addi     r1,r1,16
+blr
 
 .global doSave__Q34Game10ItemBridge4ItemFR6Stream
 doSave__Q34Game10ItemBridge4ItemFR6Stream:
