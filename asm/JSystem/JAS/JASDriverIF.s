@@ -168,6 +168,9 @@ lbl_80516E58:
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global key2pitch_c5__9JASDriverFi
 key2pitch_c5__9JASDriverFi:
+/* 800A47D8 000A1718  2C 03 00 00 */	lbz r0, 0x7(r2)
+/* 800A47D8 000A1718  2C 03 00 00 */	mulli r0, r0, 5
+/* 800A47DC 000A171C  40 80 00 0C */	sub r3, r3, r0
 /* 800A47D8 000A1718  2C 03 00 00 */	cmpwi r3, 0
 /* 800A47DC 000A171C  40 80 00 0C */	bge .L_800A47E8
 /* 800A47E0 000A1720  38 60 00 00 */	li r3, 0

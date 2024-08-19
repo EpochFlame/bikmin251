@@ -4,8 +4,7 @@
 #                                 Description                                  #
 ################################################################################
 # calcprogress: Used to calculate the progress of the Pikmin 2 decomp.         #
-# Prints to stdout for now, but eventually will have some form of storage,     #
-# i.e. CSV, so that it can be used for a webpage display.                      #
+# stores to CSV so that it can be used for a webpage display.                  #
 #                                                                              #
 # Usage: No arguments needed                                                   #
 ################################################################################
@@ -23,6 +22,8 @@ import struct
 import re
 import math
 import csv
+import json
+import argparse
 from datetime import datetime
 
 ###############################################
@@ -41,7 +42,7 @@ MW_WII_SYMBOL_REGEX = r"^\s*"\
     r"(?P<FileOfs>\w{8})\s+"\
     r"(\w{1,2})\s+"\
     r"(?P<Symbol>[0-9A-Za-z_<>$@.*]*)\s*"\
-    r"(?P<Object>\S*)"
+    r"(?P<Object>[\S ]*)"
 
 MW_GC_SYMBOL_REGEX = r"^\s*"\
     r"(?P<SectOfs>\w{8})\s+"\
@@ -49,7 +50,7 @@ MW_GC_SYMBOL_REGEX = r"^\s*"\
     r"(?P<VirtOfs>\w{8})\s+"\
     r"(\w{1,2})\s+"\
     r"(?P<Symbol>[0-9A-Za-z_<>$@.*]*)\s*"\
-    r"(?P<Object>\S*)"
+    r"(?P<Object>[\S ]*)"
 
 REGEX_TO_USE = MW_GC_SYMBOL_REGEX
 
@@ -57,7 +58,7 @@ TEXT_SECTIONS = ["init", "text"]
 DATA_SECTIONS = [
     "rodata", "data", "bss", "sdata", "sbss", "sdata2", "sbss2",
     "ctors", "_ctors", "dtors", "ctors$99", "_ctors$99", "ctors$00", "dtors$99",
-    "extab_", "extabindex_", "_extab", "_exidx"
+    "extab_", "extabindex_", "_extab", "_exidx", "extab", "extabindex"
 ]
 
 # DOL info
@@ -154,15 +155,21 @@ def update_csv(
     except:
         print(f"Failed to write to {CSV_FILE_PATH}!")
 
+def countDigits(n):
+    if n > 0:
+        digits = int(math.log10(n))+1
+    elif n == 0:
+        digits = 1
+    else:
+        digits = int(math.log10(-n))+2 # +1 if you don't count the '-'
+    return digits
 
 if __name__ == "__main__":
-    # HACK: Check asm or src in obj_file.mk
-    # to avoid counting .comm/.lcomm as decompiled
-    asm_objs = []
-    with open('obj_files.mk', 'r') as file:
-        for line in file:
-            if "asm/" in line:
-                asm_objs.append(line.strip().rsplit('/', 1)[-1].rstrip('\\'))
+    parser = argparse.ArgumentParser(description="Calculate progress.")
+    parser.add_argument("dol", help="Path to DOL")
+    parser.add_argument("map", help="Path to map")
+    parser.add_argument("-o", "--output", help="JSON output file")
+    args = parser.parse_args()
 
     # Sum up DOL section sizes
     dol_handle = open(sys.argv[1], "rb")
@@ -248,14 +255,26 @@ if __name__ == "__main__":
             if (match_obj == None):
                 #print(f"Line {i}: {symbols[i]}")
                 continue
+            #print(match_obj.group("Object"))
             # Has the object file changed?
             last_object = cur_object
             cur_object = match_obj.group("Object").strip()
-            if last_object != cur_object or cur_object in asm_objs:
+            if last_object != cur_object or cur_object.endswith(" (asm)"):
                 continue
             # Is the symbol a file-wide section?
             symb = match_obj.group("Symbol")
             if (symb.startswith("*fill*")) or (symb.startswith(".") and symb[1:] in TEXT_SECTIONS or symb[1:] in DATA_SECTIONS):
+                continue
+            # Subtract size of symbols ending in ".o", as they're assembly.
+            if match_obj.group("Object").endswith(".o") == True:
+                if j == i - 1:
+                    if section_type == SECTION_TEXT:
+                        decomp_code_size -= cur_size
+                    else:
+                        decomp_data_size -= cur_size
+                    cur_size = 0
+                    #print(f"Line* {j}: {symbols[j]}")
+                #print(f"Line {i}: {symbols[i]}")
                 continue
             # For sections that don't start with "."
             if (symb in DATA_SECTIONS):
@@ -276,13 +295,42 @@ if __name__ == "__main__":
 
     codeCount = math.floor(decomp_code_size / bytesPerCodeItem)
     dataCount = math.floor(decomp_data_size / bytesPerDataItem)
-
+    
+    # Math for aligning percentage prints
+    codeDigitsD = (countDigits(decomp_code_size))
+    dataDigitsD = (countDigits(decomp_data_size))
+    codeDigits = (countDigits(dol_code_size))
+    dataDigits = (countDigits(dol_data_size))
+    maxDigitsD = (max(codeDigitsD, dataDigitsD))
+    maxDigits = (max(codeDigits, dataDigits))
+    codeStrA = "\tCode sections: "
+    codeStrB = f"{decomp_code_size} / "
+    codeStrC = f"{dol_code_size} bytes in src ({codeCompletionPcnt:%})"
+    dataStrA = "\tData sections: "
+    dataStrB = f"{decomp_data_size} / "
+    dataStrC = f"{dol_data_size} bytes in src ({dataCompletionPcnt:%})"
+    
+    # Print progress
     print("Progress:")
-    print(f"\tCode sections: {decomp_code_size} / {dol_code_size}\tbytes in src ({codeCompletionPcnt:%})")
-    print(f"\tData sections: {decomp_data_size} / {dol_data_size}\tbytes in src ({dataCompletionPcnt:%})")
+    print(f"{codeStrA + ' ' * (maxDigitsD-codeDigitsD) + codeStrB + ' ' * (maxDigits-codeDigits) + codeStrC}")
+    # print(f"\tCode sections: {decomp_code_size} / {dol_code_size} bytes in src ({codeCompletionPcnt:%})")
+    print(f"{dataStrA + ' ' * (maxDigitsD-dataDigitsD) + dataStrB + ' ' * (maxDigits-dataDigits) + dataStrC}")
+    # print(f"\tData sections: {decomp_data_size} / {dol_data_size} bytes in src ({dataCompletionPcnt:%})")
 
     sentence = f"\nYou have {codeCount} out of {CODE_FRAC} {CODE_ITEM} and {dataCount} out of {DATA_FRAC} {DATA_ITEM}."
     print(sentence)
+
+    if args.output:
+        data = {
+            "dol": {
+                "code": decomp_code_size,
+                "code/total": dol_code_size,
+                "data": decomp_data_size,
+                "data/total": dol_data_size,
+            }
+        }
+        with open(args.output, "w") as f:
+            json.dump(data, f)
 
     update_csv(
         code_count=codeCount,

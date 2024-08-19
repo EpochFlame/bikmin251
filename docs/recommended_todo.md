@@ -116,7 +116,7 @@
 ### <section id="plugProjectKandoU">plugProjectKandoU</section>
 | File | Size (bytes) | File | Size (bytes) |
 | ---- | ---- | ---- | ---- |
-| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectKandoU/gameTekiStat.cpp">gameTekiStat.cpp</a> | 3302 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectKandoU/aiTeki.cpp">aiTeki.cpp</a> | 5858 |
+| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectKandoU/gameTekiStat.cpp">gameTekiStat.cpp</a> | 3280 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectKandoU/aiTeki.cpp">aiTeki.cpp</a> | 5858 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectKandoU/mapMgrTraceMove.cpp">mapMgrTraceMove.cpp</a> | 10344 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectKandoU/gameDeathCount.cpp">gameDeathCount.cpp</a> | 12487 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectKandoU/gamePelletList.cpp">gamePelletList.cpp</a> | 12594 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectKandoU/baseHIOSection.cpp">baseHIOSection.cpp</a> | 13027 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectKandoU/cellIterator.cpp">cellIterator.cpp</a> | 13172 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectKandoU/aiBreakGate.cpp">aiBreakGate.cpp</a> | 13952 |
@@ -198,9 +198,7 @@
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectOgawaU/ogObjChallengeBase.cpp">ogObjChallengeBase.cpp</a> | 13674 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectOgawaU/ogObjWorldMapInfoWindow1.cpp">ogObjWorldMapInfoWindow1.cpp</a> | 15516 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectOgawaU/ogObjSMenuCont.cpp">ogObjSMenuCont.cpp</a> | 20244 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectOgawaU/ogCounterSlot.cpp">ogCounterSlot.cpp</a> | 21678 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectOgawaU/ogCallBackPicture.cpp">ogCallBackPicture.cpp</a> | 21766 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectOgawaU/ogObjSMenuPauseVs.cpp">ogObjSMenuPauseVs.cpp</a> | 25253 |
-| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectOgawaU/ogObjGround.cpp">ogObjGround.cpp</a> | 25690 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectOgawaU/ogPikminCounter.cpp">ogPikminCounter.cpp</a> | 25876 |
-| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectOgawaU/ogMenuMgr.cpp">ogMenuMgr.cpp</a> | 26939 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectOgawaU/ogAnime.cpp">ogAnime.cpp</a> | 27275 |
-| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectOgawaU/ogLifeGauge.cpp">ogLifeGauge.cpp</a> | 28360 |
+| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectOgawaU/ogPikminCounter.cpp">ogPikminCounter.cpp</a> | 25876 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectOgawaU/ogMenuMgr.cpp">ogMenuMgr.cpp</a> | 26939 |
 
 ### <section id="plugProjectYamashitaU">plugProjectYamashitaU</section>
 | File | Size (bytes) | File | Size (bytes) |
