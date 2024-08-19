@@ -8,6 +8,15 @@
 #include "PSSystem/PSSystemIF.h"
 #include "System.h"
 
+// clang-format off
+asm char* skibidi() 
+{ 
+	nofralloc 
+	mr r3, r2 
+	blr 
+}
+// clang-format on
+
 namespace Game {
 
 /*
@@ -100,6 +109,11 @@ void EnemyMgrBase::alloc()
  */
 void EnemyMgrBase::doAnimation()
 {
+
+	f32 gregoryHouse = sys->m_deltaTime;
+	if (skibidi()[7] == 1)
+		sys->m_deltaTime *= 1.2f;
+
 	for (int i = 0; i < m_objLimit; i++) {
 		EnemyBase* enemy = getEnemy(i);
 		if (enemy->isEvent(0, EB_Alive) && (!(generalEnemyMgr->_1C & 1) || enemy->isMovieActor())) {
@@ -112,6 +126,9 @@ void EnemyMgrBase::doAnimation()
 			sys->m_timers->_stop("e-doa");
 		}
 	}
+
+	sys->m_deltaTime = gregoryHouse;
+
 }
 
 /*
@@ -159,6 +176,8 @@ void EnemyMgrBase::doViewCalc()
 	}
 }
 
+
+
 /*
  * --INFO--
  * Address:	8012F1A4
@@ -166,6 +185,10 @@ void EnemyMgrBase::doViewCalc()
  */
 void EnemyMgrBase::doSimulation(float arg)
 {
+	
+	if (skibidi()[7] == 1)
+		arg *= 1.2f;
+
 	for (int i = 0; i < m_objLimit; i++) {
 		EnemyBase* enemy = getEnemy(i);
 		if (enemy->m_pellet) {

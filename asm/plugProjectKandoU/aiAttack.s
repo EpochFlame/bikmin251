@@ -603,6 +603,17 @@ calcAttackPos__Q26PikiAI9ActAttackFv:
 
 .global exec__Q26PikiAI9ActAttackFv
 exec__Q26PikiAI9ActAttackFv:
+#brocoli amongus
+										lwz r4, 0x4(r3) # the piki
+										lbz r0, 0x2b8(r4)
+										cmpwi r0, 5
+										bne .L_THEBEGINNINGORTHEEND
+										lwz r0, 0x190(r4)
+										cmpwi r0, 0
+										beq .L_THEBEGINNINGORTHEEND
+										li r3, 2 # failure amogus
+										blr
+.L_THEBEGINNINGORTHEEND:
 /* 801A0B98 0019DAD8  94 21 FE F0 */	stwu r1, -0x110(r1)
 /* 801A0B9C 0019DADC  7C 08 02 A6 */	mflr r0
 /* 801A0BA0 0019DAE0  90 01 01 14 */	stw r0, 0x114(r1)

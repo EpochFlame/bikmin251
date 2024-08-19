@@ -1120,6 +1120,8 @@ drawCylinder__Q24Game15ShadowCylinder2FR7Matrixfi:
 /* 8023E698 0023B5D8  38 A0 00 00 */	li r5, 0
 /* 8023E69C 0023B5DC  4B EA AA E9 */	bl GXSetZMode
 /* 8023E6A0 0023B5E0  38 60 00 02 */	li r3, 2
+/* 8023E6A0 0023B5E0  38 60 00 02 */	lbz r0, 0x7(r2)
+/* 8023E6A0 0023B5E0  38 60 00 02 */	sub r3, r3, r0
 /* 8023E6A4 0023B5E4  4B EA 75 05 */	bl GXSetCullMode
 /* 8023E6A8 0023B5E8  38 60 00 01 */	li r3, 1
 /* 8023E6AC 0023B5EC  38 80 00 01 */	li r4, 1
@@ -1134,6 +1136,8 @@ drawCylinder__Q24Game15ShadowCylinder2FR7Matrixfi:
 /* 8023E6D0 0023B610  54 04 00 34 */	rlwinm r4, r0, 0, 0, 0x1a
 /* 8023E6D4 0023B614  4B EA AD 05 */	bl GXCallDisplayList
 /* 8023E6D8 0023B618  38 60 00 01 */	li r3, 1
+/* 8023E6A0 0023B5E0  38 60 00 02 */	lbz r0, 0x7(r2)
+/* 8023E6A0 0023B5E0  38 60 00 02 */	add r3, r3, r0
 /* 8023E6DC 0023B61C  4B EA 74 CD */	bl GXSetCullMode
 /* 8023E6E0 0023B620  38 60 00 03 */	li r3, 3
 /* 8023E6E4 0023B624  38 80 00 01 */	li r4, 1
@@ -1762,6 +1766,8 @@ drawCylinder__Q24Game15ShadowCylinder3FR7Matrixfi:
 /* 8023F04C 0023BF8C  7C 03 03 78 */	mr r3, r0
 /* 8023F050 0023BF90  4B EA A5 29 */	bl GXLoadPosMtxImm
 /* 8023F054 0023BF94  38 60 00 01 */	li r3, 1
+/* 8023E6A0 0023B5E0  38 60 00 02 */	lbz r0, 0x7(r2)
+/* 8023E6A0 0023B5E0  38 60 00 02 */	add r3, r3, r0
 /* 8023F058 0023BF98  4B EA 6B 51 */	bl GXSetCullMode
 /* 8023F05C 0023BF9C  38 60 00 01 */	li r3, 1
 /* 8023F060 0023BFA0  38 80 00 06 */	li r4, 6
@@ -1780,6 +1786,8 @@ drawCylinder__Q24Game15ShadowCylinder3FR7Matrixfi:
 /* 8023F094 0023BFD4  54 04 00 34 */	rlwinm r4, r0, 0, 0, 0x1a
 /* 8023F098 0023BFD8  4B EA A3 41 */	bl GXCallDisplayList
 /* 8023F09C 0023BFDC  38 60 00 02 */	li r3, 2
+/* 8023E6A0 0023B5E0  38 60 00 02 */	lbz r0, 0x7(r2)
+/* 8023E6A0 0023B5E0  38 60 00 02 */	sub r3, r3, r0
 /* 8023F0A0 0023BFE0  4B EA 6B 09 */	bl GXSetCullMode
 /* 8023F0A4 0023BFE4  38 60 00 01 */	li r3, 1
 /* 8023F0A8 0023BFE8  38 80 00 03 */	li r4, 3

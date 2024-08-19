@@ -1402,7 +1402,8 @@ bl leafBluePikmin__4GameFRQ24Game4Piki
 /* 8014865C 0014559C  40 82 00 74 */	bne .L_801486D0
 /* 80148660 001455A0  2C 1F 00 00 */	cmpwi r31, 0
 /* 80148664 001455A4  41 82 00 6C */	beq .L_801486D0
-#/* 80148668 001455A8  2C 1F 00 05 */	cmpwi r31, 5
+/* 80148668 001455A8  2C 1F 00 05 */	cmpwi r31, 5
+										beq .L_801486D0
 mr r3, r30
 bl isPikmin__Q24Game4PikiFv
 cmpwi r3, 0
@@ -1859,7 +1860,8 @@ inWaterCallback__Q24Game4PikiFPQ24Game8WaterBox:
 /* 80148C20 00145B60  40 82 00 60 */	bne .L_80148C80
 /* 80148C24 00145B64  2C 1F 00 00 */	cmpwi r31, 0
 /* 80148C28 00145B68  41 82 00 58 */	beq .L_80148C80
-#/* 80148C2C 00145B6C  2C 1F 00 05 */	cmpwi r31, 5
+/* 80148C2C 00145B6C  2C 1F 00 05 */	cmpwi r31, 5
+										beq .L_80148C80
 mr r3, r29
 bl isPikmin__Q24Game4PikiFv
 cmpwi r3, 0
@@ -2149,6 +2151,18 @@ getSpeed__Q24Game4PikiFf:
 /* 80148FF4 00145F34  C0 03 10 38 */	lfs f0, 0x1038(r3)
 /* 80148FF8 00145F38  EC 21 00 32 */	fmuls f1, f1, f0
 .L_80148FFC:
+										#BROCOLI AMONG US
+										lbz r0, 0x2b8(r31)
+										cmpwi r0, 5
+										bne .L_THANKSGIVINGISFORPAGANS
+										lwz r0, 0x190(r31)
+										cmpwi r0, 0
+										beq .L_THANKSGIVINGISFORPAGANS
+										lis r0, 0x3f00 # 0.5
+										stw r0, 0x8(r1)
+										lfs f0, 0x8(r1)
+										fmuls f1, f1, f0
+.L_THANKSGIVINGISFORPAGANS:
 /* 80148FFC 00145F3C  E3 E1 00 18 */	psq_l f31, 24(r1), 0, qr0
 /* 80149000 00145F40  80 01 00 24 */	lwz r0, 0x24(r1)
 /* 80149004 00145F44  CB E1 00 10 */	lfd f31, 0x10(r1)
@@ -2159,6 +2173,17 @@ getSpeed__Q24Game4PikiFf:
 
 .global "setSpeed__Q24Game4PikiFfR10Vector3<f>"
 "setSpeed__Q24Game4PikiFfR10Vector3<f>":
+										lbz r0, 0x2b8(r3)
+										cmpwi r0, 5
+										bne .L_OJAMUNGUS
+										lwz r0, 0x190(r3)
+										cmpwi r0, 0
+										beq .L_OJAMUNGUS
+										lis r0, 0x3f00 # 0.5
+										stw r0, -0x20(r1)
+										lfs f0, -0x20(r1)
+										fmuls f1, f1, f0
+.L_OJAMUNGUS:
 /* 80149018 00145F58  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8014901C 00145F5C  7C 08 02 A6 */	mflr r0
 /* 80149020 00145F60  90 01 00 24 */	stw r0, 0x24(r1)
@@ -2286,6 +2311,19 @@ getSpeed__Q24Game4PikiFf:
 
 .global "setSpeed__Q24Game4PikiFfR10Vector3<f>f"
 "setSpeed__Q24Game4PikiFfR10Vector3<f>f":
+#take advantage of the multipler argument I guess lol
+										#BROCOLI AMONG US
+										lbz r0, 0x2b8(r3)
+										cmpwi r0, 5
+										bne .L_PILLSHERE
+										lwz r0, 0x190(r3)
+										cmpwi r0, 0
+										beq .L_PILLSHERE
+										lis r0, 0x3f00 # 0.5
+										stw r0, -0x30(r1)
+										lfs f0, -0x30(r1)
+										fmuls f1, f1, f0
+.L_PILLSHERE:
 /* 801491D8 00146118  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 801491DC 0014611C  7C 08 02 A6 */	mflr r0
 /* 801491E0 00146120  90 01 00 34 */	stw r0, 0x34(r1)
@@ -2457,6 +2495,16 @@ isPikmin__Q24Game4PikiFv:
 
 .global isThrowable__Q24Game4PikiFv
 isThrowable__Q24Game4PikiFv:
+
+										lbz r0, 0x2b8(r3)
+										cmpwi r0, 5
+										bne .L_MYMOTHERBEATSMEWITHAHOTIRONROD /* BROCOLI AMONGUS */
+										lwz r0, 0x190(r3)
+										cmpwi r0, 0
+										beq .L_MYMOTHERBEATSMEWITHAHOTIRONROD
+										li r3, 0
+										blr
+.L_MYMOTHERBEATSMEWITHAHOTIRONROD:
 /* 80149424 00146364  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80149428 00146368  7C 08 02 A6 */	mflr r0
 /* 8014942C 0014636C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2601,7 +2649,14 @@ getAttackDamage__Q24Game4PikiFv:
 /* 801495D4 00146514  83 E1 00 0C */	lwz r31, 0xc(r1)
 /* 801495D8 00146518  7C 08 03 A6 */	mtlr r0
 /* 801495DC 0014651C  38 21 00 10 */	addi r1, r1, 0x10
-/* 801495E0 00146520  4E 80 00 20 */	blr 
+/* 801495DC 0014651C  38 21 00 10 */	lbz  r0, 0x7(r2)
+/* 801495DC 0014651C  38 21 00 10 */	cmpwi r0, 1
+/* 801496A0 001465E0  4E 80 00 20 */	bnelr
+/* 801495DC 0014651C  38 21 00 10 */	lis r0, 0x3f00
+/* 801495DC 0014651C  38 21 00 10 */	stw r0, 0xc(r1)
+/* 801495DC 0014651C  38 21 00 10 */	lfs f0, 0xc(r1)
+/* 801495DC 0014651C  38 21 00 10 */	fmuls f1, f1, f0
+/* 801495DC 0014651C  38 21 00 10 */	blr
 
 .global getThrowHeight__Q24Game4PikiFv
 getThrowHeight__Q24Game4PikiFv:
@@ -2660,7 +2715,7 @@ getThrowHeight__Q24Game4PikiFv:
 /* 80149694 001465D4  83 E1 00 0C */	lwz r31, 0xc(r1)
 /* 80149698 001465D8  7C 08 03 A6 */	mtlr r0
 /* 8014969C 001465DC  38 21 00 10 */	addi r1, r1, 0x10
-/* 801496A0 001465E0  4E 80 00 20 */	blr 
+/* 801496A0 001465E0  4E 80 00 20 */	blr
 
 .global getPelletCarryPower__Q24Game4PikiFv
 getPelletCarryPower__Q24Game4PikiFv:
