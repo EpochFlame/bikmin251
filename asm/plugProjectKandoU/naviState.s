@@ -1950,9 +1950,12 @@ exec__Q24Game18NaviCarryBombStateFPQ24Game4Navi:
 /* 8017E0BC 0017AFFC  D0 01 00 34 */	stfs f0, 0x34(r1)
 /* 8017E0C0 0017B000  48 2A A7 C9 */	bl "makeTR__7MatrixfFR10Vector3<f>R10Vector3<f>"
 /* 8017E0C4 0017B004  80 7E 00 10 */	lwz r3, 0x10(r30)
-										#reset the health of the bomb every frame who cares
-										lwz r0, 0x204(r3)
-										stw r0, 0x200(r3)
+										#fight the bomb decreasing its health
+/* 8017E7D0 0017B710  80 6D 9A EC */	lwz r9, sys@sda21(r13)
+/* 8017E7D4 0017B714  C0 5E 00 1C */	lfs f0, 0x54(r9)
+/* 8017E7D8 0017B718  C0 03 00 54 */	lfs f1, 0x200(r3)
+										fadds f1, f1, f0
+										stfs f1, 0x200(r3)
 /* 8017E0C8 0017B008  38 81 00 38 */	addi r4, r1, 0x38
 /* 8017E0CC 0017B00C  48 02 1A 31 */	bl updateCapture__Q24Game8CreatureFR7Matrixf
 .L_8017E0D0:
