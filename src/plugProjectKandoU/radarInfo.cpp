@@ -2,6 +2,8 @@
 #include "Radar.h"
 #include "Game/pelletMgr.h"
 
+#include "Game/Entities/Item.h"
+
 Radar::Mgr* Radar::mgr;
 
 /*
@@ -103,6 +105,7 @@ void Radar::Mgr::fuefuki() { m_fuefukiTimer++; }
  * Address:	8021E584
  * Size:	000070
  */
+
 void Radar::Mgr::entry(Game::TPositionObject* obj, Radar::cRadarType type, u32 flag)
 {
 	if (mgr) {
@@ -131,8 +134,13 @@ bool Radar::Mgr::exit(Game::TPositionObject* obj)
  * Address:	8021E630
  * Size:	00001C
  */
+bool isNumOtakaraItemsOverwrite = false;
 int Radar::Mgr::getNumOtakaraItems()
 {
+
+	if (isNumOtakaraItemsOverwrite)
+		return 0;
+
 	if (mgr) {
 		return mgr->m_otakaraNum;
 	}
@@ -197,6 +205,9 @@ bool Radar::Mgr::detach(Game::TPositionObject* obj)
  */
 int Radar::Mgr::calcNearestTreasure(Vector3f& naviPos, f32 searchDist, Vector3f& treasurePos, f32& dist2)
 {
+
+	isNumOtakaraItemsOverwrite = false; // sussy
+
 	if (m_fuefukiCount > 0) {
 		if (m_fuefukiTimer > 0) {
 			m_fuefukiTimer--;
@@ -206,12 +217,26 @@ int Radar::Mgr::calcNearestTreasure(Vector3f& naviPos, f32 searchDist, Vector3f&
 		}
 	}
 
+	bool ignoreUpgrades = false;
+	if (Game::ItemHole::mgr) {
+		Iterator<Game::BaseItem> iterator(Game::ItemHole::mgr);
+		CI_LOOP(iterator)
+		{
+			Game::ItemHole::Item* hole = static_cast<Game::ItemHole::Item*>(*iterator);
+			ignoreUpgrades |= hole->isAlive();
+		}
+	}
+
 	Point* retPoint = nullptr;
 	int ret         = 0;
 	f32 dist        = searchDist;
 	FOREACH_NODE(Point, m_pointNode1.m_child, cPoint)
 	{
 		if (cPoint->m_objType == MAP_TREASURE || cPoint->m_objType == MAP_SWALLOWED_TREASURE || cPoint->m_objType == MAP_UPGRADE) {
+			
+			if (ignoreUpgrades && cPoint->m_objType == MAP_UPGRADE)
+				continue;
+			
 			ret++;
 			Game::Creature* cObj = static_cast<Game::Pellet*>(cPoint->m_object);
 			if (!cObj->isTeki()) {
@@ -237,6 +262,8 @@ int Radar::Mgr::calcNearestTreasure(Vector3f& naviPos, f32 searchDist, Vector3f&
 	if (retPoint != nullptr) {
 		return 2;
 	} else {
+		if (ret == 0)
+			isNumOtakaraItemsOverwrite = true;
 		return ret > 0;
 	}
 }

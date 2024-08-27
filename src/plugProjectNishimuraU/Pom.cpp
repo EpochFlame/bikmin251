@@ -162,6 +162,7 @@ bool Obj::pressCallBack(Creature* creature, f32 damage, CollPart* collpart)
 			InteractSwallow swallow(this, 1.0f, slot, 0);
 			if (creature->stimulate(swallow)) {
 				m_usedSlotCount++;
+				m_usedSlotCount += (static_cast<Piki*>(creature)->m_pikiKind == 1); // we give you another boi later
 			}
 			m_swingTimer = 0.0f;
 			createSwingSmokeEffect();
@@ -304,6 +305,8 @@ void Obj::shotPikmin()
 				BirthMgr::dec(pikiKind);
 				if (getEnemyTypeID() != EnemyTypeID::EnemyID_RandPom && static_cast<Piki*>(creature)->m_pikiKind == m_pikiKind) {
 					m_usedSlotCount--;
+				} else {
+					val += (static_cast<Piki*>(creature)->m_pikiKind == 1);
 				}
 			}
 			CreatureKillArg killArg(1);
