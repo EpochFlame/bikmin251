@@ -11185,8 +11185,8 @@ exec__Q24Game18NaviThrowWaitStateFPQ24Game4Navi:
 
 
 #press B to drop held pikmin
-/* 801863CC 0018330C  80 7D 02 78 */	lwz r3, 0x278(r29)
-/* 801863D0 00183310  80 03 00 1C */	lwz r0, 0x1c(r3)
+/* 801863CC 0018330C  80 7D 02 78 */	lwz r5, 0x278(r29)
+/* 801863D0 00183310  80 03 00 1C */	lwz r0, 0x1c(r5)
 /* 801863D4 00183314  54 00 05 AD */	rlwinm. r0, r0, 0, 0x16, 0x16
 /* 801863D8 00183318  41 82 00 28 */	bne .L_TAKE
 
