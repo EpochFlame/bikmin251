@@ -326,6 +326,8 @@ void Obj::shotPikmin()
 			sprout->init(&initArg);
 			sprout->setPosition(pos, false);
 			BirthMgr::inc(m_pikiKind);
+		} else {
+			m_usedSlotCount -= getEnemyTypeID() != EnemyTypeID::EnemyID_RandPom;
 		}
 	}
 
