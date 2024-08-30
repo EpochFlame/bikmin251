@@ -316,14 +316,6 @@ void GeneralEnemyMgr::createEnemyMgr(u8 type, int enemyID, int limit)
 	case EnemyTypeID::EnemyID_LeafChappy:
 		mgr = new LeafChappy::Mgr(limit, type);
 		break;
-	case EnemyTypeID::EnemyID_TamagoMushi:
-		if ((gameSystem != nullptr) && (gameSystem->m_inCave == 0)) {
-			limit = 10;
-		} else {
-			limit = 30;
-		}
-		mgr = new TamagoMushi::Mgr(limit, type);
-		break;
 	case EnemyTypeID::EnemyID_BigFoot:
 		mgr = new BigFoot::Mgr(limit, type);
 		break;

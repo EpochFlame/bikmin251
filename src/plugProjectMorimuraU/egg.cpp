@@ -2,7 +2,7 @@
 #include "Game/MapMgr.h"
 #include "Game/EnemyAnimKeyEvent.h"
 #include "Game/gamePlayData.h"
-#include "Game/Entities/TamagoMushi.h"
+//#include "Game/Entities/TamagoMushi.h"
 #include "Game/generalEnemyMgr.h"
 #include "Game/Entities/PelletNumber.h"
 #include "Dolphin/rand.h"
@@ -245,7 +245,7 @@ void Obj::onEndCapture()
  */
 void Obj::genItem()
 {
-	TamagoMushi::Obj* mititeGroup;
+	//TamagoMushi::Obj* mititeGroup;
 	int dropType = EGGDROP_SingleNectar;
 	Vector3f velocity(0.0f, 250.0f, 0.0f);
 	Vector3f position = m_position;
@@ -291,7 +291,7 @@ void Obj::genItem()
 		}
 	}
 
-	mititeGroup = nullptr;
+	//mititeGroup = nullptr;
 	Pellet* pellet;
 	switch (dropType) {
 	case EGGDROP_1Pellets:
@@ -341,24 +341,22 @@ void Obj::genItem()
 		break;
 
 	case EGGDROP_Mitites:
-		TamagoMushi::Mgr* mititeMgr = static_cast<TamagoMushi::Mgr*>(generalEnemyMgr->getEnemyMgr(EnemyTypeID::EnemyID_TamagoMushi));
-		if (mititeMgr) {
-			EnemyBirthArg birthArg;
-			birthArg.m_position = m_position;
+		// This used to spawn the mitites, but now we do triple nectar
+		f32 angle2 = TAU * randFloat();
 
-			birthArg.m_faceDir = TAU * randFloat();
-			velocity.y         = 200.0f;
-			mititeGroup        = mititeMgr->createGroup(birthArg, 10, velocity);
-		}
+		for (int i = 0; i < 3; i++) {
+			BaseItem* tripleNectarItem = ItemHoney::mgr->birth();
+			Vector3f sprayVelocity     = velocity;
 
-		if (mititeGroup == nullptr) {
-			BaseItem* mititeBackupItem = ItemHoney::mgr->birth();
-			if (mititeBackupItem) {
-				ItemHoney::Item* nectar = static_cast<ItemHoney::Item*>(mititeBackupItem);
+			if (tripleNectarItem) {
+				ItemHoney::Item* nectar = static_cast<ItemHoney::Item*>(tripleNectarItem);
+				f32 theta               = PI * i + angle2;
+				sprayVelocity.x         = 50.0f * pikmin2_sinf(theta);
+				sprayVelocity.z         = 50.0f * pikmin2_cosf(theta);
 				nectar->init(nullptr);
 				nectar->m_honeyType = HONEY_Y;
 				nectar->setPosition(position, false);
-				nectar->setVelocity(velocity);
+				nectar->setVelocity(sprayVelocity);
 			}
 		}
 

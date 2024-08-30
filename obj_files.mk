@@ -983,10 +983,6 @@ MORIMURA:=\
 	$(BUILD_DIR)/asm/plugProjectMorimuraU/jigumo.o\
 	$(BUILD_DIR)/asm/plugProjectMorimuraU/enemyNestMgr.o\
 	$(BUILD_DIR)/src/plugProjectMorimuraU/enemyNest.o\
-	$(BUILD_DIR)/src/plugProjectMorimuraU/tamagoMushiState.o\
-	$(BUILD_DIR)/src/plugProjectMorimuraU/tamagoMushiAnimator.o\
-	$(BUILD_DIR)/asm/plugProjectMorimuraU/tamagoMushiMgr.o\
-	$(BUILD_DIR)/asm/plugProjectMorimuraU/tamagoMushi.o\
 	$(BUILD_DIR)/asm/plugProjectMorimuraU/zukan2D.o\
 	$(BUILD_DIR)/asm/plugProjectMorimuraU/hiScore2D.o\
 	$(BUILD_DIR)/asm/plugProjectMorimuraU/umiMushiState.o\
@@ -1083,7 +1079,8 @@ MODDING:=\
 	$(BUILD_DIR)/src/moddingU/bloyster.o\
 	$(BUILD_DIR)/src/moddingU/artGallery.o\
 	$(BUILD_DIR)/src/moddingU/VRBoxAnim.o\
-	$(BUILD_DIR)/src/moddingU/TwoPlayer.o
+	$(BUILD_DIR)/src/moddingU/TwoPlayer.o\
+	$(BUILD_DIR)/src/moddingU/genEnemyMgr.o
 
 BOOTUP:=\
 	$(BUILD_DIR)/src/sysBootupU/sysBootup.o\

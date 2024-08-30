@@ -2210,7 +2210,7 @@ createItemAndEnemy__Q34Game7BigFoot3ObjFv:
 /* 802C9604 002C6544  38 A0 00 1E */	li r5, 0x1e
 /* 802C9608 002C6548  D0 01 00 0C */	stfs f0, 0xc(r1)
 /* 802C960C 002C654C  D0 01 00 10 */	stfs f0, 0x10(r1)
-/* 802C9610 002C6550  48 0A 49 19 */	bl "createGroupByBigFoot__Q34Game11TamagoMushi3MgrFRQ24Game13EnemyBirthArgiR10Vector3<f>f"
+/* 802C9610 002C6550  48 0A 49 19 */	# bl "createGroupByBigFoot__Q34Game11TamagoMushi3MgrFRQ24Game13EnemyBirthArgiR10Vector3<f>f"
 .L_802C9614:
 /* 802C9614 002C6554  80 01 00 54 */	lwz r0, 0x54(r1)
 /* 802C9618 002C6558  83 E1 00 4C */	lwz r31, 0x4c(r1)

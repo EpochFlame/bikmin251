@@ -238,6 +238,11 @@ void Obj::setPomColor(int pikiKind)
 		m_rgbColor.g = 151;
 		m_rgbColor.b = 107;
 		break;
+	case Bulbmin: // Orange
+		m_rgbColor.r = 234;
+		m_rgbColor.g = 108;
+		m_rgbColor.b = 39;
+		break;
 	}
 }
 
@@ -268,6 +273,9 @@ void Obj::setPomParms()
 		break;
 	case EnemyTypeID::EnemyID_RandPom:
 		setPomColor(Red);
+		break;
+	case EnemyTypeID::EnemyID_OrangPom:
+		setPomColor(Bulbmin);
 		break;
 	}
 

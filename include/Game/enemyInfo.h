@@ -107,7 +107,7 @@ enum EEnemyTypeID {//ID      Common Name
     EnemyID_Imomushi       = 65,  // Ravenous Whiskerpillar
     EnemyID_Houdai         = 66,  // Man-at-Legs
     EnemyID_LeafChappy     = 67,  // Bulbmin
-    EnemyID_TamagoMushi    = 68,  // Mitite
+    EnemyID_OrangPom       = 68,  // Shell-burh pom (originally Mitite)
     EnemyID_BigFoot        = 69,  // Raging Long Legs
     EnemyID_SnakeWhole     = 70,  // Pileated Snagret
     EnemyID_UmiMushi       = 71,  // Ranging Bloyster

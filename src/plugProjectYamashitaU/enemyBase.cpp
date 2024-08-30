@@ -169,7 +169,7 @@ void BirthTypeDropState::init(EnemyBase* enemy, StateArg* arg)
 		enemy->m_position.y              = mapMgr->getMinY(enemy->m_position) + 300.0f;
 		EnemyTypeID::EEnemyTypeID typeID = enemy->getEnemyTypeID();
 		if (typeID != EnemyTypeID::EnemyID_BluePom && typeID != EnemyTypeID::EnemyID_RedPom && typeID != EnemyTypeID::EnemyID_YellowPom
-		    && typeID != EnemyTypeID::EnemyID_BlackPom && typeID != EnemyTypeID::EnemyID_WhitePom
+		    && typeID != EnemyTypeID::EnemyID_BlackPom && typeID != EnemyTypeID::EnemyID_WhitePom && typeID != EnemyTypeID::EnemyID_OrangPom
 		    && typeID != EnemyTypeID::EnemyID_RandPom) {
 			f32 theta = randFloat() * TAU;
 			enemy->m_position.x += pikmin2_sinf(theta) * 50.0f;

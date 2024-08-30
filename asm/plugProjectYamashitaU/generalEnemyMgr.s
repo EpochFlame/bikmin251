@@ -243,8 +243,8 @@ lbl_805179C8:
 	.4byte 0x80000000
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global createEnemyMgr__Q24Game15GeneralEnemyMgrFUcii
-createEnemyMgr__Q24Game15GeneralEnemyMgrFUcii:
+.global AcreateEnemyMgr__Q24Game15GeneralEnemyMgrFUcii
+AcreateEnemyMgr__Q24Game15GeneralEnemyMgrFUcii:
 /* 8010BD3C 00108C7C  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8010BD40 00108C80  7C 08 02 A6 */	mflr r0
 /* 8010BD44 00108C84  90 01 00 24 */	stw r0, 0x24(r1)
@@ -1170,7 +1170,7 @@ createEnemyMgr__Q24Game15GeneralEnemyMgrFUcii:
 /* 8010C950 00109890  41 82 00 14 */	beq .L_8010C964
 /* 8010C954 00109894  7F E4 FB 78 */	mr r4, r31
 /* 8010C958 00109898  7F C5 F3 78 */	mr r5, r30
-/* 8010C95C 0010989C  48 26 10 2D */	bl __ct__Q34Game11TamagoMushi3MgrFiUc
+/* 8010C95C 0010989C  48 26 10 2D 	bl __ct__Q34Game11TamagoMushi3MgrFiUc */
 /* 8010C960 001098A0  7C 60 1B 78 */	mr r0, r3
 .L_8010C964:
 /* 8010C964 001098A4  7C 1A 03 78 */	mr r26, r0
