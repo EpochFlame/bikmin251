@@ -1,6 +1,7 @@
 #include "Game/Entities/Pom.h"
 #include "Game/Entities/ItemPikihead.h"
 #include "Game/gamePlayData.h"
+#include "Game/SingleGameSection.h"
 #include "Game/Stickers.h"
 #include "Game/BirthMgr.h"
 #include "efx/TOnyon.h"
@@ -357,7 +358,8 @@ void Obj::shotPikmin()
 void Obj::changePomColor()
 {
 	if (getEnemyTypeID() == EnemyTypeID::EnemyID_RandPom) {
-		if (m_queenColorTimer > C_PROPERPARMS.m_colorChangeTime.m_value) {
+		SingleGameSection* section = static_cast<SingleGameSection*>(gameSystem->m_section);
+		if (m_queenColorTimer > C_PROPERPARMS.m_colorChangeTime.m_value && (section && section->m_currentCourseInfo->m_courseIndex != 2)) {
 			int limit     = m_pikiKind + 3; // more than 3 and we loop back
 			int nextColor = m_pikiKind + 1; // first potential next color to try (Blue->Red->Yellow)
 
