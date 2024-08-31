@@ -4377,16 +4377,16 @@ li r8, 0x20
 /* 8014ACB0 00147BF0  9B DF 00 0D */	stb r9, 0xd(r31)
 /* 8014ACB4 00147BF4  98 FF 00 0E */	stb r8, 0xe(r31)
 /* 8014ACB8 00147BF8  99 7F 00 0F */	stb r11, 0xf(r31)
-li r7, 0x7d
-li r9, 0x1f
-li r8, 0x14
+li r7, 0xd4
+li r9, 0x32
+li r8, 0x38
 # id 4 seed
 /* 8014ACBC 00147BFC  99 7F 00 10 */	stb r7, 0x10(r31)
 /* 8014ACC0 00147C00  98 DF 00 11 */	stb r9, 0x11(r31)
 /* 8014ACC4 00147C04  99 7F 00 12 */	stb r8, 0x12(r31)
 /* 8014ACC8 00147C08  99 7F 00 13 */	stb r11, 0x13(r31)
-li r7, 0x69
-li r9, 0x35
+li r7, 0x59
+li r9, 0x00
 # id 5 seed
 /* 8014ACCC 00147C0C  99 7F 00 14 */	stb r11, 0x14(r31)
 /* 8014ACD0 00147C10  98 BF 00 15 */	stb r7, 0x15(r31)
@@ -4410,7 +4410,7 @@ li r10, 0xed
 li r12, 0xb7
 li r5, 0x2f
 li r14, 0x2d
-li r15, 0x9b
+li r15, 0xd4
 # id 0 cursor
 /* 8014ACEC 00147C2C  9B C4 00 00 */	stb r7, 0(r4)
 /* 8014ACF0 00147C30  99 84 00 01 */	stb r8, 1(r4)
@@ -4429,7 +4429,7 @@ li r9, 0xd2
 /* 8014AD18 00147C58  99 64 00 0B */	stb r11, 0xb(r4)
 li r10, 0x1e
 li r6, 0x38
-li r7, 0x37
+li r7, 0x32
 li r8, 0x50
 # id 3 cursor
 /* 8014AD1C 00147C5C  98 64 00 0C */	stb r14, 0xc(r4)
@@ -4439,10 +4439,10 @@ li r8, 0x50
 # id 4 cursor
 /* 8014AD2C 00147C6C  99 64 00 10 */	stb r15, 0x10(r4)
 /* 8014AD30 00147C70  98 C4 00 11 */	stb r7, 0x11(r4)
-/* 8014AD34 00147C74  99 64 00 12 */	stb r10, 0x12(r4)
+/* 8014AD34 00147C74  99 64 00 12 */	stb r6, 0x12(r4)
 /* 8014AD38 00147C78  99 64 00 13 */	stb r11, 0x13(r4)
-li r9, 0x69
-li r8, 0x35
+li r9, 0x59
+li r8, 0x00
 # id 5 cursor
 /* 8014AD3C 00147C7C  99 64 00 14 */	stb r11, 0x14(r4)
 /* 8014AD40 00147C80  98 A4 00 15 */	stb r9, 0x15(r4)

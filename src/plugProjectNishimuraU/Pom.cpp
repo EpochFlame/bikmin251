@@ -218,30 +218,36 @@ void Obj::setPomColor(int pikiKind)
 		m_rgbColor.g = 111;
 		m_rgbColor.b = 18;
 		break;
-	case Red:
-		m_rgbColor.r = 255;
-		m_rgbColor.g = 253;
-		m_rgbColor.b = 240;
+	case Red: // Skeleton
+		if (getEnemyTypeID() == EnemyTypeID::EnemyID_RandPom) {
+			m_rgbColor.r = 30;
+			m_rgbColor.g = 21;
+			m_rgbColor.b = 14;
+		} else {
+			m_rgbColor.r = 255;
+			m_rgbColor.g = 253;
+			m_rgbColor.b = 240;
+		}
 		break;
 	case Yellow:
 		m_rgbColor.r = 255;
 		m_rgbColor.g = 255;
 		m_rgbColor.b = 20;
 		break;
-	case Purple:
+	case Purple: 
 		m_rgbColor.r = 95;
 		m_rgbColor.g = 95;
 		m_rgbColor.b = 95;
 		break;
-	case White:
-		m_rgbColor.r = 244;
-		m_rgbColor.g = 151;
-		m_rgbColor.b = 107;
+	case White: // Shroom
+		m_rgbColor.r = 212;
+		m_rgbColor.g = 50;
+		m_rgbColor.b = 56;
 		break;
-	case Bulbmin: // Orange
-		m_rgbColor.r = 234;
-		m_rgbColor.g = 108;
-		m_rgbColor.b = 39;
+	case Bulbmin: // Orange/Koopa
+		m_rgbColor.r = 255;
+		m_rgbColor.g = 89;
+		m_rgbColor.b = 0;
 		break;
 	}
 }
