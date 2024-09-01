@@ -3748,7 +3748,7 @@ exec__Q24Game15PikiNukareStateFPQ24Game4Piki:
 /* 8018B46C 001883AC  88 9F 02 B8 */	lbz r4, 0x2b8(r31)
 /* 8018B470 001883B0  2C 04 00 00 */	cmpwi r4, 0
 /* 8018B474 001883B4  41 80 00 38 */	blt .L_8018B4AC
-/* 8018B478 001883B8  2C 04 00 04 */	cmpwi r4, 4
+/* 8018B478 001883B8  2C 04 00 04 */	cmpwi r4, 5 # bulbmin cutscene
 /* 8018B47C 001883BC  41 81 00 30 */	bgt .L_8018B4AC
 /* 8018B480 001883C0  80 6D 94 90 */	lwz r3, playData__4Game@sda21(r13)
 /* 8018B484 001883C4  48 05 BC 25 */	bl hasMetPikmin__Q24Game8PlayDataFi
@@ -6019,7 +6019,7 @@ exec__Q24Game17PikiAutoNukiStateFPQ24Game4Piki:
 /* 8018D450 0018A390  88 9F 02 B8 */	lbz r4, 0x2b8(r31)
 /* 8018D454 0018A394  2C 04 00 00 */	cmpwi r4, 0
 /* 8018D458 0018A398  41 80 00 38 */	blt .L_8018D490
-/* 8018D45C 0018A39C  2C 04 00 04 */	cmpwi r4, 4
+/* 8018D45C 0018A39C  2C 04 00 04 */	cmpwi r4, 5 # bulbmin cutscene
 /* 8018D460 0018A3A0  41 81 00 30 */	bgt .L_8018D490
 /* 8018D464 0018A3A4  80 6D 94 90 */	lwz r3, playData__4Game@sda21(r13)
 /* 8018D468 0018A3A8  48 05 9C 41 */	bl hasMetPikmin__Q24Game8PlayDataFi

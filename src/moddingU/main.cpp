@@ -24,6 +24,8 @@
 #include "Game/PikiState.h"
 #include "Game/NaviState.h"
 #include "TwoPlayer.h"
+#include "Game/SingleGameSection.h"
+#include "Game/Entities/ItemOnyon.h"
 
 bool isTreasureCutscene;
 bool isKeyCheat = false; // set all keylocks to open if true
@@ -403,6 +405,74 @@ bool canEnterCave(Game::Piki* piki, u32 id)
 		return piki->m_pikiKind == Game::White;
 	}
 	return true;
+}
+
+
+void Game::SingleGameSection::playMovie_helloPikmin(Game::Piki* piki)
+{
+	switch (piki->m_pikiKind) {
+	case Red: {
+		MoviePlayArg arg("g03_meet_redpikmin", nullptr, _C8, 0);
+		Onyon* onyon = ItemOnyon::mgr->getOnyon(ONYON_TYPE_RED);
+		JUT_ASSERTLINE(1481, onyon, "No RED ONYON");
+		arg.m_origin                = onyon->getPosition();
+		arg.m_angle                 = onyon->getFaceDir();
+		moviePlayer->m_targetObject = piki;
+		moviePlayer->play(arg);
+		playData->setMeetPikmin(piki->m_pikiKind);
+		playData->setContainer(piki->m_pikiKind);
+		disableTimer(1);
+		break;
+	}
+	case Yellow: {
+		MoviePlayArg arg("g1F_meet_yellowpikmin", nullptr, _C8, 0);
+		arg.m_origin                = piki->getPosition();
+		arg.m_angle                 = piki->getFaceDir();
+		moviePlayer->m_targetObject = piki;
+		moviePlayer->play(arg);
+		playData->setMeetPikmin(piki->m_pikiKind);
+		playData->setContainer(piki->m_pikiKind);
+		break;
+	}
+	case Blue: {
+		MoviePlayArg arg("g21_meet_bluepikmin", nullptr, _C8, 0);
+		arg.m_origin                = piki->getPosition();
+		arg.m_angle                 = piki->getFaceDir();
+		moviePlayer->m_targetObject = piki;
+		moviePlayer->play(arg);
+		playData->setMeetPikmin(piki->m_pikiKind);
+		playData->setContainer(piki->m_pikiKind);
+		break;
+	}
+	case Purple: {
+		MoviePlayArg arg("g24_meet_blackpikmin", nullptr, _C8, 0);
+		arg.m_origin                = piki->getPosition();
+		arg.m_angle                 = piki->getFaceDir();
+		moviePlayer->m_targetObject = piki;
+		moviePlayer->play(arg);
+		playData->setMeetPikmin(piki->m_pikiKind);
+		playData->setContainer(piki->m_pikiKind);
+		break;
+	}
+	case White: {
+		MoviePlayArg arg("g27_meet_whitepikmin", nullptr, _C8, 0);
+		arg.m_origin                = piki->getPosition();
+		arg.m_angle                 = piki->getFaceDir();
+		moviePlayer->m_targetObject = piki;
+		moviePlayer->play(arg);
+		playData->setMeetPikmin(piki->m_pikiKind);
+		playData->setContainer(piki->m_pikiKind);
+		break;
+	}
+	case Bulbmin: {
+		MoviePlayArg arg("x13_exp_leafchappy", nullptr, _C8, 0);
+		arg.m_origin                = piki->getPosition();
+		arg.m_angle                 = piki->getFaceDir();
+		moviePlayer->m_targetObject = piki;
+		moviePlayer->play(arg);
+		break;
+	}
+	}
 }
 
 // makeSonicHappa__FPQ24Game4Piki
