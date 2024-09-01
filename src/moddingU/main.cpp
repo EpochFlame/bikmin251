@@ -474,7 +474,7 @@ void Game::SingleGameSection::playMovie_helloPikmin(Game::Piki* piki)
 			arg.m_angle                 = piki->getFaceDir();
 			moviePlayer->m_targetObject = piki;
 			moviePlayer->play(arg);
-			
+
 			playData->setDemoFlag(DEMO_Discover_Bulbmin);
 		}
 		break;
@@ -557,7 +557,7 @@ void Game::PikiAutoNukiState::exec(Piki* piki)
 
 		int type = piki->m_pikiKind;
 		if (type >= 0 && type <= Bulbmin) {
-			if (!playData->hasMetPikmin(type) || Bulbmin) {
+			if (!playData->hasMetPikmin(type) || type == Bulbmin) {
 				gameSystem->m_section->playMovie_helloPikmin(piki);
 			}
 		}
