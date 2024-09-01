@@ -26,6 +26,9 @@
 #include "TwoPlayer.h"
 #include "Game/SingleGameSection.h"
 #include "Game/Entities/ItemOnyon.h"
+#include "Game/MapMgr.h"
+#include "PikiAI.h"
+#include "efx/TEnemyDive.h"
 
 bool isTreasureCutscene;
 bool isKeyCheat = false; // set all keylocks to open if true
@@ -465,13 +468,101 @@ void Game::SingleGameSection::playMovie_helloPikmin(Game::Piki* piki)
 		break;
 	}
 	case Bulbmin: {
-		MoviePlayArg arg("x13_exp_leafchappy", nullptr, _C8, 0);
-		arg.m_origin                = piki->getPosition();
-		arg.m_angle                 = piki->getFaceDir();
-		moviePlayer->m_targetObject = piki;
-		moviePlayer->play(arg);
+		if (!playData->isDemoFlag(DEMO_Discover_Bulbmin)) {
+			MoviePlayArg arg("x13_exp_leafchappy", nullptr, _C8, 0);
+			arg.m_origin                = piki->getPosition();
+			arg.m_angle                 = piki->getFaceDir();
+			moviePlayer->m_targetObject = piki;
+			moviePlayer->play(arg);
+			
+			playData->setDemoFlag(DEMO_Discover_Bulbmin);
+		}
 		break;
 	}
+	}
+}
+
+void Game::PikiNukareState::exec(Piki* piki)
+{
+	if (!piki->assertMotion(m_animIdx)) {
+		_14 = true;
+	}
+
+	if (_14) {
+		Vector3f position = piki->m_collTree->m_part->m_position;
+		transit(piki, PIKISTATE_Walk, nullptr);
+		position.y = mapMgr->getMinY(position);
+		piki->setPosition(position, false);
+
+		PikiAI::ActFormationInitArg initArg(piki->m_navi);
+		piki->m_brain->start(0, &initArg);
+
+		int pikiType = piki->m_pikiKind;
+		if (pikiType >= 0 && pikiType <= Bulbmin) {
+			if (!playData->hasMetPikmin(piki->m_pikiKind) || pikiType == Bulbmin) {
+				gameSystem->m_section->playMovie_helloPikmin(piki);
+			}
+		}
+	}
+}
+
+void Game::PikiAutoNukiState::exec(Piki* piki)
+{
+	switch (m_state) {
+	case 0:
+		m_timer -= sys->m_deltaTime;
+		if (m_timer < 0.0f) {
+			m_timer = 0.0f;
+			piki->startMotion(IPikiAnims::KAIFUKU2, IPikiAnims::KAIFUKU2, piki, nullptr);
+			m_state = 1;
+
+			Vector3f position = piki->getPosition();
+			Sys::Sphere sphere(position, 10.0f);
+			WaterBox* wbox = piki->checkWater(nullptr, sphere);
+
+			if (wbox) {
+				efx::TEnemyDive diveFx;
+				efx::ArgScale fxArg(position, 1.2f);
+				diveFx.create(&fxArg);
+
+				if (piki->m_navi) {
+					piki->startSound(piki->m_navi, PSSE_EV_ITEM_LAND_WATER1_S, true);
+					piki->startSound(piki->m_navi, PSSE_PL_PULLOUT_PIKI, false);
+				}
+
+			} else if (piki->m_navi) {
+				efx::createSimplePkAp(position);
+				piki->startSound(piki->m_navi, PSSE_PL_PULLOUT_PIKI, false);
+			}
+		}
+		break;
+
+	case 1:
+		if (!piki->assertMotion(IPikiAnims::KAIFUKU2)) {
+			m_state = 2;
+		}
+		break;
+
+	case 2:
+		if (piki->m_navi) {
+			PikiAI::ActFormationInitArg initArg(piki->m_navi);
+			initArg.m_doUseTouchCooldown = true;
+			piki->m_brain->start(0, &initArg);
+
+		} else {
+			piki->m_brain->start(1, nullptr);
+		}
+
+		transit(piki, PIKISTATE_Walk, nullptr);
+
+		int type = piki->m_pikiKind;
+		if (type >= 0 && type <= Bulbmin) {
+			if (!playData->hasMetPikmin(type) || Bulbmin) {
+				gameSystem->m_section->playMovie_helloPikmin(piki);
+			}
+		}
+
+		break;
 	}
 }
 

@@ -551,22 +551,34 @@ struct ActFollowVectorField : public Action {
 struct ActFormationInitArg : public CreatureActionArg {
 	inline ActFormationInitArg(Game::Creature* navi, bool b1)
 	    : CreatureActionArg(navi)
-	    , _08(b1)
+	    , m_isDemoFollow(b1)
+	    , m_doUseTouchCooldown(false)
 	{
 	}
 
-	inline ActFormationInitArg(Game::Creature* navi)
+	inline ActFormationInitArg(Game::FakePiki* navi)
 	    : CreatureActionArg(navi)
-	    , _08(false)
-	    , _09(0)
+	    , m_isDemoFollow(false)
+	    , m_doUseTouchCooldown(false)
+	{
+	}
+
+	/*
+	used to match ActFormation::ActFormation(Game::Piki*)
+	if unnecessary, change the above inline back to Game::Creature* for the argument
+	*/
+	inline ActFormationInitArg(Game::Creature* navi) // used to match ActFormation::ActFormation(Game::Piki*)
+	    : CreatureActionArg(navi)
+	    , m_isDemoFollow(false)
 	{
 	}
 
 	// _00     = VTBL
 	// _00-_08 = CreatureActionArg, Creature* = Navi*
-	bool _08; // _08
-	u8 _09;   // _09
+	bool m_isDemoFollow;       // _08, dont check if the piki is too far away? true for dayend/geyser demo
+	bool m_doUseTouchCooldown; // _09, if true, pikmin cant be c-sticked into things for 45 frames upon joining
 };
+
 
 struct ActFormation : public Action, virtual Game::SlotChangeListener, virtual SysShape::MotionListener {
 	ActFormation(Game::Piki* p);

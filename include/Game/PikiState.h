@@ -126,9 +126,10 @@ struct PikiAutoNukiState : public PikiState {
 
 	// _00     = VTBL
 	// _00-_10 = PikiState
-	f32 _10; // _10
-	u16 _14; // _14
+	f32 m_timer; // _10
+	u16 m_state; // _14
 };
+
 
 struct BlowStateArg : public StateArg {
 	inline BlowStateArg(Vector3f& vec, f32 p1, u8 p2, u16 p3, Creature* creature)
