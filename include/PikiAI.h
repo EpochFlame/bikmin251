@@ -18,6 +18,7 @@ struct KeyEvent;
 
 namespace Game {
 struct Piki;
+struct FakePiki;
 struct CollEvent;
 struct Onyon;
 struct PlatEvent;
@@ -102,7 +103,6 @@ struct CreatureActionArg : public ActionArg {
 	// _00 VTBL
 	Game::Creature* m_creature; // _04
 };
-
 struct Action {
 	Action(Game::Piki* p);
 
@@ -552,13 +552,6 @@ struct ActFormationInitArg : public CreatureActionArg {
 	inline ActFormationInitArg(Game::Creature* navi, bool b1)
 	    : CreatureActionArg(navi)
 	    , m_isDemoFollow(b1)
-	    , m_doUseTouchCooldown(false)
-	{
-	}
-
-	inline ActFormationInitArg(Game::FakePiki* navi)
-	    : CreatureActionArg(navi)
-	    , m_isDemoFollow(false)
 	    , m_doUseTouchCooldown(false)
 	{
 	}

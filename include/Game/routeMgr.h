@@ -25,6 +25,36 @@ enum WayPointFlags {
 	// color
 };
 
+// fabricated
+struct WayPointLinks {
+	inline WayPointLinks() { mCount = 0; }
+
+	inline bool isLinkedTo(s16 idx)
+	{
+		for (int i = 0; i < mCount; i++) {
+			if (idx == mWPLinks[i]) {
+				return true;
+			}
+		}
+		return false;
+	}
+
+	inline bool addLink(s16 idx)
+	{
+		if (idx != -1 && mCount < 4) {
+			s16 last = mCount;
+			mCount++;
+			mWPLinks[last] = idx;
+			return true;
+		}
+
+		return false;
+	}
+
+	s16 mWPLinks[4]; // _00, indices for linked waypoints
+	s16 mCount;      // _08, number of linked waypoints (<= 4)
+};
+
 struct WayPoint : public JKRDisposer {
 	struct RoomList : public CNode {
 		inline RoomList()
@@ -100,29 +130,37 @@ struct WPCondition : public Condition<WayPoint> {
 };
 
 struct WPSearchArg {
-	WPSearchArg(Vector3f& position, WPCondition* condition, u8 arg3, float arg4)
+	WPSearchArg(Vector3f& position, WPCondition* condition, bool doRayCheck, f32 radius)
 	{
-		m_position  = position;
-		m_condition = condition;
-		_10         = arg3;
-		_14         = arg4;
+		mPosition   = position;
+		mCondition  = condition;
+		mDoRayCheck = doRayCheck;
+		mRadius     = radius;
 	}
 
-	Vector3f m_position;      // _00
-	WPCondition* m_condition; // _0C
-	u8 _10;                   // _10
-	f32 _14;                  // _14, radius maybe?
+	Vector3f mPosition;      // _00
+	WPCondition* mCondition; // _0C
+	bool mDoRayCheck;        // _10, check mapMgr and platMgr for ray intersection
+	f32 mRadius;             // _14, radius maybe?
 };
 
 struct WPEdgeSearchArg {
-	Vector3f _00;  // _00
-	u8 _0C;        // _0C
-	u8 _0D[0x3];   // _0D, unknown/padding
-	void* _10;     // _10, ActPathMove ptr of some description
-	s16 _14;       // _14
-	u8 _16[0x2];   // _16, padding probably
-	WayPoint* _18; // _18
-	WayPoint* _1C; // _1C
+	WPEdgeSearchArg(Vector3f& startPos)
+	{
+		mWp2           = nullptr;
+		mWp1           = nullptr;
+		mInWater       = 0;
+		mRoomID        = -1;
+		mLinks         = nullptr;
+		mStartPosition = startPos;
+	}
+
+	Vector3f mStartPosition; // _00
+	bool mInWater;           // _0C
+	WayPointLinks* mLinks;   // _10
+	s16 mRoomID;             // _14
+	WayPoint* mWp1;          // _18
+	WayPoint* mWp2;          // _1C
 };
 
 struct RouteMgr : public Container<WayPoint> {
@@ -140,7 +178,7 @@ struct RouteMgr : public Container<WayPoint> {
 	bool linkable(WayPoint*, WayPoint*);
 	void refreshWater();
 	WayPoint* getNearestWayPoint(WPSearchArg&);
-	void getNearestEdge(WPEdgeSearchArg&);
+	bool getNearestEdge(WPEdgeSearchArg&);
 	void setCloseAll();
 	void openRoom(s16);
 	void directDraw(Graphics&, WayPoint*, WayPoint*);

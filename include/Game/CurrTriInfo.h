@@ -19,9 +19,7 @@ struct CurrTriInfo {
 	Sys::Triangle* m_triangle;   // _14
 	float _18;                   // _18
 	float _1C;                   // _1C
-	float _20;                   // _20
-	float _24;                   // _24
-	float _28;                   // _28
+	Vector3<float> _20;          // _20
 };
 } // namespace Game
 

@@ -5,8 +5,8 @@
 #include "JSystem/JUT/TColor.h"
 #include "JSystem/JUT/JUTFont.h"
 
-struct J2DTextBoxVBinding;
-struct J2DTextBoxHBinding;
+typedef u32 J2DTextBoxHBinding;
+typedef u32 J2DTextBoxVBinding;
 
 struct J2DPrint {
 	struct TSize;

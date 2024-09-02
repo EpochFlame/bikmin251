@@ -76,7 +76,7 @@ void loadSound()
 // stopInputsOther__9TwoPlayerFPQ24Game4Navi
 void stopInputsOther(Game::Navi* navi)
 {
-	Game::Navi* other = Game::naviMgr->getAt(1 - navi->m_naviIndex.typeView);
+	Game::Navi* other = Game::naviMgr->getAt(1 - navi->m_naviIndex);
 	other->disableController();
 	other->m_velocity = Vector3f(0.0f);
 }
@@ -86,7 +86,7 @@ void resumeInputsOther(Game::Navi* navi)
 {
 	int alive = Game::naviMgr->getAliveCount();
 	if (alive == 2 && useTwoPlayer) {
-		Game::Navi* other = Game::naviMgr->getAt(1 - navi->m_naviIndex.typeView);
+		Game::Navi* other = Game::naviMgr->getAt(1 - navi->m_naviIndex);
 		other->m_padinput = other->m_padinput2;
 	}
 }

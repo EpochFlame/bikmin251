@@ -309,7 +309,7 @@ struct ObjSMenuMap : public ObjSMenuBase {
 	virtual void wait();                                  // _80
 	virtual void out_L();                                 // _84
 	virtual void out_R();                                 // _88
-	virtual void doUpdateCancelAction();                  // _90 (weak)
+	virtual void doUpdateCancelAction() { }               // _90 (weak)
 	virtual void doUpdateRAction();                       // _94
 	virtual void doUpdateLAction();                       // _98
 	virtual void commonUpdate();                          // _A4
@@ -326,14 +326,15 @@ struct ObjSMenuMap : public ObjSMenuBase {
 
 	// unused/inlined
 	void calcMapScale();
-	void calcMapPos(Vector2f&);
+	void calcMapPos(Vector2f pos, Vector2f* outPos);
 	void setMapPos();
 	void setCompass();
 	void rotateMap();
 	void scaleMap();
 	void setMapColor();
-	void calcCaveNameAlpha();
+	u8 calcCaveNameAlpha();
 
+	f32 getMapAdjustVal(f32 stickMag, f32 factor) { return stickMag * (factor * (1.0f / m_currentZoom)); }
 	// _00     = VTBL1
 	// _18     = VTBL2
 	// _00-_A8 = ObjSMenuBase

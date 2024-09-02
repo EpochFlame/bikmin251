@@ -127,6 +127,7 @@ struct Vector3 {
 
 	float length() const;
 	float distance(Vector3&);
+	float sqrDistance(Vector3&);
 	float normalise();
 
 	void read(Stream&);
@@ -279,7 +280,7 @@ inline void _normalise(Vector3f& vec)
 	}
 }
 
-inline void _normaliseXZ(Vector3f& vec)
+inline f32 _normaliseXZ(Vector3f& vec)
 {
 	Vector2f sqr(vec.z * vec.z, vec.x * vec.x + vec.y * vec.y);
 	f32 length = sqr.x + sqr.y;
@@ -290,6 +291,8 @@ inline void _normaliseXZ(Vector3f& vec)
 		vec.x *= norm;
 		vec.z *= norm;
 	}
+
+	return length;
 }
 
 inline f32 _normaliseVec(Vector3f& vec)
@@ -339,6 +342,16 @@ inline f32 Vector3f::distance(Vector3f& them)
 	sumZ(diff, &sum);
 
 	return _sqrtf(sum);
+}
+
+template <>
+inline f32 Vector3f::sqrDistance(Vector3f& them)
+{
+	f32 diffX = this->x - them.x;
+	f32 diffY = this->y - them.y;
+	f32 diffZ = this->z - them.z;
+
+	return diffX * diffX + diffY * diffY + diffZ * diffZ;
 }
 
 inline void setAccel(Vector3f& outputVec, const Vector3f& inputVec, f32 massRatio, f32 fps, f32 groundFactor, f32 airFactor)

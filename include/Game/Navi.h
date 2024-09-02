@@ -38,11 +38,7 @@ namespace ItemPikihead {
 struct Item;
 }
 
-struct NaviDamageArg {
-	virtual const char* getName(); // _08 (weak)
-
-	// _00 VTBL
-};
+struct NaviDamageArg;
 
 struct NaviFSM : public StateMachine<Navi> {
 	virtual void init(Navi*);                    // _08
@@ -180,6 +176,13 @@ struct Navi : public FakePiki, virtual public PelletView {
 	void updateThrowDisable();
 	void useDope(int);
 
+	
+	void GoHereSuccess();
+	void GoHereInterupted();
+	void GoHereInteruptBlocked();
+	void GoHereInteruptWater();
+
+
 	inline void setCalcs()
 	{
 		SysShape::Model* model = m_model;
@@ -232,7 +235,7 @@ struct Navi : public FakePiki, virtual public PelletView {
 	efx::TNaviEffect* m_effectsObj; // _2D0
 	u8 m_disbandTimer;              // _2D4
 	Footmarks* m_footmarks;         // _2D8
-	BitFlag<u16> m_naviIndex;       // _2DC
+	u16 m_naviIndex;                // _2DC
 	u8 _2DE;                        // _2DE
 	Vector3f m_cStickTargetVector;  // _2E0
 	Vector3f m_cStickPosition;      // _2EC
