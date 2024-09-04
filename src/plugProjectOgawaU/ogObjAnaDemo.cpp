@@ -24,7 +24,7 @@ static CaveTitleMsgEntry CaveTitleMsg [] = {
     {'f_04', 0, '8410_00', true , false, true , false, 0},		// Hyrule Tunnels
     {'y_01', 0, '8397_00', false, false, false, false, 0},		// Factory Jamboree
     {'y_02', 0, '8402_00', false, true , false, true , 0},		// Bread Aisle
-    {'y_03', 0, '8403_00', false, true , false, false, 0},		// Vent Chamber
+    {'y_03', 0, '8403_00', false, true , true , false, 0},		// Vent Chamber
     {'y_04', 0, '8411_00', true , false, false, true , 0},		// Annoying Hole
     {'l_01', 0, '8412_00', false, true , false, true , 0},		// J.N. Warehouse
     {'l_02', 0, '8413_00', true , true , false, true , 0},		// Atrocity Facility
