@@ -29,12 +29,12 @@ lbl_80482D30:
 	.4byte 0x5F726564
 	.4byte 0x5F6F6E79
 	.4byte 0x6F6E0000
-	.4byte 0x7831305F
-	.4byte 0x66696E64
-	.4byte 0x5F79656C
-	.4byte 0x6C6F775F
-	.4byte 0x6F6E796F
-	.4byte 0x6E000000
+	.4byte 0x7831305F # "x10_find_yellow_onyon"
+	.4byte 0x66696E64 # |
+	.4byte 0x5F79656C # |
+	.4byte 0x6C6F775F # |
+	.4byte 0x6F6E796F # |
+	.4byte 0x6E000000 #\_/
 	.4byte 0x7831315F
 	.4byte 0x66696E64
 	.4byte 0x5F626C75
@@ -481,7 +481,7 @@ demoCheck__Q24Game4NaviFv:
 /* 8021F8C8 0021C808  38 A0 00 00 */	li r5, 0
 /* 8021F8CC 0021C80C  38 C0 00 00 */	li r6, 0
 /* 8021F8D0 0021C810  38 E0 00 00 */	li r7, 0
-/* 8021F8D4 0021C814  48 00 14 15 */	bl "__ct__Q24Game12MoviePlayArgFPcPcP39IDelegate3<PQ24Game11MovieConfig,Ul,Ul>Ul"
+/* 8021F8D4 0021C814  48 00 14 15 */	# bl "__ct__Q24Game12MoviePlayArgFPcPcP39IDelegate3<PQ24Game11MovieConfig,Ul,Ul>Ul"
 /* 8021F8D8 0021C818  80 0D 92 F4 */	lwz r0, pikiMgr__4Game@sda21(r13)
 /* 8021F8DC 0021C81C  3C A0 80 4B */	lis r5, "__vt__22Iterator<Q24Game4Piki>"@ha
 /* 8021F8E0 0021C820  38 80 00 00 */	li r4, 0
@@ -540,7 +540,7 @@ demoCheck__Q24Game4NaviFv:
 /* 8021F9A4 0021C8E4  80 6D 9B 54 */	lwz r3, moviePlayer__4Game@sda21(r13)
 /* 8021F9A8 0021C8E8  93 43 01 94 */	stw r26, 0x194(r3)
 /* 8021F9AC 0021C8EC  80 6D 9B 54 */	lwz r3, moviePlayer__4Game@sda21(r13)
-/* 8021F9B0 0021C8F0  48 20 D0 21 */	bl play__Q24Game11MoviePlayerFRQ24Game12MoviePlayArg
+/* 8021F9B0 0021C8F0  48 20 D0 21 */	# bl play__Q24Game11MoviePlayerFRQ24Game12MoviePlayArg
 .L_8021F9B4:
 /* 8021F9B4 0021C8F4  80 6D 94 90 */	lwz r3, playData__4Game@sda21(r13)
 /* 8021F9B8 0021C8F8  38 80 00 2B */	li r4, 0x2b
