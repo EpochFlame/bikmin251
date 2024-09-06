@@ -287,10 +287,8 @@ void Obj::setPomParms()
 	}
 
 	if (getEnemyTypeID() != EnemyTypeID::EnemyID_RandPom) {
-		// If we are in Bups Bluff or Nether Reactor Overworld, Bump this value up to 50 for Skeletons
-		SingleGameSection* section = static_cast<SingleGameSection*>(gameSystem->m_section);
-		if (id == EnemyTypeID::EnemyID_RedPom 
-			&& ((section && section->m_currentCourseInfo->m_courseIndex != 2) || (section && section->m_currentCourseInfo->m_courseIndex != 1))) {
+		// Bump up the max for Skeleton Poms since they are more disposable than other types
+		if (id == EnemyTypeID::EnemyID_RedPom) {
 			m_totalSlotCount = 50;
 		} else {
 			m_totalSlotCount = C_PROPERPARMS.m_normalMaxSlots.m_value;
