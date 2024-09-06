@@ -287,7 +287,14 @@ void Obj::setPomParms()
 	}
 
 	if (getEnemyTypeID() != EnemyTypeID::EnemyID_RandPom) {
-		m_totalSlotCount = C_PROPERPARMS.m_normalMaxSlots.m_value;
+		// If we are in Bups Bluff or Nether Reactor Overworld, Bump this value up to 50 for Skeletons
+		SingleGameSection* section = static_cast<SingleGameSection*>(gameSystem->m_section);
+		if (id == EnemyTypeID::EnemyID_RedPom 
+			&& ((section && section->m_currentCourseInfo->m_courseIndex != 2) || (section && section->m_currentCourseInfo->m_courseIndex != 1))) {
+			m_totalSlotCount = 50;
+		} else {
+			m_totalSlotCount = C_PROPERPARMS.m_normalMaxSlots.m_value;
+		}
 		m_shotMultiplier = 1;
 		m_rgbColor.a     = 0;
 	} else {
