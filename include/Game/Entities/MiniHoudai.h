@@ -8,6 +8,8 @@
 #include "Game/EnemyBase.h"
 #include "Game/WalkSmokeEffect.h"
 #include "efx/TChibi.h"
+#include "Sys/MatBaseAnimation.h"
+#include "Sys/MatBaseAnimator.h"
 
 /**
  * --Header for Gatling Groinks (MiniHoudai)--
@@ -386,9 +388,12 @@ struct Obj : public MiniHoudai::Obj {
 	{
 		return EnemyTypeID::EnemyID_MiniHoudai;
 	}
+	virtual void onInit(CreatureInitArg*);
+	virtual void changeMaterial();
 
 	// _00		= VTBL
 	// _00-_308	= MiniHoudai::Obj
+	Sys::MatLoopAnimator* mMatAnimators;
 };
 
 struct Mgr : public MiniHoudai::Mgr {
@@ -402,10 +407,14 @@ struct Mgr : public MiniHoudai::Mgr {
 	{
 		return EnemyTypeID::EnemyID_MiniHoudai;
 	}
+	virtual void loadTexData();
+	virtual SysShape::Model* createModel();
 
 	// _00 		= VTBL
 	// _00-_44	= MiniHoudai::Mgr
 	Obj* m_obj; // _44
+	Sys::MatTexAnimation* mTexAnimation;
+	Sys::MatTevRegAnimation* mTevRegAnimation;
 };
 } // namespace NormMiniHoudai
 } // namespace Game
