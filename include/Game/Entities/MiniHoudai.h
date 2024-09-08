@@ -355,9 +355,12 @@ struct Obj : public MiniHoudai::Obj {
 	{
 		return EnemyTypeID::EnemyID_FminiHoudai;
 	}
+	virtual void onInit(CreatureInitArg*);
+	virtual void changeMaterial();
 
 	// _00		= VTBL
 	// _00-_308	= MiniHoudai::Obj
+	Sys::MatLoopAnimator* mMatAnimators;
 };
 
 struct Mgr : public MiniHoudai::Mgr {
@@ -371,10 +374,14 @@ struct Mgr : public MiniHoudai::Mgr {
 	{
 		return EnemyTypeID::EnemyID_FminiHoudai;
 	}
+	virtual void loadTexData();
+	virtual SysShape::Model* createModel();
 
 	// _00 		= VTBL
 	// _00-_44	= MiniHoudai::Mgr
 	Obj* m_obj; // _44, probably
+	Sys::MatTexAnimation* mTexAnimation;
+	Sys::MatTevRegAnimation* mTevRegAnimation;
 };
 } // namespace FixMiniHoudai
 
