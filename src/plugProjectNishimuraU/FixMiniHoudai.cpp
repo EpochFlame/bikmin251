@@ -28,8 +28,10 @@ void Obj::changeMaterial()
 
 	model->calcMaterial();
 
-    mMatAnimators[0].animate(30.0f);
-    mMatAnimators[1].animate(30.0f);
+	if (isAlive()) {
+		mMatAnimators[0].animate(30.0f);
+		mMatAnimators[1].animate(30.0f);
+	}
 
 	for (u16 i = 0; i < modelData->m_materialTable.m_count1; i++) {
 		j3dSys.m_matPacket = &model->m_matPackets[i];

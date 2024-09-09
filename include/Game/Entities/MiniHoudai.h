@@ -142,9 +142,13 @@ struct Mgr : public EnemyMgrBase {
 	{
 		return J3DModelLoaderDataBase::load(filename, 0x01240030);
 	}
+	virtual void loadTexData();
+	virtual SysShape::Model* createModel();
 
 	// _00 		= VTBL
 	// _00-_44	= EnemyMgrBase
+	Sys::MatTexAnimation* mTexAnimation;
+	Sys::MatTevRegAnimation* mTevRegAnimation;
 };
 
 struct Parms : public EnemyParmsBase {
@@ -374,14 +378,10 @@ struct Mgr : public MiniHoudai::Mgr {
 	{
 		return EnemyTypeID::EnemyID_FminiHoudai;
 	}
-	virtual void loadTexData();
-	virtual SysShape::Model* createModel();
 
 	// _00 		= VTBL
 	// _00-_44	= MiniHoudai::Mgr
 	Obj* m_obj; // _44, probably
-	Sys::MatTexAnimation* mTexAnimation;
-	Sys::MatTevRegAnimation* mTevRegAnimation;
 };
 } // namespace FixMiniHoudai
 
@@ -414,14 +414,10 @@ struct Mgr : public MiniHoudai::Mgr {
 	{
 		return EnemyTypeID::EnemyID_MiniHoudai;
 	}
-	virtual void loadTexData();
-	virtual SysShape::Model* createModel();
 
 	// _00 		= VTBL
 	// _00-_44	= MiniHoudai::Mgr
 	Obj* m_obj; // _44
-	Sys::MatTexAnimation* mTexAnimation;
-	Sys::MatTevRegAnimation* mTevRegAnimation;
 };
 } // namespace NormMiniHoudai
 } // namespace Game
