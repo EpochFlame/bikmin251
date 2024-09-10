@@ -12,6 +12,8 @@
 #include "efx/TEnemyHamon.h"
 #include "SysShape/Joint.h"
 #include "Collinfo.h"
+#include "Sys/MatBaseAnimation.h"
+#include "Sys/MatBaseAnimator.h"
 
 /**
  * --Header for Emperor Bulblax (KingChappy)--
@@ -63,6 +65,7 @@ struct Obj : public EnemyBase {
 	virtual void doStartMovie();                            // _2F0
 	virtual void doEndMovie();                              // _2F4
 	virtual void setFSM(FSM*);                              // _2F8 (weak)
+	virtual void changeMaterial();
 	//////////////// VTABLE END
 
 	void eatBomb();
@@ -133,6 +136,7 @@ struct Obj : public EnemyBase {
 	Vector3f _388;                       // _388
 	u8 _394;                             // _394
 	                                     // _398 = PelletView
+    Sys::MatLoopAnimator* mMatAnimator;
 };
 
 struct Mgr : public EnemyMgrBase {
@@ -155,6 +159,7 @@ struct Mgr : public EnemyMgrBase {
 	{
 		m_obj = new Obj[count];
 	}
+	virtual void loadTexData();
 	//////////////// VTABLE END
 
 	void requestState(Obj*, int);
@@ -162,6 +167,7 @@ struct Mgr : public EnemyMgrBase {
 	// _00 		= VTBL
 	// _00-_44	= EnemyMgrBase
 	Obj* m_obj; // _44
+	Sys::MatTexAnimation* mTexAnimation;
 };
 
 struct Parms : public EnemyParmsBase {

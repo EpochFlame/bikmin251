@@ -262,6 +262,7 @@ __vt__Q34Game10KingChappy14ProperAnimator:
 	.4byte animate__Q24Game22EnemyBlendAnimatorBaseFif
 	.4byte resetAnimSpeed__Q24Game17EnemyAnimatorBaseFv
 	.4byte getTypeID__Q24Game22EnemyBlendAnimatorBaseFv
+
 .global __vt__Q34Game10KingChappy3Obj
 __vt__Q34Game10KingChappy3Obj:
 	.4byte 0
@@ -392,7 +393,7 @@ __vt__Q34Game10KingChappy3Obj:
 	.4byte doSimulationGround__Q24Game9EnemyBaseFf
 	.4byte doSimulationFlying__Q24Game9EnemyBaseFf
 	.4byte doSimulationStick__Q24Game9EnemyBaseFf
-	.4byte changeMaterial__Q24Game9EnemyBaseFv
+	.4byte changeMaterial__Q34Game10KingChappy3ObjFv
 	.4byte "getCommonEffectPos__Q24Game9EnemyBaseFR10Vector3<f>"
 	.4byte getFitEffectPos__Q24Game9EnemyBaseFv
 	.4byte viewGetShape__Q24Game9EnemyBaseFv
@@ -790,6 +791,8 @@ onInit__Q34Game10KingChappy3ObjFPQ24Game15CreatureInitArg:
 /* 8035CF68 00359EA8  81 8C 00 0C */	lwz r12, 0xc(r12)
 /* 8035CF6C 00359EAC  7D 89 03 A6 */	mtctr r12
 /* 8035CF70 00359EB0  4E 80 04 21 */	bctrl 
+mr r3, r30
+bl startMatAnimation__Q24Game10KingChappyFPQ34Game10KingChappy3Obj
 /* 8035CF74 00359EB4  C0 3E 01 8C */	lfs f1, 0x18c(r30)
 /* 8035CF78 00359EB8  38 60 00 01 */	li r3, 1
 /* 8035CF7C 00359EBC  C0 02 03 2C */	lfs f0, lbl_8051E68C@sda21(r2)

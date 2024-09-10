@@ -2,6 +2,7 @@
 #include "Game/generalEnemyMgr.h"
 #include "LoadResource.h"
 #include "JSystem/JUT/JUTNameTab.h"
+#include "LoadResource.h"
 
 namespace Game {
 namespace KingChappy {
@@ -38,7 +39,21 @@ EnemyBase* Mgr::birth(EnemyBirthArg& birthArg) { return EnemyMgrBase::birth(birt
  * Address:	8035C9A0
  * Size:	000020
  */
-SysShape::Model* Mgr::createModel() { return EnemyMgrBase::createModel(); }
+SysShape::Model* Mgr::createModel() 
+{ 	
+	SysShape::Model* model = new SysShape::Model(m_modelData, 0x80000, m_modelType);
+	P2ASSERTLINE(__LINE__, model);
+
+	for (u16 i = 0; i < m_modelData->getMaterialCount1(); i++) {
+		const char* name = m_modelData->m_materialTable._0C->getName(i);
+		if (!strcmp(name, "gmp_body") || !strcmp(name, "gmp_body_v_x")) {
+			model->m_j3dModel->m_matPackets[i]._2C->newDifferedDisplayList(0x01000200);
+		}
+	}
+
+	model->updateModel();
+	return model;
+}
 
 /*
  * --INFO--
@@ -56,6 +71,21 @@ void Mgr::requestState(Obj* kingChappy, int stateID)
 			}
 		}
 	}
+}
+
+void Mgr::loadTexData()
+{
+	SysShape::Model::enableMaterialAnim(m_modelData, 0);
+	void* btkFile = nullptr;
+	LoadResource::Arg loadArgBtk("/enemy/data/KingChappy/emperor_model.btk");
+	LoadResource::Node* resourceBtk = gLoadResourceMgr->load(loadArgBtk);
+	if (resourceBtk) {
+		btkFile = resourceBtk->_30;
+	}
+	P2ASSERTLINE(__LINE__, btkFile);
+
+	mTexAnimation = new Sys::MatTexAnimation;
+	mTexAnimation->attachResource(btkFile, m_modelData);
 }
 
 } // namespace KingChappy
