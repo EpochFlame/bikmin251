@@ -179,6 +179,8 @@ struct Mgr : public FixedSizeItemMgr<Item> {
 	virtual void* getEnd();                                               // _B8 (weak, thunk at _90)
 	virtual ~Mgr();                                                       // _BC (weak)
 
+	void allocModels();
+
 	// _00     = VTBL
 	// _00-_7C = FixedSizeItemMgr
 	u8 _7C[0x4]; // _7C, unknown

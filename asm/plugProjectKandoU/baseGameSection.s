@@ -11267,7 +11267,7 @@ setupFloatMemory__Q24Game15BaseGameSectionFv:
 /* 80150BFC 0014DB3C  38 A0 00 00 */	li r5, 0
 /* 80150C00 0014DB40  48 2D 27 5D */	bl heapStatusStart__6SystemFPcP7JKRHeap
 /* 80150C04 0014DB44  80 6D 92 F4 */	lwz r3, pikiMgr__4Game@sda21(r13)
-/* 80150C08 0014DB48  38 80 00 64 */	li r4, 0x64
+/* 80150C08 0014DB48  38 80 00 64 */	li r4, 0x65
 /* 80150C0C 0014DB4C  48 00 12 B5 */	bl "alloc__27MonoObjectMgr<Q24Game4Piki>Fi"
 /* 80150C10 0014DB50  80 6D 9A EC */	lwz r3, sys@sda21(r13)
 /* 80150C14 0014DB54  38 9E 03 A0 */	addi r4, r30, 0x3a0

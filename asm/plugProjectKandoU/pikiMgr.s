@@ -2780,7 +2780,7 @@ birth__Q24Game7PikiMgrFv:
 /* 8015E800 0015B740  38 60 00 00 */	li r3, 0
 /* 8015E804 0015B744  48 00 02 9C */	b .L_8015EAA0
 .L_8015E808:
-/* 8015E808 0015B748  48 00 29 D1 */	bl "birth__27MonoObjectMgr<Q24Game4Piki>Fv"
+/* 8015E808 0015B748  48 00 29 D1 */	bl birthPikiModel__Q24Game7PikiMgrFv
 /* 8015E80C 0015B74C  48 00 02 94 */	b .L_8015EAA0
 .L_8015E810:
 /* 8015E810 0015B750  80 6D 94 70 */	lwz r3, mgr__Q24Game12ItemPikihead@sda21(r13)
@@ -2795,7 +2795,7 @@ birth__Q24Game7PikiMgrFv:
 /* 8015E830 0015B770  2C 00 00 64 */	cmpwi r0, 0x64
 /* 8015E834 0015B774  40 80 00 0C */	bge .L_8015E840
 /* 8015E838 0015B778  7F C3 F3 78 */	mr r3, r30
-/* 8015E83C 0015B77C  48 00 29 9D */	bl "birth__27MonoObjectMgr<Q24Game4Piki>Fv"
+/* 8015E83C 0015B77C  48 00 29 9D */	bl birthPikiModel__Q24Game7PikiMgrFv
 .L_8015E840:
 /* 8015E840 0015B780  28 03 00 00 */	cmplwi r3, 0
 /* 8015E844 0015B784  40 82 02 5C */	bne .L_8015EAA0
@@ -2952,7 +2952,7 @@ birth__Q24Game7PikiMgrFv:
 /* 8015EA78 0015B9B8  90 01 00 08 */	stw r0, 8(r1)
 /* 8015EA7C 0015B9BC  4B FD C6 75 */	bl kill__Q24Game8CreatureFPQ24Game15CreatureKillArg
 /* 8015EA80 0015B9C0  7F C3 F3 78 */	mr r3, r30
-/* 8015EA84 0015B9C4  48 00 27 55 */	bl "birth__27MonoObjectMgr<Q24Game4Piki>Fv"
+/* 8015EA84 0015B9C4  48 00 27 55 */	bl birthPikiModel__Q24Game7PikiMgrFv
 /* 8015EA88 0015B9C8  48 00 00 18 */	b .L_8015EAA0
 .L_8015EA8C:
 /* 8015EA8C 0015B9CC  38 60 00 00 */	li r3, 0
@@ -2960,7 +2960,7 @@ birth__Q24Game7PikiMgrFv:
 /* 8015EA94 0015B9D4  48 00 00 0C */	b .L_8015EAA0
 .L_8015EA98:
 /* 8015EA98 0015B9D8  7F C3 F3 78 */	mr r3, r30
-/* 8015EA9C 0015B9DC  48 00 27 3D */	bl "birth__27MonoObjectMgr<Q24Game4Piki>Fv"
+/* 8015EA9C 0015B9DC  48 00 27 3D */	bl birthPikiModel__Q24Game7PikiMgrFv
 .L_8015EAA0:
 /* 8015EAA0 0015B9E0  80 01 00 34 */	lwz r0, 0x34(r1)
 /* 8015EAA4 0015B9E4  83 E1 00 2C */	lwz r31, 0x2c(r1)
@@ -3108,6 +3108,8 @@ load__Q24Game7PikiMgrFi:
 /* 8015ECAC 0015BBEC  38 BF 08 E4 */	addi r5, r31, 0x8e4
 /* 8015ECB0 0015BBF0  38 80 00 06 */	li r4, 6
 /* 8015ECB4 0015BBF4  48 00 01 BD */	bl loadBmd__Q24Game7PikiMgrFiPc
+mr r3, r29
+bl loadPikiHead__Q24Game7PikiMgrFv
 /* 8015ECB8 0015BBF8  7F 83 E3 78 */	mr r3, r28
 /* 8015ECBC 0015BBFC  38 9F 08 F0 */	addi r4, r31, 0x8f0
 /* 8015ECC0 0015BC00  81 9C 00 00 */	lwz r12, 0(r28)
@@ -3190,7 +3192,7 @@ load__Q24Game7PikiMgrFi:
 /* 8015EDF0 0015BD30  38 80 00 07 */	li r4, 7
 /* 8015EDF4 0015BD34  38 C0 00 64 */	li r6, 0x64
 /* 8015EDF8 0015BD38  3C E0 00 02 */	lis r7, 2
-/* 8015EDFC 0015BD3C  48 2C BD 05 */	bl "__ct__Q28SysShape8ModelMgrFiPP12J3DModelDataiUlUlP30IDelegate1<PQ28SysShape5Model>"
+/* 8015EDFC 0015BD3C  48 2C BD 05 */	bl "createModelMgr__4GameFiPP12J3DModelDataiUlUlP30IDelegate1<PQ28SysShape5Model>"
 /* 8015EE00 0015BD40  7C 7C 1B 78 */	mr r28, r3
 .L_8015EE04:
 /* 8015EE04 0015BD44  93 9D 00 70 */	stw r28, 0x70(r29)
@@ -3221,81 +3223,6 @@ load__Q24Game7PikiMgrFi:
 /* 8015EE64 0015BDA4  7C 08 03 A6 */	mtlr r0
 /* 8015EE68 0015BDA8  38 21 00 30 */	addi r1, r1, 0x30
 /* 8015EE6C 0015BDAC  4E 80 00 20 */	blr 
-
-.global loadBmd__Q24Game7PikiMgrFiPc
-loadBmd__Q24Game7PikiMgrFiPc:
-/* 8015EE70 0015BDB0  94 21 FE E0 */	stwu r1, -0x120(r1)
-/* 8015EE74 0015BDB4  7C 08 02 A6 */	mflr r0
-/* 8015EE78 0015BDB8  3C C0 80 48 */	lis r6, lbl_8047E118@ha
-/* 8015EE7C 0015BDBC  90 01 01 24 */	stw r0, 0x124(r1)
-/* 8015EE80 0015BDC0  38 06 E1 18 */	addi r0, r6, lbl_8047E118@l
-/* 8015EE84 0015BDC4  93 E1 01 1C */	stw r31, 0x11c(r1)
-/* 8015EE88 0015BDC8  93 C1 01 18 */	stw r30, 0x118(r1)
-/* 8015EE8C 0015BDCC  7C 9E 23 78 */	mr r30, r4
-/* 8015EE90 0015BDD0  7C 04 03 78 */	mr r4, r0
-/* 8015EE94 0015BDD4  93 A1 01 14 */	stw r29, 0x114(r1)
-/* 8015EE98 0015BDD8  7C 7D 1B 78 */	mr r29, r3
-/* 8015EE9C 0015BDDC  38 61 00 08 */	addi r3, r1, 8
-/* 8015EEA0 0015BDE0  4C C6 31 82 */	crclr 6
-/* 8015EEA4 0015BDE4  4B F6 85 95 */	bl sprintf
-/* 8015EEA8 0015BDE8  80 7D 00 7C */	lwz r3, 0x7c(r29)
-/* 8015EEAC 0015BDEC  38 81 00 08 */	addi r4, r1, 8
-/* 8015EEB0 0015BDF0  81 83 00 00 */	lwz r12, 0(r3)
-/* 8015EEB4 0015BDF4  81 8C 00 14 */	lwz r12, 0x14(r12)
-/* 8015EEB8 0015BDF8  7D 89 03 A6 */	mtctr r12
-/* 8015EEBC 0015BDFC  4E 80 04 21 */	bctrl 
-/* 8015EEC0 0015BE00  3C 80 00 06 */	lis r4, 0x00060010@ha
-/* 8015EEC4 0015BE04  38 84 00 10 */	addi r4, r4, 0x00060010@l
-/* 8015EEC8 0015BE08  4B F1 09 CD */	bl load__22J3DModelLoaderDataBaseFPCvUl
-/* 8015EECC 0015BE0C  3C 80 00 04 */	lis r4, 4
-/* 8015EED0 0015BE10  7C 7F 1B 78 */	mr r31, r3
-/* 8015EED4 0015BE14  4B F2 4A 05 */	bl newSharedDisplayList__12J3DModelDataFUl
-/* 8015EED8 0015BE18  7F E3 FB 78 */	mr r3, r31
-/* 8015EEDC 0015BE1C  4B F2 4B 55 */	bl makeSharedDL__12J3DModelDataFv
-/* 8015EEE0 0015BE20  57 C0 10 3A */	slwi r0, r30, 2
-/* 8015EEE4 0015BE24  7C 7D 02 14 */	add r3, r29, r0
-/* 8015EEE8 0015BE28  93 E3 00 3C */	stw r31, 0x3c(r3)
-/* 8015EEEC 0015BE2C  83 E1 01 1C */	lwz r31, 0x11c(r1)
-/* 8015EEF0 0015BE30  83 C1 01 18 */	lwz r30, 0x118(r1)
-/* 8015EEF4 0015BE34  83 A1 01 14 */	lwz r29, 0x114(r1)
-/* 8015EEF8 0015BE38  80 01 01 24 */	lwz r0, 0x124(r1)
-/* 8015EEFC 0015BE3C  7C 08 03 A6 */	mtlr r0
-/* 8015EF00 0015BE40  38 21 01 20 */	addi r1, r1, 0x120
-/* 8015EF04 0015BE44  4E 80 00 20 */	blr 
-
-.global createModelCallback__Q24Game7PikiMgrFPQ28SysShape5Model
-createModelCallback__Q24Game7PikiMgrFPQ28SysShape5Model:
-/* 8015EF08 0015BE48  94 21 FF F0 */	stwu r1, -0x10(r1)
-/* 8015EF0C 0015BE4C  7C 08 02 A6 */	mflr r0
-/* 8015EF10 0015BE50  90 01 00 14 */	stw r0, 0x14(r1)
-/* 8015EF14 0015BE54  93 E1 00 0C */	stw r31, 0xc(r1)
-/* 8015EF18 0015BE58  7C 9F 23 78 */	mr r31, r4
-/* 8015EF1C 0015BE5C  80 64 00 08 */	lwz r3, 8(r4)
-/* 8015EF20 0015BE60  81 83 00 00 */	lwz r12, 0(r3)
-/* 8015EF24 0015BE64  81 8C 00 14 */	lwz r12, 0x14(r12)
-/* 8015EF28 0015BE68  7D 89 03 A6 */	mtctr r12
-/* 8015EF2C 0015BE6C  4E 80 04 21 */	bctrl 
-/* 8015EF30 0015BE70  80 7F 00 08 */	lwz r3, 8(r31)
-/* 8015EF34 0015BE74  4B F0 79 F1 */	bl makeDL__8J3DModelFv
-/* 8015EF38 0015BE78  80 7F 00 08 */	lwz r3, 8(r31)
-/* 8015EF3C 0015BE7C  4B F0 78 B9 */	bl lock__8J3DModelFv
-/* 8015EF40 0015BE80  80 01 00 14 */	lwz r0, 0x14(r1)
-/* 8015EF44 0015BE84  83 E1 00 0C */	lwz r31, 0xc(r1)
-/* 8015EF48 0015BE88  7C 08 03 A6 */	mtlr r0
-/* 8015EF4C 0015BE8C  38 21 00 10 */	addi r1, r1, 0x10
-/* 8015EF50 0015BE90  4E 80 00 20 */	blr 
-
-.global createModel__Q24Game7PikiMgrFii
-createModel__Q24Game7PikiMgrFii:
-/* 8015EF54 0015BE94  94 21 FF F0 */	stwu r1, -0x10(r1)
-/* 8015EF58 0015BE98  7C 08 02 A6 */	mflr r0
-/* 8015EF5C 0015BE9C  90 01 00 14 */	stw r0, 0x14(r1)
-/* 8015EF60 0015BEA0  80 63 00 70 */	lwz r3, 0x70(r3)
-/* 8015EF64 0015BEA4  48 2C BE 99 */	bl createModel__Q28SysShape8ModelMgrFii
-/* 8015EF68 0015BEA8  80 01 00 14 */	lwz r0, 0x14(r1)
-/* 8015EF6C 0015BEAC  7C 08 03 A6 */	mtlr r0
-/* 8015EF70 0015BEB0  38 21 00 10 */	addi r1, r1, 0x10
-/* 8015EF74 0015BEB4  4E 80 00 20 */	blr 
 
 .global createLeafModel__Q24Game7PikiMgrFii
 createLeafModel__Q24Game7PikiMgrFii:

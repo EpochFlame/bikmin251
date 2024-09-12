@@ -116,10 +116,33 @@ struct MonoObjectMgr : public ObjectMgr<T> {
 		return -1;
 	}
 
+	void alloc(int count);
+
+	inline void setFlag(int i, u32 flag) { m_openIds[i] = flag; }
+
 	int m_activeCount; // _20
 	int m_max;         // _24
 	T* m_array;        // _28
-	s8* m_openIds;     // _2C
+	u8* m_openIds;     // _2C
 };
+
+template <typename T>
+void MonoObjectMgr<T>::alloc(int count)
+{
+	m_array       = new T[count];
+	m_max         = count;
+	m_activeCount = 0;
+	m_openIds     = new u8[count];
+
+	for (int i = 0; i < count; i++) {
+		setFlag(i, 1);
+	}
+
+	onAlloc();
+
+	for (int i = 0; i < count; i++) {
+		m_array[i].constructor();
+	}
+}
 
 #endif
