@@ -198,8 +198,10 @@ struct JUTGamePad : public JKRDisposer {
 
 	// #define JUTGamePadIsConnected(pad) ((0 <= pad->m_portNum && pad->m_portNum < 4))
 	/** @fabricated */
+	inline u32 getButton() const { return m_padButton.m_mask; }
 	inline bool isConnected() const { return (0 <= m_portNum && m_portNum < 4); }
 	inline bool isButtonDown(u32 buttons) { return m_padButton.m_buttonDown & buttons; }
+	inline bool isButton(u32 buttons) { return m_padButton.m_mask & buttons; }
 
 	// _00 VTBL
 	JUTGamePad::CButton m_padButton;   // _18

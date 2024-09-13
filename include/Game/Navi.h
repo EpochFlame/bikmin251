@@ -20,6 +20,7 @@
 #include "MonoObjectMgr.h"
 #include "CollInfo.h"
 #include "Vector3.h"
+#include "Game/Entities/ItemOnyon.h"
 
 struct Controller;
 
@@ -135,7 +136,7 @@ struct Navi : public FakePiki, virtual public PelletView {
 	void checkCave();
 	void checkDemoNaviAndPiki(Sys::Sphere&);
 	void checkHole();
-	void checkOnyon();
+	Onyon* checkOnyon();
 	void clearKaisanDisable();
 	void clearThrowDisable();
 	bool commandOn();
@@ -159,8 +160,8 @@ struct Navi : public FakePiki, virtual public PelletView {
 	void makeCStick(bool);
 	void makeVelocity();
 	void ogGetNextThrowPiki();
-	void procActionButton();
-	void releasePikis();
+	bool procActionButton();
+	bool releasePikis();
 	void reviseController(Vector3f&);
 	void set_movie_draw(bool);
 	void setDeadLaydown();
@@ -169,7 +170,7 @@ struct Navi : public FakePiki, virtual public PelletView {
 	void setupNukuAdjustArg(ItemPikihead::Item*, NaviNukuAdjustStateArg&);
 	void startDamage(f32);
 	void startThrowDisable();
-	void throwable();
+	bool throwable();
 	void throwPiki(Piki*, Vector3f&);
 	void updateCursor();
 	void updateKaisanDisable();

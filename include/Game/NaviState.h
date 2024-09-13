@@ -61,6 +61,7 @@ struct NaviState : public FSMState<Navi> {
 	virtual void draw2d(J2DGrafContext&, int&);                    // _48
 
 	void playChangeVoice(Navi* navi);
+	void swapNavi(Navi* navi);
 
 	// _00     = VTBL
 	// _00-_0C = FSMState<Navi>
@@ -501,7 +502,7 @@ struct NaviNukuAdjustStateArg : public StateArg {
 struct NaviNukuAdjustState : public NaviState {
 	inline NaviNukuAdjustState()
 	    : NaviState(NSID_NukuAdjust)
-	    , _48(0)
+	    , mIsFollowing(0)
 	{
 	}
 
@@ -511,26 +512,27 @@ struct NaviNukuAdjustState : public NaviState {
 	virtual void collisionCallback(Navi*, CollEvent&); // _28
 	virtual void wallCallback(Navi*, Vector3f&);       // _2C
 	virtual bool ignoreAtari(Creature* toIgnore);      // _3C
+	virtual bool callable();
 
 	// _00     = VTBL
 	// _00-_10 = NaviState
-	f32 _10;
-	Vector3f _14;
-	bool _20;
-	Vector3f _24;
-	f32 _30;
-	Vector3f _34;
-	int _40;
-	ItemPikihead::Item* mPikiHead;
-	u8 _48;       // _48
-	u8 _49[0x3];  // _49, unknown/buffer
-	u8 _4C;       // _4C
-	Vector3f _50; // _50
-	u8 _5C;       // _5C
+	f32 mAngleToPiki;               // _10
+	Vector3f mTargetPosition;       // _14
+	bool mUnusedBool;               // _20
+	Vector3f mNaviPosition;         // _24
+	f32 mAngleToItem;               // _30
+	Vector3f mUnusedVelocity;       // _34
+	int mUnusedState;               // _40
+	ItemPikihead::Item* mPikiHead;  // _44
+	u8 mIsFollowing;                // _48
+	u8 _49[0x3];                    // _49, unknown/buffer
+	u8 mIsMoving;                   // _4C
+	Vector3f mCollidedPikiPosition; // _50
+	u8 mWallHitCounter;             // _5C
 };
 
 struct NaviNukuArg : public StateArg {
-	u8 _00; // _00
+	u8 mIsFollowing; // _00
 };
 
 struct NaviNukuState : public NaviState {

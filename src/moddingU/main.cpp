@@ -35,13 +35,6 @@ bool isKeyCheat = false; // set all keylocks to open if true
 
 namespace Game {
 
-void autopluck(NaviWalkState* walkstate, Navi* captain)
-// performs Pikmin 3-style autopluck of pikmin seeds
-{
-	captain->procActionButton();
-	walkstate->execAI(captain);
-}
-
 void allowSkipTreasureCutscene(MoviePlayer* movieplayer)
 // allows 251-style treasure cutscene skips
 {
@@ -563,14 +556,6 @@ void Game::PikiAutoNukiState::exec(Piki* piki)
 		}
 
 		break;
-	}
-}
-
-// makeSonicHappa__FPQ24Game4Piki
-void makeSonicHappa(Game::Piki* piki)
-{
-	if (Game::playData->m_olimarData[0].hasItem(Game::OlimarData::ODII_RepugnantAppendage)) {
-		piki->changeHappa(Game::Bud);
 	}
 }
 

@@ -68,4 +68,10 @@ inline f32 altSin(f32 x)
 
 inline f32 scaledSin(f32 theta) { return altSin(theta * TAU); }
 
+inline f32 absF(f32 val)
+{
+	f64 newVal = fabs(val);
+	return (f32)newVal;
+}
+
 #endif

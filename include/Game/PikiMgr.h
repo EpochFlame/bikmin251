@@ -22,6 +22,12 @@ namespace Game {
 struct PikiContainer;
 
 struct PikiMgr : public MonoObjectMgr<Piki> {
+	enum PikiSpawnMode {
+		PSM_Normal,  // checks if we've hit 100 cap by active pikis or sprouts before spawning (wild pikis, out of onyons, etc)
+		PSM_Force,   // does no checks, just spawns (plucking sprouts)
+		PSM_Replace, // checks if we can spawn normally; if not, removes 'extra' wild bulbmin (when entering the next cave floor)
+	};
+	
 	PikiMgr();
 
 	// vtable 1
@@ -62,6 +68,8 @@ struct PikiMgr : public MonoObjectMgr<Piki> {
 	void caveSaveAllPikmins(bool, bool);
 	void saveFormationPikmins(PikiContainer&);
 	void saveAllPikmins(PikiContainer&);
+
+	static int mBirthMode;
 
 	s32 m_dopedPikis;               // _30
 	s32* m_storedPikis;             // _34

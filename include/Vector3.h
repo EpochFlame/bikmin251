@@ -125,7 +125,10 @@ struct Vector3 {
 		this->z -= other.z;
 	}
 
+	inline f32 sqrMagnitude2D() const { return this->x * this->x + this->z * this->z; }
+
 	float length() const;
+	float length2D() const;
 	float distance(Vector3&);
 	float sqrDistance(Vector3&);
 	float normalise();
@@ -180,6 +183,18 @@ inline f32 Vector3f::length() const
 
 	if (x2 + y2 + z2 > 0.0f) {
 		f32 sqrLen = vec.x * vec.x + y * y + z * z;
+		return sqrtf(sqrLen);
+	} else {
+		return 0.0f;
+	}
+}
+
+template <>
+inline f32 Vector3f::length2D() const
+{
+	if (sqrMagnitude2D() > 0.0f) {
+		Vector3f vec = Vector3f(x, y, z);
+		f32 sqrLen   = SQUARE(vec.x) + SQUARE(z);
 		return sqrtf(sqrLen);
 	} else {
 		return 0.0f;

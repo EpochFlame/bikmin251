@@ -73,7 +73,7 @@ void NaviGoHereState::init(Navi* navi, StateArg* arg) {
 }
 
 // usually inlined, plays the navi's voice line when swapped
-inline void NaviState::playChangeVoice(Navi* navi)
+void NaviState::playChangeVoice(Navi* navi)
 {
 	if (navi->m_naviIndex == 0) { // OLIMAR
 		PSSystem::spSysIF->playSystemSe(PSSE_SY_CHANGE_ORIMA, 0);
