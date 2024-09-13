@@ -1,6 +1,8 @@
 #include "Game/Entities/ItemPikihead.h"
 #include "Game/PikiMgr.h"
 #include "JSystem/J3D/J3DModelLoader.h"
+#include "JSystem/J3D/J3DTransform.h"
+#include "SysShape/ModelMgr.h"
 
 namespace Game {
 namespace ItemPikihead {
@@ -148,5 +150,87 @@ SysShape::Model* PikiMgr::createModel(int id, int num)
 	}
 	return model;
 }
+
+// im lazy
+namespace
+{
+	enum J3DModelLoaderFlagTypes {
+		J3DMLF_None = 0x00000000,
+
+		J3DMLF_MtxSoftImageCalc = 0x00000001,
+		J3DMLF_MtxMayaCalc      = 0x00000002,
+		J3DMLF_MtxBasicCalc     = 0x00000004,
+		J3DMLF_MtxTypeMask
+		= J3DMLF_MtxSoftImageCalc | J3DMLF_MtxMayaCalc | J3DMLF_MtxBasicCalc | J3DMLF_04, // 0 - 2 (0 = Basic, 1 = SoftImage, 2 = Maya)
+
+		J3DMLF_UseImmediateMtx          = 0x00000010,
+		J3DMLF_UsePostTexMtx            = 0x00000020,
+		J3DMLF_NoMatrixTransform        = 0x00000100,
+		J3DMLF_DoBdlMaterialCalc        = 0x00002000,
+		J3DMLF_TevNumShift              = 0x00010000,
+		J3DMLF_UseSingleSharedDL        = 0x00040000,
+		J3DMLF_UseUniqueMaterials       = 0x00200000,
+		J3DMLF_Material_UseIndirect     = 0x01000000,
+		J3DMLF_Material_TexGen_Block4   = 0x08000000,
+		J3DMLF_Material_PE_Full         = 0x10000000,
+		J3DMLF_Material_PE_FogOff       = 0x20000000,
+		J3DMLF_Material_Color_LightOn   = 0x40000000,
+		J3DMLF_Material_Color_AmbientOn = 0x80000000
+	};
+} // namespace
+
+
+/**
+ * @note Address: 0x8015EBD8
+ * @note Size: 0x298
+ */
+void PikiMgr::load(int viewNum)
+{
+	JKRHeap* heap = JKRHeap::sCurrentHeap;
+	heap->getFreeSize();
+	JKRArchive* arc = JKRArchive::mount("/user/Kando/piki/pikis.szs", JKRArchive::EMM_Mem, sys->mSysHeap, JKRArchive::EMD_Head);
+	m_modelArchive   = arc;
+	heap->getFreeSize();
+
+	JUT_ASSERTLINE(450, arc, "pikis.szs not found !\n");
+
+	loadBmd(Blue, "piki_p2_blue");
+	loadBmd(Red, "piki_p2_red");
+	loadBmd(Yellow, "piki_p2_yellow");
+	loadBmd(White, "piki_p2_white");
+	loadBmd(Purple, "piki_p2_black");
+	loadBmd(Bulbmin, "piki_kochappy");
+	loadBmd(Carrot, "piki_ninjin");
+	loadPikiHead();
+
+	m_happaModel[Leaf] = J3DModelLoaderDataBase::load(arc->getResource("happa_model/leaf.bmd"), J3DMLF_Material_PE_FogOff);
+	m_happaModel[Bud]
+	    = J3DModelLoaderDataBase::load(arc->getResource("happa_model/bud.bmd"), J3DMLF_UseUniqueMaterials | J3DMLF_UseSingleSharedDL);
+	m_happaModel[Flower]
+	    = J3DModelLoaderDataBase::load(arc->getResource("happa_model/flower.bmd"), J3DMLF_UseUniqueMaterials | J3DMLF_UseSingleSharedDL);
+	m_happaModel[Bud_Red]
+	    = J3DModelLoaderDataBase::load(arc->getResource("happa_model/bud_red.bmd"), J3DMLF_UseUniqueMaterials | J3DMLF_UseSingleSharedDL);
+	m_happaModel[Flower_Red] = J3DModelLoaderDataBase::load(arc->getResource("happa_model/flower_red.bmd"),
+	                                                       J3DMLF_UseUniqueMaterials | J3DMLF_UseSingleSharedDL);
+
+	sys->heapStatusStart("pikmin-ModelMgr", nullptr);
+	m_modelMgr = new SysShape::ModelMgr(PikiColorCount + 1, m_pikiModels, 101, 0x20000, viewNum,
+	                                   new Delegate1<PikiMgr, SysShape::Model*>(this, createModelCallback));
+	sys->heapStatusEnd("pikmin-ModelMgr");
+
+	for (int i = 0; i < ARRAY_SIZE(m_happaModel); i++) {
+		J3DModelData* model = m_happaModel[i];
+
+		const u32 lightObjNum = 0;
+		const u32 texGenNum   = 0;
+		const u32 texCoordNum = 4;
+		const u32 tevStageNum = 0;
+		u32 dlFlags           = CREATE_DIFF_FLAG(lightObjNum, texGenNum, texCoordNum, tevStageNum);
+		model->newSharedDisplayList(dlFlags);
+		model->simpleCalcMaterial(0, *(Mtx*)j3dDefaultMtx);
+		model->makeSharedDL();
+	}
+}
+
 
 } // namespace Game

@@ -1996,6 +1996,9 @@ onInit__Q34Game12ItemPikihead4ItemFPQ24Game15CreatureInitArg:
 /* 801D9ADC 001D6A1C  7C 7E 1B 78 */	mr r30, r3
 /* 801D9AE0 001D6A20  7F C4 F3 78 */	mr r4, r30
 /* 801D9AE4 001D6A24  80 6D 94 70 */	lwz r3, mgr__Q24Game12ItemPikihead@sda21(r13)
+
+# r4 needs to be param 1
+mr r4, r3
 /* 801D9AE8 001D6A28  48 00 19 59 */	bl createPikiheadModel__Q24Game12ItemPikiheadFPQ34Game12ItemPikihead4Item
 /* 801D9AEC 001D6A2C  90 7E 01 74 */	stw r3, 0x174(r30)
 /* 801D9AF0 001D6A30  38 7E 01 A8 */	addi r3, r30, 0x1a8
@@ -2868,6 +2871,8 @@ __ct__Q34Game12ItemPikihead3MgrFv:
 /* 801DA708 001D7648  90 BE 00 30 */	stw r5, 0x30(r30)
 /* 801DA70C 001D764C  90 1E 00 08 */	stw r0, 8(r30)
 /* 801DA710 001D7650  4B FF 26 BD */	bl setModelSize__Q24Game11BaseItemMgrFi
+mr r3, r30
+bl allocModels__Q34Game12ItemPikihead3MgrFv
 /* 801DA714 001D7654  3C 80 80 48 */	lis r4, lbl_80480864@ha
 /* 801DA718 001D7658  7F C3 F3 78 */	mr r3, r30
 /* 801DA71C 001D765C  38 04 08 64 */	addi r0, r4, lbl_80480864@l
@@ -2877,8 +2882,7 @@ __ct__Q34Game12ItemPikihead3MgrFv:
 /* 801DA72C 001D766C  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 801DA730 001D7670  7C 08 03 A6 */	mtlr r0
 /* 801DA734 001D7674  38 21 00 10 */	addi r1, r1, 0x10
-mr r3, r30
-bl allocModels__Q34Game12ItemPikihead3MgrFv
+# don't call stuff here
 /* 801DA738 001D7678  4E 80 00 20 */	blr 
 
 .global "__dt__Q24Game44FixedSizeItemMgr<Q34Game12ItemPikihead4Item>Fv"
