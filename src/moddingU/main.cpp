@@ -35,6 +35,13 @@ bool isKeyCheat = false; // set all keylocks to open if true
 
 namespace Game {
 
+void autopluck(NaviWalkState* walkstate, Navi* captain)
+// performs Pikmin 3-style autopluck of pikmin seeds
+{
+	captain->procActionButton();
+	walkstate->execAI(captain);
+}
+
 void allowSkipTreasureCutscene(MoviePlayer* movieplayer)
 // allows 251-style treasure cutscene skips
 {
