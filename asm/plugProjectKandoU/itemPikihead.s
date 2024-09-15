@@ -1996,10 +1996,7 @@ onInit__Q34Game12ItemPikihead4ItemFPQ24Game15CreatureInitArg:
 /* 801D9ADC 001D6A1C  7C 7E 1B 78 */	mr r30, r3
 /* 801D9AE0 001D6A20  7F C4 F3 78 */	mr r4, r30
 /* 801D9AE4 001D6A24  80 6D 94 70 */	lwz r3, mgr__Q24Game12ItemPikihead@sda21(r13)
-
-# r4 needs to be param 1
-mr r4, r3
-/* 801D9AE8 001D6A28  48 00 19 59 */	bl createPikiheadModel__Q24Game12ItemPikiheadFPQ34Game12ItemPikihead4Item
+/* 801D9AE8 001D6A28  48 00 19 59 */	bl createPikiheadModel__Q34Game12ItemPikihead3MgrFPQ34Game12ItemPikihead4Item
 /* 801D9AEC 001D6A2C  90 7E 01 74 */	stw r3, 0x174(r30)
 /* 801D9AF0 001D6A30  38 7E 01 A8 */	addi r3, r30, 0x1a8
 /* 801D9AF4 001D6A34  38 80 00 00 */	li r4, 0

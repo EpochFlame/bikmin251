@@ -180,6 +180,7 @@ struct Mgr : public FixedSizeItemMgr<Item> {
 	virtual ~Mgr();                                                       // _BC (weak)
 
 	void allocModels();
+	SysShape::Model* createPikiheadModel(Item* item);
 
 	// _00     = VTBL
 	// _00-_7C = FixedSizeItemMgr

@@ -51,15 +51,16 @@ Item* birthPikiHead(MonoObjectMgr<Item>* mgr)
 	return result;
 }
 
-// createPikiheadModel__Q24Game12ItemPikiheadFPQ34Game12ItemPikihead4Item
-SysShape::Model* createPikiheadModel(Item* item)
+// createPikiheadModel__Q34Game12ItemPikihead3MgrFPQ34Game12ItemPikihead4Item
+SysShape::Model* Mgr::createPikiheadModel(Item* item)
 {
+	OSReport("heap index: %i\n", item->_184);
     SysShape::Model* model = pikiMgr->createModel(7, item->_184);
 
     JKRSolidHeap* solidHeap = pikiMgr->m_modelMgr->m_heaps[item->_184];
     sys->startChangeCurrentHeap(solidHeap);
     
-	mgr->onCreateModel(model);
+	onCreateModel(model);
 
     sys->endChangeCurrentHeap();
 
@@ -91,12 +92,6 @@ Piki* PikiMgr::birthPikiModel()
 		return result;
 	}
 	return nullptr;
-}
- 
-// createModelMgr__4GameFiPP12J3DModelDataiUlUlP30IDelegate1<PQ28SysShape5Model>
-SysShape::ModelMgr* createModelMgr(int, J3DModelData**, int, u32 flags, u32 viewNum, IDelegate1<SysShape::Model*>* delegate)
-{
-    return new SysShape::ModelMgr(8, pikiMgr->m_pikiModels, 101, flags, viewNum, delegate);
 }
 
 void PikiMgr::loadBmd(int id, char* name)
@@ -214,8 +209,7 @@ void PikiMgr::load(int viewNum)
 	                                                       J3DMLF_UseUniqueMaterials | J3DMLF_UseSingleSharedDL);
 
 	sys->heapStatusStart("pikmin-ModelMgr", nullptr);
-	m_modelMgr = new SysShape::ModelMgr(PikiColorCount + 1, m_pikiModels, 101, 0x20000, viewNum,
-	                                   new Delegate1<PikiMgr, SysShape::Model*>(this, createModelCallback));
+	m_modelMgr = new SysShape::ModelMgr(PikiColorCount + 1, m_pikiModels, 101, 0x20000, viewNum, nullptr);
 	sys->heapStatusEnd("pikmin-ModelMgr");
 
 	for (int i = 0; i < ARRAY_SIZE(m_happaModel); i++) {

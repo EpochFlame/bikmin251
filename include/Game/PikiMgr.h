@@ -42,7 +42,7 @@ struct PikiMgr : public MonoObjectMgr<Piki> {
 	void setupPiki(Piki*);
 	void load(int);
 	void loadBmd(int, char*);
-	static void createModelCallback(SysShape::Model*);
+	void createModelCallback(SysShape::Model*);
 	SysShape::Model* createModel(int, int);
 	SysShape::Model* createLeafModel(int, int);
 	void setMovieDraw(bool);
