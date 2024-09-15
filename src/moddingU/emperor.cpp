@@ -3,12 +3,12 @@
 namespace Game {
 namespace KingChappy {
 
-// startMatAnimation__Q24Game10KingChappyFPQ34Game10KingChappy3Obj
-void startMatAnimation(Obj* obj)
+Sys::MatLoopAnimator Obj::sMatAnimator;
+
+// startMatAnimation__Q34Game10KingChappy3ObjFv
+void Obj::startMatAnimation()
 {
-    obj->mMatAnimator = new Sys::MatLoopAnimator;
-    Mgr* mgr = static_cast<Mgr*>(obj->m_mgr);
-    obj->mMatAnimator->start(mgr->mTexAnimation);
+    sMatAnimator.start(C_MGR->mTexAnimation);
 }
 
 void Obj::changeMaterial()
@@ -18,8 +18,7 @@ void Obj::changeMaterial()
     model->calcMaterial();
 
     if (isAlive()) {
-        OSReport("animating!\n");
-        mMatAnimator->animate(30.0f);
+        sMatAnimator.animate(30.0f);
     }
 
     // diff material
@@ -28,6 +27,12 @@ void Obj::changeMaterial()
 		J3DMaterial* mat  = modelData->m_materialTable.m_materials1[i];
 		mat->diff(j3dSys.m_matPacket->_2C->_34);
 	}
+}
+
+void Obj::getShadowParam(ShadowParam& param)
+{
+	param.m_boundingSphere.m_radius = 0.0f;
+	param.m_size                    = 0.0f;
 }
 
 } // namespace KingChappy

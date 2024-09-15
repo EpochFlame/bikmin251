@@ -792,7 +792,7 @@ onInit__Q34Game10KingChappy3ObjFPQ24Game15CreatureInitArg:
 /* 8035CF6C 00359EAC  7D 89 03 A6 */	mtctr r12
 /* 8035CF70 00359EB0  4E 80 04 21 */	bctrl 
 mr r3, r30
-bl startMatAnimation__Q24Game10KingChappyFPQ34Game10KingChappy3Obj
+bl startMatAnimation__Q34Game10KingChappy3ObjFv
 /* 8035CF74 00359EB4  C0 3E 01 8C */	lfs f1, 0x18c(r30)
 /* 8035CF78 00359EB8  38 60 00 01 */	li r3, 1
 /* 8035CF7C 00359EBC  C0 02 03 2C */	lfs f0, lbl_8051E68C@sda21(r2)
@@ -2581,47 +2581,6 @@ doSimulation__Q34Game10KingChappy3ObjFf:
 /* 8035E98C 0035B8CC  7C 08 03 A6 */	mtlr r0
 /* 8035E990 0035B8D0  38 21 00 10 */	addi r1, r1, 0x10
 /* 8035E994 0035B8D4  4E 80 00 20 */	blr 
-
-.global getShadowParam__Q34Game10KingChappy3ObjFRQ24Game11ShadowParam
-getShadowParam__Q34Game10KingChappy3ObjFRQ24Game11ShadowParam:
-/* 8035E998 0035B8D8  94 21 FF F0 */	stwu r1, -0x10(r1)
-/* 8035E99C 0035B8DC  7C 08 02 A6 */	mflr r0
-/* 8035E9A0 0035B8E0  90 01 00 14 */	stw r0, 0x14(r1)
-/* 8035E9A4 0035B8E4  93 E1 00 0C */	stw r31, 0xc(r1)
-/* 8035E9A8 0035B8E8  7C 9F 23 78 */	mr r31, r4
-/* 8035E9AC 0035B8EC  93 C1 00 08 */	stw r30, 8(r1)
-/* 8035E9B0 0035B8F0  7C 7E 1B 78 */	mr r30, r3
-/* 8035E9B4 0035B8F4  80 63 02 D4 */	lwz r3, 0x2d4(r3)
-/* 8035E9B8 0035B8F8  48 0C AE E9 */	bl getWorldMatrix__Q28SysShape5JointFv
-/* 8035E9BC 0035B8FC  C0 03 00 0C */	lfs f0, 0xc(r3)
-/* 8035E9C0 0035B900  C0 82 03 5C */	lfs f4, lbl_8051E6BC@sda21(r2)
-/* 8035E9C4 0035B904  D0 1F 00 00 */	stfs f0, 0(r31)
-/* 8035E9C8 0035B908  C0 62 03 2C */	lfs f3, lbl_8051E68C@sda21(r2)
-/* 8035E9CC 0035B90C  C0 23 00 1C */	lfs f1, 0x1c(r3)
-/* 8035E9D0 0035B910  C0 02 03 58 */	lfs f0, lbl_8051E6B8@sda21(r2)
-/* 8035E9D4 0035B914  D0 3F 00 04 */	stfs f1, 4(r31)
-/* 8035E9D8 0035B918  C0 42 03 60 */	lfs f2, lbl_8051E6C0@sda21(r2)
-/* 8035E9DC 0035B91C  C0 A3 00 2C */	lfs f5, 0x2c(r3)
-/* 8035E9E0 0035B920  C0 22 03 64 */	lfs f1, lbl_8051E6C4@sda21(r2)
-/* 8035E9E4 0035B924  D0 BF 00 08 */	stfs f5, 8(r31)
-/* 8035E9E8 0035B928  C0 BF 00 04 */	lfs f5, 4(r31)
-/* 8035E9EC 0035B92C  EC 85 20 28 */	fsubs f4, f5, f4
-/* 8035E9F0 0035B930  D0 9F 00 04 */	stfs f4, 4(r31)
-/* 8035E9F4 0035B934  D0 7F 00 0C */	stfs f3, 0xc(r31)
-/* 8035E9F8 0035B938  D0 1F 00 10 */	stfs f0, 0x10(r31)
-/* 8035E9FC 0035B93C  D0 7F 00 14 */	stfs f3, 0x14(r31)
-/* 8035EA00 0035B940  C0 1E 01 F8 */	lfs f0, 0x1f8(r30)
-/* 8035EA04 0035B944  EC 02 00 32 */	fmuls f0, f2, f0
-/* 8035EA08 0035B948  D0 1F 00 18 */	stfs f0, 0x18(r31)
-/* 8035EA0C 0035B94C  C0 1E 01 F8 */	lfs f0, 0x1f8(r30)
-/* 8035EA10 0035B950  EC 01 00 32 */	fmuls f0, f1, f0
-/* 8035EA14 0035B954  D0 1F 00 1C */	stfs f0, 0x1c(r31)
-/* 8035EA18 0035B958  83 E1 00 0C */	lwz r31, 0xc(r1)
-/* 8035EA1C 0035B95C  83 C1 00 08 */	lwz r30, 8(r1)
-/* 8035EA20 0035B960  80 01 00 14 */	lwz r0, 0x14(r1)
-/* 8035EA24 0035B964  7C 08 03 A6 */	mtlr r0
-/* 8035EA28 0035B968  38 21 00 10 */	addi r1, r1, 0x10
-/* 8035EA2C 0035B96C  4E 80 00 20 */	blr 
 
 .global damageCallBack__Q34Game10KingChappy3ObjFPQ24Game8CreaturefP8CollPart
 damageCallBack__Q34Game10KingChappy3ObjFPQ24Game8CreaturefP8CollPart:

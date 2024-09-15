@@ -23,6 +23,23 @@ namespace Game {
 namespace KingChappy {
 struct FSM;
 
+enum StateID {
+	KINGCHAPPY_Walk     = 0,
+	KINGCHAPPY_Attack   = 1,
+	KINGCHAPPY_Dead     = 2,
+	KINGCHAPPY_Flick    = 3,
+	KINGCHAPPY_WarCry   = 4,
+	KINGCHAPPY_Damage   = 5,
+	KINGCHAPPY_Turn     = 6,
+	KINGCHAPPY_Eat      = 7,
+	KINGCHAPPY_Hide     = 8,
+	KINGCHAPPY_HideWait = 9,
+	KINGCHAPPY_Appear   = 10,
+	KINGCHAPPY_Caution  = 11,
+	KINGCHAPPY_Swallow  = 12,
+	KINGCHAPPY_Count,
+};
+
 struct Obj : public EnemyBase {
 	Obj();
 
@@ -93,50 +110,52 @@ struct Obj : public EnemyBase {
 	void createEffect(int);
 	void fadeEffect(int);
 	void createBounceEffect();
+	void startMatAnimation();
+
+    static Sys::MatLoopAnimator sMatAnimator;
 
 	// _00 		= VTBL
 	// _00-_2BC	= EnemyBase
-	Vector3f _2BC;                       // _2BC
-	MouthSlots m_mouthSlots;             // _2C8
-	SysShape::Joint* _2D0;               // _2D0
-	SysShape::Joint* _2D4;               // _2D4
-	SysShape::Joint* _2D8;               // _2D8
-	SysShape::Joint* _2DC;               // _2DC
-	SysShape::Joint* _2E0;               // _2E0
-	u8 _2E4[0x8];                        // _2E4, unknown
-	u8 _2EC;                             // _2EC, unknown
-	int _2F0;                            // _2F0
-	Vector3f _2F4;                       // _2F4
-	u8 _300[0xC];                        // _300, unknown
-	int _30C;                            // _30C
-	s16 _310;                            // _310, specific joint index?
-	u8 _312[0x2];                        // _312, padding probably
-	u8 _314[0x10];                       // _314, unknown
-	s16 _324;                            // _324, right foot joint index?
-	Vector3f _328;                       // _328
-	u8 _334[0x4];                        // _334, unknown
-	u8 _338;                             // _338
-	u8 _339[0x3];                        // _339, padding probably
-	u8 _33C[0x4];                        // _33C, unknown
-	void* _340;                          // _340, code? unknown
-	WalkSmokeEffect::Mgr m_walkSmokeMgr; // _344
-	FSM* m_FSM;                          // _34C
-	efx::TKchYodare* m_efxYodare;        // _350
-	efx::TKchDiveSand* m_efxDiveSand;    // _354
-	efx::TKchDiveWat* m_efxDiveWater;    // _358
-	efx::TKchCryAB* m_efxCryAB;          // _35C
-	efx::TKchCryInd* m_efxCryInd;        // _360
-	efx::TKchSmokeHana* m_efxSmoke;      // _364
-	efx::TKchAttackYodare* m_efxAttack;  // _368
-	efx::TKchDeadYodare* _36C;           // _36C
-	efx::TKchDeadHana* _370;             // _370
-	efx::TEnemyHamonChasePos* _374;      // _374
-	efx::TEnemyHamonChasePos* _378;      // _378
-	Vector3f _37C;                       // _37C
-	Vector3f _388;                       // _388
-	u8 _394;                             // _394
-	                                     // _398 = PelletView
-    Sys::MatLoopAnimator* mMatAnimator;
+	Vector3f mGoalPosition;                       // _2BC, initialised as mHomePosition
+	MouthSlots mMouthSlots;                       // _2C8
+	SysShape::Joint* mMouthJoint1;                // _2D0, 'kuti'
+	SysShape::Joint* mBodyJoint;                  // _2D4, 'kosijnt'
+	SysShape::Joint* mTongueJoint1;               // _2D8, 'bero6'
+	SysShape::Joint* mTongueJoint2;               // _2DC, 'bero5'
+	SysShape::Joint* mMouthJoint2;                // _2E0, 'kuti'
+	bool mAllowAnimBlending;                      // _2E4
+	StateID mNextState;                           // _2E8
+	bool mDoCheckAppear;                          // _2EC
+	int mSearchDelayTimer;                        // _2F0, delay being able to search for target after touching a wall
+	Vector3f mPrevWalkingCheckPosition;           // _2F4, initialised as mHomePosition (but y = 0.0f)
+	Vector3f mFootPosition;                       // _300, used for determining jump crushing
+	int mWalkingTimer;                            // _30C
+	u16 mLFootJointIndex;                         // _310, index for 'asiL'
+	Vector3f mLFootPosition;                      // _314
+	f32 mLFootHeightRatio;                        // _320
+	u16 mRFootJointIndex;                         // _324, index for 'asiR'
+	Vector3f mRFootPosition;                      // _328
+	f32 mRFootHeightRatio;                        // _334
+	bool mCanEatBombs;                            // _338
+	u16* mMouthJointIndices;                      // _33C, indices for mouth joints
+	WaterBox* mCurrentWaterBox;                   // _340, no one told morimura theres an enemybase level waterbox
+	WalkSmokeEffect::Mgr mWalkSmokeMgr;           // _344
+	FSM* mFsm;                                    // _34C
+	efx::TKchYodare* mEfxYodare;                  // _350
+	efx::TKchDiveSand* mEfxDiveSand;              // _354
+	efx::TKchDiveWat* mEfxDiveWater;              // _358
+	efx::TKchCryAB* mEfxCryAB;                    // _35C
+	efx::TKchCryInd* mEfxCryInd;                  // _360
+	efx::TKchSmokeHana* mEfxSmoke;                // _364
+	efx::TKchAttackYodare* mEfxAttack;            // _368
+	efx::TKchDeadYodare* mEfxDeadYodare;          // _36C
+	efx::TKchDeadHana* mEfxDeadHana;              // _370
+	efx::TEnemyHamonChasePos* mRightEyeRippleEfx; // _374
+	efx::TEnemyHamonChasePos* mLeftEyeRippleEfx;  // _378
+	Vector3f mRightEyePosition;                   // _37C
+	Vector3f mLeftEyePosition;                    // _388
+	bool mIsBig;                                  // _394, ie. is the Bulblax Kingdom Emperor
+	                                              // _398 = PelletView
 };
 
 struct Mgr : public EnemyMgrBase {
@@ -264,22 +283,6 @@ struct ProperAnimator : public EnemyBlendAnimatorBase {
 
 /////////////////////////////////////////////////////////////////
 // STATE MACHINE DEFINITIONS
-enum StateID {
-	KINGCHAPPY_Walk     = 0,
-	KINGCHAPPY_Attack   = 1,
-	KINGCHAPPY_Dead     = 2,
-	KINGCHAPPY_Flick    = 3,
-	KINGCHAPPY_WarCry   = 4,
-	KINGCHAPPY_Damage   = 5,
-	KINGCHAPPY_Turn     = 6,
-	KINGCHAPPY_Eat      = 7,
-	KINGCHAPPY_Hide     = 8,
-	KINGCHAPPY_HideWait = 9,
-	KINGCHAPPY_Appear   = 10,
-	KINGCHAPPY_Caution  = 11,
-	KINGCHAPPY_Swallow  = 12,
-	KINGCHAPPY_Count,
-};
 
 struct FSM : public EnemyStateMachine {
 	virtual void init(EnemyBase*); // _08
