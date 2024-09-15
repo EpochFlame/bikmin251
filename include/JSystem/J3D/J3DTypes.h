@@ -46,6 +46,9 @@ typedef u32 J3DModelLoaderFlags;
 #define J3DMLF_31                         0x40000000
 #define J3DMLF_32                         0x80000000
 
+#define CREATE_DIFF_FLAG(lightObjNum, texGenNum, texCoordNum, tevStageNum) \
+	(((lightObjNum & 0xf) << 4) | ((texGenNum & 0xf) << 8) | ((texCoordNum & 0xf) << 16) | ((tevStageNum & 0xf) << 20))
+
 enum JBlockType {
 	JBT_ColorAmbientOn = 'CLAB',
 	JBT_ColorNull      = 'CLNL',

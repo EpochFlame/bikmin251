@@ -1084,6 +1084,7 @@ MODDING:=\
 	$(BUILD_DIR)/src/moddingU/emperor.o\
 	$(BUILD_DIR)/src/moddingU/autopluck.o\
 	$(BUILD_DIR)/src/moddingU/contenaQOL.o\
+	$(BUILD_DIR)/src/moddingU/pikiheadMem.o\
 	$(BUILD_DIR)/src/plugProjectDroughtU/GoHereMap.o\
 	$(BUILD_DIR)/src/plugProjectDroughtU/GoHereNavi.o\
 	$(BUILD_DIR)/src/plugProjectDroughtU/FastPathfinder.o\

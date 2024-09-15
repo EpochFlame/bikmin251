@@ -1403,7 +1403,7 @@ BaseItemMgr::BaseItemMgr()
 	m_objectPathComponent = nullptr;
 	m_archive             = nullptr;
 	m_modelData           = nullptr;
-	m_name                = "BaseItem";
+	m_itemName                = "BaseItem";
 	m_resourceNode        = nullptr;
 	_10                   = 0;
 	_14                   = 0;

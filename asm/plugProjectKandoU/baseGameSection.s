@@ -10599,7 +10599,7 @@ setupFixMemory_dvdload__Q24Game15BaseGameSectionFv:
 /* 801505B4 0014D4F4  81 8C 00 A4 */	lwz r12, 0xa4(r12)
 /* 801505B8 0014D4F8  7D 89 03 A6 */	mtctr r12
 /* 801505BC 0014D4FC  4E 80 04 21 */	bctrl 
-/* 801505C0 0014D500  38 60 00 80 */	li r3, 0x80
+/* 801505C0 0014D500  38 60 00 80 */	li r3, 0xA0
 /* 801505C4 0014D504  4B ED 38 E1 */	bl __nw__FUl
 /* 801505C8 0014D508  7C 64 1B 79 */	or. r4, r3, r3
 /* 801505CC 0014D50C  41 82 00 0C */	beq .L_801505D8
@@ -11267,7 +11267,7 @@ setupFloatMemory__Q24Game15BaseGameSectionFv:
 /* 80150BFC 0014DB3C  38 A0 00 00 */	li r5, 0
 /* 80150C00 0014DB40  48 2D 27 5D */	bl heapStatusStart__6SystemFPcP7JKRHeap
 /* 80150C04 0014DB44  80 6D 92 F4 */	lwz r3, pikiMgr__4Game@sda21(r13)
-/* 80150C08 0014DB48  38 80 00 64 */	li r4, 0x64
+/* 80150C08 0014DB48  38 80 00 64 */	li r4, 0x65
 /* 80150C0C 0014DB4C  48 00 12 B5 */	bl "alloc__27MonoObjectMgr<Q24Game4Piki>Fi"
 /* 80150C10 0014DB50  80 6D 9A EC */	lwz r3, sys@sda21(r13)
 /* 80150C14 0014DB54  38 9E 03 A0 */	addi r4, r30, 0x3a0

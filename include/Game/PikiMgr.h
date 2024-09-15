@@ -68,29 +68,23 @@ struct PikiMgr : public MonoObjectMgr<Piki> {
 	void caveSaveAllPikmins(bool, bool);
 	void saveFormationPikmins(PikiContainer&);
 	void saveAllPikmins(PikiContainer&);
+	int getSharedEmptyIndex();
+	void loadPikiHead();
+	Piki* birthPikiModel();
 
 	static int mBirthMode;
 
 	s32 m_dopedPikis;               // _30
 	s32* m_storedPikis;             // _34
 	u8 m_flags[4];                  // _38
-	J3DModelData* m_bluPikiModel;   // _3C, blue
-	J3DModelData* m_redPikiModel;   // _40, red
-	J3DModelData* m_yelPikiModel;   // _44, yellow
-	J3DModelData* m_prpPikiModel;   // _48, purple
-	J3DModelData* m_wtePikiModel;   // _4C, white
-	J3DModelData* m_blbPikiModel;   // _50, bulbmin
-	J3DModelData* m_crtPikiModel;   // _54, carrot
-	J3DModelData* m_leafModel;      // _58
-	J3DModelData* m_budModel;       // _5C
-	J3DModelData* m_flowerModel;    // _60
-	J3DModelData* m_redBudModel;    // _64
-	J3DModelData* m_redFlowerModel; // _68
+	int m_padding[7];               // _3C, blue
+	J3DModelData* m_happaModel[5];  // _58
 	PikiParms* m_parms;             // _6C
 	SysShape::ModelMgr* m_modelMgr; // _70
 	UpdateMgr* m_updateMgr;         // _74
 	UpdateMgr* m_updateMgr2;        // _78, unsure of type
 	JKRArchive* m_modelArchive;     // _7C
+	J3DModelData* m_pikiModels[8];  // _80
 };
 
 extern PikiMgr* pikiMgr;

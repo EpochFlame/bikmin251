@@ -1996,7 +1996,7 @@ onInit__Q34Game12ItemPikihead4ItemFPQ24Game15CreatureInitArg:
 /* 801D9ADC 001D6A1C  7C 7E 1B 78 */	mr r30, r3
 /* 801D9AE0 001D6A20  7F C4 F3 78 */	mr r4, r30
 /* 801D9AE4 001D6A24  80 6D 94 70 */	lwz r3, mgr__Q24Game12ItemPikihead@sda21(r13)
-/* 801D9AE8 001D6A28  48 00 19 59 */	bl "createModel__Q24Game44FixedSizeItemMgr<Q34Game12ItemPikihead4Item>FPQ34Game12ItemPikihead4Item"
+/* 801D9AE8 001D6A28  48 00 19 59 */	bl createPikiheadModel__Q34Game12ItemPikihead3MgrFPQ34Game12ItemPikihead4Item
 /* 801D9AEC 001D6A2C  90 7E 01 74 */	stw r3, 0x174(r30)
 /* 801D9AF0 001D6A30  38 7E 01 A8 */	addi r3, r30, 0x1a8
 /* 801D9AF4 001D6A34  38 80 00 00 */	li r4, 0
@@ -2868,6 +2868,8 @@ __ct__Q34Game12ItemPikihead3MgrFv:
 /* 801DA708 001D7648  90 BE 00 30 */	stw r5, 0x30(r30)
 /* 801DA70C 001D764C  90 1E 00 08 */	stw r0, 8(r30)
 /* 801DA710 001D7650  4B FF 26 BD */	bl setModelSize__Q24Game11BaseItemMgrFi
+mr r3, r30
+bl allocModels__Q34Game12ItemPikihead3MgrFv
 /* 801DA714 001D7654  3C 80 80 48 */	lis r4, lbl_80480864@ha
 /* 801DA718 001D7658  7F C3 F3 78 */	mr r3, r30
 /* 801DA71C 001D765C  38 04 08 64 */	addi r0, r4, lbl_80480864@l
@@ -2877,6 +2879,7 @@ __ct__Q34Game12ItemPikihead3MgrFv:
 /* 801DA72C 001D766C  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 801DA730 001D7670  7C 08 03 A6 */	mtlr r0
 /* 801DA734 001D7674  38 21 00 10 */	addi r1, r1, 0x10
+# don't call stuff here
 /* 801DA738 001D7678  4E 80 00 20 */	blr 
 
 .global "__dt__Q24Game44FixedSizeItemMgr<Q34Game12ItemPikihead4Item>Fv"
@@ -3026,52 +3029,6 @@ __ct__Q34Game12ItemPikihead3MgrFv:
 /* 801DA940 001D7880  7C 08 03 A6 */	mtlr r0
 /* 801DA944 001D7884  38 21 00 10 */	addi r1, r1, 0x10
 /* 801DA948 001D7888  4E 80 00 20 */	blr 
-
-.global onLoadResources__Q34Game12ItemPikihead3MgrFv
-onLoadResources__Q34Game12ItemPikihead3MgrFv:
-/* 801DA94C 001D788C  94 21 FF E0 */	stwu r1, -0x20(r1)
-/* 801DA950 001D7890  7C 08 02 A6 */	mflr r0
-/* 801DA954 001D7894  3C 80 80 48 */	lis r4, lbl_80480800@ha
-/* 801DA958 001D7898  90 01 00 24 */	stw r0, 0x24(r1)
-/* 801DA95C 001D789C  93 E1 00 1C */	stw r31, 0x1c(r1)
-/* 801DA960 001D78A0  3B E4 08 00 */	addi r31, r4, lbl_80480800@l
-/* 801DA964 001D78A4  38 82 B4 90 */	addi r4, r2, lbl_805197F0@sda21
-/* 801DA968 001D78A8  93 C1 00 18 */	stw r30, 0x18(r1)
-/* 801DA96C 001D78AC  93 A1 00 14 */	stw r29, 0x14(r1)
-/* 801DA970 001D78B0  7C 7D 1B 78 */	mr r29, r3
-/* 801DA974 001D78B4  4B FF 25 61 */	bl loadArchive__Q24Game11BaseItemMgrFPc
-/* 801DA978 001D78B8  7F A3 EB 78 */	mr r3, r29
-/* 801DA97C 001D78BC  38 9F 00 80 */	addi r4, r31, 0x80
-/* 801DA980 001D78C0  38 A0 00 00 */	li r5, 0
-/* 801DA984 001D78C4  3C C0 00 02 */	lis r6, 2
-/* 801DA988 001D78C8  4B FF 25 C9 */	bl loadBmd__Q24Game11BaseItemMgrFPciUl
-/* 801DA98C 001D78CC  80 7D 00 1C */	lwz r3, 0x1c(r29)
-/* 801DA990 001D78D0  3C 80 00 04 */	lis r4, 4
-/* 801DA994 001D78D4  80 63 00 00 */	lwz r3, 0(r3)
-/* 801DA998 001D78D8  4B EA 8F 41 */	bl newSharedDisplayList__12J3DModelDataFUl
-/* 801DA99C 001D78DC  7F A3 EB 78 */	mr r3, r29
-/* 801DA9A0 001D78E0  38 9F 00 90 */	addi r4, r31, 0x90
-/* 801DA9A4 001D78E4  4B FF 28 29 */	bl openTextArc__Q24Game11BaseItemMgrFPc
-/* 801DA9A8 001D78E8  7C 60 1B 78 */	mr r0, r3
-/* 801DA9AC 001D78EC  7F A3 EB 78 */	mr r3, r29
-/* 801DA9B0 001D78F0  7C 1E 03 78 */	mr r30, r0
-/* 801DA9B4 001D78F4  38 BF 00 9C */	addi r5, r31, 0x9c
-/* 801DA9B8 001D78F8  7F C4 F3 78 */	mr r4, r30
-/* 801DA9BC 001D78FC  4B FF 26 41 */	bl loadAnimMgr__Q24Game11BaseItemMgrFP13JKRFileLoaderPc
-/* 801DA9C0 001D7900  7F A3 EB 78 */	mr r3, r29
-/* 801DA9C4 001D7904  7F C4 F3 78 */	mr r4, r30
-/* 801DA9C8 001D7908  4B FF 28 89 */	bl closeTextArc__Q24Game11BaseItemMgrFP10JKRArchive
-/* 801DA9CC 001D790C  7F A3 EB 78 */	mr r3, r29
-/* 801DA9D0 001D7910  38 80 00 64 */	li r4, 0x64
-/* 801DA9D4 001D7914  3C A0 00 08 */	lis r5, 8
-/* 801DA9D8 001D7918  48 00 20 79 */	bl "createMgr__Q24Game44FixedSizeItemMgr<Q34Game12ItemPikihead4Item>FiUl"
-/* 801DA9DC 001D791C  80 01 00 24 */	lwz r0, 0x24(r1)
-/* 801DA9E0 001D7920  83 E1 00 1C */	lwz r31, 0x1c(r1)
-/* 801DA9E4 001D7924  83 C1 00 18 */	lwz r30, 0x18(r1)
-/* 801DA9E8 001D7928  83 A1 00 14 */	lwz r29, 0x14(r1)
-/* 801DA9EC 001D792C  7C 08 03 A6 */	mtlr r0
-/* 801DA9F0 001D7930  38 21 00 20 */	addi r1, r1, 0x20
-/* 801DA9F4 001D7934  4E 80 00 20 */	blr 
 
 .global doSimpleDraw__Q34Game12ItemPikihead3MgrFP8Viewport
 doSimpleDraw__Q34Game12ItemPikihead3MgrFP8Viewport:
@@ -3384,7 +3341,7 @@ birth__Q34Game12ItemPikihead3MgrFv:
 /* 801DAE58 001D7D98  81 9F 00 4C */	lwz r12, 0x4c(r31)
 /* 801DAE5C 001D7D9C  81 8C 00 7C */	lwz r12, 0x7c(r12)
 /* 801DAE60 001D7DA0  7D 89 03 A6 */	mtctr r12
-/* 801DAE64 001D7DA4  4E 80 04 21 */	bctrl 
+/* 801DAE64 001D7DA4  4E 80 04 21 */	bl "birthPikiHead__Q24Game12ItemPikiheadFP41MonoObjectMgr<Q34Game12ItemPikihead4Item>" 
 .L_801DAE68:
 /* 801DAE68 001D7DA8  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 801DAE6C 001D7DAC  83 E1 00 0C */	lwz r31, 0xc(r1)
