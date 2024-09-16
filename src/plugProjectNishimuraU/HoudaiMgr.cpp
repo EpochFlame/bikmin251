@@ -60,5 +60,36 @@ void Mgr::loadModelData()
 	}
 }
 
+SysShape::Model* Mgr::createModel()
+{
+	SysShape::Model* model = new SysShape::Model(m_modelData, 0x80000, m_modelType);
+	P2ASSERTLINE(__LINE__, model);
+
+	for (u16 i = 0; i < m_modelData->getMaterialCount1(); i++) {
+		const char* name = m_modelData->m_materialTable._0C->getName(i);
+		if (!strcmp(name, "Pattern")) {
+			model->m_j3dModel->m_matPackets[i]._2C->newDifferedDisplayList(0x01000200);
+		}
+	}
+
+	model->updateModel();
+	return model;
+}
+
+void Mgr::loadTexData()
+{
+	SysShape::Model::enableMaterialAnim(m_modelData, 0);
+	void* brkFile = nullptr;
+	LoadResource::Arg loadArgBrk("/enemy/data/Houdai/houdai_model.brk");
+	LoadResource::Node* resourceBrk = gLoadResourceMgr->load(loadArgBrk);
+	if (resourceBrk) {
+		brkFile = resourceBrk->_30;
+	}
+	P2ASSERTLINE(__LINE__, brkFile);
+
+	mTevRegAnimation = new Sys::MatTevRegAnimation;
+	mTevRegAnimation->attachResource(brkFile, m_modelData);
+}
+
 } // namespace Houdai
 } // namespace Game

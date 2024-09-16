@@ -439,7 +439,7 @@ __vt__Q34Game6Houdai3Obj:
 	.4byte doSimulationGround__Q24Game9EnemyBaseFf
 	.4byte doSimulationFlying__Q24Game9EnemyBaseFf
 	.4byte doSimulationStick__Q24Game9EnemyBaseFf
-	.4byte changeMaterial__Q24Game9EnemyBaseFv
+	.4byte changeMaterial__Q34Game6Houdai3ObjFv
 	.4byte "getCommonEffectPos__Q24Game9EnemyBaseFR10Vector3<f>"
 	.4byte getFitEffectPos__Q24Game9EnemyBaseFv
 	.4byte viewGetShape__Q24Game9EnemyBaseFv
@@ -837,6 +837,8 @@ onInit__Q34Game6Houdai3ObjFPQ24Game15CreatureInitArg:
 /* 802BFF78 002BCEB8  81 8C 00 0C */	lwz r12, 0xc(r12)
 /* 802BFF7C 002BCEBC  7D 89 03 A6 */	mtctr r12
 /* 802BFF80 002BCEC0  4E 80 04 21 */	bctrl 
+mr r3, r31
+bl startMatAnimator__Q34Game6Houdai3ObjFv
 /* 802BFF84 002BCEC4  7F E3 FB 78 */	mr r3, r31
 /* 802BFF88 002BCEC8  81 9F 00 00 */	lwz r12, 0(r31)
 /* 802BFF8C 002BCECC  81 8C 01 DC */	lwz r12, 0x1dc(r12)

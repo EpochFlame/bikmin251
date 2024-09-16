@@ -81,6 +81,7 @@ struct Obj : public EnemyBase {
 	virtual void doStartMovie();                            // _2F0
 	virtual void doEndMovie();                              // _2F4
 	virtual void setFSM(FSM*);                              // _2F8
+	virtual void changeMaterial();
 	//////////////// VTABLE END
 
 	void setTargetPattern();
@@ -151,6 +152,9 @@ struct Obj : public EnemyBase {
 	void createDeadBombEffect();
 	void effectDrawOn();
 	void effectDrawOff();
+	void startMatAnimator();
+
+	static Sys::MatLoopAnimator sMatAnimator;
 
 	// _00 		= VTBL
 	// _00-_2BC	= EnemyBase
@@ -203,11 +207,14 @@ struct Mgr : public EnemyMgrBase {
 	{
 		return J3DModelLoaderDataBase::load(filename, 0x21240030);
 	}
+	virtual SysShape::Model* createModel();
+	virtual void loadTexData();
 	//////////////// VTABLE END
 
 	// _00 		= VTBL
 	// _00-_44	= EnemyMgrBase
 	Obj* m_obj; // _44, probably
+	Sys::MatTevRegAnimation* mTevRegAnimation;
 };
 
 struct Parms : public EnemyParmsBase {
