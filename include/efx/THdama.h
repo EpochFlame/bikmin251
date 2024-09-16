@@ -10,6 +10,11 @@
 // TODO:
 namespace efx {
 struct THdamaDeadbomb : public TChaseMtx4 {
+	inline THdamaDeadbomb()
+	    : TChaseMtx4(nullptr, PID_HDamaDeadBomb_1, PID_HDamaDeadBomb_2, PID_HDamaDeadBomb_3, PID_HDamaDeadBomb_4)
+	{
+	}
+	
 	// _00		= VTBL
 	// _00-_54	= TChaseMtx4
 };
@@ -39,6 +44,11 @@ struct THdamaDeadSteamT : public TSimple1 {
 };
 
 struct THdamaHahen : public TChasePosPos {
+	inline THdamaHahen()
+	    : TChasePosPos(PID_HDamaHahen)
+	{
+	}
+
 	virtual ~THdamaHahen(); // _48 (weak)
 
 	// _00		= VTBL
@@ -68,6 +78,11 @@ struct THdamaHit3 : public TSimple4 {
 };
 
 struct THdamaOnHahen1 : public TChaseMtx {
+	inline THdamaOnHahen1()
+	    : TChaseMtx(PID_HDamaOnHahen1, nullptr)
+	{
+	}
+
 	virtual ~THdamaOnHahen1(); // _48 (weak)
 
 	// _00		= VTBL
@@ -75,6 +90,11 @@ struct THdamaOnHahen1 : public TChaseMtx {
 };
 
 struct THdamaOnHahen2 : public TChasePosPos {
+	inline THdamaOnHahen2()
+	    : TChasePosPos(PID_HDamaOnHahen2)
+	{
+	}
+
 	virtual ~THdamaOnHahen2(); // _48 (weak)
 
 	// _00		= VTBL

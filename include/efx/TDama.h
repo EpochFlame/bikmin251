@@ -7,11 +7,21 @@
 
 namespace efx {
 struct TDamaDeadBomb : public TSimple1 {
+	inline TDamaDeadBomb()
+	    : TSimple1(PID_DamaDeadBomb)
+	{
+	}
+	
 	// _00      = VTBL
 	// _00-_0C  = TSimple1
 };
 
 struct TDamaDeadElecA : public TChasePosPos {
+	inline TDamaDeadElecA()
+	    : TChasePosPos(PID_DamaDeadElecA)
+	{
+	}
+
 	virtual ~TDamaDeadElecA(); // _48 (weak)
 
 	// _00      = VTBL

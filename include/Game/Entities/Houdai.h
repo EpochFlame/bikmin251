@@ -10,6 +10,7 @@
 #include "Collinfo.h"
 #include "Sys/MatBaseAnimation.h"
 #include "Sys/MatBaseAnimator.h"
+#include "efx/THdama.h"
 
 /**
  * --Header for Man-at-Legs (Houdai)--
@@ -158,36 +159,36 @@ struct Obj : public EnemyBase {
 
 	// _00 		= VTBL
 	// _00-_2BC	= EnemyBase
-	FSM* m_FSM;                             // _2BC
-	f32 m_stateTimer;                       // _2C0, how long MAL has been in wait or walk state
-	f32 m_stateDuration;                    // _2C4, how long each phase lasts - 1.5-3s for wait, 3.5-7s for walk
-	f32 _2C8;                               // _2C8, shotgun timer?
-	f32 _2CC;                               // _2CC, timer?
-	StateID m_nextState;                    // _2D0
-	Vector3f m_targetPosition;              // _2D4
-	Vector3f m_shotGunTargetPosition;       // _2E0
-	u8 _2EC;                                // _2EC
-	u8 _2ED;                                // _2ED
-	u8 _2EE;                                // _2EE
-	u8 _2EF;                                // _2EF
-	IKSystemMgr* m_IKSystemMgr;             // _2F0
-	IKSystemParms* m_IKSystemParms;         // _2F4
-	HoudaiGroundCallBack* m_groundCallBack; // _2F8
-	HoudaiShadowMgr* m_shadowMgr;           // _2FC
-	HoudaiShotGunMgr* m_shotGunMgr;         // _300
-	Vector3f _304[16];                      // _304
-	efx::TDamaSmoke* _3C4[2];               // _3C4
-	efx::THdamaHahen* _3CC[3];              // _3CC
-	efx::TDamaDeadElecA* _3D8[3];           // _3D8
-	efx::THdamaOnHahen1* _3E4;              // _3E4
-	efx::THdamaOnHahen2* _3E8[4];           // _3E8
-	efx::THdamaOnSteam1* _3F8;              // _3F8
-	efx::THdamaSteamBd* _3FC;               // _3FC
-	efx::THdamaSteam* _400[3];              // _400
-	efx::THdamaSteamSt* _40C[3];            // _40C
-	efx::TChaseMtx4* _418;                  // _418, Deadbomb?
-	efx::TChaseMtx2* _41C;                  // _41C, DeadSteam?
-	                                        // _420 = PelletView
+	FSM* mFsm;                                  // _2BC
+	f32 mStateTimer;                            // _2C0, how long MAL has been in wait or walk state
+	f32 mStateDuration;                         // _2C4, how long each phase lasts - 1.5-3s for wait, 3.5-7s for walk
+	f32 mShotGunBurstTimer;                     // _2C8, how long shotgun has been blasting for (this burst)
+	f32 mShotGunSearchTimer;                    // _2CC, how long to keep shotgun on with no targets left in range
+	StateID mNextState;                         // _2D0
+	Vector3f mTargetPosition;                   // _2D4
+	Vector3f mShotGunTargetPosition;            // _2E0
+	bool mIsSmoking;                            // _2EC, is below critical health
+	u8 mShotGunState;                           // _2ED
+	bool mTargetNearest;                        // _2EE, if false, target nearest navi's nearest piki (i.e. party)
+	bool mIsAttackMusicLooping;                 // _2EF
+	IKSystemMgr* mIkSystemMgr;                  // _2F0
+	IKSystemParms* mIkSystemParms;              // _2F4
+	HoudaiGroundCallBack* mGroundCallBack;      // _2F8
+	HoudaiShadowMgr* mShadowMgr;                // _2FC
+	HoudaiShotGunMgr* mShotGunMgr;              // _300
+	Vector3f mJointPositions[4][4];             // _304
+	efx::TDamaSmoke* mSmokeFX[2];               // _3C4
+	efx::THdamaHahen* mHahenFX[3];              // _3CC
+	efx::TDamaDeadElecA* mDeadElecAFX[3];       // _3D8
+	efx::THdamaOnHahen1* mAppearHahenFX;        // _3E4
+	efx::THdamaOnHahen2* mAppearHahenFootFX[4]; // _3E8
+	efx::THdamaOnSteam1* mOnSteam1FX;           // _3F8
+	efx::THdamaSteamBd* mSteamBodyFX;           // _3FC
+	efx::THdamaSteam* mSteamFX[3];              // _400
+	efx::THdamaSteamSt* mChimneyFX[3];          // _40C
+	efx::THdamaDeadbomb* mDeadBombFX;           // _418
+	efx::THdamaDeadSteam* mDeadSteamFX;         // _41C
+	                                            // _420 = PelletView
 };
 
 struct Mgr : public EnemyMgrBase {

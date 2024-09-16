@@ -30,6 +30,21 @@ struct JAISound_0x34 {
 	f32 _18; // _18
 };
 
+enum JAISoundType {
+	SOUNDPARAM_Unk0     = 0,
+	SOUNDPARAM_Dopplar  = 1,
+	SOUNDPARAM_Demo     = 2,
+	SOUNDPARAM_Unk3     = 3,
+	SOUNDPARAM_Distance = 4,
+	SOUNDPARAM_Unk5     = 5,
+	SOUNDPARAM_Direct   = 6,
+	SOUNDPARAM_Fadeout  = 7,
+	SOUNDPARAM_Unk8     = 8,
+	SOUNDPARAM_Unk9     = 9,
+	SOUNDPARAM_Unk10    = 10,
+	SOUNDPARAM_Pause    = 11,
+};
+
 struct JAISound : public JSULink<JAISound> {
 	JAISound();
 
