@@ -5,6 +5,8 @@
 #include "Condition.h"
 #include "types.h"
 
+#define FLICK_BACKWARD_ANGLE (-1000.0f)
+
 namespace Game {
 struct Creature;
 struct EnemyBase;

@@ -45,20 +45,20 @@ void Obj::doUpdate()
 	doUpdateShotGun();
 }
 
-void Obj::createEffect()
-{
-	for (int i = 0; i < 4; i++) {
-		mAppearHahenFootFX[i] = new efx::THdamaOnHahen2;
-	}
+// void Obj::createEffect()
+// {
+// 	for (int i = 0; i < 4; i++) {
+// 		mAppearHahenFootFX[i] = new efx::THdamaOnHahen2;
+// 	}
 
-	for (int i = 0; i < 3; i++) {
-		mDeadElecAFX[i] = new efx::TDamaDeadElecA;
-		mHahenFX[i]     = new efx::THdamaHahen;
-	}
+// 	for (int i = 0; i < 3; i++) {
+// 		mDeadElecAFX[i] = new efx::TDamaDeadElecA;
+// 		mHahenFX[i]     = new efx::THdamaHahen;
+// 	}
 
-	mAppearHahenFX = new efx::THdamaOnHahen1;
-	mDeadBombFX    = new efx::THdamaDeadbomb;
-}
+// 	mAppearHahenFX = new efx::THdamaOnHahen1;
+// 	mDeadBombFX    = new efx::THdamaDeadbomb;
+// }
 
 void Obj::setupEffect()
 {

@@ -14,6 +14,71 @@ namespace Game {
 struct CameraArg;
 struct Navi;
 
+enum CamNaviID {
+	CAMNAVI_Olimar = 0,
+	CAMNAVI_Louie  = 1,
+	CAMNAVI_Both   = 2,
+};
+
+enum VibrationType {
+	//////// Strength LIGHT ////////
+	// Speed SLOW
+	VIBTYPE_LightSlowShort = 0, // duration short (light, slow)
+	VIBTYPE_LightSlowMid   = 1, // duration mid   (light, slow)
+	VIBTYPE_LightSlowLong  = 2, // duration long  (light, slow)
+
+	// Speed MID
+	VIBTYPE_LightMidShort = 3, // duration short (light, mid)
+	VIBTYPE_LightMidMid   = 4, // duration mid   (light, mid)
+	VIBTYPE_LightMidLong  = 5, // duration long  (light, mid)
+
+	// Speed FAST
+	VIBTYPE_LightFastShort = 6,                     // duration short (light, fast)
+	VIBTYPE_LightFastMid   = 7,                     // duration mid   (light, fast)
+	VIBTYPE_LightFastLong  = 8,                     // duration long  (light, fast)
+	VIBTYPE_LIGHT          = VIBTYPE_LightFastLong, // cutoff for light vibration
+
+	//////// Strength MID ////////
+	// Speed SLOW
+	VIBTYPE_MidSlowShort = 9,  // duration short (mid, slow)
+	VIBTYPE_MidSlowMid   = 10, // duration mid   (mid, slow)
+	VIBTYPE_MidSlowLong  = 11, // duration long  (mid, slow)
+
+	// Speed MID
+	VIBTYPE_MidMidShort = 12, // duration short (mid, mid)
+	VIBTYPE_MidMidMid   = 13, // duration mid   (mid, mid)
+	VIBTYPE_MidMidLong  = 14, // duration long  (mid, mid)
+
+	// Speed FAST
+	VIBTYPE_MidFastShort = 15,                  // duration short (mid, fast)
+	VIBTYPE_MidFastMid   = 16,                  // duration mid   (mid, fast)
+	VIBTYPE_MidFastLong  = 17,                  // duration long  (mid, fast)
+	VIBTYPE_MID          = VIBTYPE_MidFastLong, // cutoff for light vibration
+
+	//////// Strength HARD ////////
+	// Speed SLOW
+	VIBTYPE_HardSlowShort = 18, // duration short (hard, slow)
+	VIBTYPE_HardSlowMid   = 19, // duration mid   (hard, slow)
+	VIBTYPE_HardSlowLong  = 20, // duration long  (hard, slow)
+
+	// Speed MID
+	VIBTYPE_HardMidShort = 21, // duration short (hard, mid)
+	VIBTYPE_HardMidMid   = 22, // duration mid   (hard, mid)
+	VIBTYPE_HardMidLong  = 23, // duration long  (hard, mid)
+
+	// Speed FAST
+	VIBTYPE_HardFastShort = 24,                   // duration short (hard, fast)
+	VIBTYPE_HardFastMid   = 25,                   // duration mid   (hard, fast)
+	VIBTYPE_HardFastLong  = 26,                   // duration long  (hard, fast)
+	VIBTYPE_HARD          = VIBTYPE_HardFastLong, // cutoff for light vibration
+
+	// special set vibration parameters
+	VIBTYPE_Crash      = 27, // 'crash' effects (rocks hitting the ground, crawbster falling/crashing, empress crashing)
+	VIBTYPE_Boom       = 28, // for mum flicks and groink deaths?
+	VIBTYPE_NaviDamage = 29, // just for navis taking damage
+};
+
+
 struct CameraData {
 	f32 _00;                   // _00, normalCam?
 	f32 _04;                   // _04, camAngle1?
