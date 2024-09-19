@@ -94,14 +94,14 @@ struct TEnemyHamon : public TBase {
 	}
 
 	void update(Vector3f&);
-	void getLimitDepth_();
+	f32 getLimitDepth_();
 
 	// _00      = VTABLE
 	TEnemyHamonChasePos m_hamonChasePos; // _04
 	f32* m_seaHeightPtr;                 // _30
 	Vector3f _34;                        // _34
 	u8 _40;                              // _40
-	Game::EnemyTypeID m_enemyID;         // _44
+	Game::EnemyTypeID::EEnemyTypeID m_enemyID;         // _44
 };
 
 } // namespace efx

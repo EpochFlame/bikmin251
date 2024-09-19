@@ -1802,8 +1802,8 @@ doReadOldVersion__Q24Game14GenObjectEnemyFR6Stream:
 /* 80125924 00122864  38 21 00 70 */	addi r1, r1, 0x70
 /* 80125928 00122868  4E 80 00 20 */	blr 
 
-.global createEnemyGenerator__Q24Game14GenObjectEnemyFv
-createEnemyGenerator__Q24Game14GenObjectEnemyFv:
+.global suscreateEnemyGenerator__Q24Game14GenObjectEnemyFv
+suscreateEnemyGenerator__Q24Game14GenObjectEnemyFv:
 /* 8012592C 0012286C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80125930 00122870  7C 08 02 A6 */	mflr r0
 /* 80125934 00122874  90 01 00 14 */	stw r0, 0x14(r1)

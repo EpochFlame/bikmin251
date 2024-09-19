@@ -1086,6 +1086,10 @@ MODDING:=\
 	$(BUILD_DIR)/src/moddingU/contenaQOL.o\
 	$(BUILD_DIR)/src/moddingU/pikiheadMem.o\
 	$(BUILD_DIR)/src/moddingU/manAtLegs.o\
+	$(BUILD_DIR)/src/moddingU/generalEnemyEfx.o\
+	$(BUILD_DIR)/src/moddingU/newEnemySE.o\
+	$(BUILD_DIR)/src/moddingU/newZukan.o\
+	$(BUILD_DIR)/src/moddingU/generatorEnemy.o\
 	$(BUILD_DIR)/src/plugProjectDroughtU/GoHereMap.o\
 	$(BUILD_DIR)/src/plugProjectDroughtU/GoHereNavi.o\
 	$(BUILD_DIR)/src/plugProjectDroughtU/FastPathfinder.o\

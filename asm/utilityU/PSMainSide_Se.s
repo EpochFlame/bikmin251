@@ -1516,8 +1516,8 @@ newPSCluster_SijimiChou__FPQ24Game8Creature:
 /* 8046E274 0046B1B4  38 21 00 20 */	addi r1, r1, 0x20
 /* 8046E278 0046B1B8  4E 80 00 20 */	blr 
 
-.global PSStartEnemyGhostSE__FPQ24Game9EnemyBasef
-PSStartEnemyGhostSE__FPQ24Game9EnemyBasef:
+.global susPSStartEnemyGhostSE__FPQ24Game9EnemyBasef
+susPSStartEnemyGhostSE__FPQ24Game9EnemyBasef:
 /* 8046E27C 0046B1BC  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 8046E280 0046B1C0  7C 08 02 A6 */	mflr r0
 /* 8046E284 0046B1C4  90 01 00 34 */	stw r0, 0x34(r1)

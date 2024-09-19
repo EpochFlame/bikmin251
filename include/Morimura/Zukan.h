@@ -21,6 +21,14 @@ struct EnemyTexMgr;
 } // namespace Game
 
 namespace Morimura {
+
+struct TEnemyZukanIndex {
+	static TEnemyZukanIndex& getIndexInfo(int);
+
+	int mZukanID; // _00
+	int mEnemyID; // _04
+};
+
 struct TCallbackScrollMsg : public og::Screen::CallBack_Message {
 	TCallbackScrollMsg();
 
@@ -165,6 +173,91 @@ struct TZukanBase : public TScrollList {
 };
 
 struct TEnemyZukan : public TZukanBase {
+	// Represents the order of enemies in the piklopedia
+	enum EnemyZukanEnemyList {
+		Zukan_Chappy,
+		Zukan_YellowChappy,
+		Zukan_BlueChappy,
+		Zukan_Kochappy,
+		Zukan_YellowKochappy,
+		Zukan_BlueKochappy,
+		Zukan_KumaChappy,
+		Zukan_KumaKochappy,
+		Zukan_Baby,
+		Zukan_FireChappy,
+		Zukan_Catfish,
+		Zukan_LeafChappy,
+		Zukan_Tank,
+		Zukan_Wtank,
+		Zukan_Kabuto,
+		Zukan_Rkabuto,
+		Zukan_Mar,
+		Zukan_Hanachirashi,
+		Zukan_MiniHoudai,
+		Zukan_Kogane,
+		Zukan_Wealthy,
+		Zukan_Fart,
+		Zukan_UjiA,
+		Zukan_UjiB,
+		Zukan_Tobi,
+		Zukan_Armor,
+		Zukan_Imomushi,
+		Zukan_ElecBug,
+		Zukan_TamagoMushi,
+		Zukan_Jigumo,
+		Zukan_Sarai,
+		Zukan_Demon,
+		Zukan_BombSarai,
+		Zukan_Fuefuki,
+		Zukan_Kurage,
+		Zukan_OniKurage,
+		Zukan_FireOtakara,
+		Zukan_ElecOtakara,
+		Zukan_WaterOtakara,
+		Zukan_GasOtakara,
+		Zukan_BombOtakara,
+		Zukan_UmiMushiBlind,
+		Zukan_Frog,
+		Zukan_MaroFrog,
+		Zukan_Tadpole,
+		Zukan_BluePom,
+		Zukan_RedPom,
+		Zukan_YellowPom,
+		Zukan_BlackPom,
+		Zukan_WhitePom,
+		Zukan_RandPom,
+		Zukan_Hana,
+		Zukan_Sokkuri,
+		Zukan_ShijimiChou,
+		Zukan_Qurione,
+		Zukan_Miulin,
+		Zukan_PanModoki,
+		Zukan_PelPlant,
+		Zukan_HikariKinoko,
+		Zukan_Clover,
+		Zukan_Ooinu_l,
+		Zukan_Tanpopo,
+		Zukan_Watage,
+		Zukan_Tukushi,
+		Zukan_Nekojarashi,
+		Zukan_DaiodoRed,
+		Zukan_Magaret,
+		Zukan_Zenmai,
+		Zukan_Wakame_l,
+		Zukan_Queen,
+		Zukan_SnakeCrow,
+		Zukan_Damagumo,
+		Zukan_KingChappy,
+		Zukan_OoPanModoki,
+		Zukan_SnakeWhole,
+		Zukan_Houdai,
+		Zukan_UmiMushi,
+		Zukan_BlackMan,
+		Zukan_DangoMushi,
+		Zukan_BigFoot,
+		Zukan_BigTreasure
+	};
+	
 	virtual ~TEnemyZukan();                                  // _08 (weak)
 	virtual void doCreate(JKRArchive*);                      // _4C
 	virtual og::Screen::DispMemberBase* getDispMemberBase(); // _78 (weak)

@@ -6,6 +6,14 @@
 #include "types.h"
 
 namespace efx {
+	
+struct TEnemyBombScaleTable {
+	TEnemyBombScaleTable(Game::EnemyTypeID::EEnemyTypeID);
+
+	int mType;  // _00
+	f32 mScale; // _04
+};
+
 struct TEnemyBomb : public TBase {
 	virtual bool create(Arg*); // _08
 	virtual void forceKill();  // _0C (weak)

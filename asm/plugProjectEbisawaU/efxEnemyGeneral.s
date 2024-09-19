@@ -628,13 +628,6 @@ __vt__Q23efx11TEnemyHamon:
 	.4byte create__Q23efx11TEnemyHamonFPQ23efx3Arg
 	.4byte forceKill__Q23efx11TEnemyHamonFv
 	.4byte fade__Q23efx11TEnemyHamonFv
-.global __vt__Q23efx19TEnemyHamonChasePos
-__vt__Q23efx19TEnemyHamonChasePos:
-	.4byte 0
-	.4byte 0
-	.4byte create__Q23efx19TEnemyHamonChasePosFPQ23efx3Arg
-	.4byte forceKill__Q23efx19TEnemyHamonChasePosFv
-	.4byte fade__Q23efx19TEnemyHamonChasePosFv
 .global __vt__Q23efx15TEnemyHamonMInd
 __vt__Q23efx15TEnemyHamonMInd:
 	.4byte 0
@@ -754,20 +747,6 @@ __vt__Q23efx16TEnemyWalkSmokeM:
 	.4byte create__Q23efx16TEnemyWalkSmokeMFPQ23efx3Arg
 	.4byte forceKill__Q23efx8TSimple1Fv
 	.4byte fade__Q23efx8TSimple1Fv
-.global __vt__Q23efx15TEnemyWalkSmoke
-__vt__Q23efx15TEnemyWalkSmoke:
-	.4byte 0
-	.4byte 0
-	.4byte create__Q23efx15TEnemyWalkSmokeFPQ23efx3Arg
-	.4byte forceKill__Q23efx15TEnemyWalkSmokeFv
-	.4byte fade__Q23efx15TEnemyWalkSmokeFv
-.global __vt__Q23efx10TEnemyDead
-__vt__Q23efx10TEnemyDead:
-	.4byte 0
-	.4byte 0
-	.4byte create__Q23efx10TEnemyDeadFPQ23efx3Arg
-	.4byte forceKill__Q23efx8TSimple1Fv
-	.4byte fade__Q23efx8TSimple1Fv
 .global __vt__Q23efx19TEnemyDead_ArgScale
 __vt__Q23efx19TEnemyDead_ArgScale:
 	.4byte 0
@@ -817,27 +796,6 @@ __vt__Q23efx13TEnemyPoisonL:
 	.4byte create__Q23efx13TEnemyPoisonLFPQ23efx3Arg
 	.4byte forceKill__Q23efx8TSimple1Fv
 	.4byte fade__Q23efx8TSimple1Fv
-.global __vt__Q23efx10TEnemyPiyo
-__vt__Q23efx10TEnemyPiyo:
-	.4byte 0
-	.4byte 0
-	.4byte create__Q23efx10TEnemyPiyoFPQ23efx3Arg
-	.4byte forceKill__Q23efx5TSyncFv
-	.4byte fade__Q23efx5TSyncFv
-	.4byte 0
-	.4byte 0
-	.4byte "@4@__dt__Q23efx10TEnemyPiyoFv"
-	.4byte "@4@execute__Q23efx5TSyncFP14JPABaseEmitter"
-	.4byte "@4@executeAfter__Q23efx5TSyncFP14JPABaseEmitter"
-	.4byte draw__18JPAEmitterCallBackFP14JPABaseEmitter
-	.4byte drawAfter__18JPAEmitterCallBackFP14JPABaseEmitter
-	.4byte execute__Q23efx5TSyncFP14JPABaseEmitter
-	.4byte executeAfter__Q23efx5TSyncFP14JPABaseEmitter
-	.4byte doExecuteEmitterOperation__Q23efx9TChasePosFP14JPABaseEmitter
-	.4byte doExecuteAfter__Q23efx5TSyncFP14JPABaseEmitter
-	.4byte startDemoDrawOff__Q23efx5TSyncFv
-	.4byte endDemoDrawOn__Q23efx5TSyncFv
-	.4byte __dt__Q23efx10TEnemyPiyoFv
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
@@ -974,8 +932,8 @@ lbl_8051F9D4:
 	.float 55.0
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global create__Q23efx10TEnemyPiyoFPQ23efx3Arg
-create__Q23efx10TEnemyPiyoFPQ23efx3Arg:
+.global suscreate__Q23efx10TEnemyPiyoFPQ23efx3Arg
+suscreate__Q23efx10TEnemyPiyoFPQ23efx3Arg:
 /* 803C7834 003C4774  94 21 FF C0 */	stwu r1, -0x40(r1)
 /* 803C7838 003C4778  7C 08 02 A6 */	mflr r0
 /* 803C783C 003C477C  90 01 00 44 */	stw r0, 0x44(r1)
@@ -1607,8 +1565,8 @@ create__Q23efx19TEnemyDead_ArgScaleFPQ23efx3Arg:
 /* 803C80A4 003C4FE4  38 21 00 40 */	addi r1, r1, 0x40
 /* 803C80A8 003C4FE8  4E 80 00 20 */	blr 
 
-.global create__Q23efx10TEnemyDeadFPQ23efx3Arg
-create__Q23efx10TEnemyDeadFPQ23efx3Arg:
+.global suscreate__Q23efx10TEnemyDeadFPQ23efx3Arg
+suscreate__Q23efx10TEnemyDeadFPQ23efx3Arg:
 /* 803C80AC 003C4FEC  94 21 FF C0 */	stwu r1, -0x40(r1)
 /* 803C80B0 003C4FF0  7C 08 02 A6 */	mflr r0
 /* 803C80B4 003C4FF4  90 01 00 44 */	stw r0, 0x44(r1)
@@ -1802,8 +1760,8 @@ create__Q23efx10TEnemyDeadFPQ23efx3Arg:
 /* 803C82F0 003C5230  38 21 00 40 */	addi r1, r1, 0x40
 /* 803C82F4 003C5234  4E 80 00 20 */	blr 
 
-.global create__Q23efx15TEnemyWalkSmokeFPQ23efx3Arg
-create__Q23efx15TEnemyWalkSmokeFPQ23efx3Arg:
+.global suscreate__Q23efx15TEnemyWalkSmokeFPQ23efx3Arg
+suscreate__Q23efx15TEnemyWalkSmokeFPQ23efx3Arg:
 /* 803C82F8 003C5238  94 21 FF A0 */	stwu r1, -0x60(r1)
 /* 803C82FC 003C523C  7C 08 02 A6 */	mflr r0
 /* 803C8300 003C5240  90 01 00 64 */	stw r0, 0x64(r1)
@@ -2313,8 +2271,8 @@ create__Q23efx10TEnemyDiveFPQ23efx3Arg:
 /* 803C89C4 003C5904  38 21 00 40 */	addi r1, r1, 0x40
 /* 803C89C8 003C5908  4E 80 00 20 */	blr 
 
-.global __ct__Q23efx20TEnemyBombScaleTableFQ34Game11EnemyTypeID12EEnemyTypeID
-__ct__Q23efx20TEnemyBombScaleTableFQ34Game11EnemyTypeID12EEnemyTypeID:
+.global __susct__Q23efx20TEnemyBombScaleTableFQ34Game11EnemyTypeID12EEnemyTypeID
+__susct__Q23efx20TEnemyBombScaleTableFQ34Game11EnemyTypeID12EEnemyTypeID:
 /* 803C89CC 003C590C  28 04 00 63 */	cmplwi r4, 0x63
 /* 803C89D0 003C5910  41 81 03 A0 */	bgt .L_803C8D70
 /* 803C89D4 003C5914  3C A0 80 4F */	lis r5, lbl_804E8000@ha
@@ -3246,8 +3204,8 @@ create__Q23efx15TEnemyHamonMIndFPQ23efx3Arg:
 /* 803C96C4 003C6604  38 21 00 40 */	addi r1, r1, 0x40
 /* 803C96C8 003C6608  4E 80 00 20 */	blr 
 
-.global create__Q23efx19TEnemyHamonChasePosFPQ23efx3Arg
-create__Q23efx19TEnemyHamonChasePosFPQ23efx3Arg:
+.global suscreate__Q23efx19TEnemyHamonChasePosFPQ23efx3Arg
+suscreate__Q23efx19TEnemyHamonChasePosFPQ23efx3Arg:
 /* 803C96CC 003C660C  94 21 FF A0 */	stwu r1, -0x60(r1)
 /* 803C96D0 003C6610  7C 08 02 A6 */	mflr r0
 /* 803C96D4 003C6614  90 01 00 64 */	stw r0, 0x64(r1)
@@ -3619,8 +3577,8 @@ create__Q23efx11TEnemyHamonFPQ23efx3Arg:
 /* 803C9B98 003C6AD8  38 21 00 20 */	addi r1, r1, 0x20
 /* 803C9B9C 003C6ADC  4E 80 00 20 */	blr 
 
-.global getLimitDepth___Q23efx11TEnemyHamonFv
-getLimitDepth___Q23efx11TEnemyHamonFv:
+.global susgetLimitDepth___Q23efx11TEnemyHamonFv
+susgetLimitDepth___Q23efx11TEnemyHamonFv:
 /* 803C9BA0 003C6AE0  80 03 00 44 */	lwz r0, 0x44(r3)
 /* 803C9BA4 003C6AE4  C0 22 16 30 */	lfs f1, lbl_8051F990@sda21(r2)
 /* 803C9BA8 003C6AE8  28 00 00 63 */	cmplwi r0, 0x63

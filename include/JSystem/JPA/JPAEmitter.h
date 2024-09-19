@@ -111,6 +111,20 @@ struct JPABaseEmitter {
 		_B4 = scaleXY;
 	}
 
+	inline void setScaleOnly(f32 scale) { _98.set(scale, scale, scale); }
+
+	inline void setGlobalScale(f32 x, f32 y)
+	{
+		_B0 = x;
+		_B4 = y;
+	}
+
+	inline void setGlobalScale(f32 x)
+	{
+		_B0 = x;
+		_B4 = x;
+	}
+
 	f32 _00;                    // _00
 	f32 _04;                    // _04
 	f32 _08;                    // _08

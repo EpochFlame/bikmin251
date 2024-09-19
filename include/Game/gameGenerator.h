@@ -281,7 +281,7 @@ struct GenObjectEnemy : public GenObject {
 	virtual Creature* birth(GenArg*);            // _34
 
 	static void initialise();
-	void createEnemyGenerator();
+	EnemyGeneratorBase* createEnemyGenerator();
 	void doReadOldVersion(Stream&);
 
 	EnemyTypeID::EEnemyTypeID m_enemyID;          // _24
