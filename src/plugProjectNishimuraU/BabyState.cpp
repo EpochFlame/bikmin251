@@ -2,6 +2,7 @@
 #include "Game/EnemyAnimKeyEvent.h"
 #include "Game/EnemyFunc.h"
 #include "efx/TBaby.h"
+#include "Game/Entities/PikiBaby.h"
 
 namespace Game {
 namespace Baby {
@@ -12,7 +13,8 @@ namespace Baby {
  */
 void FSM::init(EnemyBase* enemy)
 {
-	create(BABY_Count), registerState(new StateDead);
+	create(BABY_Count), 
+	registerState(new StateDead);
 	registerState(new StatePress);
 	registerState(new StateBorn);
 	registerState(new StateMove);
@@ -545,28 +547,38 @@ void StateAttack::init(EnemyBase* enemy, StateArg* stateArg)
  */
 void StateAttack::exec(EnemyBase* enemy)
 {
-	Obj* baby = static_cast<Obj*>(enemy);
-	if (baby->m_curAnim->m_isRunning) {
-		if ((u32)baby->m_curAnim->m_type == KEYEVENT_2) {
-			Parms* parms = static_cast<Parms*>(baby->m_parms);
-			EnemyFunc::attackNavi(baby, parms->m_general.m_fp22.m_value, parms->m_general.m_fp23.m_value,
-			                      parms->m_general.m_attackDamage.m_value, nullptr, nullptr);
-			EnemyFunc::eatPikmin(baby, nullptr);
-			int slotCount = baby->getSlotPikiNum();
-			if (slotCount == 0) {
-				baby->startMotion(4, nullptr);
-			}
-		} else if ((u32)baby->m_curAnim->m_type == KEYEVENT_3) {
-			Parms* parms = static_cast<Parms*>(baby->m_parms);
-			EnemyFunc::swallowPikmin(baby, parms->m_properParms.m_poisonDamage.m_value, nullptr);
-		} else if ((u32)baby->m_curAnim->m_type == KEYEVENT_END) {
-			if (baby->m_health <= 0.0f) {
-				transit(baby, BABY_Dead, nullptr);
-			} else {
-				transit(baby, BABY_Move, nullptr);
-			}
-		}
-	}
+	Obj* baby = OBJ(enemy);
+	if (!baby->m_curAnim->m_isRunning) {
+        return;
+    }
+
+    if (baby->m_health <= 0.0f) {
+        transit(baby, BABY_Dead, nullptr);
+        return;
+    }
+
+    if (baby->m_curAnim->m_type == KEYEVENT_2) {
+        Parms* parms = static_cast<Parms*>(baby->m_parms);
+        EnemyFunc::attackNavi(baby, parms->m_general.m_fp22.m_value, parms->m_general.m_fp23.m_value,
+                                parms->m_general.m_attackDamage.m_value, nullptr, nullptr);
+        EnemyFunc::eatPikmin(baby, nullptr);
+        int slotCount = baby->getSlotPikiNum();
+        if (slotCount == 0) {
+            baby->startMotion(4, nullptr);
+        }
+        return;
+    } 
+    
+    if (baby->m_curAnim->m_type == KEYEVENT_3) {
+        Parms* parms = static_cast<Parms*>(baby->m_parms);
+        EnemyFunc::swallowPikmin(baby, parms->m_properParms.m_poisonDamage.m_value, nullptr);
+        return;
+    }
+    
+    if (baby->m_curAnim->m_type == KEYEVENT_END) {
+        transit(baby, BABY_Move, nullptr);
+        return;
+    }
 }
 /*
  * --INFO--

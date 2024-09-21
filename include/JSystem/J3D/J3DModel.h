@@ -11,6 +11,7 @@
 #include "JSystem/J3D/J3DVertexBuffer.h"
 #include "JSystem/JGeometry.h"
 #include "JSystem/J3D/J3DPacket.h"
+#include "JSystem/JUT/JUTNameTab.h"
 
 struct J3DDeformData;
 struct J3DMatPacket;
@@ -48,6 +49,20 @@ struct J3DModelData {
 	{
 		m_jointTree.makeHierarchy(nullptr, &hierarchy, &m_materialTable, &m_shapeTable);
 		m_shapeTable.initShapeNodes(&m_jointTree.m_mtxData, &m_vertexData);
+	}
+
+	inline void setTevColor(char* name, J3DGXColorS10& color)
+	{
+		u16 idx          = m_materialTable.m_materialNames->getIndex(name);
+		J3DMaterial* mat = m_materialTable.m_materials1[idx];
+		mat->m_tevBlock->setTevColor(0, color);
+	}
+
+	inline void setTevColor(char* name, u16 r, u16 g, u16 b, u16 a)
+	{
+		u16 idx          = m_materialTable.m_materialNames->getIndex(name);
+		J3DMaterial* mat = m_materialTable.m_materials1[idx];
+		mat->m_tevBlock->setTevColor(0, J3DGXColorS10(r, g, b, a));
 	}
 
 	// VTBL _00

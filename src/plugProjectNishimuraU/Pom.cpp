@@ -97,7 +97,7 @@ void Obj::changeMaterial()
 	J3DModel* j3dModel      = m_model->m_j3dModel;
 	J3DModelData* modelData = j3dModel->m_modelData;
 
-	u16 nameIdx           = j3dModel->m_modelData->m_materialTable._0C->getIndex("hanabira1_v");
+	u16 nameIdx           = j3dModel->m_modelData->m_materialTable.m_materialNames->getIndex("hanabira1_v");
 	J3DMaterial* material = modelData->m_materialTable.m_materials1[nameIdx];
 	material->m_tevBlock->setTevColor(0, m_rgbColor);
 	j3dModel->calcMaterial();

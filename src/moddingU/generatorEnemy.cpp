@@ -7,10 +7,10 @@
 
 namespace Game {
 
-#define GENERATOR_CASE(id)                             \
-	case id: {                                         \
+#define GENERATOR_CASE(id)                         \
+	case id: {                                           \
 		m_enemyGenerator = new EnemyGeneratorBase(""); \
-		break;                                         \
+		break;                                           \
 	}
 
 EnemyGeneratorBase* GenObjectEnemy::createEnemyGenerator()
@@ -74,7 +74,7 @@ EnemyGeneratorBase* GenObjectEnemy::createEnemyGenerator()
 		GENERATOR_CASE(EnemyTypeID::EnemyID_Egg)
 		GENERATOR_CASE(EnemyTypeID::EnemyID_PanModoki)
 		GENERATOR_CASE(EnemyTypeID::EnemyID_OoPanModoki)
-		GENERATOR_CASE(EnemyTypeID::EnemyID_INVALID)
+		GENERATOR_CASE(EnemyTypeID::EnemyID_PikiBabyRed)
 		GENERATOR_CASE(EnemyTypeID::EnemyID_Fuefuki)
 		GENERATOR_CASE(EnemyTypeID::EnemyID_Tanpopo)
 		GENERATOR_CASE(EnemyTypeID::EnemyID_Watage)
@@ -105,7 +105,7 @@ EnemyGeneratorBase* GenObjectEnemy::createEnemyGenerator()
 		GENERATOR_CASE(EnemyTypeID::EnemyID_ElecOtakara)
 		GENERATOR_CASE(EnemyTypeID::EnemyID_BombOtakara)
 		GENERATOR_CASE(EnemyTypeID::EnemyID_Jigumo)
-		GENERATOR_CASE(EnemyTypeID::EnemyID_INVALID2)
+		GENERATOR_CASE(EnemyTypeID::EnemyID_PikiBabyYellow)
 		GENERATOR_CASE(EnemyTypeID::EnemyID_Imomushi)
 		GENERATOR_CASE(EnemyTypeID::EnemyID_Houdai)
 		GENERATOR_CASE(EnemyTypeID::EnemyID_LeafChappy)
@@ -128,13 +128,14 @@ EnemyGeneratorBase* GenObjectEnemy::createEnemyGenerator()
 		GENERATOR_CASE(EnemyTypeID::EnemyID_BlackMan)
 		GENERATOR_CASE(EnemyTypeID::EnemyID_Tyre)
 		GENERATOR_CASE(EnemyTypeID::EnemyID_DangoMushi)
+		GENERATOR_CASE(EnemyTypeID::EnemyID_PikiBabyBlue)
 
 	case EnemyTypeID::EnemyID_Pom:
 	case EnemyTypeID::EnemyID_PanHouse:
 	case EnemyTypeID::EnemyID_UmiMushiBase:
 	case EnemyTypeID::EnemyID_Stone:
 	default:
-		m_enemyGenerator = new EnemyGeneratorBase("");
+		m_enemyGenerator = new EnemyGeneratorBase("–¢“o˜^");
 		break;
 	}
 

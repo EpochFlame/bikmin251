@@ -32,7 +32,7 @@ void Koganemushi::Obj::changeMaterial()
 	modelData     = j3dModel->m_modelData;
 	changeTexture = static_cast<Mgr*>(m_mgr)->getChangeTexture();
 
-	u16 idx                = modelData->m_materialTable._0C->getIndex("karada");
+	u16 idx                = modelData->m_materialTable.m_materialNames->getIndex("karada");
 	J3DMaterial* karadaMat = modelData->m_materialTable.m_materials1[idx];
 	karadaMat->m_tevBlock->setTevKColor(0, J3DGXColor(0x3C, 0x3C, 0x3C, 0xFF));
 

@@ -59,7 +59,7 @@ void Game::UmiMushi::Obj::onInit(CreatureInitArg* initArg)
 	J3DModelData* modelData = m_model->m_j3dModel->m_modelData;
 	P2ASSERTLINE(166, modelData);
 
-	u16 matIdx = modelData->m_materialTable._0C->getIndex("cc_mat1_v");
+	u16 matIdx = modelData->m_materialTable.m_materialNames->getIndex("cc_mat1_v");
 	_310       = modelData->m_materialTable.m_materials1[matIdx];
 
 	P2ASSERTLINE(171, _310);

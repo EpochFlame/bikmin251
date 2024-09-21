@@ -67,6 +67,7 @@
 #include "Game/Entities/Wealthy.h"
 #include "Game/Entities/YellowChappy.h"
 #include "Game/Entities/YellowKochappy.h"
+#include "Game/Entities/PikiBaby.h"
 #include "Game/plantsMgr.h"
 #include "Game/gamePlayData.h"
 #include "Game/MapMgr.h"
@@ -177,6 +178,15 @@ void GeneralEnemyMgr::createEnemyMgr(u8 type, int enemyID, int limit)
 		break;
 	case EnemyTypeID::EnemyID_Baby:
 		mgr = new Baby::Mgr(limit, type);
+		break;
+	case EnemyTypeID::EnemyID_PikiBabyRed:
+		mgr = new PikiBabyRed::Mgr(limit, type);
+		break;
+	case EnemyTypeID::EnemyID_PikiBabyYellow:
+		mgr = new PikiBabyYellow::Mgr(limit, type);
+		break;
+	case EnemyTypeID::EnemyID_PikiBabyBlue:
+		mgr = new PikiBabyBlue::Mgr(limit, type);
 		break;
 	case EnemyTypeID::EnemyID_Demon:
 		mgr = new Demon::Mgr(limit, type);

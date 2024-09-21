@@ -70,6 +70,9 @@ JAISound* PSStartEnemyGhostSE(Game::EnemyBase* enemy, f32)
 			break;
 		case Game::EnemyTypeID::EnemyID_Tadpole:
 		case Game::EnemyTypeID::EnemyID_Baby:
+		case Game::EnemyTypeID::EnemyID_PikiBabyRed:
+		case Game::EnemyTypeID::EnemyID_PikiBabyYellow:
+		case Game::EnemyTypeID::EnemyID_PikiBabyBlue:
 			volume = 0.6f;
 			pitch  = 1.7f;
 			break;

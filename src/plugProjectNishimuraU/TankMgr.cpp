@@ -75,7 +75,7 @@ SysShape::Model* Mgr::createModel()
 	SysShape::Model* model = new SysShape::Model(m_modelData, 0x80000, m_modelType);
 	P2ASSERTLINE(130, model);
 	for (u16 i = 0; i < m_modelData->getMaterialCount1(); i++) {
-		const char* name = m_modelData->m_materialTable._0C->getName(i);
+		const char* name = m_modelData->m_materialTable.m_materialNames->getName(i);
 		if (!strcmp(name, "mat_dokkuri_main")) {
 			model->m_j3dModel->m_matPackets[i]._2C->newDifferedDisplayList(0x04020000);
 		}

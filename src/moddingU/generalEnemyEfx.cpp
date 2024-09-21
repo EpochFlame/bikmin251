@@ -45,6 +45,9 @@ bool TEnemyPiyo::create(Arg* arg)
 		break;
 
 	case Game::EnemyTypeID::EnemyID_Baby:
+	case Game::EnemyTypeID::EnemyID_PikiBabyRed:
+	case Game::EnemyTypeID::EnemyID_PikiBabyYellow:
+	case Game::EnemyTypeID::EnemyID_PikiBabyBlue:
 		scale = 0.6f;
 		break;
 
@@ -276,6 +279,9 @@ bool TEnemyDead::create(Arg* arg)
 		break;
 
 	case Game::EnemyTypeID::EnemyID_Baby:
+	case Game::EnemyTypeID::EnemyID_PikiBabyRed:
+	case Game::EnemyTypeID::EnemyID_PikiBabyYellow:
+	case Game::EnemyTypeID::EnemyID_PikiBabyBlue:
 		scale = 0.8f;
 		break;
 
@@ -502,6 +508,9 @@ bool TEnemyWalkSmoke::create(Arg* arg)
 		break;
 
 	case Game::EnemyTypeID::EnemyID_Baby:
+	case Game::EnemyTypeID::EnemyID_PikiBabyRed:
+	case Game::EnemyTypeID::EnemyID_PikiBabyYellow:
+	case Game::EnemyTypeID::EnemyID_PikiBabyBlue:
 		return false;
 
 	case Game::EnemyTypeID::EnemyID_Tank:
@@ -701,6 +710,9 @@ TEnemyBombScaleTable::TEnemyBombScaleTable(Game::EnemyTypeID::EEnemyTypeID id)
 		break;
 
 	case Game::EnemyTypeID::EnemyID_Baby:
+	case Game::EnemyTypeID::EnemyID_PikiBabyRed:
+	case Game::EnemyTypeID::EnemyID_PikiBabyYellow:
+	case Game::EnemyTypeID::EnemyID_PikiBabyBlue:
 		mType  = 2;
 		mScale = 1.0f;
 		break;
@@ -966,6 +978,9 @@ bool TEnemyHamonChasePos::create(Arg* arg)
 		break;
 
 	case Game::EnemyTypeID::EnemyID_Baby:
+	case Game::EnemyTypeID::EnemyID_PikiBabyRed:
+	case Game::EnemyTypeID::EnemyID_PikiBabyYellow:
+	case Game::EnemyTypeID::EnemyID_PikiBabyBlue:
 		scale = 0.65f;
 		break;
 
@@ -1196,6 +1211,9 @@ f32 TEnemyHamon::getLimitDepth_()
 		break;
 
 	case Game::EnemyTypeID::EnemyID_Baby:
+	case Game::EnemyTypeID::EnemyID_PikiBabyRed:
+	case Game::EnemyTypeID::EnemyID_PikiBabyYellow:
+	case Game::EnemyTypeID::EnemyID_PikiBabyBlue:
 		depth = 20.0f;
 		break;
 

@@ -91,7 +91,7 @@ SysShape::Model* Mgr::createModel()
 	P2ASSERTLINE(132, model != nullptr);
 
 	for (u16 i = 0; i < m_modelData->getMaterialCount1(); i++) {
-		const char* name = m_modelData->m_materialTable._0C->getName(i);
+		const char* name = m_modelData->m_materialTable.m_materialNames->getName(i);
 		if (!strcmp(name, "body")) {
 			model->m_j3dModel->m_matPackets[i]._2C->newDifferedDisplayList(0x01000000);
 		}

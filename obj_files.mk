@@ -723,7 +723,7 @@ NISHIMURA:=\
 	$(BUILD_DIR)/src/plugProjectNishimuraU/QueenAnimator.o\
 	$(BUILD_DIR)/src/plugProjectNishimuraU/QueenMgr.o\
 	$(BUILD_DIR)/asm/plugProjectNishimuraU/Queen.o\
-	$(BUILD_DIR)/asm/plugProjectNishimuraU/BabyState.o\
+	$(BUILD_DIR)/src/plugProjectNishimuraU/BabyState.o\
 	$(BUILD_DIR)/src/plugProjectNishimuraU/BabyAnimator.o\
 	$(BUILD_DIR)/src/plugProjectNishimuraU/BabyMgr.o\
 	$(BUILD_DIR)/asm/plugProjectNishimuraU/Baby.o\
@@ -1087,9 +1087,11 @@ MODDING:=\
 	$(BUILD_DIR)/src/moddingU/pikiheadMem.o\
 	$(BUILD_DIR)/src/moddingU/manAtLegs.o\
 	$(BUILD_DIR)/src/moddingU/generalEnemyEfx.o\
-	$(BUILD_DIR)/src/moddingU/newEnemySE.o\
 	$(BUILD_DIR)/src/moddingU/newZukan.o\
 	$(BUILD_DIR)/src/moddingU/generatorEnemy.o\
+	$(BUILD_DIR)/src/moddingU/newEnemySE.o\
+	$(BUILD_DIR)/src/moddingU/pikiBabyMgr.o\
+	$(BUILD_DIR)/src/moddingU/pikiBaby.o\
 	$(BUILD_DIR)/src/plugProjectDroughtU/GoHereMap.o\
 	$(BUILD_DIR)/src/plugProjectDroughtU/GoHereNavi.o\
 	$(BUILD_DIR)/src/plugProjectDroughtU/FastPathfinder.o\

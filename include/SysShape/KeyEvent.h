@@ -28,14 +28,14 @@ struct KeyEvent : public CNode {
 	{
 		m_frame = 0;
 		m_type  = 0;
-		_20     = -1;
+		m_animIdx     = -1;
 	}
 
 	virtual ~KeyEvent() { } // _08 (weak)
 
 	int m_frame; // _18
 	int m_type;  // _1C
-	s16 _20;     // _20
+	s16 m_animIdx;     // _20
 };
 
 } // namespace SysShape

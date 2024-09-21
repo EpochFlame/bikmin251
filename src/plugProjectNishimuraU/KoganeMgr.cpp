@@ -80,7 +80,7 @@ SysShape::Model* Mgr::createModel()
 	SysShape::Model* model = new SysShape::Model(m_modelData, 0x80000, m_modelType);
 	P2ASSERTLINE(148, model);
 	for (u16 i = 0; i < m_modelData->getMaterialCount1(); i++) {
-		const char* name = m_modelData->m_materialTable._0C->getName(i);
+		const char* name = m_modelData->m_materialTable.m_materialNames->getName(i);
 		if (!strcmp(name, "karada")) {
 			model->m_j3dModel->m_matPackets[(u16)i]._2C->newDifferedDisplayList(0x05020000);
 		}
