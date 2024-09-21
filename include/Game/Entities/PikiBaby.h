@@ -23,6 +23,7 @@ struct Obj : public Baby::Obj {
 	virtual bool hipdropCallBack(Creature* source, f32 damage, CollPart* part) { return false; }
     virtual void changeMaterial();
     virtual void getShadowParam(ShadowParam&);
+    virtual void bounceCallback(Sys::Triangle*);
     
     bool mDoPlayMatAnim;
     Sys::MatLoopAnimator* mMatAnimator;
@@ -72,6 +73,7 @@ struct Obj : public PikiBabyRed::Obj {
     {
         return EnemyTypeID::EnemyID_PikiBabyYellow;
     }
+    virtual void collisionCallback(CollEvent&);
 };
 
 struct Mgr : public PikiBabyRed::Mgr {

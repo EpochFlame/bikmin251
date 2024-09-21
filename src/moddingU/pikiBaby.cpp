@@ -63,6 +63,12 @@ void Obj::getShadowParam(ShadowParam&)
     
 }
 
+void Obj::bounceCallback(Sys::Triangle* tri)
+{
+	setVelocity(Vector3f::zero);
+	m_simVelocity = Vector3f::zero;
+}
+
 void FSM::init(EnemyBase* enemy)
 {
 	StateDead* stateDead = new StateDead;
@@ -83,6 +89,33 @@ void StateDead::init(EnemyBase* enemy, StateArg* arg)
     piki->mDoPlayMatAnim = true;
 }
 
-} // namespace PikiBaby
+} // namespace PikiBabyRed
+
+namespace PikiBabyYellow {
+
+void Obj::collisionCallback(CollEvent& event)
+{
+	Creature* creature = event.m_collidingCreature;
+	if (!creature->isPiki() && !creature->isNavi()) {
+		return;
+	}
+
+	Vector3f direction = creature->getPosition() - m_position;
+	direction.y = 0.0f;
+	direction.normalise();
+
+	EnemyParmsBase::Parms* parms = &static_cast<EnemyParmsBase*>(m_parms)->m_general;
+	direction.x *= parms->m_fp14.m_value;
+	direction.y *= parms->m_fp14.m_value;
+
+	if (creature->isPiki()) {
+		direction.y = parms->m_fp26.m_value;
+	}
+
+	InteractDenki interact(this, parms->m_attackDamage.m_value, &direction);
+	creature->stimulate(interact);
+}
+
+} // namespace PikiBabyYellow
 
 } // namespace Game
