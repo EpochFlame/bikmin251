@@ -19,8 +19,8 @@ struct Obj : public Baby::Obj {
         return EnemyTypeID::EnemyID_PikiBabyRed;
     }
     virtual void initMouthSlots();
-    virtual bool pressCallBack(Creature* source, f32 damage, CollPart* part) { return false; }
-	virtual bool hipdropCallBack(Creature* source, f32 damage, CollPart* part) { return false; }
+    virtual bool pressCallBack(Creature*, f32, CollPart*);
+	virtual bool hipdropCallBack(Creature*, f32, CollPart*) { return false; }
     virtual void changeMaterial();
     virtual void getShadowParam(ShadowParam&);
     virtual void bounceCallback(Sys::Triangle*);

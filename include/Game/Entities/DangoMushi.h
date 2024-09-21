@@ -60,8 +60,8 @@ struct Obj : public EnemyBase {
 	void getSearchedTarget();
 	void rollingMove();
 	void createCrashEnemy();
-	void getFallEggNum();
-	void getFallPosition(int);
+	int getFallEggNum();
+	Vector3f getFallPosition(int);
 	void setupCollision();
 	void setBodyCollision(bool);
 	void flickHandCollision(Creature*);

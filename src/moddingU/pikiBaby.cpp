@@ -58,9 +58,30 @@ void Obj::initMouthSlots()
 	}
 }
 
-void Obj::getShadowParam(ShadowParam&)
+void Obj::getShadowParam(ShadowParam& param)
 {
-    
+    param.m_position = m_position;
+	param.m_position.y += 0.5f;
+
+	param.m_boundingSphere.m_position = Vector3f(0.0f, 1.0f, 0.0f);
+
+	if (isEvent(1, 1)) {
+		param.m_boundingSphere.m_radius = 25.0f;
+	} else {
+		param.m_boundingSphere.m_radius = 5.0f;
+	}
+
+	param.m_size = 5.0f;
+}
+
+bool Obj::pressCallBack(Creature* source, f32 damage, CollPart* part)
+{
+	if (source->isPiki()) {
+		return false;
+	}
+
+	m_FSM->transit(this, Baby::BABY_Dead, nullptr);
+	return true;
 }
 
 void Obj::bounceCallback(Sys::Triangle* tri)
