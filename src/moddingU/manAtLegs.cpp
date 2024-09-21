@@ -65,11 +65,11 @@ void Obj::createPikiBaby()
 
 	EnemyParmsBase::Parms* parms = &C_GENERALPARMS;
 	
-	Vector3f velocity = Vector3f::zero;
+	Vector3f velocity(100.0f);
 	f32 speed = parms->m_privateRadius.m_value * 2.0f;
 
 	for (u8 i = 1; i <= count; i++) {
-		birthArg.m_faceDir = TAU / i;
+		birthArg.m_faceDir = TAU * ((f32)i / count);
 		PikiBabyRed::Obj* baby = static_cast<PikiBabyRed::Obj*>(babyMgr->birth(birthArg));
 		if (baby == nullptr) {
 			return;
