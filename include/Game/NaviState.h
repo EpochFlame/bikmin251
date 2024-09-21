@@ -380,15 +380,21 @@ struct NaviFlickState : public NaviState {
 
 struct NaviFollowArg : public StateArg {
 	inline NaviFollowArg(bool p1)
-	    : _00(p1)
+	    : mIsNewToParty(p1)
 	{
 	}
 
-	bool _00; // _00
-	bool _01; // _01
+	bool mIsNewToParty; // _00
 };
 
 struct NaviFollowState : public NaviState {
+	enum FollowState {
+		FOLLOW_AlertJump   = 0,
+		FOLLOW_Normal      = 1,
+		FOLLOW_IdleGoof    = 2,
+		FOLLOW_PunchTarget = 3,
+	};
+
 	inline NaviFollowState()
 	    : NaviState(NSID_Follow)
 	{
@@ -402,12 +408,12 @@ struct NaviFollowState : public NaviState {
 
 	// _00     = VTBL
 	// _00-_10 = NaviState
-	Navi* mTargetNavi;   // _10
-	u8 _14;              // _14
-	Creature* mRunEnemy; // _18
-	u8 _1C;              // _1C, counter?
-	u8 mAnimID;          // _1D, motion?
-	u8 _1E;              // _1E, counter 2?
+	Navi* mTargetNavi;      // _10
+	u8 mFollowState;        // _14, see FollowState enum
+	Creature* mTargetEnemy; // _18, enemy leader just punched that we're ALSO gonna punch
+	u8 mIdleCounter;        // _1C, try and do a lil idle goof every 90 frames (3s)
+	u8 mAnimID;             // _1D
+	u8 mPunchSeekCounter;   // _1E, time out seeking punch target after 60 frames (2s)
 };
 
 struct NaviGatherArg : public StateArg {

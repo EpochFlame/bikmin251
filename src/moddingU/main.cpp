@@ -29,6 +29,7 @@
 #include "Game/MapMgr.h"
 #include "PikiAI.h"
 #include "efx/TEnemyDive.h"
+#include "PSM/Navi.h"
 
 bool isTreasureCutscene;
 bool isKeyCheat = false; // set all keylocks to open if true
@@ -564,6 +565,41 @@ void Game::PikiAutoNukiState::exec(Piki* piki)
 
 		break;
 	}
+}
+
+void Game::NaviFollowState::init(Navi* navi, StateArg* stateArg)
+{
+	NaviFollowArg* followArg = static_cast<NaviFollowArg*>(stateArg);
+	if (followArg && followArg->mIsNewToParty) {
+
+		navi->startMotion(IPikiAnims::KIZUKU, IPikiAnims::KIZUKU, navi, nullptr);
+		mFollowState = FOLLOW_AlertJump;
+
+		if (navi->m_naviIndex == 0) {
+			navi->m_soundObj->startSound(PSSE_PL_BIKU_ORIMA, 0);
+
+		} else if (playData->isStoryFlag(STORY_DebtPaid)) {
+			navi->m_soundObj->startSound(PSSE_PL_BIKU_SHACHO, 0);
+
+		} else {
+			navi->m_soundObj->startSound(PSSE_PL_BIKU_LUGI, 0);
+		}
+
+	} else {
+		mFollowState = FOLLOW_Normal;
+		navi->startMotion(IPikiAnims::WALK, IPikiAnims::WALK, nullptr, nullptr);
+	}
+
+	mTargetNavi = naviMgr->getAt(1 - navi->m_naviIndex);
+	navi->setMoveRotation(true);
+	mIdleCounter = 0;
+	mTargetEnemy = nullptr;
+	navi->m_mass = 100.0f;
+}
+
+void Game::NaviFollowState::cleanup(Navi* navi)
+{
+	navi->m_mass = 1.0f;
 }
 
 void setKeyCheat()

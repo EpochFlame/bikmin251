@@ -687,27 +687,6 @@ __vt__Q24Game14NaviPunchState:
 	.4byte needYChangeMotion__Q24Game9NaviStateFv
 	.4byte vsUsableY__Q24Game9NaviStateFv
 	.4byte draw2d__Q24Game9NaviStateFR14J2DGrafContextRi
-.global __vt__Q24Game15NaviFollowState
-__vt__Q24Game15NaviFollowState:
-	.4byte 0
-	.4byte 0
-	.4byte init__Q24Game15NaviFollowStateFPQ24Game4NaviPQ24Game8StateArg
-	.4byte exec__Q24Game15NaviFollowStateFPQ24Game4Navi
-	.4byte cleanup__Q24Game15NaviFollowStateFPQ24Game4Navi
-	.4byte "resume__Q24Game22FSMState<Q24Game4Navi>FPQ24Game4Navi"
-	.4byte "restart__Q24Game22FSMState<Q24Game4Navi>FPQ24Game4Navi"
-	.4byte "transit__Q24Game22FSMState<Q24Game4Navi>FPQ24Game4NaviiPQ24Game8StateArg"
-	.4byte invincible__Q24Game9NaviStateFv
-	.4byte onKeyEvent__Q24Game15NaviFollowStateFPQ24Game4NaviRCQ28SysShape8KeyEvent
-	.4byte collisionCallback__Q24Game9NaviStateFPQ24Game4NaviRQ24Game9CollEvent
-	.4byte "wallCallback__Q24Game9NaviStateFPQ24Game4NaviR10Vector3<f>"
-	.4byte bounceCallback__Q24Game9NaviStateFPQ24Game4NaviPQ23Sys8Triangle
-	.4byte pressable__Q24Game9NaviStateFv
-	.4byte callable__Q24Game9NaviStateFv
-	.4byte ignoreAtari__Q24Game9NaviStateFPQ24Game8Creature
-	.4byte needYChangeMotion__Q24Game15NaviFollowStateFv
-	.4byte vsUsableY__Q24Game9NaviStateFv
-	.4byte draw2d__Q24Game9NaviStateFR14J2DGrafContextRi
 .global __vt__Q24Game15NaviChangeState
 __vt__Q24Game15NaviChangeState:
 	.4byte 0
@@ -3634,105 +3613,6 @@ exec__Q24Game15NaviChangeStateFPQ24Game4Navi:
 cleanup__Q24Game15NaviChangeStateFPQ24Game4Navi:
 /* 80180160 0017D0A0  4E 80 00 20 */	blr 
 
-.global init__Q24Game15NaviFollowStateFPQ24Game4NaviPQ24Game8StateArg
-init__Q24Game15NaviFollowStateFPQ24Game4NaviPQ24Game8StateArg:
-/* 80180164 0017D0A4  94 21 FF F0 */	stwu r1, -0x10(r1)
-/* 80180168 0017D0A8  7C 08 02 A6 */	mflr r0
-/* 8018016C 0017D0AC  28 05 00 00 */	cmplwi r5, 0
-/* 80180170 0017D0B0  90 01 00 14 */	stw r0, 0x14(r1)
-/* 80180174 0017D0B4  93 E1 00 0C */	stw r31, 0xc(r1)
-/* 80180178 0017D0B8  7C 9F 23 78 */	mr r31, r4
-/* 8018017C 0017D0BC  93 C1 00 08 */	stw r30, 8(r1)
-/* 80180180 0017D0C0  7C 7E 1B 78 */	mr r30, r3
-/* 80180184 0017D0C4  41 82 00 C4 */	beq .L_80180248
-/* 80180188 0017D0C8  88 05 00 00 */	lbz r0, 0(r5)
-/* 8018018C 0017D0CC  28 00 00 00 */	cmplwi r0, 0
-/* 80180190 0017D0D0  41 82 00 B8 */	beq .L_80180248
-/* 80180194 0017D0D4  28 1F 00 00 */	cmplwi r31, 0
-/* 80180198 0017D0D8  7F E6 FB 78 */	mr r6, r31
-/* 8018019C 0017D0DC  41 82 00 08 */	beq .L_801801A4
-/* 801801A0 0017D0E0  38 C6 01 78 */	addi r6, r6, 0x178
-.L_801801A4:
-/* 801801A4 0017D0E4  81 9F 00 00 */	lwz r12, 0(r31)
-/* 801801A8 0017D0E8  7F E3 FB 78 */	mr r3, r31
-/* 801801AC 0017D0EC  38 80 00 20 */	li r4, 0x20
-/* 801801B0 0017D0F0  38 A0 00 20 */	li r5, 0x20
-/* 801801B4 0017D0F4  81 8C 02 08 */	lwz r12, 0x208(r12)
-/* 801801B8 0017D0F8  38 E0 00 00 */	li r7, 0
-/* 801801BC 0017D0FC  7D 89 03 A6 */	mtctr r12
-/* 801801C0 0017D100  4E 80 04 21 */	bctrl 
-/* 801801C4 0017D104  38 00 00 00 */	li r0, 0
-/* 801801C8 0017D108  98 1E 00 14 */	stb r0, 0x14(r30)
-/* 801801CC 0017D10C  A0 1F 02 DC */	lhz r0, 0x2dc(r31)
-/* 801801D0 0017D110  28 00 00 00 */	cmplwi r0, 0
-/* 801801D4 0017D114  40 82 00 24 */	bne .L_801801F8
-/* 801801D8 0017D118  80 7F 02 6C */	lwz r3, 0x26c(r31)
-/* 801801DC 0017D11C  38 80 08 95 */	li r4, 0x895
-/* 801801E0 0017D120  38 A0 00 00 */	li r5, 0
-/* 801801E4 0017D124  81 83 00 28 */	lwz r12, 0x28(r3)
-/* 801801E8 0017D128  81 8C 00 7C */	lwz r12, 0x7c(r12)
-/* 801801EC 0017D12C  7D 89 03 A6 */	mtctr r12
-/* 801801F0 0017D130  4E 80 04 21 */	bctrl 
-/* 801801F4 0017D134  48 00 00 80 */	b .L_80180274
-.L_801801F8:
-/* 801801F8 0017D138  80 6D 94 90 */	lwz r3, playData__4Game@sda21(r13)
-/* 801801FC 0017D13C  88 03 00 2F */	lbz r0, 0x2f(r3)
-/* 80180200 0017D140  54 00 07 FF */	clrlwi. r0, r0, 0x1f
-/* 80180204 0017D144  41 82 00 24 */	beq .L_80180228
-/* 80180208 0017D148  80 7F 02 6C */	lwz r3, 0x26c(r31)
-/* 8018020C 0017D14C  38 80 08 9C */	li r4, 0x89c
-/* 80180210 0017D150  38 A0 00 00 */	li r5, 0
-/* 80180214 0017D154  81 83 00 28 */	lwz r12, 0x28(r3)
-/* 80180218 0017D158  81 8C 00 7C */	lwz r12, 0x7c(r12)
-/* 8018021C 0017D15C  7D 89 03 A6 */	mtctr r12
-/* 80180220 0017D160  4E 80 04 21 */	bctrl 
-/* 80180224 0017D164  48 00 00 50 */	b .L_80180274
-.L_80180228:
-/* 80180228 0017D168  80 7F 02 6C */	lwz r3, 0x26c(r31)
-/* 8018022C 0017D16C  38 80 08 96 */	li r4, 0x896
-/* 80180230 0017D170  38 A0 00 00 */	li r5, 0
-/* 80180234 0017D174  81 83 00 28 */	lwz r12, 0x28(r3)
-/* 80180238 0017D178  81 8C 00 7C */	lwz r12, 0x7c(r12)
-/* 8018023C 0017D17C  7D 89 03 A6 */	mtctr r12
-/* 80180240 0017D180  4E 80 04 21 */	bctrl 
-/* 80180244 0017D184  48 00 00 30 */	b .L_80180274
-.L_80180248:
-/* 80180248 0017D188  38 00 00 01 */	li r0, 1
-/* 8018024C 0017D18C  7F E3 FB 78 */	mr r3, r31
-/* 80180250 0017D190  98 1E 00 14 */	stb r0, 0x14(r30)
-/* 80180254 0017D194  38 80 00 1E */	li r4, 0x1e
-/* 80180258 0017D198  38 A0 00 1E */	li r5, 0x1e
-/* 8018025C 0017D19C  38 C0 00 00 */	li r6, 0
-/* 80180260 0017D1A0  81 9F 00 00 */	lwz r12, 0(r31)
-/* 80180264 0017D1A4  38 E0 00 00 */	li r7, 0
-/* 80180268 0017D1A8  81 8C 02 08 */	lwz r12, 0x208(r12)
-/* 8018026C 0017D1AC  7D 89 03 A6 */	mtctr r12
-/* 80180270 0017D1B0  4E 80 04 21 */	bctrl 
-.L_80180274:
-/* 80180274 0017D1B4  80 6D 92 E0 */	lwz r3, naviMgr__4Game@sda21(r13)
-/* 80180278 0017D1B8  A0 1F 02 DC */	lhz r0, 0x2dc(r31)
-/* 8018027C 0017D1BC  81 83 00 00 */	lwz r12, 0(r3)
-/* 80180280 0017D1C0  20 80 00 01 */	subfic r4, r0, 1
-/* 80180284 0017D1C4  81 8C 00 24 */	lwz r12, 0x24(r12)
-/* 80180288 0017D1C8  7D 89 03 A6 */	mtctr r12
-/* 8018028C 0017D1CC  4E 80 04 21 */	bctrl 
-/* 80180290 0017D1D0  90 7E 00 10 */	stw r3, 0x10(r30)
-/* 80180294 0017D1D4  7F E3 FB 78 */	mr r3, r31
-/* 80180298 0017D1D8  38 80 00 01 */	li r4, 1
-/* 8018029C 0017D1DC  81 9F 00 00 */	lwz r12, 0(r31)
-/* 801802A0 0017D1E0  81 8C 01 D8 */	lwz r12, 0x1d8(r12)
-/* 801802A4 0017D1E4  7D 89 03 A6 */	mtctr r12
-/* 801802A8 0017D1E8  4E 80 04 21 */	bctrl 
-/* 801802AC 0017D1EC  38 00 00 00 */	li r0, 0
-/* 801802B0 0017D1F0  98 1E 00 1C */	stb r0, 0x1c(r30)
-/* 801802B4 0017D1F4  90 1E 00 18 */	stw r0, 0x18(r30)
-/* 801802B8 0017D1F8  83 E1 00 0C */	lwz r31, 0xc(r1)
-/* 801802BC 0017D1FC  83 C1 00 08 */	lwz r30, 8(r1)
-/* 801802C0 0017D200  80 01 00 14 */	lwz r0, 0x14(r1)
-/* 801802C4 0017D204  7C 08 03 A6 */	mtlr r0
-/* 801802C8 0017D208  38 21 00 10 */	addi r1, r1, 0x10
-/* 801802CC 0017D20C  4E 80 00 20 */	blr 
-
 .global onKeyEvent__Q24Game15NaviFollowStateFPQ24Game4NaviRCQ28SysShape8KeyEvent
 onKeyEvent__Q24Game15NaviFollowStateFPQ24Game4NaviRCQ28SysShape8KeyEvent:
 /* 801802D0 0017D210  94 21 FF F0 */	stwu r1, -0x10(r1)
@@ -4504,10 +4384,6 @@ exec__Q24Game15NaviFollowStateFPQ24Game4Navi:
 /* 80180DD8 0017DD18  7C 08 03 A6 */	mtlr r0
 /* 80180DDC 0017DD1C  38 21 01 10 */	addi r1, r1, 0x110
 /* 80180DE0 0017DD20  4E 80 00 20 */	blr 
-
-.global cleanup__Q24Game15NaviFollowStateFPQ24Game4Navi
-cleanup__Q24Game15NaviFollowStateFPQ24Game4Navi:
-/* 80180DE4 0017DD24  4E 80 00 20 */	blr 
 
 .global __ct__Q24Game14NaviPunchStateFv
 __ct__Q24Game14NaviPunchStateFv:
