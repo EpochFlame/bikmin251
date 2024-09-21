@@ -494,8 +494,9 @@ void StateShot::exec(EnemyBase* enemy)
 			houdai->stopMotion();
 			houdai->finishShotGunRotation();
 			houdai->finishBossAttackLoopBGM();
+			
 			houdai->resetAnimSpeed();
-
+			houdai->createPikiBaby();
 		} else if ((u32)houdai->m_curAnim->m_type == KEYEVENT_END) {
 			if (houdai->m_health <= 0.0f) {
 				transit(houdai, HOUDAI_Dead, nullptr);

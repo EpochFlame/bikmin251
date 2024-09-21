@@ -154,6 +154,7 @@ struct Obj : public EnemyBase {
 	void effectDrawOn();
 	void effectDrawOff();
 	void startMatAnimator();
+	void createPikiBaby();
 
 	static Sys::MatLoopAnimator sMatAnimator;
 

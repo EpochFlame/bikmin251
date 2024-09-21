@@ -1,10 +1,13 @@
 #include "Game/Entities/Houdai.h"
+#include "Game/Entities/PikiBaby.h"
+#include "Game/generalEnemyMgr.h"
 #include "PS.h"
 #include "efx/TDama.h"
 #include "efx/TOoota.h"
 #include "efx/TEnemyDownWat.h"
 #include "efx/TEnemyDownSmoke.h"
 #include "JSystem/JAI/JAISound.h"
+#include "Dolphin/rand.h"
 
 namespace Game{
 namespace Houdai {
@@ -45,20 +48,42 @@ void Obj::doUpdate()
 	doUpdateShotGun();
 }
 
-// void Obj::createEffect()
-// {
-// 	for (int i = 0; i < 4; i++) {
-// 		mAppearHahenFootFX[i] = new efx::THdamaOnHahen2;
-// 	}
+void Obj::createPikiBaby()
+{
+	PikiBabyRed::Mgr* babyMgr = static_cast<PikiBabyRed::Mgr*>(generalEnemyMgr->getEnemyMgr(EnemyTypeID::EnemyID_PikiBabyRed));
+	if (babyMgr == nullptr) {
+		return;
+	}
 
-// 	for (int i = 0; i < 3; i++) {
-// 		mDeadElecAFX[i] = new efx::TDamaDeadElecA;
-// 		mHahenFX[i]     = new efx::THdamaHahen;
-// 	}
+	EnemyBirthArg birthArg;
+	m_model->getJoint("tama1")->getWorldMatrix()->getTranslation(birthArg.m_position);
 
-// 	mAppearHahenFX = new efx::THdamaOnHahen1;
-// 	mDeadBombFX    = new efx::THdamaDeadbomb;
-// }
+	u8 count = 5;
+	if (mIsSmoking) {
+		count = 10;
+	}
+
+	EnemyParmsBase::Parms* parms = &C_GENERALPARMS;
+	
+	Vector3f velocity = Vector3f::zero;
+	f32 speed = parms->m_privateRadius.m_value * 2.0f;
+
+	for (u8 i = 1; i <= count; i++) {
+		birthArg.m_faceDir = TAU / i;
+		PikiBabyRed::Obj* baby = static_cast<PikiBabyRed::Obj*>(babyMgr->birth(birthArg));
+		if (baby == nullptr) {
+			return;
+		}
+
+		f32 angle = birthArg.m_faceDir;
+		velocity.x = speed * sinf(angle);
+		velocity.z = speed * cosf(angle);
+
+		baby->init(nullptr);
+		baby->setVelocity(velocity);
+		baby->m_simVelocity = velocity;
+	}
+}
 
 void Obj::setupEffect()
 {
@@ -143,11 +168,11 @@ void Obj::updatePinchLife()
 
 	f32 healthRatio = m_health / C_PARMS->m_general.m_health.m_value;
 	if (mIsSmoking) {
-		if (healthRatio > 0.35f) {
+		if (healthRatio > 0.5f) {
 			mIsSmoking = false;
 		}
 
-	} else if (healthRatio < 0.35f) {
+	} else if (healthRatio < 0.5f) {
 		mIsSmoking = true;
 		getJAIObject()->startSound(PSSE_EN_DAMAGUMO_SMOKE, 0);
 	}
