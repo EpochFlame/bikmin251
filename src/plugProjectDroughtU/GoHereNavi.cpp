@@ -1,5 +1,6 @@
 #include "Game/Navi.h"
 #include "Game/NaviState.h"
+#include "Game/NaviParms.h"
 #include "PSM/Navi.h"
 #include "Drought/Game/NaviGoHere.h"
 #include "Game/MoviePlayer.h"
@@ -182,13 +183,17 @@ bool NaviGoHereState::execMove(Navi* navi)
 	
     navi->makeCStick(true);
 
-    
-
     navi->m_faceDir += 0.2f * angDist(JMath::atanTable_.atan2_(diff.x, diff.z), navi->m_faceDir);
     navi->m_faceDir = roundAng(navi->m_faceDir);
 
-	navi->m_velocity.x = diff.x * 150.0f;
-	navi->m_velocity.z = diff.z * 150.0f;
+	NaviParms* parms = static_cast<NaviParms*>(navi->m_parms);
+	f32 speed = parms->m_naviParms.m_p004.m_value;
+	if (navi->getOlimarData()->hasItem(OlimarData::ODII_RepugnantAppendage)) {
+		speed = parms->m_naviParms.m_q006.m_value;
+	}
+
+	navi->m_velocity.x = diff.x * speed;
+	navi->m_velocity.z = diff.z * speed;
 	return false;
 }
 
@@ -223,20 +228,24 @@ void NaviGoHereState::cleanup(Navi* navi) {
 }
 
 
-void Navi::GoHereSuccess() {
-	// your code here
+void Navi::GoHereSuccess() 
+{
+	if (m_naviIndex == 0) {
+		PSSystem::spSysIF->playSystemSe(PSSE_PL_BIKU_ORIMA, 0);
+	} else if (playData->isStoryFlag(STORY_DebtPaid)) {
+		PSSystem::spSysIF->playSystemSe(PSSE_PL_BIKU_SHACHO, 0);
+	} else {
+		PSSystem::spSysIF->playSystemSe(PSSE_PL_BIKU_LUGI, 0);
+	}
 }
 
-void Navi::GoHereInterupted() {
-
+void Navi::GoHereInterupted() 
+{
+	PSSystem::spSysIF->playSystemSe(PSSE_SY_MENU_ERROR, 0);
 }
 
-void Navi::GoHereInteruptBlocked() {
+void Navi::GoHereInteruptBlocked() { }
 
-}
-
-void Navi::GoHereInteruptWater() {
-	
-}
+void Navi::GoHereInteruptWater() { }
 
 } // namespace Game
