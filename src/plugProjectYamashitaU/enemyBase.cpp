@@ -2375,6 +2375,8 @@ void EnemyBase::deathProcedure()
 		PSStartEnemyFatalHitSE(this, 0.0f);
 	}
 
+	releaseAllStickers();
+
 	PSM::EnemyBase* soundObj = m_soundObj;
 	if ((soundObj->getCastType() == PSM::CCT_EnemyMidBoss) || (soundObj->getCastType() == PSM::CCT_EnemyBigBoss)) {
 		static_cast<PSM::EnemyBoss*>(soundObj)->onDeathMotionTop();
