@@ -153,11 +153,31 @@ struct TPkOneEmitterSimple : public JPAEmitterCallBack {
 };
 
 struct TPkEffectTane {
-	int _00; // _00
-	u32 _04; // _04, unknown
-	u32 _08; // _08, unknown
-	u32 _0C; // _0C, unknown
-	u32 _10; // _10, unknown
+	TPkEffectTane()
+	    : mPikiColor(-1)
+	    , mEfxPos(nullptr)
+	    , mObjPos(nullptr)
+	    , mHappaJntMtx(nullptr)
+	    , mObjMatrix(nullptr)
+	{
+	}
+
+	void init();
+	void createTanekira_(Vector3f*);
+	void killTanekira_();
+	void createKourin_(Vector3f*);
+	void killKourin_();
+	void createGlow1_(Vector3f*);
+	void killGlow1_();
+
+	int mPikiColor;        // _00
+	Vector3f* mEfxPos;     // _04
+	Vector3f* mObjPos;     // _08
+	Matrixf* mHappaJntMtx; // _0C
+	Matrixf* mObjMatrix;   // _10
+	TPkGlow1 mGlow;        // _14
+	ToeTanekira mOeKira;   // _28
+	ToeKourin mOeKourin;   // _44
 };
 
 struct TPkEffect {

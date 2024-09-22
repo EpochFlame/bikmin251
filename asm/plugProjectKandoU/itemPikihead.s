@@ -616,21 +616,6 @@ __vt__Q34Game12ItemPikihead9GrowState:
 	.4byte "onBounce__Q24Game37ItemState<Q34Game12ItemPikihead4Item>FPQ34Game12ItemPikihead4ItemPQ23Sys8Triangle"
 	.4byte "onPlatCollision__Q24Game37ItemState<Q34Game12ItemPikihead4Item>FPQ34Game12ItemPikihead4ItemRQ24Game9PlatEvent"
 	.4byte "onCollision__Q24Game37ItemState<Q34Game12ItemPikihead4Item>FPQ34Game12ItemPikihead4ItemRQ24Game9CollEvent"
-.global __vt__Q34Game12ItemPikihead9WaitState
-__vt__Q34Game12ItemPikihead9WaitState:
-	.4byte 0
-	.4byte 0
-	.4byte init__Q34Game12ItemPikihead9WaitStateFPQ34Game12ItemPikihead4ItemPQ24Game8StateArg
-	.4byte exec__Q34Game12ItemPikihead9WaitStateFPQ34Game12ItemPikihead4Item
-	.4byte cleanup__Q34Game12ItemPikihead9WaitStateFPQ34Game12ItemPikihead4Item
-	.4byte "resume__Q24Game36FSMState<Q34Game12ItemPikihead4Item>FPQ34Game12ItemPikihead4Item"
-	.4byte "restart__Q24Game36FSMState<Q34Game12ItemPikihead4Item>FPQ34Game12ItemPikihead4Item"
-	.4byte "transit__Q24Game36FSMState<Q34Game12ItemPikihead4Item>FPQ34Game12ItemPikihead4ItemiPQ24Game8StateArg"
-	.4byte "onDamage__Q24Game37ItemState<Q34Game12ItemPikihead4Item>FPQ34Game12ItemPikihead4Itemf"
-	.4byte onKeyEvent__Q34Game12ItemPikihead9WaitStateFPQ34Game12ItemPikihead4ItemRCQ28SysShape8KeyEvent
-	.4byte "onBounce__Q24Game37ItemState<Q34Game12ItemPikihead4Item>FPQ34Game12ItemPikihead4ItemPQ23Sys8Triangle"
-	.4byte "onPlatCollision__Q24Game37ItemState<Q34Game12ItemPikihead4Item>FPQ34Game12ItemPikihead4ItemRQ24Game9PlatEvent"
-	.4byte "onCollision__Q24Game37ItemState<Q34Game12ItemPikihead4Item>FPQ34Game12ItemPikihead4ItemRQ24Game9CollEvent"
 .global __vt__Q34Game12ItemPikihead11HatugaState
 __vt__Q34Game12ItemPikihead11HatugaState:
 	.4byte 0
@@ -1501,71 +1486,6 @@ onKeyEvent__Q34Game12ItemPikihead11HatugaStateFPQ34Game12ItemPikihead4ItemRCQ28S
 /* 801D941C 001D635C  7C 08 03 A6 */	mtlr r0
 /* 801D9420 001D6360  38 21 00 10 */	addi r1, r1, 0x10
 /* 801D9424 001D6364  4E 80 00 20 */	blr 
-
-.global init__Q34Game12ItemPikihead9WaitStateFPQ34Game12ItemPikihead4ItemPQ24Game8StateArg
-init__Q34Game12ItemPikihead9WaitStateFPQ34Game12ItemPikihead4ItemPQ24Game8StateArg:
-/* 801D9428 001D6368  94 21 FF E0 */	stwu r1, -0x20(r1)
-/* 801D942C 001D636C  7C 08 02 A6 */	mflr r0
-/* 801D9430 001D6370  90 01 00 24 */	stw r0, 0x24(r1)
-/* 801D9434 001D6374  93 E1 00 1C */	stw r31, 0x1c(r1)
-/* 801D9438 001D6378  7C 9F 23 78 */	mr r31, r4
-/* 801D943C 001D637C  93 C1 00 18 */	stw r30, 0x18(r1)
-/* 801D9440 001D6380  7C 7E 1B 78 */	mr r30, r3
-/* 801D9444 001D6384  80 64 01 E0 */	lwz r3, 0x1e0(r4)
-/* 801D9448 001D6388  80 83 00 04 */	lwz r4, 4(r3)
-/* 801D944C 001D638C  48 1D FA B9 */	bl "createKourin___Q23efx13TPkEffectTaneFP10Vector3<f>"
-/* 801D9450 001D6390  28 1F 00 00 */	cmplwi r31, 0
-/* 801D9454 001D6394  7F E5 FB 78 */	mr r5, r31
-/* 801D9458 001D6398  41 82 00 08 */	beq .L_801D9460
-/* 801D945C 001D639C  38 BF 01 78 */	addi r5, r31, 0x178
-.L_801D9460:
-/* 801D9460 001D63A0  38 7F 01 A8 */	addi r3, r31, 0x1a8
-/* 801D9464 001D63A4  38 80 00 00 */	li r4, 0
-/* 801D9468 001D63A8  48 24 F8 21 */	bl startAnim__Q28SysShape8AnimatorFiPQ28SysShape14MotionListener
-/* 801D946C 001D63AC  A0 1F 01 F6 */	lhz r0, 0x1f6(r31)
-/* 801D9470 001D63B0  28 00 00 02 */	cmplwi r0, 2
-/* 801D9474 001D63B4  40 82 00 48 */	bne .L_801D94BC
-/* 801D9478 001D63B8  4B EF 01 29 */	bl rand
-/* 801D947C 001D63BC  6C 63 80 00 */	xoris r3, r3, 0x8000
-/* 801D9480 001D63C0  3C 00 43 30 */	lis r0, 0x4330
-/* 801D9484 001D63C4  90 61 00 0C */	stw r3, 0xc(r1)
-/* 801D9488 001D63C8  80 6D 92 F4 */	lwz r3, pikiMgr__4Game@sda21(r13)
-/* 801D948C 001D63CC  90 01 00 08 */	stw r0, 8(r1)
-/* 801D9490 001D63D0  C8 22 B4 60 */	lfd f1, lbl_805197C0@sda21(r2)
-/* 801D9494 001D63D4  C8 01 00 08 */	lfd f0, 8(r1)
-/* 801D9498 001D63D8  C0 42 B4 50 */	lfs f2, lbl_805197B0@sda21(r2)
-/* 801D949C 001D63DC  EC 60 08 28 */	fsubs f3, f0, f1
-/* 801D94A0 001D63E0  80 63 00 6C */	lwz r3, 0x6c(r3)
-/* 801D94A4 001D63E4  C0 22 B4 74 */	lfs f1, lbl_805197D4@sda21(r2)
-/* 801D94A8 001D63E8  C0 03 0C 50 */	lfs f0, 0xc50(r3)
-/* 801D94AC 001D63EC  EC 43 10 24 */	fdivs f2, f3, f2
-/* 801D94B0 001D63F0  EC 01 00 BA */	fmadds f0, f1, f2, f0
-/* 801D94B4 001D63F4  D0 1E 00 10 */	stfs f0, 0x10(r30)
-/* 801D94B8 001D63F8  48 00 00 44 */	b .L_801D94FC
-.L_801D94BC:
-/* 801D94BC 001D63FC  4B EF 00 E5 */	bl rand
-/* 801D94C0 001D6400  6C 63 80 00 */	xoris r3, r3, 0x8000
-/* 801D94C4 001D6404  3C 00 43 30 */	lis r0, 0x4330
-/* 801D94C8 001D6408  90 61 00 0C */	stw r3, 0xc(r1)
-/* 801D94CC 001D640C  80 6D 92 F4 */	lwz r3, pikiMgr__4Game@sda21(r13)
-/* 801D94D0 001D6410  90 01 00 08 */	stw r0, 8(r1)
-/* 801D94D4 001D6414  C8 22 B4 60 */	lfd f1, lbl_805197C0@sda21(r2)
-/* 801D94D8 001D6418  C8 01 00 08 */	lfd f0, 8(r1)
-/* 801D94DC 001D641C  C0 42 B4 50 */	lfs f2, lbl_805197B0@sda21(r2)
-/* 801D94E0 001D6420  EC 60 08 28 */	fsubs f3, f0, f1
-/* 801D94E4 001D6424  80 63 00 6C */	lwz r3, 0x6c(r3)
-/* 801D94E8 001D6428  C0 22 B4 74 */	lfs f1, lbl_805197D4@sda21(r2)
-/* 801D94EC 001D642C  C0 03 0C 28 */	lfs f0, 0xc28(r3)
-/* 801D94F0 001D6430  EC 43 10 24 */	fdivs f2, f3, f2
-/* 801D94F4 001D6434  EC 01 00 BA */	fmadds f0, f1, f2, f0
-/* 801D94F8 001D6438  D0 1E 00 10 */	stfs f0, 0x10(r30)
-.L_801D94FC:
-/* 801D94FC 001D643C  80 01 00 24 */	lwz r0, 0x24(r1)
-/* 801D9500 001D6440  83 E1 00 1C */	lwz r31, 0x1c(r1)
-/* 801D9504 001D6444  83 C1 00 18 */	lwz r30, 0x18(r1)
-/* 801D9508 001D6448  7C 08 03 A6 */	mtlr r0
-/* 801D950C 001D644C  38 21 00 20 */	addi r1, r1, 0x20
-/* 801D9510 001D6450  4E 80 00 20 */	blr 
 
 .global exec__Q34Game12ItemPikihead9WaitStateFPQ34Game12ItemPikihead4Item
 exec__Q34Game12ItemPikihead9WaitStateFPQ34Game12ItemPikihead4Item:

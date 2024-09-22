@@ -132,6 +132,7 @@ struct WaitState : public State {
 
 	// _00     = VTBL
 	// _00-_0C = State
+	f32 mTimer; // _10
 };
 
 struct Item : public FSMItem<Item, FSM, State> {
