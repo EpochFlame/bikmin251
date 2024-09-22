@@ -40,15 +40,13 @@ int getEmptyIndex(MonoObjectMgr<Item>* mgr)
 Item* birthPikiHead(MonoObjectMgr<Item>* mgr)
 {
     int index = getEmptyIndex(mgr);
-	if (index == -1)
-		return nullptr;
-
-	Item* result = mgr->m_array;
-	result               = &result[index];
-
-	mgr->m_openIds[index] = false;
-	mgr->m_activeCount++;
-	return result;
+	if (index != -1) {
+		Item* result = &mgr->m_array[index];
+		mgr->m_openIds[index] = false;
+		mgr->m_activeCount++;
+		return result;
+	}
+	return nullptr;
 }
 
 // createPikiheadModel__Q34Game12ItemPikihead3MgrFPQ34Game12ItemPikihead4Item
