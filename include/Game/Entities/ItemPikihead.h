@@ -47,6 +47,7 @@ struct State : public ItemState<Item> {
 
 	// _00     = VTBL
 	// _00-_0C = ItemState
+	char* mName; // _0C, unused but educated guess
 };
 
 struct BuryState : public State {
@@ -123,7 +124,10 @@ struct TaneState : public State {
 };
 
 struct WaitState : public State {
-	// needs an inline ctor probably
+	inline WaitState()
+	    : State(2)
+	{
+	}
 
 	virtual void init(Item*, StateArg*);                       // _08
 	virtual void exec(Item*);                                  // _0C
@@ -132,6 +136,7 @@ struct WaitState : public State {
 
 	// _00     = VTBL
 	// _00-_0C = State
+	f32 mTimer; // _10
 };
 
 struct Item : public FSMItem<Item, FSM, State> {

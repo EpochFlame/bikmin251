@@ -1,5 +1,6 @@
 #include "types.h"
 #include "Dolphin/os.h"
+#include "Dolphin/rand.h"
 #include "Game/AIConstants.h"
 #include "Game/gamePlayData.h"
 #include "Game/Data.h"
@@ -26,7 +27,9 @@
 #include "TwoPlayer.h"
 #include "Game/SingleGameSection.h"
 #include "Game/Entities/ItemOnyon.h"
+#include "Game/Entities/ItemPikihead.h"
 #include "Game/MapMgr.h"
+#include "Game/PikiMgr.h"
 #include "PikiAI.h"
 #include "efx/TEnemyDive.h"
 #include "PSM/Navi.h"
@@ -567,6 +570,8 @@ void Game::PikiAutoNukiState::exec(Piki* piki)
 	}
 }
 
+// init and exec are used here to change the mass of the idle leader, 
+// so that it does not get in the way of the active leader
 void Game::NaviFollowState::init(Navi* navi, StateArg* stateArg)
 {
 	NaviFollowArg* followArg = static_cast<NaviFollowArg*>(stateArg);
@@ -600,6 +605,23 @@ void Game::NaviFollowState::init(Navi* navi, StateArg* stateArg)
 void Game::NaviFollowState::cleanup(Navi* navi)
 {
 	navi->m_mass = 1.0f;
+}
+
+void Game::ItemPikihead::WaitState::init(Item* item, StateArg*)
+{
+	item->m_efxTane->createKourin_(item->m_efxTane->mEfxPos);
+	item->m_animator.startAnim(0, item);
+	if (item->m_headType == Flower) {
+		mTimer = 2.0f * randFloat() + pikiMgr->m_parms->m_pikiParms.m_p052.m_value; // wither time
+		return;
+	} 
+
+	if (item->m_headType == Bud) {
+		mTimer = 2.0f * randFloat() + pikiMgr->m_parms->m_pikiParms.m_p045.m_value; // seed bud to flower time
+		return;
+	}
+
+	mTimer = 2.0f * randFloat() + pikiMgr->m_parms->m_pikiParms.m_p051.m_value; // growup time
 }
 
 void setKeyCheat()
