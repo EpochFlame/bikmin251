@@ -3,8 +3,29 @@
 #include "Game/EnemyAnimKeyEvent.h"
 #include "Dolphin/rand.h"
 
+namespace efx {
+
+bool TPikiFire::create(Arg* arg)
+{
+	if (!TSimple5::create(arg)) {
+		return false;
+	}
+
+	ArgScale* args = static_cast<ArgScale*>(arg);
+	f32 scale = args->m_scale;
+
+	for (int i = 0; i < 5; i++) {
+		m_emitters[i]->setScale(scale);
+	}
+
+	return true;
+}
+	
+} // namespace efx
+
+
 namespace Game {
-namespace PikiBabyRed {
+namespace PikiBaby {
 
 Obj::Obj()
 {
@@ -90,6 +111,8 @@ void Obj::bounceCallback(Sys::Triangle* tri)
 	m_simVelocity = Vector3f::zero;
 }
 
+void Obj::attackTarget() { }
+
 void FSM::init(EnemyBase* enemy)
 {
 	StateDead* stateDead = new StateDead;
@@ -108,9 +131,57 @@ void StateDead::init(EnemyBase* enemy, StateArg* arg)
 
     Obj* piki = OBJ(enemy);
     piki->mDoPlayMatAnim = true;
+	piki->attackTarget();
+}
+
+} // namespace PikiBaby
+
+namespace PikiBabyRed {
+
+void Obj::createDisChargeEffect()
+{
+	efx::ArgScale fxArg(m_position, 0.25f);
+	efx::TPikiFire dischargeFX;
+	dischargeFX.create(&fxArg);
+}
+	
+void Obj::attackTarget()
+{
+	createDisChargeEffect();
+
+	f32 radius = CS_GENERALPARMS(Baby::Parms*).m_fp22.m_value;
+	f32 dist = SQUARE(radius);
+
+	Sys::Sphere sphere;
+	sphere.m_position = m_position;
+	sphere.m_radius   = radius;
+
+	CellIteratorArg iterArg(sphere);
+	iterArg._1C = true;
+	CellIterator iter(iterArg);
+
+	CI_LOOP(iter)
+	{
+		Creature* target = static_cast<Creature*>(*iter);
+		if (!target->isAlive() || (!target->isNavi() && !target->isPiki())) {
+			continue;
+		}
+
+		Vector3f targetPos = target->getPosition();
+		if (sqrDistanceXZ(m_position, targetPos) >= dist) {
+			continue;
+		}
+
+		if (getMaxAttackHeight() > targetPos.y && getMinAttackHeight() < targetPos.y) {
+			f32 damage = CS_GENERALPARMS(Baby::Parms*).m_attackDamage.m_value;
+			InteractFire fire(this, damage);
+			target->stimulate(fire);
+		}
+	}
 }
 
 } // namespace PikiBabyRed
+
 
 namespace PikiBabyYellow {
 

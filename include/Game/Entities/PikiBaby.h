@@ -5,25 +5,41 @@
 #include "Game/Entities/Baby.h"
 #include "Sys/MatBaseAnimator.h"
 #include "Sys/MatBaseAnimation.h"
+#include "efx/TOta.h"
+
+namespace efx {
+
+struct TPikiFire : public TOtaFire {
+    inline TPikiFire()
+        : TOtaFire()
+    {
+    }
+
+    virtual bool create(Arg*);
+};
+
+} // namespace efx
+
 
 namespace Game {
-namespace PikiBabyRed {
+namespace PikiBaby {
 
 struct Obj : public Baby::Obj {
     Obj();
 
     virtual ~Obj() { }
     virtual void onInit(CreatureInitArg*);
-    virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID()
-    {
-        return EnemyTypeID::EnemyID_PikiBabyRed;
-    }
     virtual void initMouthSlots();
     virtual bool pressCallBack(Creature*, f32, CollPart*);
 	virtual bool hipdropCallBack(Creature*, f32, CollPart*) { return false; }
     virtual void changeMaterial();
     virtual void getShadowParam(ShadowParam&);
     virtual void bounceCallback(Sys::Triangle*);
+
+    virtual void attackTarget();
+
+    inline f32 getMaxAttackHeight() const { return m_position.y + CS_GENERALPARMS(Baby::Parms*).m_fp20.m_value; }
+	inline f32 getMinAttackHeight() const { return m_position.y - CS_GENERALPARMS(Baby::Parms*).m_fp21.m_value; }
     
     bool mDoPlayMatAnim;
     Sys::MatLoopAnimator* mMatAnimator;
@@ -32,13 +48,6 @@ struct Obj : public Baby::Obj {
 struct Mgr : public EnemyMgrBase {
     Mgr(int objLimit, u8 modelType);
 
-	virtual void createObj(int);
-	virtual EnemyBase* getEnemy(int idx);
-	virtual void doAlloc();
-	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID()
-	{
-		return EnemyTypeID::EnemyID_PikiBabyRed;
-	}
     virtual SysShape::Model* createModel();
     virtual J3DModelData* doLoadBmd(void* filename) 
     {
@@ -60,11 +69,45 @@ struct StateDead : public Baby::StateDead {
         
 } // namespace PikiBaby
 
+namespace PikiBabyRed
+{
+
+struct Obj : public PikiBaby::Obj {
+    inline Obj()
+        : PikiBaby::Obj()
+    {
+    }
+
+    virtual ~Obj() { }
+    virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID()
+    {
+        return EnemyTypeID::EnemyID_PikiBabyRed;
+    }
+    virtual void attackTarget();
+    
+    void createDisChargeEffect();
+};
+
+struct Mgr : public PikiBaby::Mgr {
+    Mgr(int objLimit, u8 modelType);
+    
+    virtual void createObj(int);
+	virtual EnemyBase* getEnemy(int idx);
+	virtual void doAlloc();
+    virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID()
+	{
+		return EnemyTypeID::EnemyID_PikiBabyRed;
+	}
+
+};
+    
+} // namespace PikiBabyRed
+
 namespace PikiBabyYellow {
 
-struct Obj : public PikiBabyRed::Obj {
+struct Obj : public PikiBaby::Obj {
     inline Obj()
-        : PikiBabyRed::Obj()
+        : PikiBaby::Obj()
     {
     }
     
@@ -76,7 +119,7 @@ struct Obj : public PikiBabyRed::Obj {
     virtual void collisionCallback(CollEvent&);
 };
 
-struct Mgr : public PikiBabyRed::Mgr {
+struct Mgr : public PikiBaby::Mgr {
     Mgr(int objLimit, u8 modelType);
     
     virtual void createObj(int);
@@ -92,9 +135,9 @@ struct Mgr : public PikiBabyRed::Mgr {
 
 namespace PikiBabyBlue {
     
-struct Obj : public PikiBabyRed::Obj {
+struct Obj : public PikiBaby::Obj {
     inline Obj()
-        : PikiBabyRed::Obj()
+        : PikiBaby::Obj()
     {
     }
     
@@ -105,7 +148,7 @@ struct Obj : public PikiBabyRed::Obj {
     }
 };
 
-struct Mgr : public PikiBabyRed::Mgr {
+struct Mgr : public PikiBaby::Mgr {
     Mgr(int objLimit, u8 modelType);
     
     virtual void createObj(int);

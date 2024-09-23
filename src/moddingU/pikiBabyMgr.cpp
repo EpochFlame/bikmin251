@@ -2,19 +2,13 @@
 #include "LoadResource.h"
 
 namespace Game {
-namespace PikiBabyRed {
+namespace PikiBaby {
 
 Mgr::Mgr(int objLimit, u8 modelType)
     : EnemyMgrBase(objLimit, modelType)
 {
     m_name = "";
 }
-
-void Mgr::doAlloc() { init(new Baby::Parms); }
-
-void Mgr::createObj(int count) { m_obj = new Obj[count]; }
-
-EnemyBase*Mgr:: getEnemy(int idx) { return &m_obj[idx]; }
 
 SysShape::Model* Mgr::createModel()
 {
@@ -50,10 +44,27 @@ void Mgr::loadTexData()
         
 } // namespace PikiBaby
 
+namespace PikiBabyRed {
+
+Mgr::Mgr(int objLimit, u8 modelType)
+    : PikiBaby::Mgr(objLimit, modelType)
+{
+    m_name = "";
+}
+
+void Mgr::doAlloc() { init(new Baby::Parms); }
+
+void Mgr::createObj(int count) { m_obj = new Obj[count]; }
+
+EnemyBase*Mgr:: getEnemy(int idx) { return &m_obj[idx]; }
+
+} // namespace PikiBabyRed
+
+
 namespace PikiBabyYellow {
 
 Mgr::Mgr(int objLimit, u8 modelType)
-    : PikiBabyRed::Mgr(objLimit, modelType)
+    : PikiBaby::Mgr(objLimit, modelType)
 {
     m_name = "";
 }
@@ -69,7 +80,7 @@ EnemyBase*Mgr:: getEnemy(int idx) { return &m_obj[idx]; }
 namespace PikiBabyBlue {
 
 Mgr::Mgr(int objLimit, u8 modelType)
-    : PikiBabyRed::Mgr(objLimit, modelType)
+    : PikiBaby::Mgr(objLimit, modelType)
 {
     m_name = "";
 }
