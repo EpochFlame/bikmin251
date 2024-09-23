@@ -28,6 +28,7 @@
 #include "Game/SingleGameSection.h"
 #include "Game/Entities/ItemOnyon.h"
 #include "Game/Entities/ItemPikihead.h"
+#include "Game/Entities/SnakeWhole.h"
 #include "Game/MapMgr.h"
 #include "Game/PikiMgr.h"
 #include "PikiAI.h"
@@ -607,6 +608,7 @@ void Game::NaviFollowState::cleanup(Navi* navi)
 	navi->m_mass = 1.0f;
 }
 
+// separate seed growth stage timers
 void Game::ItemPikihead::WaitState::init(Item* item, StateArg*)
 {
 	item->m_efxTane->createKourin_(item->m_efxTane->mEfxPos);

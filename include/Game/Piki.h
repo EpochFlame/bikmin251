@@ -202,7 +202,7 @@ struct Piki : public FakePiki {
 	bool isMyPikmin(Creature*);
 	bool isTekiFollowAI();
 	bool isThrowable();
-	void might_bury();
+	bool might_bury();
 	void setActTransportArg(PikiAI::ActTransportArg&);
 	void setDopeEffect(bool);
 	void setFreeLightEffect(bool);

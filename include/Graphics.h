@@ -27,22 +27,22 @@ struct Sphere;
 struct PerspPrintfInfo {
 	inline PerspPrintfInfo()
 	    : m_font(JFWSystem::systemFont)
-	    , _04(0)
-	    , _08(0)
-	    , _0C(0)
-	    , _10(1.0f)
-	    , _14(Color4(0x66, 0x99, 0xFF, 0xFF))
-	    , _18(Color4(0, 0x66, 0xFF, 0xFF))
+	    , m_perspectiveOffsetX(0)
+	    , m_perspectiveOffsetY(0)
+	    , m_printType(0)
+	    , m_scale(1.0f)
+	    , m_colorA(Color4(0x66, 0x99, 0xFF, 0xFF))
+	    , m_colorB(Color4(0, 0x66, 0xFF, 0xFF))
 	{
 	}
 
 	struct JUTFont* m_font; // _00
-	u32 _04;                // _04
-	u32 _08;                // _08
-	int _0C;                // _0C
-	float _10;              // _10
-	Color4 _14;             // _14
-	Color4 _18;             // _18
+	u32 m_perspectiveOffsetX;                // _04
+	u32 m_perspectiveOffsetY;                // _08
+	int m_printType;                // _0C
+	float m_scale;              // _10
+	Color4 m_colorA;             // _14
+	Color4 m_colorB;             // _18
 };
 
 struct _GraphicsParent {

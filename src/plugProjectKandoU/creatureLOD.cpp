@@ -539,18 +539,18 @@ void Creature::drawLODInfo(Graphics& gfx, Vector3f& position)
 	if (AILOD::drawInfo) {
 		PerspPrintfInfo info;
 		info.m_font = JFWSystem::systemFont;
-		info._04    = 0;
-		info._08    = 0;
-		info._0C    = 0;
-		info._10    = 1.0f;
-		info._14.r  = 0x66;
-		info._14.g  = 0x99;
-		info._14.b  = 0xFF;
-		info._14.a  = 0xFF;
-		info._18.r  = 0x00;
-		info._18.g  = 0x66;
-		info._18.b  = 0xFF;
-		info._18.a  = 0xFF;
+		info.m_perspectiveOffsetX    = 0;
+		info.m_perspectiveOffsetY    = 0;
+		info.m_printType    = 0;
+		info.m_scale    = 1.0f;
+		info.m_colorA.r  = 0x66;
+		info.m_colorA.g  = 0x99;
+		info.m_colorA.b  = 0xFF;
+		info.m_colorA.a  = 0xFF;
+		info.m_colorB.r  = 0x00;
+		info.m_colorB.g  = 0x66;
+		info.m_colorB.b  = 0xFF;
+		info.m_colorB.a  = 0xFF;
 		gfx.initPerspPrintf(gfx._25C);
 		const char* nearnessLabels[] = { "near", "mid", "far" };
 		// nearnessLabels[0] = "near";
@@ -561,35 +561,35 @@ void Creature::drawLODInfo(Graphics& gfx, Vector3f& position)
 		switch (nearness) {
 		case AILOD::FLAG_NONE:
 			if (true) {
-				info._14.r = 0x00;
-				info._14.g = 0x0A;
-				info._14.b = 0xFF;
-				info._14.a = 0xFF;
-				info._18.r = 0xC8;
-				info._18.g = 0xC8;
-				info._18.b = 0xC8;
-				info._18.a = 0xFF;
+				info.m_colorA.r = 0x00;
+				info.m_colorA.g = 0x0A;
+				info.m_colorA.b = 0xFF;
+				info.m_colorA.a = 0xFF;
+				info.m_colorB.r = 0xC8;
+				info.m_colorB.g = 0xC8;
+				info.m_colorB.b = 0xC8;
+				info.m_colorB.a = 0xFF;
 			}
 			break;
 		case AILOD::IsMid:
-			info._14.r = 0xC8;
-			info._14.g = 0xC8;
-			info._14.b = 0x00;
-			info._14.a = 0xFF;
-			info._18.r = 0xC8;
-			info._18.g = 0xC8;
-			info._18.b = 0xC8;
-			info._18.a = 0xFF;
+			info.m_colorA.r = 0xC8;
+			info.m_colorA.g = 0xC8;
+			info.m_colorA.b = 0x00;
+			info.m_colorA.a = 0xFF;
+			info.m_colorB.r = 0xC8;
+			info.m_colorB.g = 0xC8;
+			info.m_colorB.b = 0xC8;
+			info.m_colorB.a = 0xFF;
 			break;
 		case AILOD::IsFar:
-			info._14.r = 0xFF;
-			info._14.g = 0x0A;
-			info._14.b = 0x00;
-			info._14.a = 0xFF;
-			info._18.r = 0xC8;
-			info._18.g = 0xC8;
-			info._18.b = 0xC8;
-			info._18.a = 0xFF;
+			info.m_colorA.r = 0xFF;
+			info.m_colorA.g = 0x0A;
+			info.m_colorA.b = 0x00;
+			info.m_colorA.a = 0xFF;
+			info.m_colorB.r = 0xC8;
+			info.m_colorB.g = 0xC8;
+			info.m_colorB.b = 0xC8;
+			info.m_colorB.a = 0xFF;
 			break;
 		}
 		const char* flag4Text = "_";

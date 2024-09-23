@@ -136,6 +136,7 @@ struct Obj : public EnemyBase {
 	void createWalkSmokeEffect(f32);
 	void effectDrawOn();
 	void effectDrawOff();
+	void flickOnLand();
 
 	// _00 		= VTBL
 	// _00-_2BC	= EnemyBase
