@@ -1075,7 +1075,7 @@ KONO:=\
 
 MODDING:=\
 	$(BUILD_DIR)/src/moddingU/main.o\
-	$(BUILD_DIR)/src/moddingU/waterpiki.o\
+	$(BUILD_DIR)/src/moddingU/pikiNew.o\
 	$(BUILD_DIR)/src/moddingU/bloyster.o\
 	$(BUILD_DIR)/src/moddingU/artGallery.o\
 	$(BUILD_DIR)/src/moddingU/VRBoxAnim.o\

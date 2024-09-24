@@ -31,6 +31,7 @@
 #include "Game/Entities/SnakeWhole.h"
 #include "Game/MapMgr.h"
 #include "Game/PikiMgr.h"
+#include "Game/CPlate.h"
 #include "PikiAI.h"
 #include "efx/TEnemyDive.h"
 #include "PSM/Navi.h"

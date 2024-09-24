@@ -93,6 +93,10 @@ struct PikiState : public FSMState<Piki> {
 	char* m_name; // _0C
 };
 
+struct AbsorbStateArg : public StateArg {
+	Creature* mCreature; // _00
+};
+
 struct PikiAbsorbState : public PikiState {
 	inline PikiAbsorbState()
 	    : PikiState(PIKISTATE_Absorb, "ABSORB")
@@ -103,13 +107,15 @@ struct PikiAbsorbState : public PikiState {
 	virtual void exec(Piki*);                                  // _0C
 	virtual void cleanup(Piki*);                               // _10
 	virtual void onKeyEvent(Piki*, const SysShape::KeyEvent&); // _30
+	virtual bool callable();
 
 	// _00     = VTBL
 	// _00-_10 = PikiState
-	u8 _10[0x4]; // _10, unknown
-	void* _14;   // _14, code?
-	u8 _18;      // _18
-	u8 _19;      // _19
+	u8 mState;                    // _10
+	Creature* mAbsorbingCreature; // _14
+	u8 mHasAbsorbed;              // _18
+	u8 mAbsorbTimer;              // _19
+	Piki* mPiki;
 };
 
 struct PikiAutoNukiState : public PikiState {
@@ -485,10 +491,12 @@ struct PikiGrowupState : public PikiState {
 	virtual void exec(Piki*);                                  // _0C
 	virtual void cleanup(Piki*);                               // _10
 	virtual void onKeyEvent(Piki*, const SysShape::KeyEvent&); // _30
+	virtual bool callable();
 
 	// _00     = VTBL
 	// _00-_10 = PikiState
-	u8 _10[0x4]; // _10, unknown
+	s16 mAnimIdx; // _10
+	Piki* mPiki;
 };
 
 struct PikiHangedState : public PikiState, virtual SysShape::MotionListener {
