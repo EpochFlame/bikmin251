@@ -392,7 +392,14 @@ bool Game::InteractPress::actPiki(Game::Piki* piki)
 
 bool Game::InteractBomb::actNavi(Game::Navi* navi)
 {
-	if (!(gameSystem->m_flags & GAMESYS_Unk6) || Game::playData->m_olimarData[0].hasItem(Game::OlimarData::ODII_JusticeAlloy)) {
+	if (!(gameSystem->m_flags & GAMESYS_Unk6)) {
+		return false;	
+	}
+
+	bool isTeki 		 = m_creature->isTeki();
+	bool isHoudai 		 = static_cast<EnemyBase*>(m_creature)->getEnemyTypeID() == EnemyTypeID::EnemyID_Houdai;
+	bool hasJusticeAlloy = Game::playData->m_olimarData[0].hasItem(Game::OlimarData::ODII_JusticeAlloy);
+	if (hasJusticeAlloy && (!isTeki || !isHoudai)) {
 		return false;
 	}
 
