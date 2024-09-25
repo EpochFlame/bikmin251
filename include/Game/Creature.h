@@ -7,6 +7,7 @@
 #include "Game/updateMgr.h"
 #include "BitFlag.h"
 #include "ObjectTypes.h"
+#include "trig.h"
 
 // Shorthand cast to obj-specific 'parms'
 #define CG_PARMS(x)    (static_cast<Parms*>(x->m_parms))
@@ -302,6 +303,15 @@ struct Creature : public CellObject {
 		}
 
 		return false;
+	}
+
+	inline f32 getAngDist(Creature* other)
+	{
+		Vector3f otherPos = other->getPosition();
+		Vector3f pos      = getPosition();
+
+		f32 angBetween = _angXZ(otherPos.x, otherPos.z, pos.x, pos.z);
+		return angDist(angBetween, getFaceDir());
 	}
 
 	inline void killInline(Game::CreatureKillArg* arg);

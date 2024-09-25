@@ -8,9 +8,21 @@ namespace Game {
 struct Pellet;
 
 struct ConditionNotStickClient : public Condition<Piki> {
-	virtual bool satisfy(Piki*); // _08 (weak)
+	inline ConditionNotStickClient(Creature* client)
+	    : mClient(client)
+	{
+	}
+
+	virtual bool satisfy(Piki* piki) // _08 (weak)
+	{
+		if (piki->isAlive() && piki->isPikmin() && piki->m_sticker != mClient) {
+			return true;
+		}
+		return false;
+	}
 
 	// _00 VTBL
+	Creature* mClient; // _04
 };
 
 struct ConditionNotStickClientAndItem : public Condition<Piki> {
