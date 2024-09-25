@@ -1,8 +1,16 @@
+#include "Game/EnemyBase.h"
+#include "Game/EnemyAnimKeyEvent.h"
 #include "Game/Entities/UmiMushi.h"
+#include "Game/EnemyFunc.h"
+#include "Game/rumble.h"
+#include "Game/Navi.h"
 #include "PSM/EnemyBoss.h"
 #include "PSSystem/PSMainSide_ObjSound.h"
 
-void Game::UmiMushi::Obj::onInit(CreatureInitArg* initArg)
+namespace Game {
+namespace UmiMushi {
+
+void Obj::onInit(CreatureInitArg* initArg)
 {
 	EnemyBase::onInit(initArg);
 	resetEvent(0, EB_9);
@@ -116,3 +124,103 @@ void Game::UmiMushi::Obj::onInit(CreatureInitArg* initArg)
 	m_efxEat->m_mtx = _388;
 	_384->m_mtx     = _388;
 }
+	
+void StateAttack::exec(EnemyBase* enemy)
+{
+	if (mIsTongueActive) {
+		if (EnemyFunc::eatPikmin(enemy, nullptr) > 0) {
+			mTongueHasPiki = true;
+		}
+	}
+
+	if (enemy->m_curAnim->m_isRunning) {
+		switch (enemy->m_curAnim->m_type) {
+		case KEYEVENT_2:
+			// probably commented out code - required to match though.
+			break;
+
+		case KEYEVENT_3:
+			f32 rate      = CG_GENERALPARMS(enemy).m_shakeRateMaybe.m_value;
+			f32 knockback = CG_GENERALPARMS(enemy).m_shakeKnockback.m_value;
+			f32 damage    = CG_GENERALPARMS(enemy).m_shakeDamage.m_value;
+
+			EnemyFunc::flickStickPikmin(enemy, rate, knockback, damage, FLICK_BACKWARD_ANGLE, nullptr);
+			enemy->m_toFlick = 0.0f;
+			mIsTongueActive = true;
+			break;
+
+		case KEYEVENT_4:
+			OBJ(enemy)->attackEffect();
+			if (enemy->getEnemyTypeID() == EnemyTypeID::EnemyID_UmiMushi) {
+				Vector3f pos = enemy->getPosition();
+				rumbleMgr->startRumble(RUMBLETYPE_Fixed12, pos, RUMBLEID_Both);
+			}
+			break;
+
+		case KEYEVENT_5:
+			if (CG_PARMS(enemy)->_A13) {
+				Iterator<Navi> iter(naviMgr);
+				CI_LOOP(iter)
+				{
+					Navi* navi = *iter;
+					for (int i = 0; i < enemy->getMouthSlots()->m_max; i++) {
+						MouthCollPart* slot = enemy->getMouthSlots()->getSlot(i);
+						Vector3f slotPos;
+						slot->getPosition(slotPos);
+						Vector3f naviPos = navi->getPosition();
+						Vector3f sep     = Vector3f(slotPos.y - naviPos.y, slotPos.z - naviPos.z, slotPos.x - naviPos.x); // why.
+						f32 dist         = _length2(sep);
+						if (dist < slot->m_radius) {
+							InteractAttack attack(enemy, CG_GENERALPARMS(enemy).m_attackDamage.m_value, nullptr);
+							navi->stimulate(attack);
+						}
+					}
+				}
+			}
+			break;
+
+		case KEYEVENT_6:
+			mIsTongueActive = false;
+			break;
+
+		case KEYEVENT_END:
+			if (mTongueHasPiki) {
+				transit(enemy, UMIMUSHI_Eat, nullptr);
+			} else {
+				transit(enemy, UMIMUSHI_Wait, nullptr);
+			}
+			break;
+		}
+	}
+}
+
+void StateEat::exec(EnemyBase* enemy)
+{
+	if (enemy->m_curAnim->m_isRunning && enemy->m_curAnim->m_type == KEYEVENT_END) {
+		if (enemy->m_health <= 0.0f) {
+			transit(enemy, UMIMUSHI_Dead, nullptr);
+			return;
+		}
+
+		EnemyFunc::swallowPikmin(enemy, 300.0f, nullptr);
+		transit(enemy, UMIMUSHI_Wait, nullptr);
+	}
+}
+
+void Obj::changeMaterial()
+{
+	J3DModel* model = m_model->m_j3dModel;
+	_310->m_tevBlock->setTevColor(0, _314);
+	model->calcMaterial();
+	_354->animate(30.0f);
+
+
+	J3DModelData* modelData = model->m_modelData;
+	for (int i = 0; i < modelData->m_materialTable.m_count1; i++) {
+		j3dSys.m_matPacket = &model->m_matPackets[i];
+		modelData->m_materialTable.m_materials1[i]->diff(j3dSys.m_matPacket->_2C->_34);
+	}
+}
+
+} // namespace UmiMushi
+} // namespace Game

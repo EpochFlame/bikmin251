@@ -44,6 +44,21 @@ namespace UmiMushi {
 struct UmimushiShadowMgr;
 struct FSM;
 
+enum StateID {
+	UMIMUSHI_NULL   = -1,
+	UMIMUSHI_Wait   = 0,
+	UMIMUSHI_Walk   = 1,
+	UMIMUSHI_Find   = 2,
+	UMIMUSHI_Search = 3,
+	UMIMUSHI_Turn   = 4,
+	UMIMUSHI_Flick  = 5,
+	UMIMUSHI_Attack = 6,
+	UMIMUSHI_Eat    = 7,
+	UMIMUSHI_Dead   = 8,
+	UMIMUSHI_Lost   = 9,
+	UMIMUSHI_StateCount,
+};
+
 struct Parms : public EnemyParmsBase {
 	struct ProperParms : public Parameters {
 		ProperParms()
@@ -318,6 +333,8 @@ struct StateAttack : public State {
 
 	// _00		= VTBL
 	// _00-_10 	= EnemyFSMState
+	bool mIsTongueActive; // _10, is 'tongue'/tendrils out and able to eat piki
+	bool mTongueHasPiki;  // _11, has 'tongue'/tendrils captured any piki
 };
 
 struct StateDead : public State {

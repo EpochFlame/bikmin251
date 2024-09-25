@@ -74,8 +74,11 @@ void Mgr::loadTexData()
  */
 SysShape::Model* Mgr::createModel()
 {
-	SysShape::Model* model = new SysShape::Model(m_modelData, 0x20000, m_modelType);
+	SysShape::Model* model = new SysShape::Model(m_modelData, 0x80000, m_modelType);
 	P2ASSERTLINE(111, model);
+	
+	u16 matIdx = m_modelData->m_materialTable.m_materialNames->getIndex("cc_mat1_v");
+	model->m_j3dModel->m_matPackets[matIdx]._2C->newDifferedDisplayList(0x01000000);
 	return model;
 }
 

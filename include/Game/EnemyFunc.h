@@ -36,7 +36,7 @@ void flickStickPikmin(Creature*, f32, f32, f32, f32, Condition<Piki>*);
 void flickNearbyPikmin(Creature*, f32, f32, f32, f32, Condition<Piki>*);
 void flickNearbyNavi(Creature*, f32, f32, f32, f32, Condition<Navi>*);
 
-void eatPikmin(EnemyBase*, Condition<Piki>*);
+bool eatPikmin(EnemyBase*, Condition<Piki>*);
 void swallowPikmin(Creature*, f32, Condition<Piki>*);
 void attackNavi(Creature*, f32, f32, f32, CollPart*, Condition<Navi>*);
 
