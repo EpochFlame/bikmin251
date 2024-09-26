@@ -63,7 +63,7 @@ void Obj::createPikiBaby()
 
     u8 count = 5;
     if (mIsSmoking) {
-        count = 10;
+        count = 8;
     }
 
     EnemyParmsBase::Parms* parms = &C_GENERALPARMS;
@@ -112,8 +112,8 @@ void Obj::setShotGunTargetPosition()
     // only target pikmistakes if there are more than 10 in story mode
     int count = 10;
     if (gameSystem->isChallengeMode()) {
-        // and more than 9 in challenge mode
-        count = 9;
+        // and more than 7 in challenge mode
+        count = 7;
     }
 
     if (mgr->m_objCount > count) {
