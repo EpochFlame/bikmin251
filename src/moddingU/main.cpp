@@ -365,30 +365,34 @@ bool Game::InteractTroll::actPiki(Game::Piki* piki)
 
 bool Game::InteractPress::actPiki(Game::Piki* piki)
 {
-	if (!(gameSystem->m_flags & 0x20) && gameSystem->m_inCave) {
+	if (!(gameSystem->isFlag(32)) && gameSystem->m_inCave) {
 		return false;
 	}
+
 	if (piki->m_currentState->invincible(piki)) {
 		return false;
 	}
-	int pikiKind = piki->m_pikiKind;
-	if (pikiKind == Bulbmin) {
-		piki->m_happaKind = Flower;
-		InteractBury buryOrange(m_creature, m_damage);
-		piki->stimulate(buryOrange);
-		return false;
-	}
+
 	if (piki->m_currentState->pressable()) {
+		if (piki->m_pikiKind == Bulbmin) {
+			piki->m_happaKind = Flower;
+			InteractFallMeck bury(m_creature, m_damage);
+			piki->stimulate(bury);
+			return false;
+		}
+
 		if (m_creature->isTeki()) {
 			EnemyBase* teki = static_cast<EnemyBase*>(m_creature);
 			piki->setTekiKillID(teki->getEnemyTypeID());
 		} else {
 			piki->m_tekiKillID = -1;
 		}
+
 		piki->m_fsm->transit(piki, PIKISTATE_Pressed, nullptr);
 		piki->startSound(PSSE_PK_VC_PRESSED, false); // why isn't this in PikiPressedState's init?
 		return true;
 	}
+
 	return false;
 }
 

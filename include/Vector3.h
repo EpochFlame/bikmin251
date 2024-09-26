@@ -126,6 +126,9 @@ struct Vector3 {
 	}
 
 	inline f32 sqrMagnitude2D() const { return this->x * this->x + this->z * this->z; }
+	inline T dot(const Vector3& other);
+
+	static inline T getFlatDirectionFromTo(Vector3& from, Vector3& to);
 
 	float length() const;
 	float length2D() const;
@@ -367,6 +370,20 @@ inline f32 Vector3f::sqrDistance(Vector3f& them)
 	f32 diffZ = this->z - them.z;
 
 	return diffX * diffX + diffY * diffY + diffZ * diffZ;
+}
+
+template <typename T>
+inline T Vector3<T>::dot(const Vector3& other)
+{
+	return this->x * other.x + this->y * other.y + this->z * other.z;
+}
+
+template <typename T>
+inline T Vector3<T>::getFlatDirectionFromTo(Vector3& from, Vector3& to)
+{
+	to -= from;
+	to.y = 0.0f;
+	return to.normalise();
 }
 
 inline void setAccel(Vector3f& outputVec, const Vector3f& inputVec, f32 massRatio, f32 fps, f32 groundFactor, f32 airFactor)

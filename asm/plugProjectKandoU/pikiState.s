@@ -7026,7 +7026,7 @@ bounceCallback__Q24Game17PikiFallMeckStateFPQ24Game4PikiPQ23Sys8Triangle:
 /* 8018E760 0018B6A0  C0 44 00 04 */	lfs f2, 4(r4)
 /* 8018E764 0018B6A4  38 60 00 01 */	li r3, 1
 /* 8018E768 0018B6A8  C0 24 00 08 */	lfs f1, 8(r4)
-/* 8018E76C 0018B6AC  38 00 00 00 */	li r0, 0
+/* 8018E76C 0018B6AC  38 00 00 00 */	li r0, 2
 /* 8018E770 0018B6B0  C0 02 AA 88 */	lfs f0, lbl_80518DE8@sda21(r2)
 /* 8018E774 0018B6B4  38 85 2C 70 */	addi r4, r5, __vt__Q34Game12ItemPikihead7InitArg@l
 /* 8018E778 0018B6B8  90 C1 00 C8 */	stw r6, 0xc8(r1)
@@ -7194,7 +7194,7 @@ bounceCallback__Q24Game17PikiFallMeckStateFPQ24Game4PikiPQ23Sys8Triangle:
 /* 8018E9E4 0018B924  C0 44 00 04 */	lfs f2, 4(r4)
 /* 8018E9E8 0018B928  38 60 00 01 */	li r3, 1
 /* 8018E9EC 0018B92C  C0 24 00 08 */	lfs f1, 8(r4)
-/* 8018E9F0 0018B930  38 00 00 00 */	li r0, 0
+/* 8018E9F0 0018B930  38 00 00 00 */	li r0, 2
 /* 8018E9F4 0018B934  C0 02 AA 88 */	lfs f0, lbl_80518DE8@sda21(r2)
 /* 8018E9F8 0018B938  38 85 2C 70 */	addi r4, r5, __vt__Q34Game12ItemPikihead7InitArg@l
 /* 8018E9FC 0018B93C  90 C1 00 94 */	stw r6, 0x94(r1)
