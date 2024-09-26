@@ -74,6 +74,14 @@ struct Stream {
 		}
 	}
 
+	inline void setMode(bool mode, int a2)
+	{
+		m_mode = mode;
+		if (m_mode == a2) {
+			m_tabCount = 0;
+		}
+	}
+
 	int m_endian;                      // _04
 	int m_position;                    // _08
 	int m_mode;                        // _0C

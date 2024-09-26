@@ -160,7 +160,7 @@ struct Mgr : public PlayCommonData {
 	u8 mSeVol;           // _3A
 	u8 mRumble;          // _3B
 	u8 mRubyFont;        // _3C, japanese version leftover, mini font in cutscenes
-	u8 mDeflicker;       // _3D
+	u8 mVeteranMode;     // _3D
 	u8 mRegion;          // _3E
 	char _3F;            // _3F
 	BitFlag<u16> mFlags; // _40
