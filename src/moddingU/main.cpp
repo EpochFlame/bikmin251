@@ -29,6 +29,7 @@
 #include "Game/Entities/ItemOnyon.h"
 #include "Game/Entities/ItemPikihead.h"
 #include "Game/Entities/SnakeWhole.h"
+#include "Game/Entities/Hana.h"
 #include "Game/MapMgr.h"
 #include "Game/PikiMgr.h"
 #include "Game/CPlate.h"
@@ -632,6 +633,12 @@ void Game::ItemPikihead::WaitState::init(Item* item, StateArg*)
 	}
 
 	mTimer = 2.0f * randFloat() + pikiMgr->m_parms->m_pikiParms.m_p051.m_value; // growup time
+}
+
+bool Game::Hana::Obj::bombCallBack(Creature* creature, Vector3f& vec, f32 damage)
+{
+	m_health = 0.0f;
+	return true;
 }
 
 void setKeyCheat()

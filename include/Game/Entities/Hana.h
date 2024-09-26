@@ -39,6 +39,7 @@ struct Obj : public ChappyBase::Obj {
 	virtual void startSleepEffect();                       // _324 (weak)
 	virtual void finishSleepEffect();                      // _328 (weak)
 	virtual void createSmokeEffect();                      // _330
+	virtual bool bombCallBack(Creature* creature, Vector3f& vec, f32 damage);
 	                                                       //////////////// VTABLE END
 
 	// _00 		= VTBL
