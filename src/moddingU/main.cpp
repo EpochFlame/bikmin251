@@ -373,13 +373,13 @@ bool Game::InteractPress::actPiki(Game::Piki* piki)
 		return false;
 	}
 
+	if (piki->m_pikiKind == Bulbmin) {
+		InteractBury bury(m_creature, m_damage);
+		piki->stimulate(bury);
+		return false;
+	}
+
 	if (piki->m_currentState->pressable()) {
-		if (piki->m_pikiKind == Bulbmin) {
-			piki->m_happaKind = Flower;
-			InteractFallMeck bury(m_creature, m_damage);
-			piki->stimulate(bury);
-			return false;
-		}
 
 		if (m_creature->isTeki()) {
 			EnemyBase* teki = static_cast<EnemyBase*>(m_creature);

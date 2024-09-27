@@ -157,10 +157,17 @@ void Obj::collisionCallback(CollEvent& evt)
         return;
     }
 
+    Creature* target = evt.m_collidingCreature;
     // if rolling and we hit a piki, crush it.
-    if (mIsRolling && evt.m_collidingCreature->m_curTriangle) {
-        InteractPress press(this, C_GENERALPARMS.m_attackDamage.m_value, nullptr);
-        evt.m_collidingCreature->stimulate(press);
+    if (mIsRolling && target->m_curTriangle) {
+        // crawbster specifically should use fallmeck because bury can create weird things
+        if (target->isPiki() && static_cast<Piki*>(target)->m_pikiKind == Bulbmin) {
+            InteractFallMeck fallMeck(this, C_GENERALPARMS.m_attackDamage.m_value);
+            target->stimulate(fallMeck);
+        } else {
+            InteractPress press(this, C_GENERALPARMS.m_attackDamage.m_value, nullptr);
+            target->stimulate(press);
+        }
         setCollEvent(evt);
         return;
     }
@@ -168,7 +175,6 @@ void Obj::collisionCallback(CollEvent& evt)
     // if we're swinging our arm and our arm hits something, do our arm effect (flick or wither)
     if (mIsArmSwinging) {
         CollPart* part   = evt.m_hitPart;
-        Creature* target = evt.m_collidingCreature;
         if (part && part->m_currentID.match('haR*', '*')) {
             flickHandCollision(target);
         }
