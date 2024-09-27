@@ -209,7 +209,7 @@ lbl_8051E568:
 lbl_8051E570:
 	.float 1.0
 lbl_8051E574:
-	.float 20.0
+	.float 1000.0
 lbl_8051E578:
 	.float 0.0
 .balign 4
@@ -230,7 +230,7 @@ lbl_8051E594:
 lbl_8051E59C:
 	.float 25.0
 lbl_8051E5A0:
-	.float 30.0
+	.float 2000.0
 lbl_8051E5A4:
 	.float -1000.0
 .balign 4
