@@ -4,5 +4,5 @@
 const char* VsOtakaraName::cCoin         = "nft8";  // slot machine coin
 const char* VsOtakaraName::cBedamaBlue   = "nft20"; // blue marble
 const char* VsOtakaraName::cBedamaRed    = "nft19"; // red marble
-const char* VsOtakaraName::cBedamaYellow = "loozy"; // yellow marble
+const char* VsOtakaraName::cBedamaYellow = "nft18"; // yellow marble
 float VsOtakaraName::cBedamaYellowDepth  = 12.0f;   // bury depth of yellow marble

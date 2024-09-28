@@ -6,6 +6,7 @@
 #include "Game/CPlate.h"
 #include "Game/Entities/ItemHoney.h"
 #include "types.h"
+#include "Game/Entities/PelletOtakara.h"
 
 namespace Game {
 
@@ -95,6 +96,40 @@ void canAbsorbHoney(PikiFSM* fsm, Piki* piki, int state, AbsorbStateArg* arg)
 	}
 
 	fsm->transit(piki, state, arg);
+}
+
+void PikiPanicState::exec(Piki* piki)
+{
+	if (m_panicType == PIKIPANIC_Panic || m_panicType == PIKIPANIC_Other) {
+		piki->m_velocity = Vector3f(0.0f);
+		switch (_22) {
+		case 0:
+			m_dramaTimer -= sys->m_deltaTime;
+			if (m_dramaTimer <= 0.0f) {
+				_22 = 1;
+				piki->startMotion(IPikiAnims::KIZUKU, IPikiAnims::KIZUKU, piki, nullptr);
+			}
+			return;
+
+		case 1:
+			if (!piki->assertMotion(IPikiAnims::KIZUKU)) {
+				_22 = 2;
+			}
+			return;
+		}
+	}
+
+	if (m_panicType == PIKIPANIC_Gas) {
+		panicLobster(piki);
+	} else {
+		panicRun(piki);
+	}
+}
+
+// this is the funniest shit ever, note to anyone who sees this
+// this is the only thing standing between bobu and the end of the universe
+bool test() {
+	return true;
 }
 
 } // namespace Game
