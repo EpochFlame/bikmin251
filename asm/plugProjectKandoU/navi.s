@@ -6442,8 +6442,17 @@ enterAllPikis__Q24Game4NaviFv:
 /* 80144A4C 0014198C  48 03 70 51 */	bl getOnyon__Q34Game9ItemOnyon3MgrFi
 /* 80144A50 00141990  48 00 00 0C */	b .L_80144A5C
 .L_80144A54:
+										cmpwi r4, 5
+										beq .L_nonoorange
 /* 80144A54 00141994  80 6D 93 30 */	lwz r3, mgr__Q24Game9ItemOnyon@sda21(r13)
 /* 80144A58 00141998  80 63 00 B0 */	lwz r3, 0xb0(r3)
+.L_nonoorange:
+										/* We want to give the game a nullptr for the target for Orange Bikmin, then make it stop following the captains*/
+/* 80147FA4 00144EE4  38 80 00 01 */	li r4, 1
+/* 80147FA8 00144EE8  38 A0 00 00 */	li r5, 0
+										lwz r3, 0x294(r28)
+/* 80147FAC 00144EEC  48 04 EF E9 */	bl start__Q26PikiAI5BrainFiPQ26PikiAI9ActionArg
+										b .L_80144A90
 .L_80144A5C:
 /* 80144A5C 0014199C  28 03 00 00 */	cmplwi r3, 0
 /* 80144A60 001419A0  41 82 00 30 */	beq .L_80144A90
