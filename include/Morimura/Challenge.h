@@ -5,6 +5,7 @@
 #include "Morimura/Window.h"
 #include "Screen/Enums.h"
 #include "og/Screen/ogScreen.h"
+#include "efx2d/T2DCursor.h"
 
 struct JKRExpHeap;
 
@@ -77,20 +78,30 @@ struct TChallengePlayModeScreen : public TScreenBase {
 
 	// _00     = VTBL
 	// _00-_18 = TScreenBase
-	u8 _18[0x8];                      // _18, unknown
-	J2DPicture* _20;                  // _20
-	u8 _24[0x18];                     // _24, unknown
-	og::Screen::ScaleMgr* _3C;        // _3C
-	og::Screen::ScaleMgr* _40;        // _40
-	og::Screen::AnimText_Screen* _44; // _44
-	og::Screen::AnimText_Screen* _48; // _48
-	og::Screen::AnimText_Screen* _4C; // _4C
-	u8 _50[0x30];                     // _50, unknown
-	int _80;                          // _80
-	u8 _84;                           // _84
-	u8 _85[0x7];                      // _85, unknown
-	f32 _8C;                          // _8C
-	u8 _90[0x1C];                     // _1C, unknown
+	J2DPane* mPaneList0[2];                      // _18
+	J2DPicture* mSphereTex;                      // _20
+	J2DPane* mPane3;                             // _24
+	J2DPane* mPane4;                             // _28
+	J2DPane* mPane5;                             // _2C
+	J2DPane* mPaneList1[3];                      // _30
+	og::Screen::ScaleMgr* mScaleMgr[2];          // _3C
+	og::Screen::AnimText_Screen* mAnimScreen[4]; // _44
+	og::Screen::CallBack_Furiko* mFuriko;        // _54
+	efx2d::T2DCursor* mEfxCursor1;               // _58
+	efx2d::T2DCursor* mEfxCursor2;               // _5C
+	Vector2f mEfxCursorPos1;                     // _60
+	Vector2f mEfxCursorPos2;                     // _68
+	Vector2f mPane1Pos;                          // _70
+	Vector2f mPane2Pos;                          // _78
+	int mState;                                  // _80
+	bool mDoShowNoController;                    // _84
+	f32 mNoControllerTimer;                      // _88
+	f32 mTimer;                                  // _8C
+	f32 mTimer2;                                 // _90
+	f32 mMovePos;                                // _94
+	f32 mAlphaTimer;                             // _98
+	f32 mScale;                                  // _9C
+	f32 mAngleTimers[3];                         // _A0
 };
 
 struct TChallengeResultDemoScreen : public TScreenBase {
@@ -221,6 +232,28 @@ struct TChallengeSelect : public TTestBase {
 	void closeWindow();
 	void reset();
 	void demoStart();
+
+	static int mRightOffset;          // 0
+	static int mDownOffset;           // 0
+	static u8 mFrameAnimAlpha;        // 0
+	static bool mAllCourseOpen;       // false
+	static bool mForceDemoStart;      // false
+	static int mDivePikiNum;          // 0
+	static JKRHeap* mDebugHeapParent; // nullptr, may be a different JKR heap type
+	static JKRExpHeap* mDebugHeap;    // nullptr, may be a different JKR heap type
+
+	static bool mSelected1p;       // true
+	static f32 mAlphaSpeed;        // 0.05f
+	static s16 mFlashAnimInterval; // 300
+	static f32 mTextFlashVal;      // 1.0f
+	static bool mConnect2p;        // true
+	static f32 mPanelMoveVal;      // 1.0f
+	static f32 mPanelMoveRate;     // 0.25f
+	static f32 mCircleY;           // 100.0f
+	static f32 mTimerSpeed;        // 0.15f
+	static f32 mMoveSpeed;         // 12.0f
+	static f32 mSelectIconScale;   // 1.5f
+	static ResTIMG* mIconTexture[4];
 
 	// _00     = VTBL1
 	// _18     = VTBL2

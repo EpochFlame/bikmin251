@@ -111,27 +111,6 @@ __vt__Q35efx2d10FileSelect13T2DFiledecide:
 	.4byte kill__Q25efx2d8TSimple2Fv
 	.4byte fade__Q25efx2d8TSimple2Fv
 	.4byte setGroup__Q25efx2d5TBaseFUc
-.global __vt__Q43ebi6Screen10FileSelect11TMainScreen
-__vt__Q43ebi6Screen10FileSelect11TMainScreen:
-	.4byte 0
-	.4byte 0
-	.4byte setArchive__Q33ebi6Screen11TScreenBaseFP10JKRArchive
-	.4byte openScreen__Q33ebi6Screen11TScreenBaseFPQ33ebi6Screen7ArgOpen
-	.4byte closeScreen__Q33ebi6Screen11TScreenBaseFPQ33ebi6Screen8ArgClose
-	.4byte killScreen__Q33ebi6Screen11TScreenBaseFv
-	.4byte update__Q33ebi6Screen11TScreenBaseFv
-	.4byte draw__Q33ebi6Screen11TScreenBaseFv
-	.4byte isFinishScreen__Q33ebi6Screen11TScreenBaseFv
-	.4byte doSetArchive__Q43ebi6Screen10FileSelect11TMainScreenFP10JKRArchive
-	.4byte doOpenScreen__Q43ebi6Screen10FileSelect11TMainScreenFPQ33ebi6Screen7ArgOpen
-	.4byte doCloseScreen__Q43ebi6Screen10FileSelect11TMainScreenFPQ33ebi6Screen8ArgClose
-	.4byte doKillScreen__Q43ebi6Screen10FileSelect11TMainScreenFv
-	.4byte doInitWaitState__Q43ebi6Screen10FileSelect11TMainScreenFv
-	.4byte doUpdateStateOpen__Q43ebi6Screen10FileSelect11TMainScreenFv
-	.4byte doUpdateStateWait__Q43ebi6Screen10FileSelect11TMainScreenFv
-	.4byte doUpdateStateClose__Q43ebi6Screen10FileSelect11TMainScreenFv
-	.4byte doDraw__Q43ebi6Screen10FileSelect11TMainScreenFv
-	.4byte getName__Q43ebi6Screen10FileSelect11TMainScreenFv
 .global __vt__Q35efx2d10FileSelect11T2DFileselM
 __vt__Q35efx2d10FileSelect11T2DFileselM:
 	.4byte 0
@@ -1426,8 +1405,8 @@ loadResource__Q43ebi6Screen10FileSelect11TMainScreenFv:
 /* 803D53F0 003D2330  38 21 01 20 */	addi r1, r1, 0x120
 /* 803D53F4 003D2334  4E 80 00 20 */	blr 
 
-.global doSetArchive__Q43ebi6Screen10FileSelect11TMainScreenFP10JKRArchive
-doSetArchive__Q43ebi6Screen10FileSelect11TMainScreenFP10JKRArchive:
+.global doSetArchive_old__Q43ebi6Screen10FileSelect11TMainScreenFP10JKRArchive
+doSetArchive_old__Q43ebi6Screen10FileSelect11TMainScreenFP10JKRArchive:
 /* 803D53F8 003D2338  94 21 FF A0 */	stwu r1, -0x60(r1)
 /* 803D53FC 003D233C  7C 08 02 A6 */	mflr r0
 /* 803D5400 003D2340  3C A0 80 49 */	lis r5, lbl_80496AE8@ha
@@ -3079,8 +3058,8 @@ doUpdateStateOpen__Q43ebi6Screen10FileSelect11TMainScreenFv:
 /* 803D6D28 003D3C68  38 21 00 10 */	addi r1, r1, 0x10
 /* 803D6D2C 003D3C6C  4E 80 00 20 */	blr 
 
-.global doUpdateStateWait__Q43ebi6Screen10FileSelect11TMainScreenFv
-doUpdateStateWait__Q43ebi6Screen10FileSelect11TMainScreenFv:
+.global doUpdateStateWait_old__Q43ebi6Screen10FileSelect11TMainScreenFv
+doUpdateStateWait_old__Q43ebi6Screen10FileSelect11TMainScreenFv:
 /* 803D6D30 003D3C70  94 21 FF 90 */	stwu r1, -0x70(r1)
 /* 803D6D34 003D3C74  7C 08 02 A6 */	mflr r0
 /* 803D6D38 003D3C78  90 01 00 74 */	stw r0, 0x74(r1)
@@ -3351,8 +3330,8 @@ doUpdateStateClose__Q43ebi6Screen10FileSelect11TMainScreenFv:
 /* 803D7110 003D4050  38 21 00 20 */	addi r1, r1, 0x20
 /* 803D7114 003D4054  4E 80 00 20 */	blr 
 
-.global doDraw__Q43ebi6Screen10FileSelect11TMainScreenFv
-doDraw__Q43ebi6Screen10FileSelect11TMainScreenFv:
+.global doDraw_old__Q43ebi6Screen10FileSelect11TMainScreenFv
+doDraw_old__Q43ebi6Screen10FileSelect11TMainScreenFv:
 /* 803D7118 003D4058  94 21 FA 60 */	stwu r1, -0x5a0(r1)
 /* 803D711C 003D405C  7C 08 02 A6 */	mflr r0
 /* 803D7120 003D4060  90 01 05 A4 */	stw r0, 0x5a4(r1)

@@ -1804,8 +1804,8 @@ do_init__Q33ebi2FS21FSMState00_SelectDataFPQ33ebi2FS4TMgrPQ24Game8StateArg:
 /* 803DF6B0 003DC5F0  38 21 00 10 */	addi r1, r1, 0x10
 /* 803DF6B4 003DC5F4  4E 80 00 20 */	blr 
 
-.global do_exec__Q33ebi2FS21FSMState00_SelectDataFPQ33ebi2FS4TMgr
-do_exec__Q33ebi2FS21FSMState00_SelectDataFPQ33ebi2FS4TMgr:
+.global do_exec_old__Q33ebi2FS21FSMState00_SelectDataFPQ33ebi2FS4TMgr
+do_exec_old__Q33ebi2FS21FSMState00_SelectDataFPQ33ebi2FS4TMgr:
 /* 803DF6B8 003DC5F8  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 803DF6BC 003DC5FC  7C 08 02 A6 */	mflr r0
 /* 803DF6C0 003DC600  90 01 00 24 */	stw r0, 0x24(r1)

@@ -4,6 +4,7 @@
 #include "types.h"
 #include "ebi/Screen/TScreenBase.h"
 #include "Game/StateMachine.h"
+#include "ebi/Utility.h"
 
 struct Controller;
 
@@ -79,6 +80,12 @@ struct FSMState00_SelectData : public FSMState {
 
 	// _00     = VTBL
 	// _00-_0C = FSMState
+
+	void do_exec_old(TMgr*);
+
+	bool mIsChangeSel;
+	u32 mCounter;
+	u32 mCounterMax;
 };
 
 struct FSMState00a_OpenScene : public FSMState {
@@ -222,6 +229,21 @@ struct FSMState10_FinishCopy : public FSMState_Warning {
 
 struct TMgr {
 
+	enum enumEnd { END_0, END_StartNoCard, END_2, END_OpenSaveFile, END_StartNewFile, END_Cancel };
+	void goEnd_(enumEnd id);
+
+
+	Screen::FileSelect::TMainScreen mMainScreen; // _00
+	u32 mCounter;                                // _BF8
+	u32 mCounterMax;                             // _BFC
+	Controller* mController;                     // _C00
+	EUTPadInterface_countNum mCountNumInterface; // _C04
+	s32 mCurrSelection;                          // _C30 (Current actively selected save file)
+	u32 mCopySelection;                          // _C34 (Selected save file to copy to)
+	int mEndStat;                                // _C38
+	bool mInSeq;                                 // _C3C
+	FSMStateMachine mStateMachine;               // _C40
+	FSMState* mCurrentState;                     // _C5C
 	// TODO: members + functions
 };
 } // namespace FS

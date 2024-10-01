@@ -2053,7 +2053,6 @@ init__Q24Game15BaseGameSectionFv:
 /* 8014B7F4 00148734  81 8C 00 F0 */	lwz r12, 0xf0(r12)
 /* 8014B7F8 00148738  7D 89 03 A6 */	mtctr r12
 /* 8014B7FC 0014873C  4E 80 04 21 */	bctrl 
-bl initTwoPlayer__9TwoPlayerFv
 /* 8014B800 00148740  80 6D 9A EC */	lwz r3, sys@sda21(r13)
 /* 8014B804 00148744  38 9F 00 A4 */	addi r4, r31, 0xa4
 /* 8014B808 00148748  48 2D 7B 5D */	bl heapStatusEnd__6SystemFPc

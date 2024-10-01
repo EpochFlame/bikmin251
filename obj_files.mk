@@ -1080,6 +1080,7 @@ MODDING:=\
 	$(BUILD_DIR)/src/moddingU/artGallery.o\
 	$(BUILD_DIR)/src/moddingU/VRBoxAnim.o\
 	$(BUILD_DIR)/src/moddingU/TwoPlayer.o\
+	$(BUILD_DIR)/src/moddingU/fileSelect_2p.o\
 	$(BUILD_DIR)/src/moddingU/genEnemyMgr.o\
 	$(BUILD_DIR)/src/moddingU/emperor.o\
 	$(BUILD_DIR)/src/moddingU/autopluck.o\

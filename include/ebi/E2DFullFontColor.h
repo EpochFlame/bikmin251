@@ -8,8 +8,16 @@ namespace ebi {
 struct E2DFullFontColor {
 	E2DFullFontColor();
 
-	JUtility::TColor _00;     // _00
-	JUtility::TColor _04;     // _04
+	inline void setColors(J2DTextBox* pane)
+	{
+		mCol1.set(pane->m_color1);
+		mCol2.set(pane->m_color2);
+		m_white = pane->getWhite();
+		m_black = pane->getBlack();
+	}
+
+	JUtility::TColor mCol1;     // _00
+	JUtility::TColor mCol2;     // _04
 	JUtility::TColor m_white; // _08
 	JUtility::TColor m_black; // _0C
 };
