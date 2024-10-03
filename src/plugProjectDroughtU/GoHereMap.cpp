@@ -102,9 +102,6 @@ Vector3f AlteredMapMenu::GetPositionFromTex(f32 x, f32 y) {
 	else {
 		cPos.y = (oldOrigin.y + 8.85f - m_mapTextureDimensions.y * 0.5f) / 0.058f;
 		cPos.x = (oldOrigin.x - 24.5f - m_mapTextureDimensions.x * 0.5f) / 0.058f;
-		if (m_disp->m_courseIndex == 3) {
-			cPos.x -= (m_mapBounds.x * 1400.0f) / 4705.6f;
-		}
 	}
 
 	Vector3f vec2 (cPos.x, 0.0f, cPos.y);
@@ -124,9 +121,6 @@ Vector2f AlteredMapMenu::GetPositionOnTex(Vector3f& pos) {
 		mapPosition.y = pos.z * 0.047f + -0.6f;
 		mapPosition.x = pos.x * 0.047f + -0.2f;
 	} else {
-		if (m_disp->m_courseIndex == 3) {
-			mapPosition.x = (m_mapBounds.x * 1400.0f) / 4705.6f;
-		}
 		mapPosition.x += m_mapTextureDimensions.x * 0.5f + pos.x * 0.058f + 24.5f;
 		mapPosition.y = m_mapTextureDimensions.y * 0.5f + pos.z * 0.058f + -8.85f;
 		
