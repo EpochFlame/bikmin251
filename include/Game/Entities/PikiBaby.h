@@ -18,6 +18,13 @@ struct TPikiFire : public TOtaFire {
     virtual bool create(Arg*);
 };
 
+struct TPikiDenki : public TChaseMtx2 {
+    inline TPikiDenki()
+        : TChaseMtx2(nullptr, PID_DenkiPole_1, PID_DenkiPole_2)
+    {
+    }
+};
+
 } // namespace efx
 
 
@@ -66,7 +73,11 @@ struct FSM : public Baby::FSM {
 struct StateDead : public Baby::StateDead {
     virtual void init(EnemyBase*, StateArg*);
 };
-        
+
+struct StateBorn : public Baby::StateBorn {
+    virtual void cleanup(EnemyBase*);
+};
+
 } // namespace PikiBaby
 
 namespace PikiBabyRed
@@ -106,17 +117,18 @@ struct Mgr : public PikiBaby::Mgr {
 namespace PikiBabyYellow {
 
 struct Obj : public PikiBaby::Obj {
-    inline Obj()
-        : PikiBaby::Obj()
-    {
-    }
+    Obj();
     
     virtual ~Obj() { }
+    virtual void onInit(CreatureInitArg*);
     virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID()
     {
         return EnemyTypeID::EnemyID_PikiBabyYellow;
     }
     virtual void collisionCallback(CollEvent&);
+    virtual void attackTarget();
+
+    efx::TPikiDenki* m_elecEfx;
 };
 
 struct Mgr : public PikiBaby::Mgr {

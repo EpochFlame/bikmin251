@@ -120,7 +120,7 @@ void FSM::init(EnemyBase* enemy)
     create(Baby::BABY_Count), 
 	registerState(stateDead);
 	registerState(stateDead);
-	registerState(new Baby::StateBorn);
+	registerState(new StateBorn);
 	registerState(new Baby::StateMove);
 	registerState(new Baby::StateAttack);
 }
@@ -132,6 +132,11 @@ void StateDead::init(EnemyBase* enemy, StateArg* arg)
     Obj* piki = OBJ(enemy);
     piki->mDoPlayMatAnim = true;
 	piki->attackTarget();
+}
+
+void StateBorn::cleanup(EnemyBase*enemy)
+{
+	Obj* baby = OBJ(enemy);
 }
 
 } // namespace PikiBaby
@@ -184,6 +189,26 @@ void Obj::attackTarget()
 
 
 namespace PikiBabyYellow {
+
+Obj::Obj()
+	: PikiBaby::Obj()
+{
+	m_elecEfx = new efx::TPikiDenki;
+}
+
+void Obj::onInit(CreatureInitArg* arg)
+{
+	PikiBaby::Obj::onInit(arg);
+
+	Matrixf* jointMtx = m_model->m_joints[0].getWorldMatrix();
+	m_elecEfx->setMtxptr(jointMtx->m_matrix.mtxView);
+	m_elecEfx->create(nullptr);
+}
+
+void Obj::attackTarget()
+{
+	m_elecEfx->fade();
+}
 
 void Obj::collisionCallback(CollEvent& event)
 {
