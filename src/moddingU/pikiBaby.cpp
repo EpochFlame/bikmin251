@@ -20,6 +20,21 @@ bool TPikiFire::create(Arg* arg)
 
 	return true;
 }
+
+bool TPikiBury::create(Arg* arg) {
+	if (!TSimple2::create(arg)) {
+		return false;
+	}
+
+	ArgScale* args = static_cast<ArgScale*>(arg);
+	f32 scale = args->m_scale;
+
+	for (int i = 0; i < 2; i++) {
+		m_emitters[i]->setScale(scale);
+	}
+
+	return true;
+}
 	
 } // namespace efx
 
@@ -137,6 +152,20 @@ void Obj::doUpdateCommon()
 	Baby::Obj::doUpdateCommon();
 }
 
+void Obj::createLandEfx()
+{
+	efx::ArgScale fxArg(m_position, 1.5f);
+
+	if (m_waterBox != nullptr) {
+		efx::TEnemyDive diveFX;
+		diveFX.create(&fxArg);
+		return;
+	}
+
+	efx::TPikiBury buryFX;
+	buryFX.create(&fxArg);
+}
+
 void FSM::init(EnemyBase* enemy)
 {
 	StateDead* stateDead = new StateDead;
@@ -158,9 +187,13 @@ void StateDead::init(EnemyBase* enemy, StateArg* arg)
 	piki->attackTarget();
 }
 
-void StateBorn::cleanup(EnemyBase*enemy)
+void StateBorn::exec(EnemyBase* enemy)
 {
-	Obj* baby = OBJ(enemy);
+	Baby::StateBorn::exec(enemy);
+
+	if (enemy->m_curAnim->m_isRunning && enemy->m_curAnim->m_type == KEYEVENT_2) {
+		OBJ(enemy)->createLandEfx();
+	}
 }
 
 } // namespace PikiBaby

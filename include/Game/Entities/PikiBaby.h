@@ -7,6 +7,8 @@
 #include "Sys/MatBaseAnimator.h"
 #include "Sys/MatBaseAnimation.h"
 #include "efx/TOta.h"
+#include "efx/TPk.h"
+#include "efx/TEnemyDive.h"
 
 namespace efx {
 
@@ -24,6 +26,15 @@ struct TPikiDenki : public TChaseMtx2 {
 	    : TChaseMtx2(nullptr, PID_DenkiPole_1, PID_DenkiPole_2)
 	{
 	}
+};
+
+struct TPikiBury : public TPkAp {
+	inline TPikiBury()
+		: TPkAp()
+	{
+	}
+
+	virtual bool create(Arg*);
 };
 
 } // namespace efx
@@ -50,6 +61,8 @@ struct Obj : public Baby::Obj {
 	inline f32 getMaxAttackHeight() const { return m_position.y + CS_GENERALPARMS(Baby::Parms*).m_fp20.m_value; }
 	inline f32 getMinAttackHeight() const { return m_position.y - CS_GENERALPARMS(Baby::Parms*).m_fp21.m_value; }
 
+	void createLandEfx();
+
 	bool mDoPlayMatAnim;
 	Sys::MatLoopAnimator* mMatAnimator;
 	WalkSmokeEffect::Mgr mWalkSmokeMgr;
@@ -75,7 +88,7 @@ struct StateDead : public Baby::StateDead {
 };
 
 struct StateBorn : public Baby::StateBorn {
-	virtual void cleanup(EnemyBase*);
+	virtual void exec(EnemyBase*);
 };
 
 } // namespace PikiBaby
