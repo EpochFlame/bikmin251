@@ -364,7 +364,7 @@ void Obj::changePomColor()
 {
 	if (getEnemyTypeID() == EnemyTypeID::EnemyID_RandPom) {
 		SingleGameSection* section = static_cast<SingleGameSection*>(gameSystem->m_section);
-		if (m_queenColorTimer > C_PROPERPARMS.m_colorChangeTime.m_value && (section && section->m_currentCourseInfo->m_courseIndex != 2)) {
+		if (m_queenColorTimer > C_PROPERPARMS.m_colorChangeTime.m_value && !(section && (section->m_currentCourseInfo->m_courseIndex == 2 && !gameSystem->m_inCave))) {
 			int limit     = m_pikiKind + 3; // more than 3 and we loop back
 			int nextColor = m_pikiKind + 1; // first potential next color to try (Blue->Red->Yellow)
 
