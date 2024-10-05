@@ -88,6 +88,12 @@ void Obj::createPikiBaby()
     }
 }
 
+void Obj::setTargetPattern()
+{
+    // this should always be true
+    mTargetNearest = true;
+}
+
 void Obj::setShotGunTargetPosition()
 {
     Creature* target;
