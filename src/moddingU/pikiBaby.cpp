@@ -46,7 +46,7 @@ void Obj::onInit(CreatureInitArg* arg)
 
 void Obj::changeMaterial()
 {
-    J3DModel* j3dModel = m_model->m_j3dModel;
+	J3DModel* j3dModel = m_model->m_j3dModel;
     J3DModelData* modelData = j3dModel->m_modelData;
 
 	// apparently this allows material animations to play independently of other objects.
@@ -112,6 +112,30 @@ void Obj::bounceCallback(Sys::Triangle* tri)
 }
 
 void Obj::attackTarget() { }
+
+void Obj::initWalkSmokeEffect()
+{
+	mWalkSmokeMgr.alloc(2);
+	mWalkSmokeMgr.setup(0, m_model, "foreArm.R", 1.25);
+	mWalkSmokeMgr.setup(1, m_model, "foreArm.L", 1.25);
+}
+
+WalkSmokeEffect::Mgr* Obj::getWalkSmokeEffectMgr() { return &mWalkSmokeMgr; }
+
+void Obj::doUpdateCommon()
+{
+	Matrixf mtx;
+	PSMTXIdentity(mtx.m_matrix.mtxView);
+	mtx.m_matrix.structView.ty = 6.0f;
+
+	WalkSmokeEffect::Mgr* mgr = getWalkSmokeEffectMgr();
+	for (u8 i = 0; i < mgr->m_objCount; i++) {
+		Matrixf* walksmokeMtx = mgr->m_objects[i].m_matrix;
+		PSMTXConcat(walksmokeMtx->m_matrix.mtxView, mtx.m_matrix.mtxView, walksmokeMtx->m_matrix.mtxView);
+	}
+
+	Baby::Obj::doUpdateCommon();
+}
 
 void FSM::init(EnemyBase* enemy)
 {

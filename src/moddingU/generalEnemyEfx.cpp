@@ -508,10 +508,14 @@ bool TEnemyWalkSmoke::create(Arg* arg)
 		break;
 
 	case Game::EnemyTypeID::EnemyID_Baby:
+		return false;
+		
 	case Game::EnemyTypeID::EnemyID_PikiBabyRed:
 	case Game::EnemyTypeID::EnemyID_PikiBabyYellow:
 	case Game::EnemyTypeID::EnemyID_PikiBabyBlue:
-		return false;
+		scale   = 0.75f;
+		isSmall = true;
+		break;
 
 	case Game::EnemyTypeID::EnemyID_Tank:
 	case Game::EnemyTypeID::EnemyID_Wtank:
