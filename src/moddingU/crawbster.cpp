@@ -160,14 +160,8 @@ void Obj::collisionCallback(CollEvent& evt)
     Creature* target = evt.m_collidingCreature;
     // if rolling and we hit a piki, crush it.
     if (mIsRolling && target->m_curTriangle) {
-        // crawbster specifically should use fallmeck because bury can create weird things
-        if (target->isPiki() && static_cast<Piki*>(target)->m_pikiKind == Bulbmin) {
-            InteractFallMeck fallMeck(this, C_GENERALPARMS.m_attackDamage.m_value);
-            target->stimulate(fallMeck);
-        } else {
-            InteractPress press(this, C_GENERALPARMS.m_attackDamage.m_value, nullptr);
-            target->stimulate(press);
-        }
+        InteractPress press(this, C_GENERALPARMS.m_attackDamage.m_value, nullptr);
+        target->stimulate(press);
         setCollEvent(evt);
         return;
     }

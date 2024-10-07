@@ -374,7 +374,7 @@ bool Game::InteractPress::actPiki(Game::Piki* piki)
 	}
 
 	if (piki->m_pikiKind == Bulbmin) {
-		InteractBury bury(m_creature, m_damage);
+		InteractFallMeck bury(m_creature, m_damage);
 		piki->stimulate(bury);
 		return false;
 	}

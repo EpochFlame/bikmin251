@@ -264,7 +264,9 @@ void Obj::onInit(CreatureInitArg* arg)
 
 void Obj::attackTarget()
 {
-	m_elecEfx->fade();
+	if (m_elecEfx != nullptr) {
+		m_elecEfx->fade();
+	}
 }
 
 void Obj::collisionCallback(CollEvent& event)

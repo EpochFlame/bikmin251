@@ -1871,7 +1871,8 @@ exec__Q34Game10KingChappy10StateFlickFPQ24Game9EnemyBase:
 /* 8035A880 003577C0  FC 60 E8 90 */	fmr f3, f29
 /* 8035A884 003577C4  C0 82 02 44 */	lfs f4, lbl_8051E5A4@sda21(r2)
 /* 8035A888 003577C8  FC 20 F0 90 */	fmr f1, f30
-/* 8035A88C 003577CC  4B DB 8C 49 */	bl "flickNearbyPikmin__Q24Game9EnemyFuncFPQ24Game8CreatureffffP23Condition<Q24Game4Piki>"
+/* 8035A88C 003577CC  4B DB 8C 49 	bl "flickNearbyPikmin__Q24Game9EnemyFuncFPQ24Game8CreatureffffP23Condition<Q24Game4Piki>" */
+nop
 /* 8035A890 003577D0  7F E3 FB 78 */	mr r3, r31
 /* 8035A894 003577D4  81 9F 00 00 */	lwz r12, 0(r31)
 /* 8035A898 003577D8  81 8C 00 64 */	lwz r12, 0x64(r12)
