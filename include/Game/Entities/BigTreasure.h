@@ -28,6 +28,32 @@ struct BigTreasureShadowMgr;
 struct BigTreasureAttackMgr;
 struct FSM;
 
+struct EyeColor {
+	inline void set(f32 _r, f32 _g, f32 _b)
+	{
+		mRgb[0] = _r;
+		mRgb[1] = _g;
+		mRgb[2] = _b;
+	}
+
+	inline EyeColor& operator=(const EyeColor& other)
+	{
+		mRgb[0] = other.mRgb[0];
+		mRgb[1] = other.mRgb[1];
+		mRgb[2] = other.mRgb[2];
+		return *this;
+	}
+
+	inline void operator=(EyeColor& other)
+	{
+		mRgb[0] = other.mRgb[0];
+		mRgb[1] = other.mRgb[1];
+		mRgb[2] = other.mRgb[2];
+	}
+
+	f32 mRgb[3]; // _00, r=0, g=1, b=2
+};
+
 enum StateID {
 	BIGTREASURE_NULL      = -1,
 	BIGTREASURE_Dead      = 0,
@@ -43,6 +69,20 @@ enum StateID {
 	BIGTREASURE_Walk      = 10,
 	BIGTREASURE_ItemWalk  = 11,
 	BIGTREASURE_Count,
+};
+
+enum AttackID {
+	BIGATTACK_NULL  = -1,
+	BIGATTACK_Elec  = 0,
+	BIGATTACK_Fire  = 1,
+	BIGATTACK_Gas   = 2,
+	BIGATTACK_Water = 3,
+	BIGATTACK_Count, // 4
+};
+
+enum EyeColorTargetID {
+	EYECOLOR_Dark  = 0,
+	EYECOLOR_Light = 1,
 };
 
 struct Obj : public EnemyBase {
@@ -169,47 +209,53 @@ struct Obj : public EnemyBase {
 	void subShadowScale();
 	bool startBigTreasureBootUpDemo();
 
+	void setupBigTreasureCollision();
+
 	// _00 		= VTBL
 	// _00-_2BC	= EnemyBase
-	FSM* m_FSM;                                  // _2BC
-	f32 m_stateTimer;                            // _2C0
-	f32 _2C4;                                    // _2C4, attack timer?
-	StateID m_nextState;                         // _2C8
-	Vector3f _2CC;                               // _2CC, target position?
-	f32 _2D8;                                    // _2D8, timer of some sort?
-	u8 _2DC[0x8];                                // _2DC, unknown
-	IKSystemMgr* m_IKSystemMgr;                  // _2E4
-	IKSystemParms* m_IKSystemParms;              // _2E8
-	BigTreasureGroundCallBack* m_groundCallBack; // _2EC
-	BigTreasureShadowMgr* m_shadowMgr;           // _2F0
-	BigTreasureAttackMgr* m_attackMgr;           // _2F4
-	Vector3f _2F8;                               // _2F8, kosi joint pos?
-	Vector3f _304[16];                           // _304, joint positions?
-	Creature* m_treasures[4];                    // _3C4, elec / fire / gas / water
-	Creature* m_louie;                           // _3D4, King of Bugs
-	f32 m_treasureHealth[4];                     // _3D8, elec / fire / gas / water
-	f32 _3E8;                                    // _3E8
-	u8 _3EC[0xC];                                // _3EC, unknown
-	CollPart* _3F8;                              // _3F8
-	u8 _3FC[0xC];                                // _3FC
-	int m_attackIndex;                           // _408, enum TitanDweevilAttack?
-	u8 _40C[0x8];                                // _40C, unknown
-	J3DGXColorS10 _414;                          // _414
-	int _41C;                                    // _41C
-	u8 _420[0x60];                               // _420, unknown
-	efx::TChasePos2* _480[4];                    // _480
-	efx::TDamaFootw* _490[4];                    // _490
-	efx::TDamaSmoke* _4A0[4];                    // _4A0
-	efx::TOootaStartBody* _4B0;                  // _4B0
-	efx::TOootaStartOta* _4B4[4];                // _4B4
-	efx::TOootaStartLeg* _4C4[3][4];             // _4C4
-	efx::TChasePosPosLocalYScale3* _4F4[4][4];   // _4F4
-	efx::TChaseMtx3* _534;                       // _534
-	efx::TOootaDeadAwa* _538;                    // _538
-	efx::TOootaChangeLeg* _53C[4][4];            // _53C
-	efx::TOootaChangeBody* _57C;                 // _57C
-	efx::TOootaParticle* _580;                   // _580
-	                                             // _584 = PelletView
+	FSM* mFsm;                                  // _2BC
+	f32 mStateTimer;                            // _2C0
+	f32 mAttackLimitTimer;                      // _2C4
+	StateID mNextState;                         // _2C8
+	Vector3f mTargetPosition;                   // _2CC
+	f32 mShadowScale;                           // _2D8
+	bool mIsFastMatAnim;                        // _2DC
+	bool mIsWeaponAttacked[0x4];                // _2DD, used to determine if the weapon should shake
+	IKSystemMgr* mIkSystemMgr;                  // _2E4
+	IKSystemParms* mIkSystemParms;              // _2E8
+	BigTreasureGroundCallBack* mGroundCallBack; // _2EC
+	BigTreasureShadowMgr* mShadowMgr;           // _2F0
+	BigTreasureAttackMgr* mAttackMgr;           // _2F4
+	Vector3f mKosiJointPos;                     // _2F8
+	Vector3f mJointPositions[4][4];             // _304
+	Pellet* mTreasures[4];                      // _3C4, elec / fire / gas / water
+	Pellet* mLouie;                             // _3D4, King of Bugs
+	f32 mTreasureHealth[4];                     // _3D8, elec / fire / gas / water
+	f32 mTreasureShakeAngle[4];                 // _3E8, used to make treasures shake while being attacked
+	CollPart* mTreasureCollParts[4];            // _3F8, elec / fire / gas / water
+	int mAttackIndex;                           // _408, see AttackID enum
+	J3DGXColorS10 mTargetMatBodyColor;          // _40C
+	J3DGXColorS10 mCurrMatBodyColor;            // _414
+	int mTargetEyeColorIdx;                     // _41C, 0 = going to dark, 1 = going to light (indexes _438, _45C)
+	f32 mClusterEyeAnimSpeeds[3];               // _420, r=0, g=1, b=2
+	f32 mSideEyeAnimSpeeds[3];                  // _42C, r=0, g=1, b=2
+	EyeColor mTargetClusterEyeColor[2];         // _438, 0 = dark, 1 = light, bounces between
+	EyeColor mCurrClusterEyeColor;              // _450
+	EyeColor mTargetSideEyeColor[2];            // _45C, 0 = dark, 1 = light, bounces between
+	EyeColor mCurrSideEyeColor;                 // _474
+	efx::TOootaFoot* mFootFX[4];                // _480
+	efx::TDamaFootw* mFootWFX[4];               // _490
+	efx::TDamaSmoke* mTreasureSmokeFX[4];       // _4A0
+	efx::TOootaStartBody* mStartBodyFX;         // _4B0
+	efx::TOootaStartOta* mStartTreasureFX[4];   // _4B4
+	efx::TOootaStartLeg* mStartLegFX[4][3];     // _4C4
+	efx::TOootaDeadLeg* mDeadLegFX[4][4];       // _4F4, leg bubble effect on death
+	efx::TOootaDeadBody* mDeadBodyFX;           // _534, body bubble effect on death
+	efx::TOootaDeadAwa* mDeadAwaFX;             // _538, mouth bubble effect on death
+	efx::TOootaChangeLeg* mChangeLegFX[4][4];   // _53C
+	efx::TOootaChangeBody* mChangeBodyFX;       // _57C
+	efx::TOootaParticle* mShineParticleFX;      // _580
+	                                            // _584 = PelletView
 };
 
 struct Mgr : public EnemyMgrBase {
@@ -412,6 +458,13 @@ struct BigTreasureGroundCallBack : public JointGroundCallBack {
 
 /////////////////////////////////////////////////////////////////
 // ATTACK DEFINITIONS
+enum BigTreasureFireTypes {
+	BIGFIRE_Root = 0,
+	BIGFIRE_Body = 1,
+	BIGFIRE_Tail = 2,
+	BIGFIRE_TypeCount, // 3
+};
+
 struct AttackShadowNode : public JointShadowNode {
 	virtual ~AttackShadowNode(); // _08 (weak)
 
@@ -558,7 +611,34 @@ struct BigTreasureAttackMgr {
 	void startNewElecList();
 	void finishElecAttack();
 
-	u8 _00[0x120]; // _00, TODO: fill this out.
+	bool mIsStartAttack[BIGATTACK_Count];          // _00
+	Obj* mObj;                                     // _04
+	f32 mAttackTimer1;                             // _08, used by all attacks
+	f32 mAttackTimer2;                             // _0C, used by gas (reverse rot) and elec (discharge)
+	CNode* mActiveFireList;                        // _10
+	CNode* mFireAttackNodes;                       // _14
+	efx::TOootaFire* mEfxFire;                     // _18
+	Vector3f mFireEmitDirection;                   // _1C
+	Vector3f mFireNodePosition[BIGFIRE_TypeCount]; // _28, indexed by BigTreasureFireTypes
+	CNode* mActiveGasList;                         // _4C
+	CNode* mGasAttackNodes;                        // _50
+	f32 mGasAttackAngles[4];                       // _54
+	Vector3f mGasEmitPosition;                     // _64
+	Vector3f mGasSePosition[4];                    // _70
+	efx::TOootaGas* mEfxGas[4];                    // _A0
+	CNode* mActiveWaterList;                       // _B0
+	CNode* mWaterAttackNodes;                      // _B4
+	efx::TOootaWbomb* mEfxWaterBomb;               // _B8
+	Vector3f mWaterEmitPosition;                   // _BC
+	CNode* mActiveElecList;                        // _C8
+	CNode* mElecAttackNodes;                       // _CC
+	efx::TOootaElecLeg* mEfxElecLeg[4][3];         // _D0
+	efx::TOootaElecAttack1* mEfxElecAttack1;       // _100
+	efx::TOootaElecAttack2* mEfxElecAttack2;       // _104
+	int mElecSENodeIDs[3];                         // _108
+	JointShadowRootNode* mShadowRootNode;          // _114
+	AttackShadowNode** mAttackShadowNodes;         // _118, array of 16 ptrs
+	BigTreasureAttackData* mAttackData;            // _11C
 };
 /////////////////////////////////////////////////////////////////
 

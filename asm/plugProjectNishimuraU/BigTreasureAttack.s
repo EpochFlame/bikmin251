@@ -774,32 +774,37 @@ update__Q34Game11BigTreasure20BigTreasureGasAttackFv:
 /* 802F403C 002F0F7C  EC 42 00 F2 */	fmuls f2, f2, f3
 /* 802F4040 002F0F80  EC 22 08 24 */	fdivs f1, f2, f1
 /* 802F4044 002F0F84  FC 01 00 40 */	fcmpo cr0, f1, f0
-/* 802F4048 002F0F88  40 80 00 54 */	bge .L_802F409C
-/* 802F404C 002F0F8C  80 BE 00 18 */	lwz r5, 0x18(r30)
-/* 802F4050 002F0F90  3C 60 80 4B */	lis r3, __vt__Q24Game11Interaction@ha
-/* 802F4054 002F0F94  38 03 A3 00 */	addi r0, r3, __vt__Q24Game11Interaction@l
-/* 802F4058 002F0F98  C0 22 EE A0 */	lfs f1, lbl_8051D200@sda21(r2)
-/* 802F405C 002F0F9C  C0 02 EE CC */	lfs f0, lbl_8051D22C@sda21(r2)
-/* 802F4060 002F0FA0  3C 60 80 4B */	lis r3, __vt__Q24Game13InteractFlick@ha
-/* 802F4064 002F0FA4  90 01 00 40 */	stw r0, 0x40(r1)
-/* 802F4068 002F0FA8  38 03 4E 04 */	addi r0, r3, __vt__Q24Game13InteractFlick@l
-/* 802F406C 002F0FAC  7F E3 FB 78 */	mr r3, r31
-/* 802F4070 002F0FB0  38 81 00 40 */	addi r4, r1, 0x40
-/* 802F4074 002F0FB4  90 A1 00 44 */	stw r5, 0x44(r1)
-/* 802F4078 002F0FB8  90 01 00 40 */	stw r0, 0x40(r1)
-/* 802F407C 002F0FBC  D0 21 00 48 */	stfs f1, 0x48(r1)
-/* 802F4080 002F0FC0  D0 21 00 4C */	stfs f1, 0x4c(r1)
-/* 802F4084 002F0FC4  D0 01 00 50 */	stfs f0, 0x50(r1)
-/* 802F4088 002F0FC8  81 9F 00 00 */	lwz r12, 0(r31)
-/* 802F408C 002F0FCC  81 8C 01 A4 */	lwz r12, 0x1a4(r12)
-/* 802F4090 002F0FD0  7D 89 03 A6 */	mtctr r12
-/* 802F4094 002F0FD4  4E 80 04 21 */	bctrl 
+/* 802F4048 002F0F88  40 80 00 54 */	b .L_802F409C
+# disable interactflick from ever happening for gas attack
+/* 802F404C 002F0F8C  80 BE 00 18 	lwz r5, 0x18(r30) */
+/* 802F4050 002F0F90  3C 60 80 4B 	lis r3, __vt__Q24Game11Interaction@ha */
+/* 802F4054 002F0F94  38 03 A3 00 	addi r0, r3, __vt__Q24Game11Interaction@l */
+/* 802F4058 002F0F98  C0 22 EE A0 	lfs f1, lbl_8051D200@sda21(r2) */
+/* 802F405C 002F0F9C  C0 02 EE CC 	lfs f0, lbl_8051D22C@sda21(r2) */
+/* 802F4060 002F0FA0  3C 60 80 4B 	lis r3, __vt__Q24Game14InteractAttack@ha */
+/* 802F4064 002F0FA4  90 01 00 40 	stw r0, 0x40(r1) */
+/* 802F4068 002F0FA8  38 03 4E 04 	addi r0, r3, __vt__Q24Game14InteractAttack@l */
+/* 802F406C 002F0FAC  7F E3 FB 78 	mr r3, r31 */
+/* 802F4070 002F0FB0  38 81 00 40 	addi r4, r1, 0x40 */
+/* 802F4074 002F0FB4  90 A1 00 44 	stw r5, 0x44(r1) */
+/* 802F4078 002F0FB8  90 01 00 40 	stw r0, 0x40(r1) */
+/* 802F407C 002F0FBC  D0 21 00 48 	stfs f1, 0x48(r1) */
+/* 802F4080 002F0FC0  D0 21 00 4C 	stfs f1, 0x4c(r1) */
+/* 802F4084 002F0FC4  D0 01 00 50 	stfs f0, 0x50(r1) */
+/* 802F4088 002F0FC8  81 9F 00 00 	lwz r12, 0(r31) */
+/* 802F408C 002F0FCC  81 8C 01 A4 	lwz r12, 0x1a4(r12) */
+/* 802F4090 002F0FD0  7D 89 03 A6 	mtctr r12 */
+/* 802F4094 002F0FD4  4E 80 04 21 	bctrl  */
 /* 802F4098 002F0FD8  48 00 00 84 */	b .L_802F411C
 .L_802F409C:
 /* 802F409C 002F0FDC  80 9E 00 18 */	lwz r4, 0x18(r30)
 /* 802F40A0 002F0FE0  3C 60 80 4B */	lis r3, __vt__Q24Game11Interaction@ha
 /* 802F40A4 002F0FE4  38 03 A3 00 */	addi r0, r3, __vt__Q24Game11Interaction@l
-/* 802F40A8 002F0FE8  C0 02 EE A0 */	lfs f0, lbl_8051D200@sda21(r2)
+# load GeneralParms attack damage into f0 so the gas attack does damage to captains
+lwz r7, 0x18(r30)
+lwz r6, 0xc0(r7)
+lfs f0, 0x604(r6)
+/* 802F40A8 002F0FE8  C0 02 EE A0 	lfs f0, lbl_8051D200@sda21(r2) */
 /* 802F40AC 002F0FEC  3C 60 80 4B */	lis r3, __vt__Q24Game14InteractAttack@ha
 /* 802F40B0 002F0FF0  90 01 00 14 */	stw r0, 0x14(r1)
 /* 802F40B4 002F0FF4  38 A3 4D E0 */	addi r5, r3, __vt__Q24Game14InteractAttack@l
@@ -1465,13 +1470,13 @@ update__Q34Game11BigTreasure21BigTreasureElecAttackFv:
 /* 802F4A54 002F1994  C0 02 EF 08 */	lfs f0, lbl_8051D268@sda21(r2)
 /* 802F4A58 002F1998  3C 80 80 4B */	lis r4, __vt__Q24Game12InteractWind@ha
 /* 802F4A5C 002F199C  80 C7 00 C0 */	lwz r6, 0xc0(r7)
-/* 802F4A60 002F19A0  3C 60 80 4B */	lis r3, __vt__Q24Game13InteractDenki@ha
+/* 802F4A60 002F19A0  3C 60 80 4B */	lis r3, __vt__Q24Game16InteractFallMeck@ha
 /* 802F4A64 002F19A4  38 A5 A3 00 */	addi r5, r5, __vt__Q24Game11Interaction@l
 /* 802F4A68 002F19A8  EC 63 00 32 */	fmuls f3, f3, f0
 /* 802F4A6C 002F19AC  C0 26 06 04 */	lfs f1, 0x604(r6)
 /* 802F4A70 002F19B0  EC 84 00 32 */	fmuls f4, f4, f0
 /* 802F4A74 002F19B4  38 84 49 74 */	addi r4, r4, __vt__Q24Game12InteractWind@l
-/* 802F4A78 002F19B8  38 03 49 08 */	addi r0, r3, __vt__Q24Game13InteractDenki@l
+/* 802F4A78 002F19B8  38 03 49 08 */	addi r0, r3, __vt__Q24Game16InteractFallMeck@l
 /* 802F4A7C 002F19BC  90 A1 00 58 */	stw r5, 0x58(r1)
 /* 802F4A80 002F19C0  7F E3 FB 78 */	mr r3, r31
 /* 802F4A84 002F19C4  90 81 00 58 */	stw r4, 0x58(r1)
@@ -1487,12 +1492,15 @@ update__Q34Game11BigTreasure21BigTreasureElecAttackFv:
 /* 802F4AAC 002F19EC  4E 80 04 21 */	bctrl 
 /* 802F4AB0 002F19F0  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 802F4AB4 002F19F4  41 82 00 FC */	beq .L_802F4BB0
-/* 802F4AB8 002F19F8  7F E3 FB 78 */	mr r3, r31
-/* 802F4ABC 002F19FC  38 81 00 58 */	addi r4, r1, 0x58
-/* 802F4AC0 002F1A00  81 9F 00 00 */	lwz r12, 0(r31)
-/* 802F4AC4 002F1A04  81 8C 01 A4 */	lwz r12, 0x1a4(r12)
-/* 802F4AC8 002F1A08  7D 89 03 A6 */	mtctr r12
-/* 802F4ACC 002F1A0C  4E 80 04 21 */	bctrl 
+# do not stimulate navis, they freak tf out
+/* 802F4AB8 002F19F8  7F E3 FB 78 	mr r3, r31 */
+/* 802F4ABC 002F19FC  38 81 00 58 	addi r4, r1, 0x58 */
+/* 802F4AC0 002F1A00  81 9F 00 00 	lwz r12, 0(r31) */
+/* 802F4AC4 002F1A04  81 8C 01 A4 	lwz r12, 0x1a4(r12) */
+/* 802F4AC8 002F1A08  7D 89 03 A6 	mtctr r12 */
+/* 802F4ACC 002F1A0C  4E 80 04 21 	bctrl  */
+# load 0x0 into r3 so that the check passes
+li r3, 0x0
 /* 802F4AD0 002F1A10  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 802F4AD4 002F1A14  40 82 01 10 */	bne .L_802F4BE4
 /* 802F4AD8 002F1A18  4B DD 4A C9 */	bl rand
@@ -3145,30 +3153,30 @@ updateGasAttack__Q34Game11BigTreasure20BigTreasureAttackMgrFv:
 /* 802F6280 002F31C0  38 21 00 40 */	addi r1, r1, 0x40
 /* 802F6284 002F31C4  4E 80 00 20 */	blr 
 
-.global updateGasEmitPosition__Q34Game11BigTreasure20BigTreasureAttackMgrFv
-updateGasEmitPosition__Q34Game11BigTreasure20BigTreasureAttackMgrFv:
-/* 802F6288 002F31C8  94 21 FF F0 */	stwu r1, -0x10(r1)
-/* 802F628C 002F31CC  7C 08 02 A6 */	mflr r0
-/* 802F6290 002F31D0  90 01 00 14 */	stw r0, 0x14(r1)
-/* 802F6294 002F31D4  93 E1 00 0C */	stw r31, 0xc(r1)
-/* 802F6298 002F31D8  7C 7F 1B 78 */	mr r31, r3
-/* 802F629C 002F31DC  3C 60 80 49 */	lis r3, lbl_8048D218@ha
-/* 802F62A0 002F31E0  80 BF 00 04 */	lwz r5, 4(r31)
-/* 802F62A4 002F31E4  38 83 D2 18 */	addi r4, r3, lbl_8048D218@l
-/* 802F62A8 002F31E8  80 65 01 74 */	lwz r3, 0x174(r5)
-/* 802F62AC 002F31EC  48 14 8D 39 */	bl getJoint__Q28SysShape5ModelFPc
-/* 802F62B0 002F31F0  48 13 35 F1 */	bl getWorldMatrix__Q28SysShape5JointFv
-/* 802F62B4 002F31F4  C0 43 00 2C */	lfs f2, 0x2c(r3)
-/* 802F62B8 002F31F8  C0 23 00 1C */	lfs f1, 0x1c(r3)
-/* 802F62BC 002F31FC  C0 03 00 0C */	lfs f0, 0xc(r3)
-/* 802F62C0 002F3200  D0 1F 00 64 */	stfs f0, 0x64(r31)
-/* 802F62C4 002F3204  D0 3F 00 68 */	stfs f1, 0x68(r31)
-/* 802F62C8 002F3208  D0 5F 00 6C */	stfs f2, 0x6c(r31)
-/* 802F62CC 002F320C  83 E1 00 0C */	lwz r31, 0xc(r1)
-/* 802F62D0 002F3210  80 01 00 14 */	lwz r0, 0x14(r1)
-/* 802F62D4 002F3214  7C 08 03 A6 */	mtlr r0
-/* 802F62D8 002F3218  38 21 00 10 */	addi r1, r1, 0x10
-/* 802F62DC 002F321C  4E 80 00 20 */	blr 
+# .global updateGasEmitPosition__Q34Game11BigTreasure20BigTreasureAttackMgrFv
+# updateGasEmitPosition__Q34Game11BigTreasure20BigTreasureAttackMgrFv:
+# /* 802F6288 002F31C8  94 21 FF F0 */	stwu r1, -0x10(r1)
+# /* 802F628C 002F31CC  7C 08 02 A6 */	mflr r0
+# /* 802F6290 002F31D0  90 01 00 14 */	stw r0, 0x14(r1)
+# /* 802F6294 002F31D4  93 E1 00 0C */	stw r31, 0xc(r1)
+# /* 802F6298 002F31D8  7C 7F 1B 78 */	mr r31, r3
+# /* 802F629C 002F31DC  3C 60 80 49 */	lis r3, lbl_8048D218@ha
+# /* 802F62A0 002F31E0  80 BF 00 04 */	lwz r5, 4(r31)
+# /* 802F62A4 002F31E4  38 83 D2 18 */	addi r4, r3, lbl_8048D218@l
+# /* 802F62A8 002F31E8  80 65 01 74 */	lwz r3, 0x174(r5)
+# /* 802F62AC 002F31EC  48 14 8D 39 */	bl getJoint__Q28SysShape5ModelFPc
+# /* 802F62B0 002F31F0  48 13 35 F1 */	bl getWorldMatrix__Q28SysShape5JointFv
+# /* 802F62B4 002F31F4  C0 43 00 2C */	lfs f2, 0x2c(r3)
+# /* 802F62B8 002F31F8  C0 23 00 1C */	lfs f1, 0x1c(r3)
+# /* 802F62BC 002F31FC  C0 03 00 0C */	lfs f0, 0xc(r3)
+# /* 802F62C0 002F3200  D0 1F 00 64 */	stfs f0, 0x64(r31)
+# /* 802F62C4 002F3204  D0 3F 00 68 */	stfs f1, 0x68(r31)
+# /* 802F62C8 002F3208  D0 5F 00 6C */	stfs f2, 0x6c(r31)
+# /* 802F62CC 002F320C  83 E1 00 0C */	lwz r31, 0xc(r1)
+# /* 802F62D0 002F3210  80 01 00 14 */	lwz r0, 0x14(r1)
+# /* 802F62D4 002F3214  7C 08 03 A6 */	mtlr r0
+# /* 802F62D8 002F3218  38 21 00 10 */	addi r1, r1, 0x10
+# /* 802F62DC 002F321C  4E 80 00 20 */	blr 
 
 .global updateGasSePosition__Q34Game11BigTreasure20BigTreasureAttackMgrFPQ34Game11BigTreasure20BigTreasureGasAttacki
 updateGasSePosition__Q34Game11BigTreasure20BigTreasureAttackMgrFPQ34Game11BigTreasure20BigTreasureGasAttacki:

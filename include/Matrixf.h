@@ -56,6 +56,12 @@ struct Matrixf {
 		p2.y = (*this)(1, p1);
 		p2.z = (*this)(2, p1);
 	}
+
+	inline Vector3f getColumn(int index)
+	{
+		return Vector3f(m_matrix.mtxView[0][index], m_matrix.mtxView[1][index], m_matrix.mtxView[2][index]);
+	}
+
 	/**
 	 * @reifiedAddress{801372C0}
 	 * @reifiedFile{plugProjectKandoU/collinfo.cpp}
