@@ -7,6 +7,8 @@
 namespace Game {
 namespace BigTreasure {
 
+bool Obj::mHasDoneElecAttack = false;
+
 // remove the hardcoded offset for comedy bomb
 void Obj::setupBigTreasureCollision()
 {
@@ -145,6 +147,11 @@ void Obj::setTreasureAttack()
 			inc += weaponWeights[i]; // jump to next weapon bracket
 			if (inc > threshold) {   // if threshold falls in that bracket, choose weapon
 				mAttackIndex = attackIdx[i];
+				if (mAttackIndex == BIGATTACK_Gas && !mHasDoneElecAttack) {
+					mAttackIndex = BIGATTACK_Elec;
+				} else if (mAttackIndex == BIGATTACK_Elec && mHasDoneElecAttack) {
+					mAttackIndex = BIGATTACK_Gas;
+				}
 				return;
 			}
 		}
@@ -159,12 +166,14 @@ void Obj::startAttack()
 	switch (mAttackIndex) {
 	case BIGATTACK_Elec:
 		mAttackMgr->startElecAttack();
+		mHasDoneElecAttack = true;
 		break;
 	case BIGATTACK_Fire:
 		mAttackMgr->startFireAttack();
 		break;
 	case BIGATTACK_Gas:
 		mAttackMgr->startGasAttack();
+		mHasDoneElecAttack = false;
 		break;
 	case BIGATTACK_Water:
 		mAttackMgr->startWaterAttack();

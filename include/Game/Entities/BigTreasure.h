@@ -212,6 +212,8 @@ struct Obj : public EnemyBase {
 	void setupBigTreasureCollision();
 	void createPikiBaby(EnemyTypeID::EEnemyTypeID type, u8 count, Vector3f& position);
 
+	static bool mHasDoneElecAttack;
+
 	// _00 		= VTBL
 	// _00-_2BC	= EnemyBase
 	FSM* mFsm;                                  // _2BC
