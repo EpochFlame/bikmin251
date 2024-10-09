@@ -130,6 +130,13 @@ void Obj::onDeathStateInit() { }
 
 void Obj::onBirthStateEnd() { }
 
+void Obj::setInWaterDamage() 
+{ 
+	if (m_waterBox) {
+		addDamage(1.0f * sys->m_deltaTime, 1.0f);
+	}
+}
+
 void Obj::initWalkSmokeEffect()
 {
 	mWalkSmokeMgr.alloc(2);
@@ -138,6 +145,13 @@ void Obj::initWalkSmokeEffect()
 }
 
 WalkSmokeEffect::Mgr* Obj::getWalkSmokeEffectMgr() { return &mWalkSmokeMgr; }
+
+void Obj::doUpdate()
+{
+	Baby::Obj::doUpdate();
+
+	setInWaterDamage();
+}
 
 void Obj::doUpdateCommon()
 {

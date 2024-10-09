@@ -48,6 +48,7 @@ struct Obj : public Baby::Obj {
 	virtual ~Obj() { }
 	virtual void bounceCallback(Sys::Triangle*);
 	virtual void changeMaterial();
+	virtual void doUpdate();
 	virtual void doUpdateCommon();
 	virtual void onInit(CreatureInitArg*);
 	virtual void getShadowParam(ShadowParam&);
@@ -58,6 +59,7 @@ struct Obj : public Baby::Obj {
 	virtual bool pressCallBack(Creature*, f32, CollPart*);
 	virtual void onDeathStateInit();
 	virtual void onBirthStateEnd();
+	virtual void setInWaterDamage();
 
 	inline f32 getMaxAttackHeight() const 
 	{ 
@@ -187,6 +189,7 @@ struct Obj : public PikiBaby::Obj {
 	}
 
 	virtual ~Obj() { }
+	virtual void setInWaterDamage() { }
 	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID() 
 	{ 
 		return EnemyTypeID::EnemyID_PikiBabyBlue; 
