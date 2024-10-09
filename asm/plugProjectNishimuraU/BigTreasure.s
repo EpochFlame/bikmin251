@@ -2697,42 +2697,42 @@ dropTreasure__Q34Game11BigTreasure3ObjFv:
 /* 802DD748 002DA688  38 21 00 30 */	addi r1, r1, 0x30
 /* 802DD74C 002DA68C  4E 80 00 20 */	blr 
 
-.global dropTreasure__Q34Game11BigTreasure3ObjFi
-dropTreasure__Q34Game11BigTreasure3ObjFi:
-/* 802DD750 002DA690  94 21 FF D0 */	stwu r1, -0x30(r1)
-/* 802DD754 002DA694  7C 08 02 A6 */	mflr r0
-/* 802DD758 002DA698  90 01 00 34 */	stw r0, 0x34(r1)
-/* 802DD75C 002DA69C  93 E1 00 2C */	stw r31, 0x2c(r1)
-/* 802DD760 002DA6A0  93 C1 00 28 */	stw r30, 0x28(r1)
-/* 802DD764 002DA6A4  54 9E 10 3A */	slwi r30, r4, 2
-/* 802DD768 002DA6A8  93 A1 00 24 */	stw r29, 0x24(r1)
-/* 802DD76C 002DA6AC  7C 7D 1B 78 */	mr r29, r3
-/* 802DD770 002DA6B0  7F FD F2 14 */	add r31, r29, r30
-/* 802DD774 002DA6B4  80 7F 03 C4 */	lwz r3, 0x3c4(r31)
-/* 802DD778 002DA6B8  4B EC 24 25 */	bl endCapture__Q24Game8CreatureFv
-/* 802DD77C 002DA6BC  C0 22 E8 D0 */	lfs f1, lbl_8051CC30@sda21(r2)
-/* 802DD780 002DA6C0  38 81 00 08 */	addi r4, r1, 8
-/* 802DD784 002DA6C4  C0 02 E9 88 */	lfs f0, lbl_8051CCE8@sda21(r2)
-/* 802DD788 002DA6C8  D0 21 00 08 */	stfs f1, 8(r1)
-/* 802DD78C 002DA6CC  D0 01 00 0C */	stfs f0, 0xc(r1)
-/* 802DD790 002DA6D0  D0 21 00 10 */	stfs f1, 0x10(r1)
-/* 802DD794 002DA6D4  80 7F 03 C4 */	lwz r3, 0x3c4(r31)
-/* 802DD798 002DA6D8  81 83 00 00 */	lwz r12, 0(r3)
-/* 802DD79C 002DA6DC  81 8C 00 68 */	lwz r12, 0x68(r12)
-/* 802DD7A0 002DA6E0  7D 89 03 A6 */	mtctr r12
-/* 802DD7A4 002DA6E4  4E 80 04 21 */	bctrl 
-/* 802DD7A8 002DA6E8  38 00 00 00 */	li r0, 0
-/* 802DD7AC 002DA6EC  C0 02 E8 D0 */	lfs f0, lbl_8051CC30@sda21(r2)
-/* 802DD7B0 002DA6F0  90 1F 03 C4 */	stw r0, 0x3c4(r31)
-/* 802DD7B4 002DA6F4  38 60 00 01 */	li r3, 1
-/* 802DD7B8 002DA6F8  D0 1F 03 D8 */	stfs f0, 0x3d8(r31)
-/* 802DD7BC 002DA6FC  80 01 00 34 */	lwz r0, 0x34(r1)
-/* 802DD7C0 002DA700  83 E1 00 2C */	lwz r31, 0x2c(r1)
-/* 802DD7C4 002DA704  83 C1 00 28 */	lwz r30, 0x28(r1)
-/* 802DD7C8 002DA708  83 A1 00 24 */	lwz r29, 0x24(r1)
-/* 802DD7CC 002DA70C  7C 08 03 A6 */	mtlr r0
-/* 802DD7D0 002DA710  38 21 00 30 */	addi r1, r1, 0x30
-/* 802DD7D4 002DA714  4E 80 00 20 */	blr 
+# .global dropTreasure__Q34Game11BigTreasure3ObjFi
+# dropTreasure__Q34Game11BigTreasure3ObjFi:
+# /* 802DD750 002DA690  94 21 FF D0 */	stwu r1, -0x30(r1)
+# /* 802DD754 002DA694  7C 08 02 A6 */	mflr r0
+# /* 802DD758 002DA698  90 01 00 34 */	stw r0, 0x34(r1)
+# /* 802DD75C 002DA69C  93 E1 00 2C */	stw r31, 0x2c(r1)
+# /* 802DD760 002DA6A0  93 C1 00 28 */	stw r30, 0x28(r1)
+# /* 802DD764 002DA6A4  54 9E 10 3A */	slwi r30, r4, 2
+# /* 802DD768 002DA6A8  93 A1 00 24 */	stw r29, 0x24(r1)
+# /* 802DD76C 002DA6AC  7C 7D 1B 78 */	mr r29, r3
+# /* 802DD770 002DA6B0  7F FD F2 14 */	add r31, r29, r30
+# /* 802DD774 002DA6B4  80 7F 03 C4 */	lwz r3, 0x3c4(r31)
+# /* 802DD778 002DA6B8  4B EC 24 25 */	bl endCapture__Q24Game8CreatureFv
+# /* 802DD77C 002DA6BC  C0 22 E8 D0 */	lfs f1, lbl_8051CC30@sda21(r2)
+# /* 802DD780 002DA6C0  38 81 00 08 */	addi r4, r1, 8
+# /* 802DD784 002DA6C4  C0 02 E9 88 */	lfs f0, lbl_8051CCE8@sda21(r2)
+# /* 802DD788 002DA6C8  D0 21 00 08 */	stfs f1, 8(r1)
+# /* 802DD78C 002DA6CC  D0 01 00 0C */	stfs f0, 0xc(r1)
+# /* 802DD790 002DA6D0  D0 21 00 10 */	stfs f1, 0x10(r1)
+# /* 802DD794 002DA6D4  80 7F 03 C4 */	lwz r3, 0x3c4(r31)
+# /* 802DD798 002DA6D8  81 83 00 00 */	lwz r12, 0(r3)
+# /* 802DD79C 002DA6DC  81 8C 00 68 */	lwz r12, 0x68(r12)
+# /* 802DD7A0 002DA6E0  7D 89 03 A6 */	mtctr r12
+# /* 802DD7A4 002DA6E4  4E 80 04 21 */	bctrl 
+# /* 802DD7A8 002DA6E8  38 00 00 00 */	li r0, 0
+# /* 802DD7AC 002DA6EC  C0 02 E8 D0 */	lfs f0, lbl_8051CC30@sda21(r2)
+# /* 802DD7B0 002DA6F0  90 1F 03 C4 */	stw r0, 0x3c4(r31)
+# /* 802DD7B4 002DA6F4  38 60 00 01 */	li r3, 1
+# /* 802DD7B8 002DA6F8  D0 1F 03 D8 */	stfs f0, 0x3d8(r31)
+# /* 802DD7BC 002DA6FC  80 01 00 34 */	lwz r0, 0x34(r1)
+# /* 802DD7C0 002DA700  83 E1 00 2C */	lwz r31, 0x2c(r1)
+# /* 802DD7C4 002DA704  83 C1 00 28 */	lwz r30, 0x28(r1)
+# /* 802DD7C8 002DA708  83 A1 00 24 */	lwz r29, 0x24(r1)
+# /* 802DD7CC 002DA70C  7C 08 03 A6 */	mtlr r0
+# /* 802DD7D0 002DA710  38 21 00 30 */	addi r1, r1, 0x30
+# /* 802DD7D4 002DA714  4E 80 00 20 */	blr 
 
 .global isCapturedTreasure__Q34Game11BigTreasure3ObjFv
 isCapturedTreasure__Q34Game11BigTreasure3ObjFv:

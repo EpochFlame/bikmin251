@@ -144,7 +144,7 @@ struct Obj : public EnemyBase {
 	void setupTreasure();
 	void updateTreasure();
 	void dropTreasure();
-	void dropTreasure(int);
+	bool dropTreasure(int);
 	bool isCapturedTreasure();
 	bool isCapturedTreasure(int);
 	void getCapturedTreasureNum();
@@ -210,6 +210,7 @@ struct Obj : public EnemyBase {
 	bool startBigTreasureBootUpDemo();
 
 	void setupBigTreasureCollision();
+	void createPikiBaby(EnemyTypeID::EEnemyTypeID type, u8 count, Vector3f& position);
 
 	// _00 		= VTBL
 	// _00-_2BC	= EnemyBase

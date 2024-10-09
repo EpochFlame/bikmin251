@@ -377,4 +377,59 @@ void GeneralEnemyMgr::createEnemyMgr(u8 type, int enemyID, int limit)
 	add(mgr);
 	sys->heapStatusEnd(name);
 }
+
+void GeneralEnemyMgr::addEnemyNum(int enemyID, u8 max, GenObjectEnemy* genObj)
+{
+	if (enemyID != -1) {
+		addEnemyNum(enemyID, max * EnemyInfoFunc::getEnemyMember(enemyID, 0xFFFF));
+
+		for (int i = 0; i < max; i++) {
+			switch (enemyID) {
+				// check if we're dealing with a plant that can spawn spectralids
+			case EnemyTypeID::EnemyID_Ooinu_l:
+			case EnemyTypeID::EnemyID_Tanpopo:
+			case EnemyTypeID::EnemyID_Magaret:
+				if (genObj) {
+					EnemyPelletInfo pelletInfo;
+					pelletInfo = genObj->m_pelletInfo;
+
+					if (pelletInfo.m_color == 0 && pelletInfo.m_size == 1) {
+						EnemyInfo* info = EnemyInfoFunc::getEnemyInfo(enemyID, 0xFFFF);
+						addEnemyNum(info->m_childID, info->m_childNum, nullptr);
+					}
+				}
+				continue;
+			case EnemyTypeID::EnemyID_DangoMushi:
+				if (getEnemyNum(EnemyTypeID::EnemyID_Egg, true) < 10) {
+					addEnemyNum(EnemyTypeID::EnemyID_Egg, 10, nullptr);
+				}
+
+				if (getEnemyNum(EnemyTypeID::EnemyID_Rock, true) < 30) {
+					addEnemyNum(EnemyTypeID::EnemyID_Rock, 30, nullptr);
+				}
+
+				break;
+			case EnemyTypeID::EnemyID_Queen:
+				if (getEnemyNum(EnemyTypeID::EnemyID_Rock, true) < 10) {
+					addEnemyNum(EnemyTypeID::EnemyID_Rock, 10, nullptr);
+				}
+
+				break;
+			case EnemyTypeID::EnemyID_BigTreasure:
+				if (getEnemyNum(EnemyTypeID::EnemyID_PikiBabyRed, true) < 7) {
+					addEnemyNum(EnemyTypeID::EnemyID_PikiBabyRed, 7, nullptr);
+				}
+
+				if (getEnemyNum(EnemyTypeID::EnemyID_PikiBabyBlue, true) < 7) {
+					addEnemyNum(EnemyTypeID::EnemyID_PikiBabyBlue, 7, nullptr);
+				}
+				break;
+			}
+
+			EnemyInfo* info = EnemyInfoFunc::getEnemyInfo(enemyID, 0xFFFF);
+			addEnemyNum(info->m_childID, info->m_childNum, nullptr);
+		}
+	}
+}
+
 } // namespace Game

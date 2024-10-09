@@ -171,6 +171,19 @@ struct GeneralEnemyMgr : public GenericObjectMgr, public CNode {
 		return num;
 	}
 
+	void addEnemyNum(int enemyID, u8 num)
+	{
+		EnemyTypeID* enemyNumList = m_enemyNumList;
+		if (enemyNumList) {
+			for (int i = 0; i < gEnemyInfoNum; i++) {
+				if (enemyID == m_enemyNumList[i].m_enemyID) {
+					m_enemyNumList[i].m_count += num;
+					return;
+				}
+			}
+		}
+	}
+
 	// _00		= (GenericObjectMgr) VTABLE
 	// _04-_1C	= CNode
 	u8 _1C;                      // _1C

@@ -30,7 +30,7 @@ struct TPikiDenki : public TChaseMtx2 {
 
 struct TPikiBury : public TPkAp {
 	inline TPikiBury()
-		: TPkAp()
+	    : TPkAp()
 	{
 	}
 
@@ -46,10 +46,9 @@ struct Obj : public Baby::Obj {
 	Obj();
 
 	virtual ~Obj() { }
-	virtual void attackTarget();
 	virtual void bounceCallback(Sys::Triangle*);
 	virtual void changeMaterial();
-    virtual void doUpdateCommon();
+	virtual void doUpdateCommon();
 	virtual void onInit(CreatureInitArg*);
 	virtual void getShadowParam(ShadowParam&);
 	virtual WalkSmokeEffect::Mgr* getWalkSmokeEffectMgr();
@@ -57,9 +56,18 @@ struct Obj : public Baby::Obj {
 	virtual void initMouthSlots();
 	virtual void initWalkSmokeEffect();
 	virtual bool pressCallBack(Creature*, f32, CollPart*);
+	virtual void onDeathStateInit();
+	virtual void onBirthStateEnd();
 
-	inline f32 getMaxAttackHeight() const { return m_position.y + CS_GENERALPARMS(Baby::Parms*).m_fp20.m_value; }
-	inline f32 getMinAttackHeight() const { return m_position.y - CS_GENERALPARMS(Baby::Parms*).m_fp21.m_value; }
+	inline f32 getMaxAttackHeight() const 
+	{ 
+		return m_position.y + CS_GENERALPARMS(Baby::Parms*).m_fp20.m_value; 
+	}
+
+	inline f32 getMinAttackHeight() const 
+	{ 
+		return m_position.y - CS_GENERALPARMS(Baby::Parms*).m_fp21.m_value; 
+	}
 
 	void createLandEfx();
 
@@ -72,10 +80,12 @@ struct Mgr : public EnemyMgrBase {
 	Mgr(int objLimit, u8 modelType);
 
 	virtual SysShape::Model* createModel();
-	virtual J3DModelData* doLoadBmd(void* filename) { return J3DModelLoaderDataBase::load(filename, 0x20240010); }
 	virtual void loadTexData();
+	virtual J3DModelData* doLoadBmd(void* filename) 
+	{ 
+		return J3DModelLoaderDataBase::load(filename, 0x20240010); 
+	}
 
-	Obj* m_obj;
 	Sys::MatTevRegAnimation* mTevRegAnim;
 };
 
@@ -89,6 +99,7 @@ struct StateDead : public Baby::StateDead {
 
 struct StateBorn : public Baby::StateBorn {
 	virtual void exec(EnemyBase*);
+	virtual void cleanup(EnemyBase*);
 };
 
 } // namespace PikiBaby
@@ -102,8 +113,11 @@ struct Obj : public PikiBaby::Obj {
 	}
 
 	virtual ~Obj() { }
-	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID() { return EnemyTypeID::EnemyID_PikiBabyRed; }
-	virtual void attackTarget();
+	virtual void onDeathStateInit();
+	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID() 
+	{ 
+		return EnemyTypeID::EnemyID_PikiBabyRed; 
+	}
 
 	void createDisChargeEffect();
 };
@@ -114,7 +128,12 @@ struct Mgr : public PikiBaby::Mgr {
 	virtual void createObj(int);
 	virtual EnemyBase* getEnemy(int idx);
 	virtual void doAlloc();
-	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID() { return EnemyTypeID::EnemyID_PikiBabyRed; }
+	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID() 
+	{ 
+		return EnemyTypeID::EnemyID_PikiBabyRed; 
+	}
+
+	Obj* m_obj;
 };
 
 } // namespace PikiBabyRed
@@ -122,15 +141,25 @@ struct Mgr : public PikiBaby::Mgr {
 namespace PikiBabyYellow {
 
 struct Obj : public PikiBaby::Obj {
-	Obj();
+	inline Obj()
+	    : PikiBaby::Obj()
+	    , mIsBorn(false)
+	    , mElecEfx(new efx::TPikiDenki)
+	{
+	}
 
 	virtual ~Obj() { }
 	virtual void onInit(CreatureInitArg*);
-	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID() { return EnemyTypeID::EnemyID_PikiBabyYellow; }
 	virtual void collisionCallback(CollEvent&);
-	virtual void attackTarget();
+	virtual void onDeathStateInit();
+	virtual void onBirthStateEnd();
+	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID() 
+	{ 
+		return EnemyTypeID::EnemyID_PikiBabyYellow; 
+	}
 
-	efx::TPikiDenki* m_elecEfx;
+	bool mIsBorn;
+	efx::TPikiDenki* mElecEfx;
 };
 
 struct Mgr : public PikiBaby::Mgr {
@@ -139,7 +168,12 @@ struct Mgr : public PikiBaby::Mgr {
 	virtual void createObj(int);
 	virtual EnemyBase* getEnemy(int idx);
 	virtual void doAlloc();
-	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID() { return EnemyTypeID::EnemyID_PikiBabyYellow; }
+	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID() 
+	{ 
+		return EnemyTypeID::EnemyID_PikiBabyYellow; 
+	}
+
+	Obj* m_obj;
 };
 
 } // namespace PikiBabyYellow
@@ -153,7 +187,10 @@ struct Obj : public PikiBaby::Obj {
 	}
 
 	virtual ~Obj() { }
-	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID() { return EnemyTypeID::EnemyID_PikiBabyBlue; }
+	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID() 
+	{ 
+		return EnemyTypeID::EnemyID_PikiBabyBlue; 
+	}
 };
 
 struct Mgr : public PikiBaby::Mgr {
@@ -162,7 +199,12 @@ struct Mgr : public PikiBaby::Mgr {
 	virtual void createObj(int);
 	virtual EnemyBase* getEnemy(int idx);
 	virtual void doAlloc();
-	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID() { return EnemyTypeID::EnemyID_PikiBabyBlue; }
+	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID() 
+	{ 
+		return EnemyTypeID::EnemyID_PikiBabyBlue; 
+	}
+
+	Obj* m_obj;
 };
 
 } // namespace PikiBabyBlue

@@ -126,7 +126,9 @@ void Obj::bounceCallback(Sys::Triangle* tri)
 	m_simVelocity = Vector3f::zero;
 }
 
-void Obj::attackTarget() { }
+void Obj::onDeathStateInit() { }
+
+void Obj::onBirthStateEnd() { }
 
 void Obj::initWalkSmokeEffect()
 {
@@ -184,7 +186,7 @@ void StateDead::init(EnemyBase* enemy, StateArg* arg)
 
     Obj* piki = OBJ(enemy);
     piki->mDoPlayMatAnim = true;
-	piki->attackTarget();
+	piki->onDeathStateInit();
 }
 
 void StateBorn::exec(EnemyBase* enemy)
@@ -194,6 +196,13 @@ void StateBorn::exec(EnemyBase* enemy)
 	if (enemy->m_curAnim->m_isRunning && enemy->m_curAnim->m_type == KEYEVENT_2) {
 		OBJ(enemy)->createLandEfx();
 	}
+}
+
+void StateBorn::cleanup(EnemyBase*enemy)
+{
+	Baby::StateBorn::cleanup(enemy);
+
+	OBJ(enemy)->onBirthStateEnd();
 }
 
 } // namespace PikiBaby
@@ -207,7 +216,7 @@ void Obj::createDisChargeEffect()
 	dischargeFX.create(&fxArg);
 }
 	
-void Obj::attackTarget()
+void Obj::onDeathStateInit()
 {
 	createDisChargeEffect();
 
@@ -247,32 +256,30 @@ void Obj::attackTarget()
 
 namespace PikiBabyYellow {
 
-Obj::Obj()
-	: PikiBaby::Obj()
-{
-	m_elecEfx = new efx::TPikiDenki;
-}
-
 void Obj::onInit(CreatureInitArg* arg)
 {
 	PikiBaby::Obj::onInit(arg);
 
 	Matrixf* jointMtx = m_model->m_joints[0].getWorldMatrix();
-	m_elecEfx->setMtxptr(jointMtx->m_matrix.mtxView);
-	m_elecEfx->create(nullptr);
+	mElecEfx->setMtxptr(jointMtx->m_matrix.mtxView);
 }
 
-void Obj::attackTarget()
+void Obj::onDeathStateInit()
 {
-	if (m_elecEfx != nullptr) {
-		m_elecEfx->fade();
-	}
+	mElecEfx->fade();
+}
+
+void Obj::onBirthStateEnd()
+{
+	mIsBorn = true;
+	mElecEfx->create(nullptr);
 }
 
 void Obj::collisionCallback(CollEvent& event)
 {
 	Creature* creature = event.m_collidingCreature;
-	if (!creature->isPiki() && !creature->isNavi()) {
+	bool isFakePiki = creature->isPiki() || creature->isNavi(); 
+	if (!mIsBorn || !isFakePiki) {
 		return;
 	}
 
@@ -288,8 +295,8 @@ void Obj::collisionCallback(CollEvent& event)
 		direction.y = parms->m_fp26.m_value;
 	}
 
-	InteractDenki interact(this, parms->m_attackDamage.m_value, &direction);
-	creature->stimulate(interact);
+	InteractDenki denki(this, parms->m_attackDamage.m_value, &direction);
+	creature->stimulate(denki);
 }
 
 } // namespace PikiBabyYellow
