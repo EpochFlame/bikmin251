@@ -74,4 +74,13 @@ inline f32 absF(f32 val)
 	return (f32)newVal;
 }
 
+inline f32 clamp(f32 val, f32 limit)
+{
+	if (absF(val) > limit) {
+		val = (val > 0.0f) ? limit : -limit;
+	}
+
+	return val;
+}
+
 #endif

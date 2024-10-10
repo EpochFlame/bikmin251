@@ -34,6 +34,7 @@ extern "C" {
 
 #define DEG2RAD     (1.0f / 180.0f)
 #define FULLDEG2RAD (0.03490659f)
+#define TORADIANS(degrees) (PI * (DEG2RAD * degrees))
 
 double cos(double);
 float cosf(float);

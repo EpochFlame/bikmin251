@@ -1,6 +1,7 @@
 #include "Game/Entities/PikiBaby.h"
 #include "Game/EnemyFunc.h"
 #include "Game/EnemyAnimKeyEvent.h"
+#include "Game/EnemyParmsBase.h"
 #include "Dolphin/rand.h"
 
 namespace efx {
@@ -182,6 +183,12 @@ void Obj::createLandEfx()
 	buryFX.create(&fxArg);
 }
 
+Creature* Obj::getAttackableTarget()
+{
+	EnemyParmsBase::Parms* parms = &CS_GENERALPARMS(Baby::Parms*);
+	return EnemyFunc::getNearestPikminOrNavi(this, parms->m_fov.m_value, parms->m_sightRadius.m_value, nullptr, nullptr, nullptr);
+}
+
 void FSM::init(EnemyBase* enemy)
 {
 	StateDead* stateDead = new StateDead;
@@ -189,8 +196,8 @@ void FSM::init(EnemyBase* enemy)
 	create(Baby::BABY_Count), registerState(stateDead);
 	registerState(stateDead);
 	registerState(new StateBorn);
-	registerState(new Baby::StateMove);
-	registerState(new StateAttack);
+	registerState(new StateMove);
+	registerState(new Baby::StateAttack);
 }
 
 void StateDead::init(EnemyBase* enemy, StateArg* arg)
@@ -218,14 +225,38 @@ void StateBorn::cleanup(EnemyBase* enemy)
 	OBJ(enemy)->onBirthStateEnd();
 }
 
-void StateAttack::exec(EnemyBase* enemy) 
-{ 
-	if (OBJ(enemy)->doSkipAttack()) {
-		transit(enemy, Baby::BABY_Move, nullptr);
+void StateMove::exec(EnemyBase* enemy)
+{
+	Obj* baby = OBJ(enemy);
+	if (baby->m_health <= 0.0f) {
+		transit(baby, Baby::BABY_Dead, nullptr);
 		return;
 	}
 
-	Baby::StateAttack::exec(enemy);
+	Creature* creature = baby->getAttackableTarget();
+
+	if (creature) {
+		EnemyParmsBase::Parms* parms = &CV_GENERALPARMS(Baby::Parms*, baby);
+		f32 angleDist                = baby->turnToTarget(creature, parms->m_rotationalAccel.m_value, parms->m_rotationalSpeed.m_value);
+
+		f32 limit = PI * (DEG2RAD * parms->m_fp21.m_value);
+
+		if (FABS(angleDist) <= limit) {
+			baby->setTargetVelocity();
+		} else {
+			baby->setTargetVelocity(0.25f);
+		}
+
+		if (baby->isTargetAttackable(creature, angleDist, parms->m_fp20.m_value, parms->m_fp21.m_value)) {
+			transit(baby, Baby::BABY_Attack, nullptr);
+		}
+	} else {
+		baby->moveNoTarget();
+	}
+
+	if (baby->m_curAnim->m_isRunning && baby->m_curAnim->m_type == KEYEVENT_END) {
+		transit(baby, Baby::BABY_Move, nullptr);
+	}
 }
 
 } // namespace PikiBaby
@@ -320,6 +351,22 @@ void Obj::collisionCallback(CollEvent& event)
 	creature->stimulate(denki);
 }
 
+Creature* Obj::getAttackableTarget()
+{
+	EnemyParmsBase::Parms* parms = &CS_GENERALPARMS(Baby::Parms*);
+	return (Creature*)EnemyFunc::getNearestNavi(this, parms->m_fov.m_value, parms->m_sightRadius.m_value, nullptr, nullptr);
+}
+
 } // namespace PikiBabyYellow
+
+namespace PikiBabyBlue {
+
+Creature* Obj::getAttackableTarget()
+{
+	EnemyParmsBase::Parms* parms = &CS_GENERALPARMS(Baby::Parms*);
+	return EnemyFunc::getNearestPikmin(this, parms->m_fov.m_value, parms->m_sightRadius.m_value, nullptr, nullptr);
+}
+
+} // namespace PikiBabyBlue
 
 } // namespace Game

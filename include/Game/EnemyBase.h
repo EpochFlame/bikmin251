@@ -16,6 +16,7 @@
 #include "efx/TEnemyPiyo.h"
 
 #include "trig.h"
+#include "Dolphin/math.h"
 
 #define EMOTE_None       (0)
 #define EMOTE_Caution    (1)
@@ -565,6 +566,57 @@ struct EnemyBase : public Creature, public SysShape::MotionListener, virtual pub
 		m_faceDir    = roundAng(approxSpeed + getFaceDir());
 		m_rotation.y = m_faceDir;
 		return angleDist;
+	}
+
+	inline void updateFaceDir(f32 angle)
+	{
+		m_faceDir    = angle;
+		m_rotation.y = m_faceDir;
+	}
+
+	inline f32 turnToTarget(Creature* target, f32 turnSpeed, f32 maxTurnAngle)
+	{
+		f32 angleDist = getAngDist(target);
+		f32 angle     = clamp(angleDist * turnSpeed, PI * (DEG2RAD * maxTurnAngle));
+
+		updateFaceDir(roundAng(angle + getFaceDir()));
+
+		return angleDist;
+	}
+
+	inline void setTargetVelocity()
+	{
+		f32 x, y, z;
+		f32 speed = static_cast<EnemyParmsBase*>(m_parms)->m_general.m_moveSpeed.m_value;
+		x         = sinf(getFaceDir());
+		y         = m_simVelocity.y;
+		z         = cosf(getFaceDir());
+
+		m_simVelocity = Vector3f(speed * x, y, speed * z);
+	}
+
+	inline void setTargetVelocity(f32 speedFactor)
+	{
+		f32 x, y, z;
+		f32 speed = speedFactor * static_cast<EnemyParmsBase*>(m_parms)->m_general.m_moveSpeed.m_value;
+		x         = sinf(getFaceDir());
+		y         = m_simVelocity.y;
+		z         = cosf(getFaceDir());
+
+		m_simVelocity = Vector3f(speed * x, y, speed * z);
+	}
+
+	inline bool isTargetAttackable(Creature* target, f32 angleDiff, f32 attackDist, f32 attackAngle)
+	{
+		bool result = false;
+		Vector3f sep;
+		sep.x = target->getPosition().x - getPosition().x;
+		sep.y = target->getPosition().y - getPosition().y;
+		sep.z = target->getPosition().z - getPosition().z;
+		if ((sep.sqrMagnitude() < SQUARE(attackDist)) && (FABS(angleDiff) <= TORADIANS(attackAngle))) {
+			result = true;
+		}
+		return result;
 	}
 
 	inline f32 getDamageAnimFrac(f32 scale) { return (m_damageAnimTimer / scale); }

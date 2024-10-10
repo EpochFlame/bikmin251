@@ -128,6 +128,8 @@ struct Vector3 {
 	inline f32 sqrMagnitude2D() const { return this->x * this->x + this->z * this->z; }
 	inline T dot(const Vector3& other);
 
+	inline T sqrMagnitude() const;
+
 	static inline T getFlatDirectionFromTo(Vector3& from, Vector3& to);
 
 	float length() const;
@@ -370,6 +372,12 @@ inline f32 Vector3f::sqrDistance(Vector3f& them)
 	f32 diffZ = this->z - them.z;
 
 	return diffX * diffX + diffY * diffY + diffZ * diffZ;
+}
+
+template <typename T>
+inline T Vector3<T>::sqrMagnitude() const
+{
+	return this->x * this->x + this->y * this->y + this->z * this->z;
 }
 
 template <typename T>
