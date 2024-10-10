@@ -363,7 +363,12 @@ void Obj::shotPikmin()
 void Obj::changePomColor()
 {
 	if (getEnemyTypeID() == EnemyTypeID::EnemyID_RandPom) {
-		SingleGameSection* section = static_cast<SingleGameSection*>(gameSystem->m_section);
+		SingleGameSection* section;
+		if (!(gameSystem->m_mode == GSM_PIKLOPEDIA)) {
+			section = static_cast<SingleGameSection*>(gameSystem->m_section);
+		} else {
+			section = nullptr;
+		}
 		if (m_queenColorTimer > C_PROPERPARMS.m_colorChangeTime.m_value && !(section && (section->m_currentCourseInfo->m_courseIndex == 2 && !gameSystem->m_inCave))) {
 			int limit     = m_pikiKind + 3; // more than 3 and we loop back
 			int nextColor = m_pikiKind + 1; // first potential next color to try (Blue->Red->Yellow)
