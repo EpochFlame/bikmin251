@@ -550,6 +550,8 @@ void BigTreasureAttackMgr::startGasAttack()
 
 #pragma endregion
 
+#pragma region COLOR
+
 void Obj::setAttackMaterialColor(bool isFast)
 {
 	mIsFastMatAnim = isFast;
@@ -582,12 +584,12 @@ void Obj::setAttackMaterialColor(bool isFast)
 
 		case BIGATTACK_Gas:
 		case BIGATTACK_Troll:
-			mTargetMatBodyColor.r = 90;
-			mTargetMatBodyColor.g = 5;
-			mTargetMatBodyColor.b = 120;
+			mTargetMatBodyColor.r = 161;
+			mTargetMatBodyColor.g = 188;
+			mTargetMatBodyColor.b = 58;
 
-			mTargetClusterEyeColor[EYECOLOR_Dark].set(30.0f, 0.0f, 30.0f);
-			mTargetClusterEyeColor[EYECOLOR_Light].set(220.0f, 68.0f, 160.0f);
+			mTargetClusterEyeColor[EYECOLOR_Dark].set(42.0f, 51.0f, 24.0f);
+			mTargetClusterEyeColor[EYECOLOR_Light].set(129.0f, 175.0f, 3.0f);
 
 			mTargetSideEyeColor[EYECOLOR_Dark].set(68.0f, 82.0f, 40.0f);
 			mTargetSideEyeColor[EYECOLOR_Light].set(182.0f, 252.0f, 3.0f);
@@ -609,31 +611,31 @@ void Obj::setAttackMaterialColor(bool isFast)
 	} else {
 		bool hasTreasures = isCapturedTreasure();
 
-		mTargetMatBodyColor.r = 30;
-		mTargetMatBodyColor.g = 70;
-		mTargetMatBodyColor.b = 60;
+		mTargetMatBodyColor.r = 36;
+		mTargetMatBodyColor.g = 44;
+		mTargetMatBodyColor.b = 42;
 
 		if (hasTreasures) {
-			mTargetMatBodyColor.a = 255;
-		} else {
 			mTargetMatBodyColor.a = 0;
+		} else {
+			mTargetMatBodyColor.a = 255;
 		}
 
 		if (hasTreasures) {
-			mTargetClusterEyeColor[EYECOLOR_Dark].set(20.0f, 60.0f, 20.0f);
-			mTargetClusterEyeColor[EYECOLOR_Light].set(120.0f, 255.0f, 90.0f);
+			mTargetClusterEyeColor[EYECOLOR_Dark].set(0.0f, 36.0f, 82.0f);
+			mTargetClusterEyeColor[EYECOLOR_Light].set(0.0f, 112.0f, 255.0f);
 
 			mTargetSideEyeColor[EYECOLOR_Dark].set(0.0f, 30.0f, 0.0f);
 			mTargetSideEyeColor[EYECOLOR_Light].set(90.0f, 180.0f, 160.0f);
 
 		} else {
-			mTargetClusterEyeColor[EYECOLOR_Dark].set(10.0f, 100.0f, 255.0f);
-			mTargetClusterEyeColor[EYECOLOR_Light].set(255.0f, 180.0f, 64.0f);
+			mTargetClusterEyeColor[EYECOLOR_Dark].set(0.0f, 0.0f, 255.0f);
+			mTargetClusterEyeColor[EYECOLOR_Light].set(0.0f, 0.0f, 255.0f);
 
 			mTargetSideEyeColor[EYECOLOR_Dark].set(60.0f, 230.0f, 30.0f);
 			mTargetSideEyeColor[EYECOLOR_Light].set(100.0f, 30.0f, 200.0f);
 
-			if (mTargetMatBodyColor.a == 0 && mCurrMatBodyColor.a == 255) {
+			if (mTargetMatBodyColor.a == 255 && mCurrMatBodyColor.a == 0) {
 				createChangeMaterialEffect();
 				getJAIObject()->startSound(PSSE_EN_BIGTAKARA_SHELL, 0);
 			}
@@ -642,6 +644,32 @@ void Obj::setAttackMaterialColor(bool isFast)
 
 	setMatEyeAnimSpeed();
 }
+
+void Obj::changeMaterial()
+{
+	J3DModel* j3dModel      = m_model->m_j3dModel;
+	J3DModelData* modelData = j3dModel->m_modelData;
+
+	u16 bodyIdx          = modelData->m_materialTable.m_materialNames->getIndex("mat_body");
+	J3DMaterial* bodyMat = modelData->m_materialTable.m_materials1[bodyIdx];
+	bodyMat->m_tevBlock->setTevColor(0, mCurrMatBodyColor);
+
+	J3DGXColorS10 color1(mCurrClusterEyeColor.mRgb[0], mCurrClusterEyeColor.mRgb[1], mCurrClusterEyeColor.mRgb[2], mCurrMatBodyColor.a);
+
+	u16 eyeIdx1          = modelData->m_materialTable.m_materialNames->getIndex("mat_eye1");
+	J3DMaterial* eyeMat1 = modelData->m_materialTable.m_materials1[eyeIdx1];
+	eyeMat1->m_tevBlock->setTevColor(0, color1);
+
+	J3DGXColorS10 color2(mCurrSideEyeColor.mRgb[0], mCurrSideEyeColor.mRgb[1], mCurrSideEyeColor.mRgb[2], 255);
+
+	u16 eyeIdx2          = modelData->m_materialTable.m_materialNames->getIndex("mat_eye2");
+	J3DMaterial* eyeMat2 = modelData->m_materialTable.m_materials1[eyeIdx2];
+	eyeMat2->m_tevBlock->setTevColor(0, color2);
+
+	j3dModel->calcMaterial();
+}
+
+#pragma endregion
 
 } // namespace BigTreasure
 } // namespace Game
