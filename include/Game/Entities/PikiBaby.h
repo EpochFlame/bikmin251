@@ -60,6 +60,7 @@ struct Obj : public Baby::Obj {
 	virtual void onDeathStateInit();
 	virtual void onBirthStateEnd();
 	virtual void setInWaterDamage();
+	virtual bool doSkipAttack() { return false; }
 
 	inline f32 getMaxAttackHeight() const 
 	{ 
@@ -102,6 +103,10 @@ struct StateDead : public Baby::StateDead {
 struct StateBorn : public Baby::StateBorn {
 	virtual void exec(EnemyBase*);
 	virtual void cleanup(EnemyBase*);
+};
+
+struct StateAttack : public Baby::StateAttack {
+	virtual void exec(EnemyBase*);
 };
 
 } // namespace PikiBaby
@@ -155,6 +160,7 @@ struct Obj : public PikiBaby::Obj {
 	virtual void collisionCallback(CollEvent&);
 	virtual void onDeathStateInit();
 	virtual void onBirthStateEnd();
+	virtual bool doSkipAttack() { return true; }
 	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID() 
 	{ 
 		return EnemyTypeID::EnemyID_PikiBabyYellow; 
