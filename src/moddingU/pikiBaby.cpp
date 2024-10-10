@@ -134,7 +134,7 @@ void Obj::onBirthStateEnd() { }
 void Obj::setInWaterDamage()
 {
 	if (m_waterBox) {
-		addDamage(1.0f * sys->m_deltaTime, 1.0f);
+		addDamage(CS_GENERALPARMS(Baby::Parms*).m_health.m_value * sys->m_deltaTime, 1.0f);
 	}
 }
 
