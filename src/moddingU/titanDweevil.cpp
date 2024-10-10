@@ -7,7 +7,11 @@
 namespace Game {
 namespace BigTreasure {
 
-bool Obj::mHasDoneElecAttack = false;
+bool Obj::sHasDoneTrollAttack = false;
+
+int BigTreasureAttackMgr::sPikiBabyCount = 0;
+
+#pragma region GENERAL
 
 // remove the hardcoded offset for comedy bomb
 void Obj::setupBigTreasureCollision()
@@ -82,17 +86,11 @@ void Obj::setupTreasure()
 	mAttackIndex = -1;
 }
 
-bool Obj::isNormalAttack(int idx)
-{
-	int curIndex = idx;
-	// Gas pinch life check uses Elec life instead
-	if (idx == BIGATTACK_Gas) {
-		curIndex = BIGATTACK_Elec;
-	}
-	return (mTreasureHealth[curIndex] > 2500.0f);
-}
+#pragma endregion
 
-// force BIGATTACK_Gas to be one of two attacks that shock therapist can use
+#pragma region GENERAL_ATTACK
+
+// force BIGATTACK_Gas to be one of two attacks that troll onion can use
 void Obj::setTreasureAttack()
 {
 	int attackIdx[BIGATTACK_Count];     // indices for available attacks, max 4
@@ -102,24 +100,14 @@ void Obj::setTreasureAttack()
 	int count        = 0;    // how many weapons alive, max 4
 
 	// loop through all weapons; if alive, calc weighting + add to arrays
-	// 0 = elec, 1 = fire, 2 = gas, 3 = water
+	// 0 = troll, 1 = fire, 2 = piki, 3 = water
 	for (int i = 0; i < BIGATTACK_Count; i++) {
-		// effectively rework BIGATTACK_Gas to be a part of BIGATTACK_Elec
-		// basically 50/50 chance for one treasure to do either
-		Game::Pellet* curTreasure = mTreasures[i];
-		f32 treasureHealth        = mTreasureHealth[i];
-		// BIGATTACK_Gas uses shock therapist's health and treasure reference
-		if (i == BIGATTACK_Gas) {
-			curTreasure    = mTreasures[BIGATTACK_Elec];
-			treasureHealth = mTreasureHealth[BIGATTACK_Elec];
-		}
-
-		if (curTreasure) {
+		if (mTreasures[i]) {
 			attackIdx[count] = i;
 
 			// each weapon weight is [5000.0f, 10000.0f)
 			// 5000.0f at max health, linearly approaches 10000.0f as health decreases
-			weaponWeights[count] = 10000.0f - treasureHealth;
+			weaponWeights[count] = 10000.0f - mTreasureHealth[i];
 			totalWeights += weaponWeights[count];
 
 			count++;
@@ -132,11 +120,11 @@ void Obj::setTreasureAttack()
 		 * 'threshold' is a random float between 0 and totalWeights.
 		 * - If threshold falls 'within' one of the 'bands' of weights, that weapon is selected.
 		 * - A given band is bigger if that weapon is on lower health.
-		 * - Bands are always in the order (elec -> fire -> gas -> water).
+		 * - Bands are always in the order (troll -> fire -> piki -> water).
 		 *
 		 * i.e.
 		 *
-		 *      |     elec     | fire |   gas   |       water       |
+		 *      |     troll     | fire |   piki   |       water       |
 		 *      0                 ^(threshold)                    total
 		 *
 		 * == fire gets chosen.
@@ -147,11 +135,12 @@ void Obj::setTreasureAttack()
 			inc += weaponWeights[i]; // jump to next weapon bracket
 			if (inc > threshold) {   // if threshold falls in that bracket, choose weapon
 				mAttackIndex = attackIdx[i];
-				if (mAttackIndex == BIGATTACK_Gas && !mHasDoneElecAttack) {
-					mAttackIndex = BIGATTACK_Elec;
-				} else if (mAttackIndex == BIGATTACK_Elec && mHasDoneElecAttack) {
+
+				// if it has already used the troll attack, use gas instead
+				if (mAttackIndex == BIGATTACK_Troll && sHasDoneTrollAttack) {
 					mAttackIndex = BIGATTACK_Gas;
 				}
+
 				return;
 			}
 		}
@@ -164,27 +153,24 @@ void Obj::setTreasureAttack()
 void Obj::startAttack()
 {
 	switch (mAttackIndex) {
-	case BIGATTACK_Elec:
+	case BIGATTACK_Troll:
 		mAttackMgr->startElecAttack();
-		mHasDoneElecAttack = true;
+		sHasDoneTrollAttack = true;
+		break;
+	case BIGATTACK_Gas:
+		mAttackMgr->startGasAttack();
+		sHasDoneTrollAttack = false;
 		break;
 	case BIGATTACK_Fire:
 		mAttackMgr->startFireAttack();
 		break;
-	case BIGATTACK_Gas:
-		mAttackMgr->startGasAttack();
-		mHasDoneElecAttack = false;
-		break;
 	case BIGATTACK_Water:
 		mAttackMgr->startWaterAttack();
 		break;
+	case BIGATTACK_Piki:
+		mAttackMgr->startPikiAttack();
+		break;
 	}
-}
-
-// change gas effect joint to shock therapist's joint
-void BigTreasureAttackMgr::updateGasEmitPosition()
-{
-	mGasEmitPosition = mObj->m_model->getJoint("otakara_elec_eff")->getWorldMatrix()->getColumn(3);
 }
 
 void Obj::createPikiBaby(EnemyTypeID::EEnemyTypeID type, u8 count, Vector3f& position)
@@ -227,10 +213,10 @@ bool Obj::dropTreasure(int idx)
 	case BIGATTACK_Water:
 		createPikiBaby(EnemyTypeID::EnemyID_PikiBabyBlue, 7, position);
 		break;
-	case BIGATTACK_Gas:
+	case BIGATTACK_Piki:
 		createPikiBaby(EnemyTypeID::EnemyID_PikiBabyYellow, 7, position);
 		break;
-	case BIGATTACK_Elec:
+	case BIGATTACK_Troll:
 		// spawn an alfredo sauce
 		ItemHoney::Item* spray = static_cast<ItemHoney::Item*>(ItemHoney::mgr->birth());
 		if (spray != nullptr) {
@@ -249,6 +235,412 @@ bool Obj::dropTreasure(int idx)
 	mTreasures[idx]      = nullptr;
 	mTreasureHealth[idx] = 0.0f;
 	return true;
+}
+
+#pragma endregion
+
+#pragma region ANIMATION
+
+// add new BIGATTACK_Piki preattack anims
+int Obj::getPreAttackAnimIndex()
+{
+	switch (mAttackIndex) {
+	case BIGATTACK_Troll:
+		return BIGTREASUREANIM_PreAttackE;
+	case BIGATTACK_Fire:
+		return BIGTREASUREANIM_PreAttackF;
+	case BIGATTACK_Gas:
+		return BIGTREASUREANIM_PreAttackG;
+	case BIGATTACK_Water:
+		return BIGTREASUREANIM_PreAttackW;
+	case BIGATTACK_Piki:
+		return BIGTREASUREANIM_PreAttackP;
+	}
+
+	return BIGTREASUREANIM_DropItem;
+}
+
+// add new BIGATTACK_Piki attack anims
+int Obj::getAttackAnimIndex()
+{
+	switch (mAttackIndex) {
+	case BIGATTACK_Troll:
+		return BIGTREASUREANIM_AttackE;
+	case BIGATTACK_Gas:
+		return BIGTREASUREANIM_AttackG;
+	case BIGATTACK_Water:
+		return BIGTREASUREANIM_AttackW;
+	case BIGATTACK_Piki:
+		return BIGTREASUREANIM_AttackP;
+	}
+
+	if (mAttackIndex == BIGATTACK_Fire) {
+		int currAnimIdx = getCurrAnimationIndex();
+		switch (currAnimIdx) {
+		case BIGTREASUREANIM_PreAttackF:
+			return BIGTREASUREANIM_AttackF;
+		case BIGTREASUREANIM_PreAttackFR:
+			return BIGTREASUREANIM_AttackFR;
+		case BIGTREASUREANIM_PreAttackFL:
+			return BIGTREASUREANIM_AttackFR;
+		case BIGTREASUREANIM_PreAttackFB:
+			return BIGTREASUREANIM_AttackFB;
+		}
+	}
+
+	return BIGTREASUREANIM_DropItem;
+}
+
+// add new BIGATTACK_Piki attackend anims
+int Obj::getPutItemAnimIndex()
+{
+	switch (mAttackIndex) {
+	case BIGATTACK_Troll:
+		return BIGTREASUREANIM_AttackEndE;
+	case BIGATTACK_Gas:
+		return BIGTREASUREANIM_AttackEndG;
+	case BIGATTACK_Water:
+		return BIGTREASUREANIM_AttackEndW;
+	case BIGATTACK_Piki:
+		return BIGTREASUREANIM_AttackEndP;
+	}
+
+	if (mAttackIndex == BIGATTACK_Fire) {
+		int currAnimIdx = getCurrAnimationIndex();
+		switch (currAnimIdx) {
+		case BIGTREASUREANIM_AttackF:
+			return BIGTREASUREANIM_AttackEndF;
+		case BIGTREASUREANIM_AttackFR:
+			return BIGTREASUREANIM_AttackEndFR;
+		case BIGTREASUREANIM_AttackFL:
+			return BIGTREASUREANIM_AttackEndFL;
+		case BIGTREASUREANIM_AttackFB:
+			return BIGTREASUREANIM_AttackEndFB;
+		}
+	}
+	return BIGTREASUREANIM_DropItem;
+}
+
+// add new BIGATTACK_Piki preattack time
+f32 Obj::getPreAttackTimeMax()
+{
+	switch (mAttackIndex) {
+	case BIGATTACK_Troll:
+		return C_PROPERPARMS.mElectricityWaitTime.m_value;
+	case BIGATTACK_Fire:
+		if (isNormalAttack(mAttackIndex)) {
+			return C_PROPERPARMS.mFireWaitTime1.m_value;
+		}
+		return C_PROPERPARMS.mFireWaitTime2.m_value;
+	case BIGATTACK_Gas:
+		return C_PROPERPARMS.mGasWaitTime.m_value;
+	case BIGATTACK_Water:
+		return C_PROPERPARMS.mWaterWaitTime.m_value;
+	case BIGATTACK_Piki:
+		return 0.0f;
+	}
+
+	return 5.0f;
+}
+
+// add new BIGATTACK_Piki attack time
+f32 Obj::getAttackTimeMax()
+{
+	switch (mAttackIndex) {
+	case BIGATTACK_Troll:
+		return C_PROPERPARMS.mElecAttackTimeMax.m_value;
+	case BIGATTACK_Fire:
+		return C_PROPERPARMS.mFireAttackTimeMax.m_value;
+	case BIGATTACK_Gas:
+		return C_PROPERPARMS.mGasAttackTimeMax.m_value;
+	case BIGATTACK_Water:
+		return C_PROPERPARMS.mWaterAttackTimeMax.m_value;
+	case BIGATTACK_Piki:
+		if (isNormalAttack(BIGATTACK_Piki)) {
+			return 0.0f;
+		}
+		return 1.5f;
+	}
+
+	return 5.0f;
+}
+
+#pragma endregion
+
+#pragma region PIKIATTACK
+
+void BigTreasureAttackMgr::startPikiAttack()
+{
+	if (mIsStartAttack[BIGATTACK_Piki]) {
+		return;
+	}
+
+	sPikiBabyCount = 0;
+	mIsStartAttack[BIGATTACK_Piki] = true;
+}
+
+void BigTreasureAttackMgr::updatePikiAttack()
+{
+	if (!mIsStartAttack[BIGATTACK_Piki]) {
+		return;
+	}
+
+	PikiBabyYellow::Mgr* babyMgr = static_cast<PikiBabyYellow::Mgr*>(generalEnemyMgr->getEnemyMgr(EnemyTypeID::EnemyID_PikiBabyYellow));
+	if (babyMgr == nullptr) {
+		return;
+	}
+
+	// spawn 7 normally, and 14 at pinch life
+	int max = 7;
+	if (!mObj->isNormalAttack(BIGATTACK_Piki)) {
+		max = 14;
+	}
+
+	EnemyBirthArg birthArg;
+	birthArg.m_position = mObj->m_model->getJoint("otakara_gas")->getWorldMatrix()->getColumn(3);
+	birthArg.m_position.y += 5.0f;
+
+	Vector3f velocity(100.0f);
+	f32 speed = CG_GENERALPARMS(mObj).m_privateRadius.m_value * 1.0f;
+
+	f32 interval = (1.25f + mObj->getAttackTimeMax()) / max;
+	if (mAttackTimer1 <= interval || sPikiBabyCount >= max) {
+		return;
+	}
+
+	mAttackTimer1 = 0.0f;
+
+	f32 angle          = TAU * ((f32)sPikiBabyCount / max);
+	birthArg.m_faceDir = angle;
+
+	velocity.x = speed * sinf(angle);
+	velocity.y = speed * cosf(angle);
+
+	PikiBabyYellow::Obj* baby = static_cast<PikiBabyYellow::Obj*>(babyMgr->birth(birthArg));
+	if (baby == nullptr) {
+		return;
+	}
+
+	baby->init(nullptr);
+	baby->setVelocity(velocity);
+	baby->m_simVelocity = velocity;
+
+	sPikiBabyCount++;
+}
+
+void BigTreasureAttackMgr::update()
+{
+	updateFireAttack();
+	updateGasAttack();
+	updateWaterAttack();
+	updateElecAttack();
+	updateAttackShadow();
+
+	// add pikibaby attack update func
+	updatePikiAttack();
+
+	bool isAttacking = false;
+	for (int i = 0; i < BIGATTACK_Count; i++) {
+		if (mIsStartAttack[i]) {
+			isAttacking = true;
+			if (mObj->isEvent(0, EB_Bittered) && !mObj->isCapturedTreasure(i)) {
+				finishAttack();
+			}
+		}
+	}
+
+	if (isAttacking) {
+		mAttackTimer1 += sys->m_deltaTime;
+		mAttackTimer2 += sys->m_deltaTime;
+	}
+}
+
+#pragma endregion
+
+#pragma region GASATTACK
+
+// change gas effect joint to shock therapist's joint
+void BigTreasureAttackMgr::updateGasEmitPosition()
+{
+	mGasEmitPosition = mObj->m_model->getJoint("otakara_elec_eff")->getWorldMatrix()->getColumn(3);
+}
+
+bool Obj::isNormalAttack(int idx)
+{
+	int curIndex = idx;
+	// Gas pinch life check uses Elec life instead
+	if (idx == BIGATTACK_Gas) {
+		curIndex = BIGATTACK_Troll;
+	}
+	return (mTreasureHealth[curIndex] > 2500.0f);
+}
+
+bool Obj::isCapturedTreasure(int idx)
+{
+	if (idx == BIGATTACK_Gas) {
+		return mTreasures[BIGATTACK_Troll];
+	}
+	return mTreasures[idx];
+}
+
+// canStartGasAttack__Q34Game11BigTreasure20BigTreasureAttackMgrFv
+bool BigTreasureAttackMgr::canStartGasAttack() { return mIsStartAttack[BIGATTACK_Troll] && !Obj::sHasDoneTrollAttack; }
+
+// use BIGATTACK_Troll index instead
+void BigTreasureAttackMgr::setGasAttackParameter()
+{
+	int attackType;
+	if (mObj->isNormalAttack(BIGATTACK_Troll)) {
+		attackType = 1;
+	} else if (randWeightFloat(1.0f) < 0.5f) {
+		attackType = 2;
+	} else {
+		attackType = 3;
+	}
+
+	switch (attackType) {
+	case 1:
+		mAttackData->mGasArmNum        = 3;
+		mAttackData->mGasRotationSpeed = CG_PROPERPARMS(mObj).mRotationSpeed1.m_value;
+		mAttackData->mGasReversalTime  = 30.0f;
+		break;
+	case 2:
+		mAttackData->mGasArmNum        = 4;
+		mAttackData->mGasRotationSpeed = CG_PROPERPARMS(mObj).mRotationSpeed2.m_value;
+		mAttackData->mGasReversalTime  = CG_PROPERPARMS(mObj).mReversalTime2_1.m_value;
+		break;
+	case 3:
+		mAttackData->mGasArmNum        = 4;
+		mAttackData->mGasRotationSpeed = CG_PROPERPARMS(mObj).mRotationSpeed2.m_value;
+		mAttackData->mGasReversalTime  = CG_PROPERPARMS(mObj).mReversalTime2_2.m_value;
+		break;
+	}
+
+	// 50/50 chance to start rotating clockwise or anticlockwise
+	if (randWeightFloat(1.0f) < 0.5f) {
+		mAttackData->mIsGasRotClockwise = true;
+	} else {
+		mAttackData->mIsGasRotClockwise = false;
+	}
+}
+
+// use BIGATTACK_Troll index instead
+void BigTreasureAttackMgr::startGasAttack()
+{
+	if (!mIsStartAttack[BIGATTACK_Troll]) {
+		mIsStartAttack[BIGATTACK_Troll] = true;
+		mAttackTimer1                   = 0.0f;
+		mAttackTimer2                   = 0.0f;
+
+		setGasAttackParameter();
+
+		updateGasEmitPosition();
+
+		f32 startAngle = randWeightFloat(TAU);
+		f32 armSpacing = TAU / (f32)mAttackData->mGasArmNum;
+
+		for (int i = 0; i < mAttackData->mGasArmNum; i++) {
+			mGasAttackAngles[i] = startAngle + armSpacing * (f32)i;
+			mEfxGas[i]->create(nullptr);
+		}
+
+		startNewGasList();
+	}
+}
+
+#pragma endregion
+
+void Obj::setAttackMaterialColor(bool isFast)
+{
+	mIsFastMatAnim = isFast;
+
+	if (mIsFastMatAnim) {
+		switch (mAttackIndex) {
+		case BIGATTACK_Piki:
+			mTargetMatBodyColor.r = 150;
+			mTargetMatBodyColor.g = 130;
+			mTargetMatBodyColor.b = 20;
+
+			mTargetClusterEyeColor[EYECOLOR_Dark].set(30.0f, 30.0f, 0.0f);
+			mTargetClusterEyeColor[EYECOLOR_Light].set(255.0f, 180.0f, 70.0f);
+
+			mTargetSideEyeColor[EYECOLOR_Dark].set(60.0f, 60.0f, 30.0f);
+			mTargetSideEyeColor[EYECOLOR_Light].set(255.0f, 150.0f, 80.0f);
+			break;
+
+		case BIGATTACK_Fire:
+			mTargetMatBodyColor.r = 160;
+			mTargetMatBodyColor.g = 50;
+			mTargetMatBodyColor.b = 20;
+
+			mTargetClusterEyeColor[EYECOLOR_Dark].set(60.0f, 20.0f, 20.0f);
+			mTargetClusterEyeColor[EYECOLOR_Light].set(255.0f, 100.0f, 100.0f);
+
+			mTargetSideEyeColor[EYECOLOR_Dark].set(80.0f, 60.0f, 45.0f);
+			mTargetSideEyeColor[EYECOLOR_Light].set(255.0f, 150.0f, 120.0f);
+			break;
+
+		case BIGATTACK_Gas:
+		case BIGATTACK_Troll:
+			mTargetMatBodyColor.r = 90;
+			mTargetMatBodyColor.g = 5;
+			mTargetMatBodyColor.b = 120;
+
+			mTargetClusterEyeColor[EYECOLOR_Dark].set(30.0f, 0.0f, 30.0f);
+			mTargetClusterEyeColor[EYECOLOR_Light].set(220.0f, 68.0f, 160.0f);
+
+			mTargetSideEyeColor[EYECOLOR_Dark].set(68.0f, 82.0f, 40.0f);
+			mTargetSideEyeColor[EYECOLOR_Light].set(182.0f, 252.0f, 3.0f);
+			break;
+
+		case BIGATTACK_Water:
+			mTargetMatBodyColor.r = 40;
+			mTargetMatBodyColor.g = 100;
+			mTargetMatBodyColor.b = 180;
+
+			mTargetClusterEyeColor[EYECOLOR_Dark].set(40.0f, 80.0f, 70.0f);
+			mTargetClusterEyeColor[EYECOLOR_Light].set(120.0f, 255.0f, 180.0f);
+
+			mTargetSideEyeColor[EYECOLOR_Dark].set(20.0f, 20.0f, 60.0f);
+			mTargetSideEyeColor[EYECOLOR_Light].set(120.0f, 150.0f, 255.0f);
+			break;
+		}
+
+	} else {
+		bool hasTreasures = isCapturedTreasure();
+
+		mTargetMatBodyColor.r = 30;
+		mTargetMatBodyColor.g = 70;
+		mTargetMatBodyColor.b = 60;
+
+		if (hasTreasures) {
+			mTargetMatBodyColor.a = 255;
+		} else {
+			mTargetMatBodyColor.a = 0;
+		}
+
+		if (hasTreasures) {
+			mTargetClusterEyeColor[EYECOLOR_Dark].set(20.0f, 60.0f, 20.0f);
+			mTargetClusterEyeColor[EYECOLOR_Light].set(120.0f, 255.0f, 90.0f);
+
+			mTargetSideEyeColor[EYECOLOR_Dark].set(0.0f, 30.0f, 0.0f);
+			mTargetSideEyeColor[EYECOLOR_Light].set(90.0f, 180.0f, 160.0f);
+
+		} else {
+			mTargetClusterEyeColor[EYECOLOR_Dark].set(10.0f, 100.0f, 255.0f);
+			mTargetClusterEyeColor[EYECOLOR_Light].set(255.0f, 180.0f, 64.0f);
+
+			mTargetSideEyeColor[EYECOLOR_Dark].set(60.0f, 230.0f, 30.0f);
+			mTargetSideEyeColor[EYECOLOR_Light].set(100.0f, 30.0f, 200.0f);
+
+			if (mTargetMatBodyColor.a == 0 && mCurrMatBodyColor.a == 255) {
+				createChangeMaterialEffect();
+				getJAIObject()->startSound(PSSE_EN_BIGTAKARA_SHELL, 0);
+			}
+		}
+	}
+
+	setMatEyeAnimSpeed();
 }
 
 } // namespace BigTreasure
