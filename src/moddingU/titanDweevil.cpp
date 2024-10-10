@@ -282,7 +282,7 @@ int Obj::getAttackAnimIndex()
 		case BIGTREASUREANIM_PreAttackFR:
 			return BIGTREASUREANIM_AttackFR;
 		case BIGTREASUREANIM_PreAttackFL:
-			return BIGTREASUREANIM_AttackFR;
+			return BIGTREASUREANIM_AttackFL;
 		case BIGTREASUREANIM_PreAttackFB:
 			return BIGTREASUREANIM_AttackFB;
 		}
