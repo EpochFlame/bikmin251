@@ -57,6 +57,7 @@ struct Obj : public EnemyBase {
 	void createAppearEffect();
 	void createDisAppearEffect();
 	void createBridgeEffect();
+	void createNectar();
 
 	// _00 		= VTBL
 	// _00-_2BC	= EnemyBase
@@ -110,6 +111,17 @@ struct Parms : public EnemyParmsBase {
 
 	// _00-_7F8	= EnemyParmsBase
 	ProperParms m_properParms; // _7F8
+};
+
+enum AnimID {
+	UJIAANIM_Dead      = 0,
+	UJIAANIM_PressDead = 1, // 'dead_p'
+	UJIAANIM_Appear    = 2,
+	UJIAANIM_Dive      = 3,
+	UJIAANIM_Move      = 4,
+	UJIAANIM_Attack1   = 5,
+	UJIAANIM_Carry     = 6,
+	UJIAANIM_AnimCount, // 7
 };
 
 struct ProperAnimator : public EnemyAnimatorBase {

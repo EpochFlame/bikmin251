@@ -124,17 +124,6 @@ __vt__Q34Game4Ujia10StatePress:
 	.4byte restart__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
 	.4byte transit__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseiPQ24Game8StateArg
 	.4byte doDirectDraw__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseR8Graphics
-.global __vt__Q34Game4Ujia9StateDead
-__vt__Q34Game4Ujia9StateDead:
-	.4byte 0
-	.4byte 0
-	.4byte init__Q34Game4Ujia9StateDeadFPQ24Game9EnemyBasePQ24Game8StateArg
-	.4byte exec__Q34Game4Ujia9StateDeadFPQ24Game9EnemyBase
-	.4byte cleanup__Q34Game4Ujia9StateDeadFPQ24Game9EnemyBase
-	.4byte resume__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
-	.4byte restart__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
-	.4byte transit__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseiPQ24Game8StateArg
-	.4byte doDirectDraw__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseR8Graphics
 .global __vt__Q34Game4Ujia5State
 __vt__Q34Game4Ujia5State:
 	.4byte 0
@@ -467,31 +456,31 @@ init__Q34Game4Ujia3FSMFPQ24Game9EnemyBase:
 /* 80264AE8 00261A28  38 21 00 10 */	addi r1, r1, 0x10
 /* 80264AEC 00261A2C  4E 80 00 20 */	blr 
 
-.global init__Q34Game4Ujia9StateDeadFPQ24Game9EnemyBasePQ24Game8StateArg
-init__Q34Game4Ujia9StateDeadFPQ24Game9EnemyBasePQ24Game8StateArg:
-/* 80264AF0 00261A30  94 21 FF F0 */	stwu r1, -0x10(r1)
-/* 80264AF4 00261A34  7C 08 02 A6 */	mflr r0
-/* 80264AF8 00261A38  90 01 00 14 */	stw r0, 0x14(r1)
-/* 80264AFC 00261A3C  93 E1 00 0C */	stw r31, 0xc(r1)
-/* 80264B00 00261A40  7C 9F 23 78 */	mr r31, r4
-/* 80264B04 00261A44  7F E3 FB 78 */	mr r3, r31
-/* 80264B08 00261A48  4B EA 0C 19 */	bl deathProcedure__Q24Game9EnemyBaseFv
-/* 80264B0C 00261A4C  80 1F 01 E0 */	lwz r0, 0x1e0(r31)
-/* 80264B10 00261A50  7F E3 FB 78 */	mr r3, r31
-/* 80264B14 00261A54  C0 02 CA F0 */	lfs f0, lbl_8051AE50@sda21(r2)
-/* 80264B18 00261A58  38 80 00 00 */	li r4, 0
-/* 80264B1C 00261A5C  54 00 06 B0 */	rlwinm r0, r0, 0, 0x1a, 0x18
-/* 80264B20 00261A60  38 A0 00 00 */	li r5, 0
-/* 80264B24 00261A64  90 1F 01 E0 */	stw r0, 0x1e0(r31)
-/* 80264B28 00261A68  D0 1F 01 D4 */	stfs f0, 0x1d4(r31)
-/* 80264B2C 00261A6C  D0 1F 01 D8 */	stfs f0, 0x1d8(r31)
-/* 80264B30 00261A70  D0 1F 01 DC */	stfs f0, 0x1dc(r31)
-/* 80264B34 00261A74  4B EA 04 D1 */	bl startMotion__Q24Game9EnemyBaseFiPQ28SysShape14MotionListener
-/* 80264B38 00261A78  80 01 00 14 */	lwz r0, 0x14(r1)
-/* 80264B3C 00261A7C  83 E1 00 0C */	lwz r31, 0xc(r1)
-/* 80264B40 00261A80  7C 08 03 A6 */	mtlr r0
-/* 80264B44 00261A84  38 21 00 10 */	addi r1, r1, 0x10
-/* 80264B48 00261A88  4E 80 00 20 */	blr 
+# .global init__Q34Game4Ujia9StateDeadFPQ24Game9EnemyBasePQ24Game8StateArg
+# init__Q34Game4Ujia9StateDeadFPQ24Game9EnemyBasePQ24Game8StateArg:
+# /* 80264AF0 00261A30  94 21 FF F0 */	stwu r1, -0x10(r1)
+# /* 80264AF4 00261A34  7C 08 02 A6 */	mflr r0
+# /* 80264AF8 00261A38  90 01 00 14 */	stw r0, 0x14(r1)
+# /* 80264AFC 00261A3C  93 E1 00 0C */	stw r31, 0xc(r1)
+# /* 80264B00 00261A40  7C 9F 23 78 */	mr r31, r4
+# /* 80264B04 00261A44  7F E3 FB 78 */	mr r3, r31
+# /* 80264B08 00261A48  4B EA 0C 19 */	bl deathProcedure__Q24Game9EnemyBaseFv
+# /* 80264B0C 00261A4C  80 1F 01 E0 */	lwz r0, 0x1e0(r31)
+# /* 80264B10 00261A50  7F E3 FB 78 */	mr r3, r31
+# /* 80264B14 00261A54  C0 02 CA F0 */	lfs f0, lbl_8051AE50@sda21(r2)
+# /* 80264B18 00261A58  38 80 00 00 */	li r4, 0
+# /* 80264B1C 00261A5C  54 00 06 B0 */	rlwinm r0, r0, 0, 0x1a, 0x18
+# /* 80264B20 00261A60  38 A0 00 00 */	li r5, 0
+# /* 80264B24 00261A64  90 1F 01 E0 */	stw r0, 0x1e0(r31)
+# /* 80264B28 00261A68  D0 1F 01 D4 */	stfs f0, 0x1d4(r31)
+# /* 80264B2C 00261A6C  D0 1F 01 D8 */	stfs f0, 0x1d8(r31)
+# /* 80264B30 00261A70  D0 1F 01 DC */	stfs f0, 0x1dc(r31)
+# /* 80264B34 00261A74  4B EA 04 D1 */	bl startMotion__Q24Game9EnemyBaseFiPQ28SysShape14MotionListener
+# /* 80264B38 00261A78  80 01 00 14 */	lwz r0, 0x14(r1)
+# /* 80264B3C 00261A7C  83 E1 00 0C */	lwz r31, 0xc(r1)
+# /* 80264B40 00261A80  7C 08 03 A6 */	mtlr r0
+# /* 80264B44 00261A84  38 21 00 10 */	addi r1, r1, 0x10
+# /* 80264B48 00261A88  4E 80 00 20 */	blr 
 
 .global exec__Q34Game4Ujia9StateDeadFPQ24Game9EnemyBase
 exec__Q34Game4Ujia9StateDeadFPQ24Game9EnemyBase:
