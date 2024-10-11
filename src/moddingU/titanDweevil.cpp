@@ -3,6 +3,61 @@
 #include "Game/Entities/PikiBaby.h"
 #include "Game/generalEnemyMgr.h"
 #include "Game/Entities/ItemHoney.h"
+#include "PSM/EnemyBoss.h"
+#include "PSM/BossSeq.h"
+#include "PSGame/PikScene.h"
+
+namespace PSGame {
+
+PikScene* PikSceneMgr::getChildPikScene()
+{
+	checkScene();
+	return static_cast<PikScene*>(m_scenes->m_child);
+}
+	
+} // namespace PSGame
+
+
+namespace PSSystem {
+
+PSSystem::SceneMgr* getSceneMgr()
+{
+	P2ASSERTLINE(467, spSceneMgr);
+
+	return spSceneMgr;
+}
+
+void validateSceneMgr(SceneMgr* mgr) { P2ASSERTLINE(476, mgr); }
+	
+} // namespace PSSystem
+
+namespace PSM {
+
+PSGame::PikSceneMgr* PSMGetPikSceneMgrCheck()
+{
+	PSGame::PikSceneMgr* mgr = static_cast<PSGame::PikSceneMgr*>(PSSystem::getSceneMgr());
+	PSSystem::validateSceneMgr(mgr);
+	return mgr;
+}
+
+PSM::MiddleBossSeq* PSMGetMiddleBossSeq()
+{
+	PSGame::PikSceneMgr* mgr = PSMGetPikSceneMgrCheck();
+	PSGame::PikScene* scene  = mgr->getChildPikScene();
+	return !scene ? nullptr : scene->getMiddleBossBgm();
+}
+
+void EnemyBigBoss::onDeathMotionTop()
+{
+	_E8 = 0;
+	jumpRequest(13);
+
+	MiddleBossSeq* seq = PSMGetMiddleBossSeq();
+	seq->stopSeq(350);
+}
+	
+} // namespace PSM
+
 
 namespace Game {
 namespace BigTreasure {

@@ -19,7 +19,7 @@ struct PikScene : public PSSystem::Scene {
 
 	virtual ~PikScene(); // _0C
 
-	void getMiddleBossBgm();
+	PSM::MiddleBossSeq* getMiddleBossBgm();
 
 	// _00      = VTBL
 	// _04-_24  = Scene
@@ -44,6 +44,8 @@ struct PikSceneMgr : public PSSystem::SceneMgr {
 	void initBossBgm(SceneInfo&, u8*);
 	void initAdditionalBgm(SceneInfo&, PSSystem::Scene*);
 	void initMainBgm(SceneInfo&, u8*);
+
+	PikScene* getChildPikScene();
 
 	// _00      = VTBL
 	// _00-_08  = SceneMgr

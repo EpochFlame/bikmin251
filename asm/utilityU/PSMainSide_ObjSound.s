@@ -5503,22 +5503,22 @@ jumpRequest__Q23PSM12EnemyBigBossFUs:
 /* 80460BAC 0045DAEC  38 21 00 20 */	addi r1, r1, 0x20
 /* 80460BB0 0045DAF0  4E 80 00 20 */	blr 
 
-.global onDeathMotionTop__Q23PSM12EnemyBigBossFv
-onDeathMotionTop__Q23PSM12EnemyBigBossFv:
-/* 80460BB4 0045DAF4  94 21 FF F0 */	stwu r1, -0x10(r1)
-/* 80460BB8 0045DAF8  7C 08 02 A6 */	mflr r0
-/* 80460BBC 0045DAFC  38 80 00 0D */	li r4, 0xd
-/* 80460BC0 0045DB00  90 01 00 14 */	stw r0, 0x14(r1)
-/* 80460BC4 0045DB04  38 00 00 00 */	li r0, 0
-/* 80460BC8 0045DB08  90 03 00 E8 */	stw r0, 0xe8(r3)
-/* 80460BCC 0045DB0C  81 83 00 28 */	lwz r12, 0x28(r3)
-/* 80460BD0 0045DB10  81 8C 00 D4 */	lwz r12, 0xd4(r12)
-/* 80460BD4 0045DB14  7D 89 03 A6 */	mtctr r12
-/* 80460BD8 0045DB18  4E 80 04 21 */	bctrl 
-/* 80460BDC 0045DB1C  80 01 00 14 */	lwz r0, 0x14(r1)
-/* 80460BE0 0045DB20  7C 08 03 A6 */	mtlr r0
-/* 80460BE4 0045DB24  38 21 00 10 */	addi r1, r1, 0x10
-/* 80460BE8 0045DB28  4E 80 00 20 */	blr 
+# .global onDeathMotionTop__Q23PSM12EnemyBigBossFv
+# onDeathMotionTop__Q23PSM12EnemyBigBossFv:
+# /* 80460BB4 0045DAF4  94 21 FF F0 */	stwu r1, -0x10(r1)
+# /* 80460BB8 0045DAF8  7C 08 02 A6 */	mflr r0
+# /* 80460BBC 0045DAFC  38 80 00 0D */	li r4, 0xd
+# /* 80460BC0 0045DB00  90 01 00 14 */	stw r0, 0x14(r1)
+# /* 80460BC4 0045DB04  38 00 00 00 */	li r0, 0
+# /* 80460BC8 0045DB08  90 03 00 E8 */	stw r0, 0xe8(r3)
+# /* 80460BCC 0045DB0C  81 83 00 28 */	lwz r12, 0x28(r3)
+# /* 80460BD0 0045DB10  81 8C 00 D4 */	lwz r12, 0xd4(r12)
+# /* 80460BD4 0045DB14  7D 89 03 A6 */	mtctr r12
+# /* 80460BD8 0045DB18  4E 80 04 21 */	bctrl 
+# /* 80460BDC 0045DB1C  80 01 00 14 */	lwz r0, 0x14(r1)
+# /* 80460BE0 0045DB20  7C 08 03 A6 */	mtlr r0
+# /* 80460BE4 0045DB24  38 21 00 10 */	addi r1, r1, 0x10
+# /* 80460BE8 0045DB28  4E 80 00 20 */	blr 
 
 .global onAppear1st__Q23PSM12EnemyBigBossFv
 onAppear1st__Q23PSM12EnemyBigBossFv:

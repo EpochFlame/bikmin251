@@ -8,6 +8,7 @@
 
 namespace PSSystem {
 struct SeqTrackBase;
+struct DirectedBgm;
 
 struct DirectorBase : public JADHioNode {
 	DirectorBase(int, const char*);
