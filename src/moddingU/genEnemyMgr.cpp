@@ -416,12 +416,12 @@ void GeneralEnemyMgr::addEnemyNum(int enemyID, u8 max, GenObjectEnemy* genObj)
 
 				break;
 			case EnemyTypeID::EnemyID_BigTreasure:
-				if (getEnemyNum(EnemyTypeID::EnemyID_PikiBabyRed, true) < 7) {
-					addEnemyNum(EnemyTypeID::EnemyID_PikiBabyRed, 7, nullptr);
+				if (getEnemyNum(EnemyTypeID::EnemyID_PikiBabyRed, true) < 5) {
+					addEnemyNum(EnemyTypeID::EnemyID_PikiBabyRed, 5, nullptr);
 				}
 
-				if (getEnemyNum(EnemyTypeID::EnemyID_PikiBabyBlue, true) < 7) {
-					addEnemyNum(EnemyTypeID::EnemyID_PikiBabyBlue, 7, nullptr);
+				if (getEnemyNum(EnemyTypeID::EnemyID_PikiBabyBlue, true) < 5) {
+					addEnemyNum(EnemyTypeID::EnemyID_PikiBabyBlue, 5, nullptr);
 				}
 				break;
 			}

@@ -208,13 +208,13 @@ bool Obj::dropTreasure(int idx)
 	// all weapons should spawn something upon being dropped
 	switch (idx) {
 	case BIGATTACK_Fire:
-		createPikiBaby(EnemyTypeID::EnemyID_PikiBabyRed, 7, position);
+		createPikiBaby(EnemyTypeID::EnemyID_PikiBabyRed, 5, position);
 		break;
 	case BIGATTACK_Water:
-		createPikiBaby(EnemyTypeID::EnemyID_PikiBabyBlue, 7, position);
+		createPikiBaby(EnemyTypeID::EnemyID_PikiBabyBlue, 5, position);
 		break;
 	case BIGATTACK_Piki:
-		createPikiBaby(EnemyTypeID::EnemyID_PikiBabyYellow, 7, position);
+		createPikiBaby(EnemyTypeID::EnemyID_PikiBabyYellow, 5, position);
 		break;
 	case BIGATTACK_Troll:
 		// spawn an alfredo sauce
@@ -390,36 +390,35 @@ void BigTreasureAttackMgr::updatePikiAttack()
 		return;
 	}
 
-	// spawn 7 normally, and 14 at pinch life
-	int max = 7;
+	// spawn 5 normally, and 8 at pinch life
+	int max = 5;
 	if (!mObj->isNormalAttack(BIGATTACK_Piki)) {
-		max = 14;
+		max = 8;
 	}
 
 	EnemyBirthArg birthArg;
 	birthArg.m_position = mObj->m_model->getJoint("otakara_gas")->getWorldMatrix()->getColumn(3);
 	birthArg.m_position.y += 5.0f;
 
-	Vector3f velocity(100.0f);
-	f32 speed = CG_GENERALPARMS(mObj).m_privateRadius.m_value * 1.0f;
+	Vector3f velocity(0.0f);
+	f32 speed = CG_GENERALPARMS(mObj).m_privateRadius.m_value * 1.25f;
 
-	f32 interval = (1.25f + mObj->getAttackTimeMax()) / max;
+	f32 interval = (1.3f + mObj->getAttackTimeMax()) / max;
 	if (mAttackTimer1 <= interval || sPikiBabyCount >= max) {
 		return;
 	}
 
 	mAttackTimer1 = 0.0f;
 
-	f32 angle          = TAU * ((f32)sPikiBabyCount / max);
-	birthArg.m_faceDir = angle;
-
-	velocity.x = speed * sinf(angle);
-	velocity.y = speed * cosf(angle);
+	birthArg.m_faceDir = mObj->m_faceDir;
 
 	PikiBabyYellow::Obj* baby = static_cast<PikiBabyYellow::Obj*>(babyMgr->birth(birthArg));
 	if (baby == nullptr) {
 		return;
 	}
+
+	velocity.x = speed * cosf(mObj->m_faceDir);
+	velocity.y = speed * sinf(mObj->m_faceDir);
 
 	baby->init(nullptr);
 	baby->setVelocity(velocity);
