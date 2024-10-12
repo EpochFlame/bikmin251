@@ -112,6 +112,8 @@ struct Obj : public EnemyBase {
 	void createBounceEffect();
 	void startMatAnimation();
 
+	void crushPikmin(Piki*);
+
     static Sys::MatLoopAnimator sMatAnimator;
 
 	// _00 		= VTBL

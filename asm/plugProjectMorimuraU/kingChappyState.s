@@ -1614,24 +1614,28 @@ exec__Q34Game10KingChappy10StateFlickFPQ24Game9EnemyBase:
 /* 8035A4B4 003573F4  EC 01 00 7A */	fmadds f0, f1, f1, f0
 /* 8035A4B8 003573F8  FC 00 E8 40 */	fcmpo cr0, f0, f29
 /* 8035A4BC 003573FC  40 80 00 4C */	bge .L_8035A508
-/* 8035A4C0 00357400  80 BF 00 C0 */	lwz r5, 0xc0(r31)
-/* 8035A4C4 00357404  3C 80 80 4B */	lis r4, __vt__Q24Game11Interaction@ha
-/* 8035A4C8 00357408  3C 60 80 4B */	lis r3, __vt__Q24Game13InteractPress@ha
-/* 8035A4CC 0035740C  38 00 00 00 */	li r0, 0
-/* 8035A4D0 00357410  C0 05 06 04 */	lfs f0, 0x604(r5)
-/* 8035A4D4 00357414  38 84 A3 00 */	addi r4, r4, __vt__Q24Game11Interaction@l
-/* 8035A4D8 00357418  38 A3 B3 20 */	addi r5, r3, __vt__Q24Game13InteractPress@l
-/* 8035A4DC 0035741C  7F A3 EB 78 */	mr r3, r29
-/* 8035A4E0 00357420  90 81 00 4C */	stw r4, 0x4c(r1)
-/* 8035A4E4 00357424  38 81 00 4C */	addi r4, r1, 0x4c
-/* 8035A4E8 00357428  93 E1 00 50 */	stw r31, 0x50(r1)
-/* 8035A4EC 0035742C  90 A1 00 4C */	stw r5, 0x4c(r1)
-/* 8035A4F0 00357430  D0 01 00 54 */	stfs f0, 0x54(r1)
-/* 8035A4F4 00357434  90 01 00 58 */	stw r0, 0x58(r1)
-/* 8035A4F8 00357438  81 9D 00 00 */	lwz r12, 0(r29)
-/* 8035A4FC 0035743C  81 8C 01 A4 */	lwz r12, 0x1a4(r12)
-/* 8035A500 00357440  7D 89 03 A6 */	mtctr r12
-/* 8035A504 00357444  4E 80 04 21 */	bctrl 
+# none of this is used
+# /* 8035A4C0 00357400  80 BF 00 C0 */	lwz r5, 0xc0(r31)
+# /* 8035A4C4 00357404  3C 80 80 4B */	lis r4, __vt__Q24Game11Interaction@ha
+# /* 8035A4C8 00357408  3C 60 80 4B */	lis r3, __vt__Q24Game13InteractPress@ha
+# /* 8035A4CC 0035740C  38 00 00 00 */	li r0, 0
+# /* 8035A4D0 00357410  C0 05 06 04 */	lfs f0, 0x604(r5)
+# /* 8035A4D4 00357414  38 84 A3 00 */	addi r4, r4, __vt__Q24Game11Interaction@l
+# /* 8035A4D8 00357418  38 A3 B3 20 */	addi r5, r3, __vt__Q24Game13InteractPress@l
+# /* 8035A4DC 0035741C  7F A3 EB 78 */	mr r3, r29
+# /* 8035A4E0 00357420  90 81 00 4C */	stw r4, 0x4c(r1)
+# /* 8035A4E4 00357424  38 81 00 4C */	addi r4, r1, 0x4c
+# /* 8035A4E8 00357428  93 E1 00 50 */	stw r31, 0x50(r1)
+# /* 8035A4EC 0035742C  90 A1 00 4C */	stw r5, 0x4c(r1)
+# /* 8035A4F0 00357430  D0 01 00 54 */	stfs f0, 0x54(r1)
+# /* 8035A4F4 00357434  90 01 00 58 */	stw r0, 0x58(r1)
+# /* 8035A4F8 00357438  81 9D 00 00 */	lwz r12, 0(r29)
+# /* 8035A4FC 0035743C  81 8C 01 A4 */	lwz r12, 0x1a4(r12)
+# /* 8035A500 00357440  7D 89 03 A6 */	mtctr r12
+# /* 8035A504 00357444  4E 80 04 21 */	bctrl 
+mr r3, r31
+mr r4, r29
+bl crushPikmin__Q34Game10KingChappy3ObjFPQ24Game4Piki
 .L_8035A508:
 /* 8035A508 00357448  80 01 00 68 */	lwz r0, 0x68(r1)
 /* 8035A50C 0035744C  28 00 00 00 */	cmplwi r0, 0
@@ -1871,8 +1875,7 @@ exec__Q34Game10KingChappy10StateFlickFPQ24Game9EnemyBase:
 /* 8035A880 003577C0  FC 60 E8 90 */	fmr f3, f29
 /* 8035A884 003577C4  C0 82 02 44 */	lfs f4, lbl_8051E5A4@sda21(r2)
 /* 8035A888 003577C8  FC 20 F0 90 */	fmr f1, f30
-/* 8035A88C 003577CC  4B DB 8C 49 	bl "flickNearbyPikmin__Q24Game9EnemyFuncFPQ24Game8CreatureffffP23Condition<Q24Game4Piki>" */
-nop
+/* 8035A88C 003577CC  4B DB 8C 49 */ 	bl "flickNearbyPikmin__Q24Game9EnemyFuncFPQ24Game8CreatureffffP23Condition<Q24Game4Piki>"
 /* 8035A890 003577D0  7F E3 FB 78 */	mr r3, r31
 /* 8035A894 003577D4  81 9F 00 00 */	lwz r12, 0(r31)
 /* 8035A898 003577D8  81 8C 00 64 */	lwz r12, 0x64(r12)

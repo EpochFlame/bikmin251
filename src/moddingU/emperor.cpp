@@ -35,5 +35,18 @@ void Obj::getShadowParam(ShadowParam& param)
 	param.m_size                    = 0.0f;
 }
 
+// crushPikmin__Q34Game10KingChappy3ObjFPQ24Game4Piki
+void Obj::crushPikmin(Piki* piki)
+{
+    if (piki->m_pikiKind == Bulbmin) {
+        InteractBury bury(this, C_GENERALPARMS.m_attackDamage.m_value);
+        piki->stimulate(bury);       
+        return;
+    }
+
+    InteractPress press(this, C_GENERALPARMS.m_attackDamage.m_value, nullptr);
+    piki->stimulate(press);
+}
+
 } // namespace KingChappy
 } // namespace Game
