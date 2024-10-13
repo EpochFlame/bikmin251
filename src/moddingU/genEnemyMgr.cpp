@@ -400,10 +400,6 @@ void GeneralEnemyMgr::addEnemyNum(int enemyID, u8 max, GenObjectEnemy* genObj)
 				}
 				continue;
 			case EnemyTypeID::EnemyID_DangoMushi:
-				if (getEnemyNum(EnemyTypeID::EnemyID_Egg, true) < 10) {
-					addEnemyNum(EnemyTypeID::EnemyID_Egg, 10, nullptr);
-				}
-
 				if (getEnemyNum(EnemyTypeID::EnemyID_Rock, true) < 30) {
 					addEnemyNum(EnemyTypeID::EnemyID_Rock, 30, nullptr);
 				}
@@ -416,11 +412,11 @@ void GeneralEnemyMgr::addEnemyNum(int enemyID, u8 max, GenObjectEnemy* genObj)
 
 				break;
 			case EnemyTypeID::EnemyID_BigTreasure:
-				if (getEnemyNum(EnemyTypeID::EnemyID_PikiBabyRed, true) < 5) {
+				if (getEnemyNum(EnemyTypeID::EnemyID_PikiBabyRed, true) < 5 && gameSystem->m_mode != GSM_PIKLOPEDIA) {
 					addEnemyNum(EnemyTypeID::EnemyID_PikiBabyRed, 5, nullptr);
 				}
 
-				if (getEnemyNum(EnemyTypeID::EnemyID_PikiBabyBlue, true) < 5) {
+				if (getEnemyNum(EnemyTypeID::EnemyID_PikiBabyBlue, true) < 5 && gameSystem->m_mode != GSM_PIKLOPEDIA) {
 					addEnemyNum(EnemyTypeID::EnemyID_PikiBabyBlue, 5, nullptr);
 				}
 				break;
