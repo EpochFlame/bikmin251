@@ -309,7 +309,7 @@ u8 ObjCalc_SingleGame::getPlayerNo(PSM::Creature* obj) {
 }
 
 u8 ObjCalc_SingleGame::getPlayerNo(Vec& vec) {
-		if (!TwoPlayer::twoPlayerActive) {
+	if (!TwoPlayer::twoPlayerActive) {
 		return m_currCameraIndex;
 	}
 	// cursed typecast 2
