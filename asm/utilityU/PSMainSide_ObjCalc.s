@@ -81,16 +81,6 @@ newInstance_SingleGame__Q23PSM18ObjCalc_SingleGameFv:
 /* 804728FC 0046F83C  38 21 00 10 */	addi r1, r1, 0x10
 /* 80472900 0046F840  4E 80 00 20 */	blr 
 
-.global getPlayerNo__Q23PSM18ObjCalc_SingleGameFPQ23PSM8Creature
-getPlayerNo__Q23PSM18ObjCalc_SingleGameFPQ23PSM8Creature:
-/* 80472904 0046F844  88 63 00 08 */	lbz r3, 8(r3)
-/* 80472908 0046F848  4E 80 00 20 */	blr 
-
-.global getPlayerNo__Q23PSM18ObjCalc_SingleGameFR3Vec
-getPlayerNo__Q23PSM18ObjCalc_SingleGameFR3Vec:
-/* 8047290C 0046F84C  88 63 00 08 */	lbz r3, 8(r3)
-/* 80472910 0046F850  4E 80 00 20 */	blr 
-
 .global newInstance_2PGame__Q23PSM14ObjCalc_2PGameFv
 newInstance_2PGame__Q23PSM14ObjCalc_2PGameFv:
 /* 80472914 0046F854  94 21 FF F0 */	stwu r1, -0x10(r1)

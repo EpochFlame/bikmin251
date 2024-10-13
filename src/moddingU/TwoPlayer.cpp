@@ -10,6 +10,8 @@
 #include "Splitter.h"
 #include "Game/SingleGameSection.h"
 #include "Screen/Game2DMgr.h"
+#include "PSM/ObjCalc.h"
+
 namespace TwoPlayer {
 bool useTwoPlayer       = true;
 bool twoPlayerActive    = true;
@@ -294,3 +296,24 @@ void PikminCounterCave::setCallBackNoDay(JKRArchive* arc)
 } // namespace Screen
 
 } // namespace og
+
+namespace PSM
+{
+
+u8 ObjCalc_SingleGame::getPlayerNo(PSM::Creature* obj) { 
+	if (!TwoPlayer::twoPlayerActive) {
+		return m_currCameraIndex;
+	}
+	// cursed typecast
+	return reinterpret_cast<ObjCalc_2PGame*>(this)->ObjCalc_2PGame::getPlayerNo(obj);
+}
+
+u8 ObjCalc_SingleGame::getPlayerNo(Vec& vec) {
+		if (!TwoPlayer::twoPlayerActive) {
+		return m_currCameraIndex;
+	}
+	// cursed typecast 2
+	return reinterpret_cast<ObjCalc_2PGame*>(this)->ObjCalc_2PGame::getPlayerNo(vec);
+}
+
+} // namespace PSM

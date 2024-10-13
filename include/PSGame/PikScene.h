@@ -5,6 +5,7 @@
 #include "PSSystem/PSScene.h"
 #include "PSSystem/Director.h"
 #include "PSSystem/PSBgm.h"
+#include "PSM/BossSeq.h"
 #include "PSGame/SceneInfo.h"
 #include "JSystem/JAI/JAInter.h"
 #include "JSystem/JAD/JADUtility.h"
