@@ -37,6 +37,7 @@
 #include "efx/TEnemyDive.h"
 #include "PSM/Navi.h"
 
+
 bool isTreasureCutscene;
 bool isKeyCheat = false; // set all keylocks to open if true
 
@@ -411,6 +412,18 @@ bool Game::InteractBomb::actNavi(Game::Navi* navi)
 
 	Game::NaviFlickArg flickArg(m_creature, m_direction, m_damage);
 	navi->transit(Game::NSID_Flick, &flickArg);
+	return true;
+}
+
+bool Game::InteractMattuan::actPellet(Pellet* pellet)
+{
+	// if its an upgrade and not the key
+	int itemIndex = pellet->getConfigIndex();
+	if (pellet->getKind() == 4 && itemIndex != OlimarData::ODII_TheKey) {
+		pellet->startDiscoverDisable(mWaitTimer / sys->m_deltaTime);
+	} else {
+		pellet->clearDiscoverDisable();
+	}
 	return true;
 }
 

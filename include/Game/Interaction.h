@@ -385,7 +385,7 @@ struct InteractKill : public Interaction {
 struct InteractMattuan : public Interaction {
 	inline InteractMattuan(Creature* parent, f32 p1)
 	    : Interaction(parent)
-	    , _08(p1)
+	    , mWaitTimer(p1)
 	{
 	}
 
@@ -393,7 +393,7 @@ struct InteractMattuan : public Interaction {
 
 	// _00 = VTBL
 	// _04 = Creature*
-	f32 _08; // _08
+	f32 mWaitTimer; // _08
 };
 
 struct InteractPress : public Interaction {

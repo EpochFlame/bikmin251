@@ -705,17 +705,17 @@ __vt__Q24Game11InteractEat:
 	.4byte actPellet__Q24Game11InteractEatFPQ24Game6Pellet
 	.4byte actOnyon__Q24Game11InteractionFPQ24Game5Onyon
 	.4byte actItem__Q24Game11InteractEatFPQ24Game8BaseItem
-.global __vt__Q24Game15InteractMattuan
-__vt__Q24Game15InteractMattuan:
-	.4byte 0
-	.4byte 0
-	.4byte actCommon__Q24Game11InteractionFPQ24Game8Creature
-	.4byte actPiki__Q24Game11InteractionFPQ24Game4Piki
-	.4byte actNavi__Q24Game11InteractionFPQ24Game4Navi
-	.4byte actEnemy__Q24Game11InteractionFPQ24Game9EnemyBase
-	.4byte actPellet__Q24Game15InteractMattuanFPQ24Game6Pellet
-	.4byte actOnyon__Q24Game11InteractionFPQ24Game5Onyon
-	.4byte actItem__Q24Game11InteractionFPQ24Game8BaseItem
+# .global __vt__Q24Game15InteractMattuan
+# __vt__Q24Game15InteractMattuan:
+# 	.4byte 0
+# 	.4byte 0
+# 	.4byte actCommon__Q24Game11InteractionFPQ24Game8Creature
+# 	.4byte actPiki__Q24Game11InteractionFPQ24Game4Piki
+# 	.4byte actNavi__Q24Game11InteractionFPQ24Game4Navi
+# 	.4byte actEnemy__Q24Game11InteractionFPQ24Game9EnemyBase
+# 	.4byte actPellet__Q24Game15InteractMattuanFPQ24Game6Pellet
+# 	.4byte actOnyon__Q24Game11InteractionFPQ24Game5Onyon
+# 	.4byte actItem__Q24Game11InteractionFPQ24Game8BaseItem
 .global "__vt__19Iterator<8CollPart>"
 "__vt__19Iterator<8CollPart>":
 	.4byte 0
@@ -1644,44 +1644,44 @@ stimulate__Q24Game6PelletFRQ24Game11Interaction:
 /* 801663E4 00163324  38 21 00 10 */	addi r1, r1, 0x10
 /* 801663E8 00163328  4E 80 00 20 */	blr 
 
-.global actPellet__Q24Game15InteractMattuanFPQ24Game6Pellet
-actPellet__Q24Game15InteractMattuanFPQ24Game6Pellet:
-/* 801663EC 0016332C  94 21 FF E0 */	stwu r1, -0x20(r1)
-/* 801663F0 00163330  7C 08 02 A6 */	mflr r0
-/* 801663F4 00163334  90 01 00 24 */	stw r0, 0x24(r1)
-/* 801663F8 00163338  93 E1 00 1C */	stw r31, 0x1c(r1)
-/* 801663FC 0016333C  7C 9F 23 78 */	mr r31, r4
-/* 80166400 00163340  93 C1 00 18 */	stw r30, 0x18(r1)
-/* 80166404 00163344  7C 7E 1B 78 */	mr r30, r3
-/* 80166408 00163348  7F E3 FB 78 */	mr r3, r31
-/* 8016640C 0016334C  81 9F 00 00 */	lwz r12, 0(r31)
-/* 80166410 00163350  81 8C 01 F4 */	lwz r12, 0x1f4(r12)
-/* 80166414 00163354  7D 89 03 A6 */	mtctr r12
-/* 80166418 00163358  4E 80 04 21 */	bctrl 
-/* 8016641C 0016335C  54 60 06 3E */	clrlwi r0, r3, 0x18
-/* 80166420 00163360  28 00 00 04 */	cmplwi r0, 4
-/* 80166424 00163364  40 82 00 2C */	bne .L_80166450
-/* 80166428 00163368  80 8D 9A EC */	lwz r4, sys@sda21(r13)
-/* 8016642C 0016336C  7F E3 FB 78 */	mr r3, r31
-/* 80166430 00163370  C0 3E 00 08 */	lfs f1, 8(r30)
-/* 80166434 00163374  C0 04 00 54 */	lfs f0, 0x54(r4)
-/* 80166438 00163378  EC 01 00 24 */	fdivs f0, f1, f0
-/* 8016643C 0016337C  FC 00 00 1E */	fctiwz f0, f0
-/* 80166440 00163380  D8 01 00 08 */	stfd f0, 8(r1)
-/* 80166444 00163384  80 81 00 0C */	lwz r4, 0xc(r1)
-/* 80166448 00163388  48 00 50 89 */	bl startDiscoverDisable__Q24Game6PelletFUc
-/* 8016644C 0016338C  48 00 00 0C */	b .L_80166458
-.L_80166450:
-/* 80166450 00163390  7F E3 FB 78 */	mr r3, r31
-/* 80166454 00163394  48 00 50 71 */	bl clearDiscoverDisable__Q24Game6PelletFv
-.L_80166458:
-/* 80166458 00163398  80 01 00 24 */	lwz r0, 0x24(r1)
-/* 8016645C 0016339C  38 60 00 01 */	li r3, 1
-/* 80166460 001633A0  83 E1 00 1C */	lwz r31, 0x1c(r1)
-/* 80166464 001633A4  83 C1 00 18 */	lwz r30, 0x18(r1)
-/* 80166468 001633A8  7C 08 03 A6 */	mtlr r0
-/* 8016646C 001633AC  38 21 00 20 */	addi r1, r1, 0x20
-/* 80166470 001633B0  4E 80 00 20 */	blr 
+# .global actPellet__Q24Game15InteractMattuanFPQ24Game6Pellet
+# actPellet__Q24Game15InteractMattuanFPQ24Game6Pellet:
+# /* 801663EC 0016332C  94 21 FF E0 */	stwu r1, -0x20(r1)
+# /* 801663F0 00163330  7C 08 02 A6 */	mflr r0
+# /* 801663F4 00163334  90 01 00 24 */	stw r0, 0x24(r1)
+# /* 801663F8 00163338  93 E1 00 1C */	stw r31, 0x1c(r1)
+# /* 801663FC 0016333C  7C 9F 23 78 */	mr r31, r4
+# /* 80166400 00163340  93 C1 00 18 */	stw r30, 0x18(r1)
+# /* 80166404 00163344  7C 7E 1B 78 */	mr r30, r3
+# /* 80166408 00163348  7F E3 FB 78 */	mr r3, r31
+# /* 8016640C 0016334C  81 9F 00 00 */	lwz r12, 0(r31)
+# /* 80166410 00163350  81 8C 01 F4 */	lwz r12, 0x1f4(r12)
+# /* 80166414 00163354  7D 89 03 A6 */	mtctr r12
+# /* 80166418 00163358  4E 80 04 21 */	bctrl 
+# /* 8016641C 0016335C  54 60 06 3E */	clrlwi r0, r3, 0x18
+# /* 80166420 00163360  28 00 00 04 */	cmplwi r0, 4
+# /* 80166424 00163364  40 82 00 2C */	bne .L_80166450
+# /* 80166428 00163368  80 8D 9A EC */	lwz r4, sys@sda21(r13)
+# /* 8016642C 0016336C  7F E3 FB 78 */	mr r3, r31
+# /* 80166430 00163370  C0 3E 00 08 */	lfs f1, 8(r30)
+# /* 80166434 00163374  C0 04 00 54 */	lfs f0, 0x54(r4)
+# /* 80166438 00163378  EC 01 00 24 */	fdivs f0, f1, f0
+# /* 8016643C 0016337C  FC 00 00 1E */	fctiwz f0, f0
+# /* 80166440 00163380  D8 01 00 08 */	stfd f0, 8(r1)
+# /* 80166444 00163384  80 81 00 0C */	lwz r4, 0xc(r1)
+# /* 80166448 00163388  48 00 50 89 */	bl startDiscoverDisable__Q24Game6PelletFUc
+# /* 8016644C 0016338C  48 00 00 0C */	b .L_80166458
+# .L_80166450:
+# /* 80166450 00163390  7F E3 FB 78 */	mr r3, r31
+# /* 80166454 00163394  48 00 50 71 */	bl clearDiscoverDisable__Q24Game6PelletFv
+# .L_80166458:
+# /* 80166458 00163398  80 01 00 24 */	lwz r0, 0x24(r1)
+# /* 8016645C 0016339C  38 60 00 01 */	li r3, 1
+# /* 80166460 001633A0  83 E1 00 1C */	lwz r31, 0x1c(r1)
+# /* 80166464 001633A4  83 C1 00 18 */	lwz r30, 0x18(r1)
+# /* 80166468 001633A8  7C 08 03 A6 */	mtlr r0
+# /* 8016646C 001633AC  38 21 00 20 */	addi r1, r1, 0x20
+# /* 80166470 001633B0  4E 80 00 20 */	blr 
 
 .global actPellet__Q24Game11InteractEatFPQ24Game6Pellet
 actPellet__Q24Game11InteractEatFPQ24Game6Pellet:
