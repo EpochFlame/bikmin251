@@ -158,7 +158,7 @@ struct Item : public FSMItem<Item, FSM, State> {
 	void needSave();
 	void cacheSave(Stream&);
 	void cacheLoad(Stream&);
-	void canPullout();
+	bool canPullout();
 
 	// _00      = VTBL
 	// _00-_1E0 = FSMItem

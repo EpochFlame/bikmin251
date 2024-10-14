@@ -192,6 +192,8 @@ struct Navi : public FakePiki, virtual public PelletView {
 		    = static_cast<J3DMtxCalcAnmBase*>(m_animator.m_animator2.getCalc());
 	}
 
+	static bool sIsThereFollower;
+
 	// _000      = VTBL
 	// _000-_250 = FakePiki
 	// _250      = ptr to PelletView
@@ -203,7 +205,7 @@ struct Navi : public FakePiki, virtual public PelletView {
 	u8 _264[4];                              // _264
 	bool m_isAlive;                          // _268
 	u8 _269;                                 // _269
-	u8 _26A;                                 // _26A
+	u8 mPluckingCounter;                                 // _26A
 	PSM::Navi* m_soundObj;                   // _26C
 	NaviFSM* m_fsm;                          // _270
 	NaviState* m_currentState;               // _274

@@ -7,24 +7,24 @@
 #include "PSM/Navi.h"
 
 namespace Game {
-    
+
 void NaviState::swapNavi(Navi* navi)
 {
-	Navi* currNavi = naviMgr->getAt(1 - navi->m_naviIndex);
-	int currID     = currNavi->getStateID();
+	Navi* otherNavi  = naviMgr->getAt(1 - navi->m_naviIndex);
+	int otherStateID = otherNavi->getStateID();
 
-	if (currNavi->isAlive() && currID != NSID_Punch) {
+	if (otherNavi->isAlive() && otherStateID != NSID_Punch) {
 		gameSystem->m_section->pmTogglePlayer();
 
-		playChangeVoice(currNavi);
+		playChangeVoice(otherNavi);
 
-		if (currNavi->getStateID() == NSID_Follow) {
-			InteractFue whistle(currNavi, 0, 0);
+		if (otherNavi->getStateID() == NSID_Follow) {
+			InteractFue whistle(otherNavi, 0, 0);
 			navi->stimulate(whistle);
 		}
 
-		if (currNavi->m_currentState->needYChangeMotion()) {
-			currNavi->m_fsm->transit(currNavi, NSID_Change, nullptr);
+		if (otherNavi->m_currentState->needYChangeMotion()) {
+			otherNavi->m_fsm->transit(otherNavi, NSID_Change, nullptr);
 		}
 	}
 }
@@ -60,7 +60,7 @@ void NaviNukuState::init(Navi* navi, StateArg* stateArg)
 	} else {
 		mIsFollower = false;
 	}
-	if (navi->_26A != 0) {
+	if (navi->mPluckingCounter != 0) {
 		mAnimID = IPikiAnims::NUKU3;
 	} else {
 		mAnimID = IPikiAnims::NUKU;
@@ -68,10 +68,10 @@ void NaviNukuState::init(Navi* navi, StateArg* stateArg)
 	navi->startMotion(mAnimID, mAnimID, navi, nullptr);
 	mCounter = static_cast<NaviParms*>(navi->m_parms)->m_naviParms.m_p042.m_value;
 	navi->m_soundObj->startSound(PSSE_PL_PULLING_PIKI, 0);
-	mDidPluckSE = 0;
-	mIsActive   = 0;
-	mDidPressA  = 0;
-	_15         = 0;
+	mDidPluckSE  = 0;
+	mIsActive    = 0;
+	mDidPressA   = 0;
+	_15          = 0;
 	navi->m_mass = 0.0f;
 }
 
@@ -81,8 +81,9 @@ void NaviNukuState::exec(Navi* navi)
 		mDidPressA = true;
 	}
 
-    if (moviePlayer && moviePlayer->m_demoState != 0) {
+	if (moviePlayer && moviePlayer->m_demoState != 0) {
 		if (mIsFollower) {
+			Navi::sIsThereFollower = false;
 			NaviFollowArg followArg(false);
 			transit(navi, NSID_Follow, &followArg);
 			return;
@@ -91,32 +92,38 @@ void NaviNukuState::exec(Navi* navi)
 		return;
 	}
 
-	navi->m_velocity = 0.0f;
-	navi->m_position2       = 0.0f;
+	navi->m_velocity  = 0.0f;
+	navi->m_position2 = 0.0f;
 	if (!navi->assertMotion(mAnimID)) {
 		if (mIsFollower) {
+			Navi::sIsThereFollower = false;
 			NaviFollowArg followArg(false);
 			transit(navi, NSID_Follow, &followArg);
 		} else {
 			transit(navi, NSID_Walk, nullptr);
 		}
-		navi->_26A = 0;
+		navi->mPluckingCounter = 0;
 	} else {
 		mDidPressA = true;
-		mIsActive = true;
-		navi->_26A++;
+		mIsActive  = true;
+		navi->mPluckingCounter++;
 	}
 
 	if (navi->m_padinput && navi->m_padinput->getButton() & PAD_BUTTON_B) {
-		navi->_26A = 0;
+		navi->mPluckingCounter = 0;
 		transit(navi, NSID_Walk, nullptr);
+		
+		Navi* otherNavi = naviMgr->getAt(1 - navi->m_naviIndex);
+		if (otherNavi && otherNavi->isAlive() && Navi::sIsThereFollower) {
+			otherNavi->mPluckingCounter = 0;
+			Navi::sIsThereFollower = false;
+			transit(otherNavi, NSID_Follow, nullptr);
+		}
 		return;
 	}
 
-	if (navi->m_padinput && !gameSystem->paused_soft() && moviePlayer->m_demoState == 0 
-		&& !gameSystem->isMultiplayerMode() && navi->m_padinput->isButtonDown(JUTGamePad::PRESS_Y) 
-		&& playData->isDemoFlag(DEMO_Unlock_Captain_Switch)) 
-	{
+	if (navi->m_padinput && !gameSystem->paused_soft() && moviePlayer->m_demoState == 0 && !gameSystem->isMultiplayerMode()
+	    && navi->m_padinput->isButtonDown(JUTGamePad::PRESS_Y) && playData->isDemoFlag(DEMO_Unlock_Captain_Switch)) {
 		swapNavi(navi);
 	}
 }
@@ -137,30 +144,35 @@ void NaviNukuState::onKeyEvent(Navi* navi, SysShape::KeyEvent const& key)
 			if (!navi->procActionButton()) {
 				mIsActive = false;
 				if (mIsFollower) {
+					Navi::sIsThereFollower = false;
 					NaviFollowArg arg(false); // not new to party
 					transit(navi, NSID_Follow, &arg);
 				} else {
 					transit(navi, NSID_Walk, nullptr);
 				}
-				navi->_26A = 0;
+				navi->mPluckingCounter = 0;
 			}
 		} else {
 			if (mIsFollower) {
+				Navi::sIsThereFollower = false;
 				NaviFollowArg arg(false); // not new to party
 				transit(navi, NSID_Follow, &arg);
 			} else {
 				transit(navi, NSID_Walk, nullptr);
 			}
-			navi->_26A = 0;
+			navi->mPluckingCounter = 0;
 		}
 		break;
 	}
 }
 
+bool NaviNukuState::callable() { return true; }
+
 void NaviNukuAdjustState::exec(Navi* navi)
 {
-	if (moviePlayer && moviePlayer->m_demoState  != 0) {
+	if (moviePlayer && moviePlayer->m_demoState != 0) {
 		if (mIsFollowing) {
+			Navi::sIsThereFollower = false;
 			transit(navi, NSID_Follow, nullptr);
 		} else {
 			transit(navi, NSID_Walk, nullptr);
@@ -170,6 +182,7 @@ void NaviNukuAdjustState::exec(Navi* navi)
 
 	if (!mPikiHead->isAlive() && !navi->procActionButton()) {
 		if (mIsFollowing) {
+			Navi::sIsThereFollower = false;
 			transit(navi, NSID_Follow, nullptr);
 		} else {
 			transit(navi, NSID_Walk, nullptr);
@@ -182,8 +195,15 @@ void NaviNukuAdjustState::exec(Navi* navi)
 	}
 
 	if (navi->m_padinput && navi->m_padinput->getButton() & Controller::PRESS_B) {
-		navi->_26A = 0;
+		navi->mPluckingCounter = 0;
 		transit(navi, NSID_Walk, nullptr);
+
+		Navi* otherNavi = naviMgr->getAt(1 - navi->m_naviIndex);
+		if (otherNavi && otherNavi->isAlive() && Navi::sIsThereFollower) {
+			otherNavi->mPluckingCounter = 0;
+			Navi::sIsThereFollower = false;
+			transit(otherNavi, NSID_Follow, nullptr);
+		}
 		return;
 	}
 
@@ -193,7 +213,7 @@ void NaviNukuAdjustState::exec(Navi* navi)
 	sproutToNavi.length(); // unused
 
 	Vector3f targetToNavi    = mTargetPosition - navi->getPosition(); // f26, f27, f28
-	f32 targetToNaviDistance = targetToNavi.length2D();                 // f31
+	f32 targetToNaviDistance = targetToNavi.length2D();               // f31
 	f32 absoluteDeltaY       = absF(targetToNavi.y);
 
 	f32 normalisedDistance = targetToNavi.normalise(); // f30, why tho
@@ -202,13 +222,14 @@ void NaviNukuAdjustState::exec(Navi* navi)
 	f32 angle      = angDist(newFaceDir, navi->m_faceDir);
 
 	if (absF(angle) < (PI / 10) && targetToNaviDistance < 2.0f && absoluteDeltaY < 10.0f) {
-		navi->m_faceDir      = newFaceDir;
+		navi->m_faceDir     = newFaceDir;
 		PikiMgr::mBirthMode = PikiMgr::PSM_Force;
 		Piki* piki          = pikiMgr->birth();
 		PikiMgr::mBirthMode = PikiMgr::PSM_Normal;
 
 		if (!piki) {
 			if (mIsFollowing) {
+				Navi::sIsThereFollower = false;
 				transit(navi, NSID_Follow, nullptr);
 			} else {
 				transit(navi, NSID_Walk, nullptr);
@@ -219,9 +240,9 @@ void NaviNukuAdjustState::exec(Navi* navi)
 		piki->init(nullptr);
 		piki->changeShape(mPikiHead->m_color);
 		piki->changeHappa(mPikiHead->m_headType);
-        if (Game::playData->m_olimarData[0].hasItem(Game::OlimarData::ODII_RepugnantAppendage)) {
-            piki->changeHappa(Game::Bud);
-        }
+		if (Game::playData->m_olimarData[0].hasItem(Game::OlimarData::ODII_RepugnantAppendage)) {
+			piki->changeHappa(Game::Bud);
+		}
 
 		Vector3f sproutPos = mPikiHead->getPosition();
 		piki->setPosition(sproutPos, false);
@@ -229,7 +250,7 @@ void NaviNukuAdjustState::exec(Navi* navi)
 		mPikiHead = nullptr;
 
 		NukareStateArg nukareArg;
-		nukareArg.mIsPlucking = navi->_26A != 0;
+		nukareArg.mIsPlucking = navi->mPluckingCounter != 0;
 		nukareArg.mNavi       = navi;
 		piki->m_fsm->transit(piki, PIKISTATE_Nukare, &nukareArg);
 
@@ -240,21 +261,22 @@ void NaviNukuAdjustState::exec(Navi* navi)
 
 	} else {
 		f32 angleOffset = 0.2f * angle;
-		navi->m_faceDir  = roundAng(navi->m_faceDir + angleOffset);
+		navi->m_faceDir = roundAng(navi->m_faceDir + angleOffset);
 
 		f32 speed = 100.0f;
 		if (speed * sys->m_deltaTime > normalisedDistance) {
 			speed = 0.5f / sys->m_deltaTime;
 		}
 
-		Vector3f vel          = targetToNavi * speed;
-		navi->m_position2       = vel;
-		navi->m_velocity = Vector3f(0.0f);
-		navi->m_velocity = vel;
+		Vector3f vel      = targetToNavi * speed;
+		navi->m_position2 = vel;
+		navi->m_velocity  = Vector3f(0.0f);
+		navi->m_velocity  = vel;
 	}
 
 	if (mWallHitCounter > 10) {
 		if (mIsFollowing) {
+			Navi::sIsThereFollower = false;
 			transit(navi, NSID_Follow, nullptr);
 		} else {
 			transit(navi, NSID_Walk, nullptr);
@@ -294,13 +316,105 @@ void NaviNukuAdjustState::exec(Navi* navi)
 
 	f32 speed = blendedVel.normalise();
 	if (speed != 0.0f) {
-		Vector3f finalVel     = blendedVel * simSpeed;
-		navi->m_position2       = finalVel;
-		navi->m_velocity = finalVel;
-    }
+		Vector3f finalVel = blendedVel * simSpeed;
+		navi->m_position2 = finalVel;
+		navi->m_velocity  = finalVel;
+	}
 }
 
 bool NaviNukuAdjustState::callable() { return true; }
 
-} // namespace Game
+bool Navi::sIsThereFollower = false;
 
+/**
+ * @note Address: 0x80140644
+ * @note Size: 0x654
+ */
+bool Navi::procActionButton()
+{
+	f32 minDist;
+	if (mPluckingCounter) {
+		minDist = naviMgr->m_naviParms->m_naviParms.m_p060.m_value;
+	} else {
+		minDist = naviMgr->m_naviParms->m_naviParms.m_p000.m_value;
+	}
+
+	Iterator<ItemPikihead::Item> iter(ItemPikihead::mgr);
+	minDist *= minDist;
+	ItemPikihead::Item* targetSprout = nullptr;
+
+	u16 otherNaviIndex = 1 - m_naviIndex;
+
+	// find (closest) pluckable sprout within range
+	CI_LOOP(iter)
+	{
+		BaseItem* item             = *iter;
+		ItemPikihead::Item* sprout = (ItemPikihead::Item*)item;
+		Vector3f sproutPos         = sprout->getPosition();
+		Vector3f naviPos           = getPosition();
+		f32 heightDistance         = absF(sproutPos.y - naviPos.y);
+		f32 horizontalDistance     = sqrDistanceXZ(sproutPos, naviPos);
+
+		// sprout has to be pluckable, closer than current/within range, not at massive height difference
+		if (sprout->canPullout() && horizontalDistance < minDist && heightDistance < 25.0f) {
+			minDist      = horizontalDistance;
+			targetSprout = sprout;
+		}
+	}
+
+	// if sprout found, pluck it.
+	if (targetSprout) {
+		NaviNukuAdjustStateArg nukuAdjustArg;
+		setupNukuAdjustArg(targetSprout, nukuAdjustArg);
+		if (sIsThereFollower) {
+			nukuAdjustArg._18 = true;
+		}
+		m_fsm->transit(this, NSID_NukuAdjust, &nukuAdjustArg);
+
+		// if there's a captain following us, put them to work.
+		Navi* otherNavi = naviMgr->getAt(otherNaviIndex);
+		if (otherNavi && otherNavi->isAlive() && otherNavi->getStateID() == NSID_Follow) {
+			sIsThereFollower = true;
+			
+			f32 actionRadius = naviMgr->m_naviParms->m_naviParms.m_p060.m_value; // following captain uses autopluck range
+
+			ItemPikihead::Item* otherTargetSprout = nullptr;
+			minDist                               = actionRadius * actionRadius;
+
+			// find (closest) pluckable sprout within range that -isn't- the same as main captain's target
+			CI_LOOP(iter)
+			{
+				ItemPikihead::Item* sprout = *iter;
+				if (sprout != targetSprout) {
+					Vector3f sproutPos = sprout->getPosition();
+					Vector3f naviPos   = getPosition();
+					f32 heightDiff     = FABS(sproutPos.y - naviPos.y);
+					f32 sqrXZ          = sqrDistanceXZ(sproutPos, naviPos);
+
+					// sprout has to be pluckable, closer than current/within range, not at massive height difference
+					// (we don't care about VS mode now bc can't have a following captain)
+					if (sprout->canPullout() && sqrXZ < minDist && heightDiff < 25.0f) {
+						minDist           = sqrXZ;
+						otherTargetSprout = sprout;
+					}
+				}
+			}
+
+			// if sprout found, pluck it.
+			if (otherTargetSprout) {
+				NaviNukuAdjustStateArg nukuAdjustArg2;
+				setupNukuAdjustArg(otherTargetSprout, nukuAdjustArg2);
+				nukuAdjustArg2._18 = true;
+				otherNavi->m_fsm->transit(otherNavi, NSID_NukuAdjust, &nukuAdjustArg2);
+			}
+		}
+
+		// we plucked something.
+		return true;
+	}
+
+	// we did not pluck something.
+	return false;
+}
+
+} // namespace Game

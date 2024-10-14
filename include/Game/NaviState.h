@@ -552,6 +552,7 @@ struct NaviNukuState : public NaviState {
 	virtual void cleanup(Navi*);                               // _10
 	virtual bool invincible() { return true; }                 // _20 (weak)
 	virtual void onKeyEvent(Navi*, const SysShape::KeyEvent&); // _24
+	virtual bool callable();
 
 	// _00     = VTBL
 	// _00-_10 = NaviState
