@@ -366,6 +366,11 @@ demoCheck__Q24Game4NaviFv:
 /* 8021F700 0021C640  4B FC 7C E1 */	bl isDemoFlag__Q24Game8PlayDataFi
 /* 8021F704 0021C644  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 8021F708 0021C648  40 82 01 0C */	bne .L_8021F814
+lwz r3, playData__4Game@sda21(r13)
+li r4, 0x23
+bl isDemoFlag__Q24Game8PlayDataFi
+clrlwi. r0, r3, 0x18
+beq .L_8021F814
 /* 8021F70C 0021C64C  A0 1F 02 DC */	lhz r0, 0x2dc(r31)
 /* 8021F710 0021C650  28 00 00 01 */	cmplwi r0, 1
 /* 8021F714 0021C654  40 82 01 00 */	bne .L_8021F814
@@ -1960,6 +1965,11 @@ demoCheck__Q24Game4NaviFv:
 /* 8021F700 0021C640  4B FC 7C E1 */	bl isDemoFlag__Q24Game8PlayDataFi
 /* 8021F704 0021C644  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 8021F708 0021C648  40 82 01 0C */	bne .L_8021F814
+lwz r3, playData__4Game@sda21(r13)
+li r4, 0x23
+bl isDemoFlag__Q24Game8PlayDataFi
+clrlwi. r0, r3, 0x18
+beq .L_8021F814
 /* 8021F70C 0021C64C  A0 1F 02 DC */	lhz r0, 0x2dc(r31)
 /* 8021F710 0021C650  28 00 00 01 */	cmplwi r0, 1
 /* 8021F714 0021C654  40 82 01 00 */	bne .L_8021F814

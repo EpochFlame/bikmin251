@@ -38,7 +38,7 @@ void setModeInCutscene()
 	if (twoPlayerActive) {
 		OSReport("set player mode ---------------------------------\n");
 		Game::BaseGameSection* section = Game::gameSystem->m_section;
-		JUT_ASSERT(Game::gameSystem->m_section, "Section Missing!\n");
+		JUT_ASSERT(Game::gameSystem->m_section, "Section Missing! LMAO\n");
 		JUT_ASSERT(Game::naviMgr, "NaviMgr Missing!\n");
 		JUT_ASSERT(sys->m_gfx, "gfx Missing!\n");
 		int alive = Game::naviMgr->getAliveCount();
