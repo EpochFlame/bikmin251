@@ -301,7 +301,7 @@ namespace PSM
 {
 
 u8 ObjCalc_SingleGame::getPlayerNo(PSM::Creature* obj) { 
-	if (!TwoPlayer::twoPlayerActive) {
+	if (!TwoPlayer::twoPlayerActive || obj == nullptr) {
 		return m_currCameraIndex;
 	}
 	// cursed typecast
