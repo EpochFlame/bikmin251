@@ -291,7 +291,7 @@ bool isKeyUnlock()
 				retval = Game::playData->m_olimarData[0].hasItem(Game::OlimarData::ODII_JusticeAlloy);
 				break;
 			case 'l_01':
-				retval = Game::playData->isPelletZukanVisible(93);
+				retval = Game::playData->isPelletZukanVisible(115);
 				break;
 			case 'l_02':
 				retval = Game::playData->isPelletZukanVisible(34);
