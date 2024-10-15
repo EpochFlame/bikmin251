@@ -1129,17 +1129,20 @@ exec__Q26PikiAI12ActFormationFv:
 /* 8019DB9C 0019AADC  80 7F 00 04 */	lwz r3, 4(r31)
 /* 8019DBA0 0019AAE0  88 03 02 B8 */	lbz r0, 0x2b8(r3)
 /* 8019DBA4 0019AAE4  2C 00 00 05 */	cmpwi r0, 5
-/* 8019DBA8 0019AAE8  41 82 01 24 */	beq .L_8019DCCC
-# carrots will not trip
-cmpwi r0, 6
-beq .L_8019DCCC
-# do not trip in nether
-# trip check
-lwz r3, playData__4Game@sda21(r13)
-bl getCurrentCourseIndex__Q24Game8PlayDataFv
-cmpwi r3, 2
-lwz r3, 4(r31)
-beq .L_8019DCCC
+# just never trip it sucks lol
+/* 8019DBA8 0019AAE8  41 82 01 24 */	b .L_8019DCCC
+### DEPRECATED ###
+# # carrots will not trip
+# cmpwi r0, 6
+# beq .L_8019DCCC
+# # do not trip in nether
+# # trip check
+# lwz r3, playData__4Game@sda21(r13)
+# bl getCurrentCourseIndex__Q24Game8PlayDataFv
+# cmpwi r3, 2
+# lwz r3, 4(r31)
+# beq .L_8019DCCC
+##################
 /* 8019DBAC 0019AAEC  C0 3F 00 50 */	lfs f1, 0x50(r31)
 /* 8019DBB0 0019AAF0  C0 02 AC A0 */	lfs f0, lbl_80519000@sda21(r2)
 /* 8019DBB4 0019AAF4  FC 01 00 40 */	fcmpo cr0, f1, f0
