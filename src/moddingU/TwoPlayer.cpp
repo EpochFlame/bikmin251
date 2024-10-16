@@ -25,6 +25,10 @@ void initTwoPlayer()
 	twoPlayerActive = useTwoPlayer = tempData && Game::gameSystem->isStoryMode();
 }
 
+bool isUsingTwoPlayer() {
+	return useTwoPlayer && Game::gameSystem->isStoryMode();
+}
+
 void setTwoPlayer(bool set)
 {
 	useTwoPlayer    = set;
@@ -69,14 +73,14 @@ void setModeInCutscene()
 void setModeOutCutscene()
 {
 	int alive = Game::naviMgr->getAliveCount();
-	if (useTwoPlayer && alive == 2) {
+	if (isUsingTwoPlayer() && alive == 2) {
 		Game::gameSystem->m_section->TogglePlayer();
 	}
 }
 // loadSound__9TwoPlayerFv
 void loadSound()
 {
-	if (useTwoPlayer) {
+	if (isUsingTwoPlayer()) {
 		Game::naviMgr->createPSMDirectorUpdator();
 	}
 	PSSetCurCameraNo(0);
@@ -94,7 +98,7 @@ void stopInputsOther(Game::Navi* navi)
 void resumeInputsOther(Game::Navi* navi)
 {
 	int alive = Game::naviMgr->getAliveCount();
-	if (alive == 2 && useTwoPlayer) {
+	if (alive == 2 && isUsingTwoPlayer()) {
 		Game::Navi* other = Game::naviMgr->getAt(1 - navi->m_naviIndex);
 		other->m_padinput = other->m_padinput2;
 	}
@@ -144,7 +148,7 @@ void setController(int id) { Screen::gGame2DMgr->setGamePad(Game::naviMgr->getAt
 Game::Navi* getCurrentNavi()
 {
 	OSReport("Getting Navi\n");
-	if (useTwoPlayer) {
+	if (isUsingTwoPlayer()) {
 		return pausingNavi;
 	}
 	return Game::naviMgr->getActiveNavi();
@@ -165,17 +169,17 @@ void BaseGameSection::pmTogglePlayer()
 inline void BaseGameSection::TogglePlayer()
 {
 	int alive = naviMgr->getAliveCount();
-	if (TwoPlayer::useTwoPlayer && alive == 2) {
+	if (TwoPlayer::isUsingTwoPlayer() && alive == 2) {
 		TwoPlayer::twoPlayerActive = true;
 		setPlayerMode(2);
 		moviePlayer->m_viewport     = sys->m_gfx->getViewport(0);
 		moviePlayer->m_actingCamera = m_olimarCamera;
-	} else if ((m_prevNaviIdx == 0) || (m_prevNaviIdx == 1 && TwoPlayer::useTwoPlayer)) {
+	} else if ((m_prevNaviIdx == 0) || (m_prevNaviIdx == 1 && TwoPlayer::isUsingTwoPlayer())) {
 		TwoPlayer::twoPlayerActive = false;
 		setPlayerMode(1);
 		moviePlayer->m_viewport     = sys->m_gfx->getViewport(1);
 		moviePlayer->m_actingCamera = m_louieCamera;
-	} else if ((m_prevNaviIdx == 1) || (m_prevNaviIdx == 0 && TwoPlayer::useTwoPlayer)) {
+	} else if ((m_prevNaviIdx == 1) || (m_prevNaviIdx == 0 && TwoPlayer::isUsingTwoPlayer())) {
 		TwoPlayer::twoPlayerActive = false;
 		setPlayerMode(0);
 		moviePlayer->m_viewport     = sys->m_gfx->getViewport(0);
@@ -214,7 +218,7 @@ void BaseGameSection::setCamController()
 		PlayCamera* louieCam        = m_louieCamera;
 		navis[1]->m_camera          = louieCam;
 		navis[1]->m_camera2         = louieCam;
-		Controller* louieController = (TwoPlayer::useTwoPlayer) ? m_controllerP2 : m_controllerP1;
+		Controller* louieController = (TwoPlayer::isUsingTwoPlayer()) ? m_controllerP2 : m_controllerP1;
 		navis[1]->m_padinput        = louieController;
 		navis[1]->m_padinput2       = louieController;
 		navis[0]->disableController();
