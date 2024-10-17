@@ -22,13 +22,13 @@ static CaveTitleMsgEntry CaveTitleMsg [] = {
     {'f_02', 0, '8398_00', true , false, false, true , 0},		// Flood of Frogs
     {'f_03', 0, '8401_00', true , false, true , true , 0},		// Bup Nation
     {'f_04', 0, '8410_00', true , false, true , false, 0},		// Hyrule Tunnels
-    {'y_01', 0, '8397_00', false, false, false, false, 0},		// Factory Jamboree
+    {'y_01', 0, '8397_00', false, false, true, false, 0},		// Factory Jamboree
     {'y_02', 0, '8402_00', false, true , false, true , 0},		// Bread Aisle
     {'y_03', 0, '8403_00', false, true , true , false, 0},		// Vent Chamber
     {'y_04', 0, '8411_00', true , false, false, true , 0},		// Annoying Hole
-    {'l_01', 0, '8412_00', false, true , false, true , 0},		// J.N. Warehouse
-    {'l_02', 0, '8413_00', true , true , false, true , 0},		// Atrocity Facility
-    {'l_03', 0, '8414_00', true , true , false, true , 0},		// Roche Limit
+    {'l_01', 0, '8412_00', false, true , true, true , 0},		// J.N. Warehouse
+    {'l_02', 0, '8413_00', true , true , true, true , 0},		// Atrocity Facility
+    {'l_03', 0, '8414_00', true , true , true, true , 0},		// Roche Limit
     {'c_00', 0, '8395_00', false, false, false, false, 0},		// Challenge Mode 1
     {'c_01', 0, '8395_00', false, false, false, false, 0},		// Challenge Mode 2
     {'c_02', 0, '8395_00', false, false, false, false, 0},		// Challenge Mode 3
