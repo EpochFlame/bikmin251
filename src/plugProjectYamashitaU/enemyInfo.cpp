@@ -109,6 +109,7 @@ EnemyInfo gEnemyInfo[] = {
    {"PikiBabyRed",        EnemyTypeID::EnemyID_PikiBabyRed,    -1,                                1,      0x0007,    "",             "",             "",             "",            "",             "",             "Baby",         -1,                                  0,    BDT_Weak},
    {"PikiBabyYellow",     EnemyTypeID::EnemyID_PikiBabyYellow, -1,                                1,      0x0007,    "",             "PikiBabyRed",  "PikiBabyRed",  "PikiBabyRed", "",             "PikiBabyRed",  "Baby",         -1,                                  0,    BDT_Weak},
    {"PikiBabyBlue",       EnemyTypeID::EnemyID_PikiBabyBlue,   -1,                                1,      0x0007,    "",             "PikiBabyRed",  "PikiBabyRed",  "PikiBabyRed", "",             "PikiBabyRed",  "Baby",         -1,                                  0,    BDT_Weak},
+   {"QueenMongus",        EnemyTypeID::EnemyID_QueenMongus,    -1,                                1,      0x0007,    "",             "Queen",        "Queen",        "Queen",       "",             "",             "Queen",        EnemyTypeID::EnemyID_Baby,           50,   BDT_Boss},
 };
 // clang-format on
 

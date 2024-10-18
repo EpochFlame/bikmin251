@@ -142,6 +142,7 @@ enum EEnemyTypeID {//ID      Common Name
     EnemyID_UmiMushiBase   = 100, // Bloyster base (crashes)
     EnemyID_UmiMushiBlind  = 101, // Toady Bloyster
     EnemyID_PikiBabyBlue   = 102, // Blue Pikmistake
+    EnemyID_QueenMongus    = 103, // Empress Amongus Clone
 };
 EEnemyTypeID m_enemyID; // _00
 u8 m_count;    // _04

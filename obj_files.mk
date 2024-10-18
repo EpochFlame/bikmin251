@@ -1097,6 +1097,7 @@ MODDING:=\
 	$(BUILD_DIR)/src/moddingU/veterenMode.o\
 	$(BUILD_DIR)/src/moddingU/titanDweevil.o\
 	$(BUILD_DIR)/src/moddingU/crewmate.o\
+	$(BUILD_DIR)/src/moddingU/queenMongus.o\
 	$(BUILD_DIR)/src/plugProjectDroughtU/GoHereMap.o\
 	$(BUILD_DIR)/src/plugProjectDroughtU/GoHereNavi.o\
 	$(BUILD_DIR)/src/plugProjectDroughtU/FastPathfinder.o\
