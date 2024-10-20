@@ -1361,7 +1361,7 @@ __ct__Q24Game8PlayDataFv:
 /* 801E6434 001E3374  41 80 FF B4 */	blt .L_801E63E8
 /* 801E6438 001E3378  38 7F 00 40 */	addi r3, r31, 0x40
 # increase allocated enemy num
-/* 801E643C 001E337C  38 80 00 66 */	li r4, 0x68
+/* 801E643C 001E337C  38 80 00 66 */	lwz r4, gEnemyInfoNum__4Game@sda21(r13)
 /* 801E6440 001E3380  48 04 D6 0D */	bl allocate__Q34Game8TekiStat3MgrFi
 /* 801E6444 001E3384  1C 7C 00 0C */	mulli r3, r28, 0xc
 /* 801E6448 001E3388  3B 63 00 10 */	addi r27, r3, 0x10

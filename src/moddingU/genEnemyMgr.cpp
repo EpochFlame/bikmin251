@@ -192,6 +192,9 @@ void GeneralEnemyMgr::createEnemyMgr(u8 type, int enemyID, int limit)
 	case EnemyTypeID::EnemyID_PikiBabyBlue:
 		mgr = new PikiBabyBlue::Mgr(limit, type);
 		break;
+	case EnemyTypeID::EnemyID_BabyMongus:
+		mgr = new BabyMongus::Mgr(limit, type);
+		break;
 	case EnemyTypeID::EnemyID_Demon:
 		mgr = new Demon::Mgr(limit, type);
 		break;
