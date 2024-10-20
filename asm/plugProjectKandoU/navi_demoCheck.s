@@ -1874,7 +1874,7 @@ demoCheck__Q24Game4NaviFv:
 /* 8021F5A4 0021C4E4  38 A0 00 00 */	li r5, 0
 /* 8021F5A8 0021C4E8  38 C0 00 00 */	li r6, 0
 /* 8021F5AC 0021C4EC  38 E0 00 00 */	li r7, 0
-/* 8021F5B0 0021C4F0  48 00 17 39 */	#bl "__ct__Q24Game12MoviePlayArgFPcPcP39IDelegate3<PQ24Game11MovieConfig,Ul,Ul>Ul"
+/* 8021F5B0 0021C4F0  48 00 17 39 */	bl "__ct__Q24Game12MoviePlayArgFPcPcP39IDelegate3<PQ24Game11MovieConfig,Ul,Ul>Ul"
 /* 8021F5B4 0021C4F4  7F 44 D3 78 */	mr r4, r26
 /* 8021F5B8 0021C4F8  38 61 01 28 */	addi r3, r1, 0x128
 /* 8021F5BC 0021C4FC  81 9A 00 00 */	lwz r12, 0(r26)
