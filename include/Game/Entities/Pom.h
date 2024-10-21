@@ -54,6 +54,8 @@ struct Obj : public EnemyBase {
 
 	// inline
 	void setPomColor(int);
+	
+	void setTipColor(int);
 
 	// _00 		= VTBL
 	// _00-_2BC	= EnemyBase
@@ -69,6 +71,7 @@ struct Obj : public EnemyBase {
 	f32 m_swingTimer;                  // _2E4, how long pom has been open since touch/swallow
 	f32 m_queenColorTimer;             // _2E8, how long queen pom has been on current color
 	EnemyTypeID::EEnemyTypeID m_pomID; // _2EC, B=3, R=4, Y=5, P=6, W=7, Q=8, base=82
+	J3DGXColorS10 m_tipColor; // color for petal tips
 	                                   // _2F0 = PelletView
 };
 

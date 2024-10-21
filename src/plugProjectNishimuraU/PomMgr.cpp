@@ -129,7 +129,7 @@ SysShape::Model* Mgr::createModel()
 
 	for (u16 i = 0; i < m_modelData->getMaterialCount1(); i++) {
 		const char* name = m_modelData->m_materialTable.m_materialNames->getName(i);
-		if (!strcmp(name, "hanabira1_v")) {
+		if (!strcmp(name, "hanabira1_v") || !strcmp(name, "hanabira2_v")) {
 			model->m_j3dModel->m_matPackets[i]._2C->newDifferedDisplayList(0x01000000);
 		}
 	}

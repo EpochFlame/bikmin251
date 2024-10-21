@@ -97,9 +97,15 @@ void Obj::changeMaterial()
 	J3DModel* j3dModel      = m_model->m_j3dModel;
 	J3DModelData* modelData = j3dModel->m_modelData;
 
-	u16 nameIdx           = j3dModel->m_modelData->m_materialTable.m_materialNames->getIndex("hanabira1_v");
-	J3DMaterial* material = modelData->m_materialTable.m_materials1[nameIdx];
-	material->m_tevBlock->setTevColor(0, m_rgbColor);
+	char* matNames[] = { "hanabira1_v", "hanabira2_v" };
+	J3DGXColorS10 colors[] = { m_rgbColor, m_tipColor };
+
+	for (u8 i = 0; i < 2; i++) {
+		u16 nameIdx           = j3dModel->m_modelData->m_materialTable.m_materialNames->getIndex(matNames[i]);
+		J3DMaterial* material = modelData->m_materialTable.m_materials1[nameIdx];
+		material->m_tevBlock->setTevColor(0, colors[i]);
+	}
+
 	j3dModel->calcMaterial();
 
 	for (u16 i = 0; i < modelData->m_materialTable.m_count1; i++) {
@@ -213,6 +219,9 @@ void Obj::initMouthSlots()
 void Obj::setPomColor(int pikiKind)
 {
 	m_pikiKind = (EPikiKind)pikiKind;
+
+	setTipColor(m_pikiKind);
+
 	switch (m_pikiKind) {
 	case Blue:
 		m_rgbColor.r = 0;
@@ -235,7 +244,7 @@ void Obj::setPomColor(int pikiKind)
 		m_rgbColor.g = 255;
 		m_rgbColor.b = 20;
 		break;
-	case Purple: 
+	case Purple:
 		m_rgbColor.r = 95;
 		m_rgbColor.g = 95;
 		m_rgbColor.b = 95;
@@ -249,6 +258,45 @@ void Obj::setPomColor(int pikiKind)
 		m_rgbColor.r = 255;
 		m_rgbColor.g = 89;
 		m_rgbColor.b = 0;
+		break;
+	}
+}
+
+void Obj::setTipColor(int pikiKind)
+{
+	if (getEnemyTypeID() == EnemyTypeID::EnemyID_RandPom) {
+		m_tipColor.r = 255;
+		m_tipColor.g = 216;
+		m_tipColor.b = 0;
+		return;
+	}
+
+	switch (pikiKind) {
+	case Blue: // egg
+		m_tipColor.r = 50;
+		m_tipColor.g = 0;
+		m_tipColor.b = 0;
+		break;
+	case Bulbmin: // orange
+	case Red:     // skeleton
+		m_tipColor.r = 0;
+		m_tipColor.g = 0;
+		m_tipColor.b = 0;
+		break;
+	case Yellow: // minion
+		m_tipColor.r = 0;
+		m_tipColor.g = 148;
+		m_tipColor.b = 255;
+		break;
+	case Purple: // moyai
+		m_tipColor.r = 75;
+		m_tipColor.g = 75;
+		m_tipColor.b = 75;
+		break;
+	case White: // shroom
+		m_tipColor.r = 255;
+		m_tipColor.g = 0;
+		m_tipColor.b = 110;
 		break;
 	}
 }
@@ -369,7 +417,8 @@ void Obj::changePomColor()
 		} else {
 			section = nullptr;
 		}
-		if (m_queenColorTimer > C_PROPERPARMS.m_colorChangeTime.m_value && !(section && (section->m_currentCourseInfo->m_courseIndex == 2 && !gameSystem->m_inCave))) {
+		if (m_queenColorTimer > C_PROPERPARMS.m_colorChangeTime.m_value
+		    && !(section && (section->m_currentCourseInfo->m_courseIndex == 2 && !gameSystem->m_inCave))) {
 			int limit     = m_pikiKind + 3; // more than 3 and we loop back
 			int nextColor = m_pikiKind + 1; // first potential next color to try (Blue->Red->Yellow)
 
