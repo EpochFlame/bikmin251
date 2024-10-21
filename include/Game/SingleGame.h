@@ -498,6 +498,10 @@ struct ZukanState : public State {
 	unknown debugDraw(Graphics&);
 	void dvdloadB_common();
 
+	bool canCreatePikiBaby(EnemyTypeID::EEnemyTypeID babyType);
+	void birthPikiBaby(EnemyTypeID::EEnemyTypeID babyType, int count);
+	void createPikiBabyTypes();
+
 	IDelegate* _10;                    // _10
 	IDelegate* _14;                    // _14
 	IDelegate* _18;                    // _18
@@ -509,7 +513,7 @@ struct ZukanState : public State {
 	IllustratedBook::Camera* _98;      // _98
 	CMode _9C;                         // _9C
 	int m_tekiInfoIndex;               // _A0
-	Creature* _A4;                     // _A4
+	Creature* m_currentCreature;                     // _A4
 	int _A8;                           // _A8
 	Creature* _AC;                     // _AC
 	JUTTexture* _B0;                   // _B0

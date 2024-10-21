@@ -1,5 +1,9 @@
 #include "Morimura/Zukan.h"
 #include "Game/enemyInfo.h"
+#include "Game/SingleGame.h"
+#include "Game/generalEnemyMgr.h"
+#include "Game/Entities/PikiBaby.h"
+#include "Dolphin/rand.h"
 
 #define ENEMY_ZUKAN_COUNT 81
 
@@ -102,3 +106,59 @@ TEnemyZukanIndex& TEnemyZukanIndex::getIndexInfo(int index)
 }
 
 } // namespace Morimura
+
+namespace Game {
+namespace SingleGame {
+
+void ZukanState::birthPikiBaby(EnemyTypeID::EEnemyTypeID babyType, int count)
+{
+	PikiBaby::Mgr* mgr = static_cast<PikiBaby::Mgr*>(generalEnemyMgr->getEnemyMgr(babyType));
+	if (mgr == nullptr) {
+		return;
+	}
+
+	EnemyBirthArg arg;
+	arg.m_position = m_currentCreature->getPosition();
+
+	for (int i = 0; i < count; i++) {
+		f32 theta = randFloat() * TAU;
+		arg.m_position.x += 50.0f * sinf(theta);
+		arg.m_position.y += 300.0f;
+		arg.m_position.z += 50.0f * cosf(theta);
+		
+		arg.m_faceDir       = theta;
+
+		PikiBaby::Obj* baby = static_cast<PikiBaby::Obj*>(mgr->birth(arg));
+		if (baby == nullptr) {
+			continue;
+		}
+
+		baby->init(nullptr);
+
+		Vector3f vel = Vector3f(0, -100.f, 0);
+		baby->setVelocity(vel);
+		baby->m_simVelocity = vel;
+
+		baby->m_FSM->transit(baby, Baby::BABY_Born, nullptr);
+	}
+}
+
+void ZukanState::createPikiBabyTypes()
+{
+	switch (m_tekiInfoIndex) {
+	case EnemyTypeID::EnemyID_Houdai:
+		birthPikiBaby(EnemyTypeID::EnemyID_PikiBabyRed, 10);
+		break;
+	case EnemyTypeID::EnemyID_DangoMushi:
+		birthPikiBaby(EnemyTypeID::EnemyID_PikiBabyBlue, 10);
+		break;
+	case EnemyTypeID::EnemyID_BigTreasure:
+		birthPikiBaby(EnemyTypeID::EnemyID_PikiBabyRed, 5);
+		birthPikiBaby(EnemyTypeID::EnemyID_PikiBabyBlue, 5);
+		birthPikiBaby(EnemyTypeID::EnemyID_PikiBabyYellow, 5);
+		break;
+	}
+}
+
+} // namespace SingleGame
+} // namespace Game

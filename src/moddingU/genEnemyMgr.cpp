@@ -412,12 +412,22 @@ void GeneralEnemyMgr::addEnemyNum(int enemyID, u8 max, GenObjectEnemy* genObj)
 
 				break;
 			case EnemyTypeID::EnemyID_BigTreasure:
-				if (getEnemyNum(EnemyTypeID::EnemyID_PikiBabyRed, true) < 5 && gameSystem->m_mode != GSM_PIKLOPEDIA) {
-					addEnemyNum(EnemyTypeID::EnemyID_PikiBabyRed, 5, nullptr);
+				u8 babyCount = 5, yellowCount = 15;
+				if (gameSystem->m_mode == GSM_PIKLOPEDIA) {
+					babyCount = 3;
+					yellowCount = 3;
 				}
 
-				if (getEnemyNum(EnemyTypeID::EnemyID_PikiBabyBlue, true) < 5 && gameSystem->m_mode != GSM_PIKLOPEDIA) {
-					addEnemyNum(EnemyTypeID::EnemyID_PikiBabyBlue, 5, nullptr);
+				if (getEnemyNum(EnemyTypeID::EnemyID_PikiBabyRed, true) < babyCount) {
+					addEnemyNum(EnemyTypeID::EnemyID_PikiBabyRed, babyCount, nullptr);
+				}
+
+				if (getEnemyNum(EnemyTypeID::EnemyID_PikiBabyBlue, true) < babyCount) {
+					addEnemyNum(EnemyTypeID::EnemyID_PikiBabyBlue, babyCount, nullptr);
+				}
+
+				if (getEnemyNum(EnemyTypeID::EnemyID_PikiBabyYellow, true) < yellowCount) {
+					addEnemyNum(EnemyTypeID::EnemyID_PikiBabyYellow, yellowCount, nullptr);
 				}
 				break;
 			}

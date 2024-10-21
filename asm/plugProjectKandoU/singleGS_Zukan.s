@@ -7784,6 +7784,8 @@ dvdloadB_teki__Q34Game10SingleGame10ZukanStateFv:
 /* 80225F08 00222E48  80 BF 00 A4 */	lwz r5, 0xa4(r31)
 /* 80225F0C 00222E4C  48 16 33 65 */	bl createGroupByEnemy__Q34Game11ShijimiChou3MgrFRQ24Game13EnemyBirthArgPQ24Game9EnemyBaseib
 .L_80225F10:
+mr r3, r31
+bl createPikiBabyTypes__Q34Game10SingleGame10ZukanStateFv
 /* 80225F10 00222E50  80 7F 00 98 */	lwz r3, 0x98(r31)
 /* 80225F14 00222E54  80 9F 00 A4 */	lwz r4, 0xa4(r31)
 /* 80225F18 00222E58  4B FF B5 F5 */	bl setTarget__Q34Game15IllustratedBook6CameraFPQ24Game8Creature
