@@ -13,8 +13,8 @@
 #include "PSM/ObjCalc.h"
 
 namespace TwoPlayer {
-bool useTwoPlayer       = true;
-bool twoPlayerActive    = true;
+bool useTwoPlayer       = false;
+bool twoPlayerActive    = false;
 Game::Navi* pausingNavi = nullptr;
 int deadPlayer          = 0;
 bool tempData           = false;
