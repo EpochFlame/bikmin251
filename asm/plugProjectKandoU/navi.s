@@ -6446,6 +6446,7 @@ enterAllPikis__Q24Game4NaviFv:
 										beq .L_nonoorange
 /* 80144A54 00141994  80 6D 93 30 */	lwz r3, mgr__Q24Game9ItemOnyon@sda21(r13)
 /* 80144A58 00141998  80 63 00 B0 */	lwz r3, 0xb0(r3)
+b .L_80144A5C
 .L_nonoorange:
 										/* We want to give the game a nullptr for the target for Orange Bikmin, then make it stop following the captains*/
 /* 80147FA4 00144EE4  38 80 00 01 */	li r4, 1
