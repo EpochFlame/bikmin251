@@ -129,6 +129,8 @@ EnemyGeneratorBase* GenObjectEnemy::createEnemyGenerator()
 		GENERATOR_CASE(EnemyTypeID::EnemyID_Tyre)
 		GENERATOR_CASE(EnemyTypeID::EnemyID_DangoMushi)
 		GENERATOR_CASE(EnemyTypeID::EnemyID_PikiBabyBlue)
+		GENERATOR_CASE(EnemyTypeID::EnemyID_QueenMongus)
+		GENERATOR_CASE(EnemyTypeID::EnemyID_BabyMongus)
 
 	case EnemyTypeID::EnemyID_Pom:
 	case EnemyTypeID::EnemyID_PanHouse:

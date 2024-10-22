@@ -100,7 +100,7 @@ struct Obj : public EnemyBase {
 
 	// _00 		= VTBL
 	// _00-_2BC	= EnemyBase
-	u8 _2BC[0x4];                            // _2BC, probably FSM*?
+	FSM* m_fsm;                            // _2BC, probably FSM*?
 	bool m_canCreateLarva;                   // _2C0
 	u8 _2C1;                                 // _2C1
 	u8 _2C2;                                 // _2C2
@@ -210,6 +210,9 @@ struct QueenShadowNode : public JointShadowNode {
 };
 
 struct QueenShadowMgr {
+	void init();
+	void update();
+
 	Obj* m_obj;                      // _00
 	JointShadowRootNode* m_rootNode; // _04
 	QueenShadowNode* m_shadowNodes;  // _08, could point to array of pointers instead

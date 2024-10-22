@@ -85,6 +85,7 @@ bool TEnemyPiyo::create(Arg* arg)
 		scale = 1.1f;
 		break;
 
+	case Game::EnemyTypeID::EnemyID_BabyMongus:
 	case Game::EnemyTypeID::EnemyID_UjiA:
 	case Game::EnemyTypeID::EnemyID_UjiB:
 	case Game::EnemyTypeID::EnemyID_Tobi:
@@ -545,6 +546,7 @@ bool TEnemyWalkSmoke::create(Arg* arg)
 	case Game::EnemyTypeID::EnemyID_Catfish:
 		return false;
 
+	case Game::EnemyTypeID::EnemyID_BabyMongus:
 	case Game::EnemyTypeID::EnemyID_UjiA:
 	case Game::EnemyTypeID::EnemyID_UjiB:
 	case Game::EnemyTypeID::EnemyID_Tobi:
@@ -762,6 +764,7 @@ TEnemyBombScaleTable::TEnemyBombScaleTable(Game::EnemyTypeID::EEnemyTypeID id)
 		mScale = 0.75f;
 		break;
 
+	case Game::EnemyTypeID::EnemyID_BabyMongus:
 	case Game::EnemyTypeID::EnemyID_UjiA:
 	case Game::EnemyTypeID::EnemyID_UjiB:
 	case Game::EnemyTypeID::EnemyID_Tobi:
@@ -1022,6 +1025,7 @@ bool TEnemyHamonChasePos::create(Arg* arg)
 		scale = 1.0f;
 		break;
 
+	case Game::EnemyTypeID::EnemyID_BabyMongus:
 	case Game::EnemyTypeID::EnemyID_UjiA:
 	case Game::EnemyTypeID::EnemyID_UjiB:
 	case Game::EnemyTypeID::EnemyID_Tobi:
@@ -1255,6 +1259,7 @@ f32 TEnemyHamon::getLimitDepth_()
 		depth = 30.0f;
 		break;
 
+	case Game::EnemyTypeID::EnemyID_BabyMongus:
 	case Game::EnemyTypeID::EnemyID_UjiA:
 	case Game::EnemyTypeID::EnemyID_UjiB:
 	case Game::EnemyTypeID::EnemyID_Tobi:

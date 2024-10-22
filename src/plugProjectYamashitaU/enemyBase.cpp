@@ -2439,11 +2439,11 @@ void EnemyBase::throwupItem()
 		pelletInitArg._14            = 2;
 		EnemyTypeID::EEnemyTypeID id = getEnemyTypeID();
 
-		if ((id == EnemyTypeID::EnemyID_Queen || id == EnemyTypeID::EnemyID_SnakeCrow || id == EnemyTypeID::EnemyID_KingChappy
-		     || id == EnemyTypeID::EnemyID_Damagumo || id == EnemyTypeID::EnemyID_OoPanModoki || id == EnemyTypeID::EnemyID_Houdai
-		     || id == EnemyTypeID::EnemyID_UmiMushiBlind || id == EnemyTypeID::EnemyID_BlackMan || id == EnemyTypeID::EnemyID_DangoMushi
-		     || id == EnemyTypeID::EnemyID_BigFoot || id == EnemyTypeID::EnemyID_SnakeWhole || id == EnemyTypeID::EnemyID_UmiMushi
-		     || id == EnemyTypeID::EnemyID_BigTreasure)
+		if ((id == EnemyTypeID::EnemyID_Queen || id == EnemyTypeID::EnemyID_QueenMongus || id == EnemyTypeID::EnemyID_SnakeCrow
+		     || id == EnemyTypeID::EnemyID_KingChappy || id == EnemyTypeID::EnemyID_Damagumo || id == EnemyTypeID::EnemyID_OoPanModoki
+		     || id == EnemyTypeID::EnemyID_Houdai || id == EnemyTypeID::EnemyID_UmiMushiBlind || id == EnemyTypeID::EnemyID_BlackMan
+		     || id == EnemyTypeID::EnemyID_DangoMushi || id == EnemyTypeID::EnemyID_BigFoot || id == EnemyTypeID::EnemyID_SnakeWhole
+		     || id == EnemyTypeID::EnemyID_UmiMushi || id == EnemyTypeID::EnemyID_BigTreasure)
 		    && gameSystem && gameSystem->m_mode == GSM_STORY_MODE && gameSystem->m_inCave && Cave::randMapMgr
 		    && Cave::randMapMgr->isLastFloor()) {
 			pelletInitArg._1D = true;

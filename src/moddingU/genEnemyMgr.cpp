@@ -68,6 +68,7 @@
 #include "Game/Entities/YellowChappy.h"
 #include "Game/Entities/YellowKochappy.h"
 #include "Game/Entities/PikiBaby.h"
+#include "Game/Entities/QueenMongus.h"
 #include "Game/plantsMgr.h"
 #include "Game/gamePlayData.h"
 #include "Game/MapMgr.h"
@@ -176,6 +177,9 @@ void GeneralEnemyMgr::createEnemyMgr(u8 type, int enemyID, int limit)
 	case EnemyTypeID::EnemyID_Queen:
 		mgr = new Queen::Mgr(limit, type);
 		break;
+	case EnemyTypeID::EnemyID_QueenMongus:
+		mgr = new QueenMongus::Mgr(limit, type);
+		break;
 	case EnemyTypeID::EnemyID_Baby:
 		mgr = new Baby::Mgr(limit, type);
 		break;
@@ -187,6 +191,9 @@ void GeneralEnemyMgr::createEnemyMgr(u8 type, int enemyID, int limit)
 		break;
 	case EnemyTypeID::EnemyID_PikiBabyBlue:
 		mgr = new PikiBabyBlue::Mgr(limit, type);
+		break;
+	case EnemyTypeID::EnemyID_BabyMongus:
+		mgr = new BabyMongus::Mgr(limit, type);
 		break;
 	case EnemyTypeID::EnemyID_Demon:
 		mgr = new Demon::Mgr(limit, type);
@@ -405,6 +412,7 @@ void GeneralEnemyMgr::addEnemyNum(int enemyID, u8 max, GenObjectEnemy* genObj)
 				}
 
 				break;
+			case EnemyTypeID::EnemyID_QueenMongus:
 			case EnemyTypeID::EnemyID_Queen:
 				if (getEnemyNum(EnemyTypeID::EnemyID_Rock, true) < 10) {
 					addEnemyNum(EnemyTypeID::EnemyID_Rock, 10, nullptr);
