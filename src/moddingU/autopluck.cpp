@@ -353,28 +353,7 @@ f32 Navi::getActionRadius()
 		Vector3f onyonPos  = onyon->getPosition();
 		horizontalDistance = sqrDistanceXZ(onyonPos, naviPos);
 
-		OSReport("onyon horizontal distance: %f\n", horizontalDistance);
-
 		// stop as soon as navi is within the autopluck radius of onyon
-		if (horizontalDistance < minDistance) {
-			return parms->m_p062.m_value;
-		}
-	}
-
-	// then check through poms
-	Pom::Mgr* pomMgr = static_cast<Pom::Mgr*>(generalEnemyMgr->getEnemyMgr(EnemyTypeID::EnemyID_Pom));
-	if (pomMgr == nullptr) {
-		return parms->m_p000.m_value;
-	}
-
-	EnemyIterator<Pom::Obj> pomIter(pomMgr);
-	CI_LOOP(pomIter)
-	{
-		Pom::Obj* pom      = *pomIter;
-		Vector3f pomPos    = pom->getPosition();
-		horizontalDistance = sqrDistanceXZ(pomPos, naviPos);
-
-		// stop as soon as navi is within the autopluck radius of pom
 		if (horizontalDistance < minDistance) {
 			return parms->m_p062.m_value;
 		}
