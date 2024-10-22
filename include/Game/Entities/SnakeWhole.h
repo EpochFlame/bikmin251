@@ -93,6 +93,7 @@ struct Obj : public EnemyBase {
 	virtual void doStartMovie();                            // _2F0
 	virtual void doEndMovie();                              // _2F4
 	virtual void setFSM(FSM*);                              // _2F8
+	virtual void collisionCallback(CollEvent& event);
 	//////////////// VTABLE END
 
 	bool isOutTerritory();
@@ -142,7 +143,7 @@ struct Obj : public EnemyBase {
 	// _00-_2BC	= EnemyBase
 	FSM* m_FSM;                       // _2BC
 	bool m_isUnderground;             // _2C0
-	bool _2C1;                        // _2C1, isOnGround? hasLanded?
+	bool mIsJumping;                        // _2C1, isOnGround? hasLanded?
 	u8 _2C2;                          // _2C2
 	u8 _2C3;                          // _2C3
 	f32 m_stateTimer;                 // _2C4

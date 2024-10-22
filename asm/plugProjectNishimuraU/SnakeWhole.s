@@ -189,7 +189,7 @@ __vt__Q34Game10SnakeWhole3Obj:
 	.4byte doSave__Q24Game8CreatureFR6Stream
 	.4byte doLoad__Q24Game8CreatureFR6Stream
 	.4byte bounceCallback__Q24Game8CreatureFPQ23Sys8Triangle
-	.4byte collisionCallback__Q24Game9EnemyBaseFRQ24Game9CollEvent
+	.4byte collisionCallback__Q34Game10SnakeWhole3ObjFRQ24Game9CollEvent
 	.4byte platCallback__Q24Game8CreatureFRQ24Game9PlatEvent
 	.4byte getJAIObject__Q24Game9EnemyBaseFv
 	.4byte getPSCreature__Q24Game9EnemyBaseFv

@@ -658,6 +658,23 @@ bool Game::Hana::Obj::bombCallBack(Creature* creature, Vector3f& vec, f32 damage
 	return true;
 }
 
+void Game::SnakeWhole::Obj::collisionCallback(CollEvent& event)
+{
+	Creature* creature = event.m_collidingCreature;
+	if (!mIsJumping || creature == nullptr || isEvent(0, EB_Bittered)) {
+		return;
+	}
+
+	if (creature->m_curTriangle == nullptr || !creature->isPiki()) {
+		return;
+	}
+
+	if (event.m_hitPart->m_currentID == 'foot') {
+		InteractFallMeck fallMeck(this, C_GENERALPARMS.m_attackDamage.m_value);
+		creature->stimulate(fallMeck);
+	}
+}
+
 void setKeyCheat()
 {
 	if (sys->getPlayCommonData()->isChallengeGamePlayable()) {
