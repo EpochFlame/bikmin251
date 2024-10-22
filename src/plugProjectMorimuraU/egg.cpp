@@ -350,7 +350,7 @@ void Obj::genItem()
 
 			if (tripleNectarItem) {
 				ItemHoney::Item* nectar = static_cast<ItemHoney::Item*>(tripleNectarItem);
-				f32 theta               = PI * i + angle2;
+				f32 theta               = TAU * ((f32)i / 3) + angle2;
 				sprayVelocity.x         = 50.0f * pikmin2_sinf(theta);
 				sprayVelocity.z         = 50.0f * pikmin2_cosf(theta);
 				nectar->init(nullptr);
