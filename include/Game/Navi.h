@@ -176,13 +176,13 @@ struct Navi : public FakePiki, virtual public PelletView {
 	void updateKaisanDisable();
 	void updateThrowDisable();
 	void useDope(int);
-
 	
 	void GoHereSuccess();
 	void GoHereInterupted();
 	void GoHereInteruptBlocked();
 	void GoHereInteruptWater();
 
+	f32 getActionRadius();
 
 	inline void setCalcs()
 	{

@@ -37,7 +37,6 @@
 #include "efx/TEnemyDive.h"
 #include "PSM/Navi.h"
 
-
 bool isTreasureCutscene;
 bool isKeyCheat = false; // set all keylocks to open if true
 
@@ -400,11 +399,11 @@ bool Game::InteractPress::actPiki(Game::Piki* piki)
 bool Game::InteractBomb::actNavi(Game::Navi* navi)
 {
 	if (!(gameSystem->m_flags & GAMESYS_Unk6)) {
-		return false;	
+		return false;
 	}
 
-	bool isTeki 		 = m_creature->isTeki();
-	bool isHoudai 		 = static_cast<EnemyBase*>(m_creature)->getEnemyTypeID() == EnemyTypeID::EnemyID_Houdai;
+	bool isTeki          = m_creature->isTeki();
+	bool isHoudai        = static_cast<EnemyBase*>(m_creature)->getEnemyTypeID() == EnemyTypeID::EnemyID_Houdai;
 	bool hasJusticeAlloy = Game::playData->m_olimarData[0].hasItem(Game::OlimarData::ODII_JusticeAlloy);
 	if (hasJusticeAlloy && (!isTeki || !isHoudai)) {
 		return false;
@@ -440,7 +439,6 @@ bool canEnterCave(Game::Piki* piki, u32 id)
 	}
 	return true;
 }
-
 
 void Game::SingleGameSection::playMovie_helloPikmin(Game::Piki* piki)
 {
@@ -597,7 +595,7 @@ void Game::PikiAutoNukiState::exec(Piki* piki)
 	}
 }
 
-// init and exec are used here to change the mass of the idle leader, 
+// init and exec are used here to change the mass of the idle leader,
 // so that it does not get in the way of the active leader
 void Game::NaviFollowState::init(Navi* navi, StateArg* stateArg)
 {
@@ -624,15 +622,13 @@ void Game::NaviFollowState::init(Navi* navi, StateArg* stateArg)
 
 	mTargetNavi = naviMgr->getAt(1 - navi->m_naviIndex);
 	navi->setMoveRotation(true);
-	mIdleCounter = 0;
-	mTargetEnemy = nullptr;
-	navi->m_mass = 100.0f;
+	mIdleCounter           = 0;
+	mTargetEnemy           = nullptr;
+	navi->m_mass           = 100.0f;
+	navi->mPluckingCounter = 0;
 }
 
-void Game::NaviFollowState::cleanup(Navi* navi)
-{
-	navi->m_mass = 1.0f;
-}
+void Game::NaviFollowState::cleanup(Navi* navi) { navi->m_mass = 1.0f; }
 
 // separate seed growth stage timers
 void Game::ItemPikihead::WaitState::init(Item* item, StateArg*)
@@ -642,7 +638,7 @@ void Game::ItemPikihead::WaitState::init(Item* item, StateArg*)
 	if (item->m_headType == Flower) {
 		mTimer = 2.0f * randFloat() + pikiMgr->m_parms->m_pikiParms.m_p052.m_value; // wither time
 		return;
-	} 
+	}
 
 	if (item->m_headType == Bud) {
 		mTimer = 2.0f * randFloat() + pikiMgr->m_parms->m_pikiParms.m_p045.m_value; // seed bud to flower time

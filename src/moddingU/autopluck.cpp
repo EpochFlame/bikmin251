@@ -4,6 +4,10 @@
 #include "Game/PikiMgr.h"
 #include "Game/PikiState.h"
 #include "Game/Entities/ItemPikihead.h"
+#include "Game/Entities/ItemOnyon.h"
+#include "Game/Entities/Pom.h"
+#include "Game/generalEnemyMgr.h"
+#include "Game/EnemyIterator.h"
 #include "PSM/Navi.h"
 
 namespace Game {
@@ -33,7 +37,11 @@ void NaviWalkState::execAI(Navi* navi)
 {
 	switch (mAIState) {
 	case WALKAI_Wait:
-		navi->procActionButton();
+		// only do with inactive captains
+		if (navi->m_padinput == nullptr) {
+			navi->procActionButton();
+		}
+
 		execAI_wait(navi);
 		checkAI(navi);
 		break;
@@ -112,11 +120,11 @@ void NaviNukuState::exec(Navi* navi)
 	if (navi->m_padinput && navi->m_padinput->getButton() & PAD_BUTTON_B) {
 		navi->mPluckingCounter = 0;
 		transit(navi, NSID_Walk, nullptr);
-		
+
 		Navi* otherNavi = naviMgr->getAt(1 - navi->m_naviIndex);
 		if (otherNavi && otherNavi->isAlive() && Navi::sIsThereFollower) {
 			otherNavi->mPluckingCounter = 0;
-			Navi::sIsThereFollower = false;
+			Navi::sIsThereFollower      = false;
 			transit(otherNavi, NSID_Follow, nullptr);
 		}
 		return;
@@ -201,7 +209,7 @@ void NaviNukuAdjustState::exec(Navi* navi)
 		Navi* otherNavi = naviMgr->getAt(1 - navi->m_naviIndex);
 		if (otherNavi && otherNavi->isAlive() && Navi::sIsThereFollower) {
 			otherNavi->mPluckingCounter = 0;
-			Navi::sIsThereFollower = false;
+			Navi::sIsThereFollower      = false;
 			transit(otherNavi, NSID_Follow, nullptr);
 		}
 		return;
@@ -326,6 +334,55 @@ bool NaviNukuAdjustState::callable() { return true; }
 
 bool Navi::sIsThereFollower = false;
 
+f32 Navi::getActionRadius()
+{
+	Vector3f naviPos        = getPosition();
+	NaviParms::Parms* parms = &naviMgr->m_naviParms->m_naviParms;
+
+	f32 minDistance = parms->m_p060.m_value;
+	minDistance *= minDistance;
+
+	f32 horizontalDistance;
+
+	// first iterate through onyons
+	Iterator<Onyon> onyonIter(ItemOnyon::mgr);
+
+	CI_LOOP(onyonIter)
+	{
+		Onyon* onyon       = *onyonIter;
+		Vector3f onyonPos  = onyon->getPosition();
+		horizontalDistance = sqrDistanceXZ(onyonPos, naviPos);
+
+		OSReport("onyon horizontal distance: %f\n", horizontalDistance);
+
+		// stop as soon as navi is within the autopluck radius of onyon
+		if (horizontalDistance < minDistance) {
+			return parms->m_p062.m_value;
+		}
+	}
+
+	// then check through poms
+	Pom::Mgr* pomMgr = static_cast<Pom::Mgr*>(generalEnemyMgr->getEnemyMgr(EnemyTypeID::EnemyID_Pom));
+	if (pomMgr == nullptr) {
+		return parms->m_p000.m_value;
+	}
+
+	EnemyIterator<Pom::Obj> pomIter(pomMgr);
+	CI_LOOP(pomIter)
+	{
+		Pom::Obj* pom      = *pomIter;
+		Vector3f pomPos    = pom->getPosition();
+		horizontalDistance = sqrDistanceXZ(pomPos, naviPos);
+
+		// stop as soon as navi is within the autopluck radius of pom
+		if (horizontalDistance < minDistance) {
+			return parms->m_p062.m_value;
+		}
+	}
+
+	return parms->m_p000.m_value;
+}
+
 /**
  * @note Address: 0x80140644
  * @note Size: 0x654
@@ -336,7 +393,7 @@ bool Navi::procActionButton()
 	if (mPluckingCounter) {
 		minDist = naviMgr->m_naviParms->m_naviParms.m_p060.m_value;
 	} else {
-		minDist = naviMgr->m_naviParms->m_naviParms.m_p000.m_value;
+		minDist = getActionRadius();
 	}
 
 	Iterator<ItemPikihead::Item> iter(ItemPikihead::mgr);
@@ -375,7 +432,7 @@ bool Navi::procActionButton()
 		Navi* otherNavi = naviMgr->getAt(otherNaviIndex);
 		if (otherNavi && otherNavi->isAlive() && otherNavi->getStateID() == NSID_Follow) {
 			sIsThereFollower = true;
-			
+
 			f32 actionRadius = naviMgr->m_naviParms->m_naviParms.m_p060.m_value; // following captain uses autopluck range
 
 			ItemPikihead::Item* otherTargetSprout = nullptr;
