@@ -5990,7 +5990,7 @@ getSeSceneGate__Q23PSM12Scene_GlobalFPQ23PSM7ObjBaseUl:
 /* 8046C2B0 004691F0  38 80 00 3F */	li r4, 0x3f
 /* 8046C2B4 004691F4  38 A5 D9 2C */	addi r5, r5, lbl_8049D92C@l
 /* 8046C2B8 004691F8  4C C6 31 82 */	crclr 6
-/* 8046C2BC 004691FC  4B BB E3 85 */	bl panic_f__12JUTExceptionFPCciPCce
+/* 8046C2BC 004691FC  4B BB E3 85 */	nop /*bl panic_f__12JUTExceptionFPCciPCce*/
 /* 8046C2C0 00469200  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 8046C2C4 00469204  38 60 00 00 */	li r3, 0
 /* 8046C2C8 00469208  7C 08 03 A6 */	mtlr r0
